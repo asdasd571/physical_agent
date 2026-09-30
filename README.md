@@ -171,49 +171,6 @@ physical_agent/
 └── requirements.txt
 ```
 
-## Usage
-
-### 1. Install
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-.venv/bin/python -m pip install -r requirements-dev.txt -r reporting/requirements.txt
-```
-
-### 2. Configure LLM
-
-프로젝트 루트의 `.env`에 반별 API 키를 입력합니다.
-
-```dotenv
-OPENAI_API_KEY=your-class-api-key
-OPENAI_MODEL=gpt-4o-mini
-```
-
-### 3. Build Index
-
-Apple Silicon:
-
-```bash
-.venv/bin/python -m rag.cli index \
-  --manifest data/rag/manifest.csv \
-  --index-dir data/rag/index/investment \
-  --device mps \
-  --batch-size 8
-```
-
-CPU 환경에서는 `--device cpu`를 사용합니다.
-
-### 4. Run
-
-```bash
-.venv/bin/python app.py \
-  --index data/rag/index/investment
-```
-
-결과는 `reporting/output/investment_report_YYYY-MM-DD_RUNID.pdf`와 같은 이름의 JSON으로 생성됩니다.
-
-LLM 비용 없이 Graph만 확인하려면 `--skip-llm`을 사용할 수 있습니다.
 
 ## Actual Run Result
 
