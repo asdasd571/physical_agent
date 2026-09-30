@@ -2,6 +2,9 @@
 
 ## 통합 Agentic RAG 업데이트 (2026-09-30)
 
+- [x] 설계서·역할분담·실제 구현·실측값을 반영한 프로젝트 README 작성
+- [x] Mermaid 아키텍처, 실제 후보 결과와 Lessons Learned 정리
+
 - [x] OpenAI Responses API 공통 모델 어댑터 추가
 - [x] `tech`·`synergy` RAG 검색 결과에 LLM 근거 추출 연결
 - [x] `judge → narrative → archive → report` 흐름 추가
