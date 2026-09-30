@@ -16,7 +16,7 @@ feature/rag
 | STEP 4 | BGE-M3 embedding과 FAISS | 구현 완료, 실제 모델 smoke test 대기 |
 | STEP 5 | Kiwi tokenizer와 BM25 | 완료 |
 | STEP 6 | RRF 순위 융합 | 완료 |
-| STEP 7 | 필터 포함 `search_documents()` 완성 | 대기 |
+| STEP 7 | 필터 포함 `search_documents()` 완성 | 완료 |
 | STEP 8 | 실제 문서 indexing과 Top5 검색 | 대기 |
 | STEP 9 | Hit Rate@5와 MRR@5 평가 | 대기 |
 | STEP 10 | 다른 Agent 호출 통합 확인 | 대기 |
@@ -57,7 +57,7 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 
 1. `BAAI/bge-m3` 실제 모델 다운로드와 한국어·영어 문장 embedding 확인
 2. 실제 BGE-M3 tokenizer를 STEP 3 chunker에 연결
-3. STEP 7 후보·문서 유형 필터와 hybrid retriever 구현
+3. STEP 8 실제 PDF indexing과 Top5 검색
 
 ## STEP 4 작업 기록
 
@@ -120,6 +120,27 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 - 각 채널 21위 이후 제외와 기본 Top5 확인
 - 수동 확인 방법을 `rag/STEP6_VERIFICATION.md`에 기록
 
+## STEP 7 작업 기록
+
+### 구현 내용
+
+- candidate_id와 doc_type 공통 필터
+- 후보 검색 시 다른 후보의 tech·risk 제외
+- 후보 검색 시 candidate_id가 없는 parent·market 허용
+- doc_types가 지정되면 요청 유형만 허용
+- Dense와 BM25 검색 전에 필터 적용
+- Dense Top20 + BM25 Top20 + RRF HybridRetriever
+- 공개 `search_documents()` backend 연결
+
+### 테스트 결과
+
+- STEP 7 단독 테스트 `7 passed`
+- 전체 회귀 테스트 `50 passed`
+- candidate A와 candidate B 문서 격리 확인
+- 공통 parent·market 문서 포함 확인
+- tech 전용 검색에서 공통 문서 제외 확인
+- 수동 확인 방법을 `rag/STEP7_VERIFICATION.md`에 기록
+
 ## 변경 이력
 
 | 날짜 | 내용 |
@@ -128,3 +149,4 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 | 2026-09-30 | STEP 4 BGE-M3 embedding wrapper와 FAISS Dense store 작성 |
 | 2026-09-30 | STEP 5 Kiwi tokenizer와 BM25 Sparse store 작성 |
 | 2026-09-30 | STEP 6 Dense·BM25 RRF 순위 융합 작성 |
+| 2026-09-30 | STEP 7 후보·문서 유형 필터와 Hybrid Search 작성 |

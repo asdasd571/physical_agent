@@ -5,6 +5,7 @@ from .chunker import chunk_page, chunk_pages
 from .dense_store import DenseSearchResult, FaissDenseStore
 from .embeddings import BgeM3Embedder, DenseEmbedder, EmbeddingMetrics
 from .fusion import reciprocal_rank_fusion
+from .filters import chunk_matches_filters, filter_chunk_indices
 from .loader import load_manifest_documents, load_pdf_pages
 from .manifest import Manifest, load_manifest
 from .models import (
@@ -19,6 +20,7 @@ from .service import (
     configure_search_backend,
     search_documents,
 )
+from .retriever import HybridRetriever
 from .tokenizer import KiwiTechnicalTokenizer, normalize_search_text
 
 __all__ = [
@@ -32,6 +34,7 @@ __all__ = [
     "EmbeddingMetrics",
     "BgeM3Embedder",
     "FaissDenseStore",
+    "HybridRetriever",
     "KiwiTechnicalTokenizer",
     "Manifest",
     "ManifestEntry",
@@ -39,10 +42,12 @@ __all__ = [
     "SearchBackendNotConfiguredError",
     "chunk_page",
     "chunk_pages",
+    "chunk_matches_filters",
     "configure_search_backend",
     "load_manifest",
     "load_manifest_documents",
     "load_pdf_pages",
+    "filter_chunk_indices",
     "normalize_search_text",
     "reciprocal_rank_fusion",
     "search_documents",

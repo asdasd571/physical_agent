@@ -4,7 +4,7 @@
 
 - 담당자: 김낙근
 - 브랜치: `feature/rag`
-- 현재 단계: STEP 6 Dense·BM25 Reciprocal Rank Fusion 구현 완료
+- 현재 단계: STEP 7 필터 포함 Hybrid Search와 `search_documents()` 연결 완료
 - 마지막 업데이트: 2026-09-30
 
 ## 완료된 작업
@@ -31,6 +31,12 @@
 - [x] RRF `k=60`, 동일 가중치와 최종 기본 Top5 적용
 - [x] RRF 결과에 채널별 원순위와 원점수 metadata 기록
 - [x] RRF score 의미와 수동 확인 방법 문서화
+- [x] 공통 candidate·doc_type 필터 규칙 구현
+- [x] Dense와 BM25 검색 전에 동일한 필터 적용
+- [x] 특정 후보 검색에서 다른 후보 문서 제외
+- [x] 특정 후보 검색에서도 공통 parent·market 문서 허용
+- [x] Dense Top20 + BM25 Top20 + RRF HybridRetriever 구현
+- [x] 공개 `search_documents()`에 실제 hybrid backend 연결
 
 ## 진행 중인 작업
 
@@ -38,10 +44,10 @@
 
 ## 다음 작업
 
-1. STEP 7 candidate_id·doc_type 필터를 포함한 hybrid retriever 구현
-2. `search_documents()`에 Dense, BM25와 RRF backend 연결
-3. 공통 `parent`, `market` 문서 필터 동작 테스트
-4. 실제 BGE-M3로 짧은 한국어·영어 문장 embedding smoke test
+1. STEP 8 실제 공개 PDF 한 개를 manifest에 등록
+2. 실제 BGE-M3 모델 다운로드와 한국어·영어 embedding smoke test
+3. PDF load → chunk → Dense·BM25 index → Top5 검색 통합 실행
+4. 반환된 원문 page와 PDF 실제 페이지를 사람이 대조
 
 ## 변경된 파일
 
@@ -81,6 +87,20 @@
   - RRF 수식, 순위 기반 결합, Top20 제한과 Top5 반환 테스트
 - `rag/STEP6_VERIFICATION.md`
   - 사용자가 직접 실행할 명령과 예상 결과 기록
+- `rag/filters.py`
+  - candidate_id와 doc_type 공통 필터 규칙 구현
+- `rag/retriever.py`
+  - Dense, BM25와 RRF를 연결한 HybridRetriever 구현
+- `rag/dense_store.py`
+  - 필터된 chunk vector 집합에서 Dense Top20 검색
+- `rag/bm25_store.py`
+  - 필터된 corpus 기준 BM25 통계와 Top20 검색
+- `tests/test_filters.py`
+  - 후보 문서와 공통 문서 필터 규칙 테스트
+- `tests/test_retriever.py`
+  - hybrid 검색과 공개 search_documents 통합 테스트
+- `rag/STEP7_VERIFICATION.md`
+  - STEP 7 직접 실행 명령과 확인 항목 기록
 
 ## 현재 인터페이스
 
@@ -129,6 +149,23 @@ results = reciprocal_rank_fusion(
 )
 ```
 
+```python
+retriever = HybridRetriever(
+    dense_store=dense_store,
+    bm25_store=bm25_store,
+    embedder=embedder,
+    tokenizer=tokenizer,
+)
+configure_search_backend(retriever)
+
+results = search_documents(
+    query="로봇핸드 실물 조작 성공률",
+    candidate_id="company_a",
+    doc_types=["tech"],
+    top_k=5,
+)
+```
+
 ## 테스트 결과
 
 실행 명령:
@@ -142,7 +179,7 @@ results = reciprocal_rank_fusion(
 결과:
 
 ```text
-43 passed in 1.14s
+50 passed in 1.35s
 compileall PASS
 ```
 
@@ -171,6 +208,11 @@ compileall PASS
 - 각 채널의 21위 이후 결과 제외 확인
 - 최종 기본 Top5와 RRF metadata 확인
 - 같은 chunk ID의 출처·페이지·본문 충돌 시 오류 확인
+- candidate A 검색에서 candidate B의 기업 문서 제외 확인
+- candidate A 검색에서 공통 parent·market 문서 포함 확인
+- `doc_types=["tech"]` 검색에서 공통 문서 제외 확인
+- Dense와 BM25 모두 필터된 후보군에서 Top20 계산 확인
+- 공개 `search_documents()`가 hybrid backend와 RRF 결과를 반환하는지 확인
 
 ## 미해결 문제
 
@@ -180,7 +222,7 @@ compileall PASS
 
 ## 다른 팀원에게 영향을 주는 변경
 
-- API 변경 여부: `reciprocal_rank_fusion()`이 추가됐으나 기존 `search_documents()` 규격은 변경 없음
+- API 변경 여부: `HybridRetriever`가 추가되고 `search_documents()`가 실제 hybrid backend를 호출함. 공개 함수 시그니처는 변경 없음
 - State/Schema 변경 여부: 없음
 - requirements 변경 여부: 없음
 - 다른 브랜치에서 대응이 필요한 내용: 없음
@@ -193,8 +235,10 @@ STEP 4까지는 `feature/rag`에 commit/push 완료됐다.
 
 STEP 5까지는 `feature/rag`에 commit/push 완료됐다.
 
-STEP 6 코드, 테스트와 확인 문서는 검증을 마쳤으며 `feature/rag`에 commit/push한다.
+STEP 6까지는 `feature/rag`에 commit/push 완료됐다.
+
+STEP 7 코드, 테스트와 확인 문서는 검증을 마쳤으며 `feature/rag`에 commit/push한다.
 
 다음 commit 후보 메시지:
 
-`:sparkles:[FEAT] Dense BM25 RRF 순위 융합 구현`
+`:sparkles:[FEAT] 후보 문서 필터와 Hybrid Search 구현`

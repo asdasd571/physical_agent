@@ -10,7 +10,8 @@ from pathlib import Path
 from time import perf_counter
 from typing import Protocol, Sequence
 
-from .models import DocumentChunk
+from .filters import filter_chunk_indices
+from .models import DocumentChunk, DocumentType
 
 
 BM25_INDEX_FILENAME = "bm25.json"
@@ -90,16 +91,23 @@ class Bm25Store:
             self._documents
         )
 
-    def _idf(self, term: str) -> float:
-        document_count = len(self._documents)
-        frequency = self._document_frequencies.get(term, 0)
+    @staticmethod
+    def _idf(term: str, document_count: int, frequency: int) -> float:
         return math.log(1 + (document_count - frequency + 0.5) / (frequency + 0.5))
 
-    def _score_document(self, query_terms: Counter[str], index: int) -> float:
+    def _score_document(
+        self,
+        query_terms: Counter[str],
+        index: int,
+        *,
+        document_count: int,
+        document_frequencies: Counter[str],
+        average_document_length: float,
+    ) -> float:
         frequencies = self._term_frequencies[index]
         document_length = len(self._documents[index])
         length_normalization = 1 - self.b + self.b * (
-            document_length / self._average_document_length
+            document_length / average_document_length
         )
         score = 0.0
         for term, query_frequency in query_terms.items():
@@ -108,7 +116,11 @@ class Bm25Store:
                 continue
             numerator = term_frequency * (self.k1 + 1)
             denominator = term_frequency + self.k1 * length_normalization
-            score += self._idf(term) * (numerator / denominator) * query_frequency
+            score += (
+                self._idf(term, document_count, document_frequencies.get(term, 0))
+                * (numerator / denominator)
+                * query_frequency
+            )
         return score
 
     def search(
@@ -117,6 +129,8 @@ class Bm25Store:
         tokenizer: SparseTokenizer,
         *,
         top_k: int = 20,
+        candidate_id: str | None = None,
+        doc_types: Sequence[DocumentType] | None = None,
     ) -> list[Bm25SearchResult]:
         if not query.strip():
             raise ValueError("query must not be empty")
@@ -129,14 +143,36 @@ class Bm25Store:
             return []
 
         query_terms = Counter(query_tokens)
+        eligible_indices = filter_chunk_indices(
+            self._chunks,
+            candidate_id=candidate_id,
+            doc_types=doc_types,
+        )
+        if not eligible_indices:
+            return []
+        filtered_document_frequencies: Counter[str] = Counter()
+        for index in eligible_indices:
+            filtered_document_frequencies.update(set(self._documents[index]))
+        filtered_average_length = sum(
+            len(self._documents[index]) for index in eligible_indices
+        ) / len(eligible_indices)
         scored = [
-            (self._score_document(query_terms, index), index)
-            for index in range(len(self._chunks))
+            (
+                self._score_document(
+                    query_terms,
+                    index,
+                    document_count=len(eligible_indices),
+                    document_frequencies=filtered_document_frequencies,
+                    average_document_length=filtered_average_length,
+                ),
+                index,
+            )
+            for index in eligible_indices
         ]
         scored.sort(key=lambda item: (-item[0], self._chunks[item[1]].chunk_id))
         return [
             Bm25SearchResult(chunk=self._chunks[index], score=score)
-            for score, index in scored[: min(top_k, len(scored))]
+            for score, index in scored[: min(top_k, len(eligible_indices))]
             if score > 0
         ]
 

@@ -48,6 +48,9 @@ def search_documents(
         raise ValueError("query must not be empty")
     if top_k <= 0:
         raise ValueError("top_k must be positive")
+    normalized_candidate_id = candidate_id.strip() if candidate_id else None
+    if candidate_id is not None and normalized_candidate_id is None:
+        raise ValueError("candidate_id must not be blank")
     parsed_doc_types = (
         [DocumentType(value.strip().lower()) for value in doc_types]
         if doc_types is not None
@@ -59,7 +62,7 @@ def search_documents(
         )
     return _backend.search(
         query=normalized_query,
-        candidate_id=candidate_id,
+        candidate_id=normalized_candidate_id,
         doc_types=parsed_doc_types,
         top_k=top_k,
     )

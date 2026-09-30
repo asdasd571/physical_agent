@@ -10,7 +10,8 @@ from typing import Sequence
 import numpy as np
 
 from .embeddings import DenseEmbedder
-from .models import DocumentChunk
+from .filters import filter_chunk_indices
+from .models import DocumentChunk, DocumentType
 
 
 INDEX_FILENAME = "index.faiss"
@@ -103,6 +104,8 @@ class FaissDenseStore:
         embedder: DenseEmbedder,
         *,
         top_k: int = 20,
+        candidate_id: str | None = None,
+        doc_types: Sequence[DocumentType] | None = None,
     ) -> list[DenseSearchResult]:
         if not query.strip():
             raise ValueError("query must not be empty")
@@ -124,10 +127,36 @@ class FaissDenseStore:
         vector = np.ascontiguousarray(vector.reshape(1, -1))
         _import_faiss().normalize_L2(vector)
 
-        limit = min(top_k, len(self._chunks))
-        scores, indices = self._index.search(vector, limit)
+        eligible_indices = filter_chunk_indices(
+            self._chunks,
+            candidate_id=candidate_id,
+            doc_types=doc_types,
+        )
+        if not eligible_indices:
+            return []
+
+        faiss = _import_faiss()
+        if len(eligible_indices) == len(self._chunks):
+            search_index = self._index
+        else:
+            filtered_vectors = np.ascontiguousarray(
+                np.vstack([self._index.reconstruct(index) for index in eligible_indices]),
+                dtype=np.float32,
+            )
+            search_index = faiss.IndexFlatIP(self.dimension)
+            search_index.add(filtered_vectors)
+
+        limit = min(top_k, len(eligible_indices))
+        scores, indices = search_index.search(vector, limit)
         return [
-            DenseSearchResult(self._chunks[index], float(score))
+            DenseSearchResult(
+                self._chunks[
+                    eligible_indices[index]
+                    if len(eligible_indices) != len(self._chunks)
+                    else index
+                ],
+                float(score),
+            )
             for score, index in zip(scores[0], indices[0], strict=True)
             if index >= 0
         ]
