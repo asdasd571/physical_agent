@@ -5,12 +5,13 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Protocol, Sequence
 
+from .config import DEFAULT_TOP_K, DENSE_TOP_K, RRF_K as CONFIG_RRF_K
 from .models import DocumentChunk, RetrievedChunk
 
 
-RRF_K = 60
-RETRIEVAL_DEPTH = 20
-DEFAULT_FINAL_TOP_K = 5
+RRF_K = CONFIG_RRF_K
+RETRIEVAL_DEPTH = DENSE_TOP_K
+DEFAULT_FINAL_TOP_K = DEFAULT_TOP_K
 
 
 class RankedChunkResult(Protocol):

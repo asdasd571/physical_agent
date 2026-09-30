@@ -33,7 +33,7 @@
 
 ## 2. 실제 BGE-M3 평가
 
-STEP 8의 인덱스가 없다면 먼저 `rag/STEP8_VERIFICATION.md`에 따라 준비한다.
+STEP 8의 인덱스가 없다면 먼저 `rag/docs/indexing/STEP8_VERIFICATION.md`에 따라 준비한다.
 
 ```bash
 .venv/bin/python -m evaluation.retrieval_eval \

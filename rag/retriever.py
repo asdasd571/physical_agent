@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 
 from .bm25_store import Bm25Store, SparseTokenizer
+from .config import DEFAULT_TOP_K
 from .dense_store import FaissDenseStore
 from .embeddings import DenseEmbedder
 from .fusion import RETRIEVAL_DEPTH, reciprocal_rank_fusion
@@ -35,7 +36,7 @@ class HybridRetriever:
         query: str,
         candidate_id: str | None = None,
         doc_types: Sequence[DocumentType] | None = None,
-        top_k: int = 5,
+        top_k: int = DEFAULT_TOP_K,
     ) -> list[RetrievedChunk]:
         if not query.strip():
             raise ValueError("query must not be empty")

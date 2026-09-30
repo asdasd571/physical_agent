@@ -9,8 +9,9 @@ from typing import Protocol, Sequence
 import numpy as np
 from numpy.typing import NDArray
 
+from .config import EMBEDDING_MODEL
 
-DEFAULT_EMBEDDING_MODEL = "BAAI/bge-m3"
+DEFAULT_EMBEDDING_MODEL = EMBEDDING_MODEL
 
 
 class DenseEmbedder(Protocol):

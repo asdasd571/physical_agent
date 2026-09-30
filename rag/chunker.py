@@ -5,11 +5,12 @@ from __future__ import annotations
 import hashlib
 from typing import Iterable, Protocol, Sequence
 
+from .config import CHUNK_OVERLAP, CHUNK_SIZE
 from .models import DocumentChunk, DocumentPage, stable_id
 
 
-DEFAULT_CHUNK_SIZE = 450
-DEFAULT_CHUNK_OVERLAP = 60
+DEFAULT_CHUNK_SIZE = CHUNK_SIZE
+DEFAULT_CHUNK_OVERLAP = CHUNK_OVERLAP
 
 
 class TokenCodec(Protocol):

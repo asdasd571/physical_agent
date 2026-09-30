@@ -24,10 +24,19 @@ rag/
 ├── dense_store.py
 ├── bm25_store.py
 ├── fusion.py
+├── filters.py
 ├── retriever.py
-└── service.py
+├── indexing.py
+├── cli.py
+├── service.py
+└── docs/
+    ├── fusion/
+    ├── retrieval/
+    ├── indexing/
+    ├── evaluation/
+    └── integration/
 
-data/
+data/rag/
 ├── manifest.csv
 ├── documents/
 │   ├── tech/
@@ -44,12 +53,13 @@ evaluation/
 ├── retrieval_questions.json
 └── results/
 
-tests/
+tests/rag/
 ├── test_manifest.py
 ├── test_loader.py
 ├── test_chunker.py
 ├── test_fusion.py
-└── test_retriever.py
+├── test_retriever.py
+└── test_agent_integration.py
 ```
 
 ## `rag/`에 들어갈 파일
@@ -138,6 +148,8 @@ PDF를 원문 페이지 단위로 읽는다.
 ```python
 def chunk_page(
     page: DocumentPage,
+    tokenizer: TokenCodec,
+    *,
     chunk_size: int = 450,
     overlap: int = 60,
 ) -> list[DocumentChunk]:
@@ -311,10 +323,10 @@ __pycache__/
 
 ## 완료 체크리스트
 
-- [ ] 사용 페이지 합계가 200페이지를 넘으면 적재가 중단된다.
-- [ ] 모든 chunk가 하나의 원문 페이지에만 속한다.
-- [ ] Dense Top20과 BM25 Top20을 실제로 검색한다.
-- [ ] RRF `k=60`, 동일 가중치를 적용한다.
-- [ ] 공통 문서가 후보 필터에서 누락되지 않는다.
-- [ ] Top5 결과에 필수 필드가 모두 존재한다.
-- [ ] Hit Rate@5와 MRR@5를 실제 질문으로 측정한다.
+- [x] 사용 페이지 합계가 200페이지를 넘으면 적재가 중단된다.
+- [x] 모든 chunk가 하나의 원문 페이지에만 속한다.
+- [x] Dense Top20과 BM25 Top20을 실제로 검색한다.
+- [x] RRF `k=60`, 동일 가중치를 적용한다.
+- [x] 공통 문서가 후보 필터에서 누락되지 않는다.
+- [x] Top5 결과에 필수 필드가 모두 존재한다.
+- [x] Hit Rate@5와 MRR@5를 실제 질문으로 측정한다.

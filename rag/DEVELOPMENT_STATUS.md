@@ -4,7 +4,7 @@
 
 - 담당자: 김낙근
 - 브랜치: `feature/rag`
-- 현재 단계: STEP 10 다른 Agent 연동 확인 완료
+- 현재 단계: STEP 1~10 완료, main 병합 전 구조 정리 완료
 - 마지막 업데이트: 2026-09-30
 
 ## 완료된 작업
@@ -57,6 +57,9 @@
 - [x] 실제 BGE-M3 index를 공개 Agent 호출 경로로 검색
 - [x] `RetrievedChunk` 타입과 근거 필드 반환 확인
 - [x] GraphState와 공통 Schema를 변경하지 않는 RAG 경계 확인
+- [x] 역할 문서의 완료 체크리스트와 실제 구현 대조
+- [x] 공통 검색 설정을 `rag/config.py`로 중앙화
+- [x] STEP 검증 문서를 `rag/docs/` 기능별 폴더로 정리
 
 ## 진행 중인 작업
 
@@ -105,7 +108,7 @@
   - Dense Top20과 BM25 Top20 동일 가중치 RRF 구현
 - `tests/test_fusion.py`
   - RRF 수식, 순위 기반 결합, Top20 제한과 Top5 반환 테스트
-- `rag/STEP6_VERIFICATION.md`
+- `rag/docs/fusion/STEP6_VERIFICATION.md`
   - 사용자가 직접 실행할 명령과 예상 결과 기록
 - `rag/filters.py`
   - candidate_id와 doc_type 공통 필터 규칙 구현
@@ -119,7 +122,7 @@
   - 후보 문서와 공통 문서 필터 규칙 테스트
 - `tests/test_retriever.py`
   - hybrid 검색과 공개 search_documents 통합 테스트
-- `rag/STEP7_VERIFICATION.md`
+- `rag/docs/retrieval/STEP7_VERIFICATION.md`
   - STEP 7 직접 실행 명령과 확인 항목 기록
 - `rag/indexing.py`
   - manifest부터 Dense·BM25 index 저장까지 통합 파이프라인 구현
@@ -131,7 +134,7 @@
   - 모든 RAG 테스트를 담당 폴더로 이동
 - `tests/rag/test_indexing.py`
   - index 생성·저장·복원·검색 통합 테스트
-- `rag/STEP8_VERIFICATION.md`
+- `rag/docs/indexing/STEP8_VERIFICATION.md`
   - 실제 BGE-M3와 공식 PDF 재현 절차 기록
 - `.gitignore`
   - `data/rag/`의 원문 PDF, 생성 index와 로컬 manifest 제외
@@ -145,14 +148,22 @@
   - 실제 BGE-M3와 STEP 8 index 평가 결과 기록
 - `tests/rag/test_retrieval_eval.py`
   - 정답 순위, exact page, 입력 검증과 Top5 고정 테스트
-- `rag/STEP9_VERIFICATION.md`
+- `rag/docs/evaluation/STEP9_VERIFICATION.md`
   - 자동 테스트, 실제 평가 실행과 평가셋 확장 방법 기록
 - `scripts/verify_step10_agent_call.py`
   - 저장된 실제 index를 공개 Agent API로 호출하는 검증 스크립트
 - `tests/rag/test_agent_integration.py`
   - 다른 Agent 호출, 필터와 RetrievedChunk 계약 통합 테스트
-- `rag/STEP10_VERIFICATION.md`
+- `rag/docs/integration/STEP10_VERIFICATION.md`
   - 자동·실제 Agent 연동 실행 방법과 확인 항목 기록
+- `rag/config.py`
+  - chunk, 검색 깊이, RRF, TopK와 embedding 모델 기본값 중앙화
+- `rag/docs/`
+  - fusion, retrieval, indexing, evaluation, integration 검증 문서 분리
+- `tests/rag/test_config.py`
+  - 역할 문서와 공통 검색 기본값 일치 여부 확인
+- `docs/roles/김낙근_RAG.md`
+  - 실제 폴더 구조와 완료 체크리스트 반영
 
 ## 현재 인터페이스
 
@@ -252,8 +263,9 @@ report = evaluate_retrieval(retriever, questions, top_k=5)
 ```text
 STEP 9 tests: 7 passed
 STEP 10 integration test: 1 passed
-RAG tests: 55 passed
-All tests: 59 passed
+Config test: 1 passed
+RAG tests: 56 passed
+All tests: 60 passed
 compileall PASS
 ```
 
@@ -335,8 +347,10 @@ STEP 8까지 `feature/rag`에 commit/push 완료됐다.
 
 STEP 9와 `data/rag/` 경로 정리는 `feature/rag`에 commit/push 완료됐다.
 
-STEP 10은 로컬 개발과 실제 index 검증을 완료했으며 아직 commit/push 하지 않았다.
+STEP 10까지 `a191b7a`로 `feature/rag`에 commit/push 완료됐다.
+
+main 병합 전 설정·문서 구조 정리는 로컬에서 완료했으며 아직 commit/push 하지 않았다.
 
 다음 commit 후보 메시지:
 
-`:white_check_mark:[TEST] Agent RAG 통합 검증 추가`
+`:recycle:[REF] RAG 설정과 검증 문서 구조 정리`

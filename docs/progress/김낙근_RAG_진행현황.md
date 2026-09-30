@@ -118,7 +118,7 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 - `2 / 61`, `1 / 61 + 1 / 62` 수식 검증
 - 원검색 score가 아닌 rank로 융합되는지 검증
 - 각 채널 21위 이후 제외와 기본 Top5 확인
-- 수동 확인 방법을 `rag/STEP6_VERIFICATION.md`에 기록
+- 수동 확인 방법을 `rag/docs/fusion/STEP6_VERIFICATION.md`에 기록
 
 ## STEP 7 작업 기록
 
@@ -139,7 +139,7 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 - candidate A와 candidate B 문서 격리 확인
 - 공통 parent·market 문서 포함 확인
 - tech 전용 검색에서 공통 문서 제외 확인
-- 수동 확인 방법을 `rag/STEP7_VERIFICATION.md`에 기록
+- 수동 확인 방법을 `rag/docs/retrieval/STEP7_VERIFICATION.md`에 기록
 
 ## STEP 8 작업 기록
 
@@ -165,7 +165,7 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 
 - RAG 테스트 `47 passed`
 - 전체 테스트 `51 passed`
-- 수동 재현 방법을 `rag/STEP8_VERIFICATION.md`에 기록
+- 수동 재현 방법을 `rag/docs/indexing/STEP8_VERIFICATION.md`에 기록
 
 ## STEP 9 작업 기록
 
@@ -192,7 +192,7 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 - STEP 9 단독 테스트 `7 passed`
 - RAG 테스트 `54 passed`
 - 전체 테스트 `58 passed`
-- 수동 재현 방법을 `rag/STEP9_VERIFICATION.md`에 기록
+- 수동 재현 방법을 `rag/docs/evaluation/STEP9_VERIFICATION.md`에 기록
 
 ## STEP 10 작업 기록
 
@@ -217,7 +217,16 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 - STEP 10 통합 테스트 `1 passed`
 - RAG 테스트 `55 passed`
 - 전체 테스트 `59 passed`
-- 직접 확인 방법을 `rag/STEP10_VERIFICATION.md`에 기록
+- 직접 확인 방법을 `rag/docs/integration/STEP10_VERIFICATION.md`에 기록
+
+## main 병합 전 문서·설정 정리
+
+- 역할 문서에 명시된 검색 상수를 `rag/config.py`로 중앙화
+- 기존 모듈의 상수 이름은 호환되도록 유지
+- STEP 6~10 검증 문서를 `rag/docs/` 아래 기능별 폴더로 이동
+- `rag/DEVELOPMENT_STATUS.md`는 개발 현황의 단일 기준으로 기존 위치 유지
+- `docs/roles/김낙근_RAG.md` 구조와 완료 체크리스트를 실제 구현에 맞게 갱신
+- 설정 테스트 포함 RAG `56 passed`, 전체 `60 passed`
 
 ## 변경 이력
 
@@ -231,3 +240,4 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 | 2026-09-30 | STEP 8 실제 BGE-M3와 공식 PDF Hybrid RAG 검증 |
 | 2026-09-30 | STEP 9 고정 평가셋과 Hit Rate@5·MRR@5·latency 구현 |
 | 2026-09-30 | STEP 10 다른 Agent의 공개 RAG API 통합 확인 |
+| 2026-09-30 | main 병합 전 RAG 설정과 기능별 검증 문서 구조 정리 |

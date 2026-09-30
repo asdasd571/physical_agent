@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Protocol, Sequence
 
+from .config import DEFAULT_TOP_K
 from .models import DocumentType, RetrievedChunk
 
 
@@ -13,7 +14,7 @@ class SearchBackend(Protocol):
         query: str,
         candidate_id: str | None = None,
         doc_types: Sequence[DocumentType] | None = None,
-        top_k: int = 5,
+        top_k: int = DEFAULT_TOP_K,
     ) -> list[RetrievedChunk]: ...
 
 
@@ -35,7 +36,7 @@ def search_documents(
     query: str,
     candidate_id: str | None = None,
     doc_types: list[str] | None = None,
-    top_k: int = 5,
+    top_k: int = DEFAULT_TOP_K,
 ) -> list[RetrievedChunk]:
     """Search indexed evidence using the project-wide public contract.
 

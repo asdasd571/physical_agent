@@ -9,6 +9,7 @@ from typing import Sequence
 
 import numpy as np
 
+from .config import DENSE_TOP_K
 from .embeddings import DenseEmbedder
 from .filters import filter_chunk_indices
 from .models import DocumentChunk, DocumentType
@@ -103,7 +104,7 @@ class FaissDenseStore:
         query: str,
         embedder: DenseEmbedder,
         *,
-        top_k: int = 20,
+        top_k: int = DENSE_TOP_K,
         candidate_id: str | None = None,
         doc_types: Sequence[DocumentType] | None = None,
     ) -> list[DenseSearchResult]:

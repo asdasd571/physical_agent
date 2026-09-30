@@ -10,6 +10,7 @@ from pathlib import Path
 from time import perf_counter
 from typing import Protocol, Sequence
 
+from .config import BM25_TOP_K
 from .filters import filter_chunk_indices
 from .models import DocumentChunk, DocumentType
 
@@ -128,7 +129,7 @@ class Bm25Store:
         query: str,
         tokenizer: SparseTokenizer,
         *,
-        top_k: int = 20,
+        top_k: int = BM25_TOP_K,
         candidate_id: str | None = None,
         doc_types: Sequence[DocumentType] | None = None,
     ) -> list[Bm25SearchResult]:
