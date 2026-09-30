@@ -60,12 +60,13 @@ def test_load_manifest_normalizes_common_candidate(tmp_path: Path) -> None:
     assert manifest.total_used_pages == 10
 
 
-def test_candidate_document_requires_candidate_id(tmp_path: Path) -> None:
+def test_candidate_document_can_be_common(tmp_path: Path) -> None:
     path = tmp_path / "manifest.csv"
     write_manifest(path, [row(candidate_id="")])
 
-    with pytest.raises(ManifestError, match="require candidate_id"):
-        load_manifest(path)
+    manifest = load_manifest(path)
+
+    assert manifest.entries[0].candidate_id is None
 
 
 def test_total_page_budget_is_hard_limit(tmp_path: Path) -> None:

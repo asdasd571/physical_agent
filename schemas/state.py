@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 from datetime import date
-from typing import Any, NotRequired, TypedDict
+from typing import Annotated, Any, NotRequired, TypedDict
 
 from pydantic import Field
+
+from graph.reducers import merge_errors, merge_evaluations, merge_sources
 
 from .analysis import AnalysisResult, Candidate
 from .base import SchemaModel
@@ -47,7 +49,7 @@ class GraphState(TypedDict):
     control: ControlState
     evaluation: EvaluationRecord | None
     decision: Decision | None
-    evaluations: list[EvaluationRecord]
-    sources: list[SourceRecord]
+    evaluations: Annotated[list[EvaluationRecord], merge_evaluations]
+    sources: Annotated[list[SourceRecord], merge_sources]
     report: ReportResult | None
-    errors: NotRequired[list[str]]
+    errors: NotRequired[Annotated[list[str], merge_errors]]

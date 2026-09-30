@@ -50,14 +50,16 @@ def _normalize_candidate_id(
                 f"{doc_type.value} documents are common and must not have candidate_id"
             )
         return None
+    # Candidate-specific documents normally have an ID, while shared technical
+    # standards and risk frameworks use ``candidate_id=COMMON``.
     if value is None:
-        raise ValueError(f"{doc_type.value} documents require candidate_id")
+        return None
     return value
 
 
 @dataclass(frozen=True, slots=True)
 class ManifestEntry:
-    """One source document registered in ``data/manifest.csv``.
+    """One source document registered in ``data/rag/manifest.csv``.
 
     ``page_ranges`` is optional. When present, it selects 1-based pages from the
     original PDF (for example ``1-3;8;11-12``). This preserves original page
@@ -155,8 +157,125 @@ class DocumentPage:
             "local_path": str(self.local_path),
             "sha256": self.sha256,
             "page": self.page,
-            **self.metadata,
+            "metadata": dict(self.metadata),
         }
+
+
+@dataclass(frozen=True, slots=True)
+class DocumentChunk:
+    """A token-bounded chunk that belongs to exactly one original PDF page."""
+
+    chunk_id: str
+    page_id: str
+    source_id: str
+    doc_id: str
+    candidate_id: str | None
+    doc_type: DocumentType
+    page: int
+    content: str
+    token_start: int
+    token_end: int
+    token_count: int
+    publisher: str
+    title: str
+    url: str | None
+    published_at: date | None
+    local_path: Path
+    sha256: str
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+    def __post_init__(self) -> None:
+        if self.page <= 0:
+            raise ValueError("page must be a 1-based original PDF page number")
+        if not self.content.strip():
+            raise ValueError("chunk content must not be empty")
+        if self.token_start < 0:
+            raise ValueError("token_start must not be negative")
+        if self.token_end <= self.token_start:
+            raise ValueError("token_end must be greater than token_start")
+        if self.token_count != self.token_end - self.token_start:
+            raise ValueError("token_count must equal token_end - token_start")
+        object.__setattr__(self, "content", self.content.strip())
+
+    def to_metadata(self) -> dict[str, Any]:
+        """Return metadata stored alongside Dense and BM25 indexes."""
+
+        return {
+            "chunk_id": self.chunk_id,
+            "page_id": self.page_id,
+            "source_id": self.source_id,
+            "doc_id": self.doc_id,
+            "candidate_id": self.candidate_id,
+            "doc_type": self.doc_type.value,
+            "page": self.page,
+            "token_start": self.token_start,
+            "token_end": self.token_end,
+            "token_count": self.token_count,
+            "publisher": self.publisher,
+            "title": self.title,
+            "url": self.url,
+            "published_at": self.published_at.isoformat() if self.published_at else None,
+            "local_path": str(self.local_path),
+            "sha256": self.sha256,
+            "metadata": dict(self.metadata),
+        }
+
+    def model_dump(self) -> dict[str, Any]:
+        """Return a complete JSON-serializable representation for local indexes."""
+
+        return {
+            **self.to_metadata(),
+            "content": self.content,
+        }
+
+    @classmethod
+    def model_validate(cls, data: dict[str, Any]) -> "DocumentChunk":
+        """Restore a chunk persisted by :meth:`model_dump`."""
+
+        published_at = data.get("published_at")
+        known_fields = {
+            "chunk_id",
+            "page_id",
+            "source_id",
+            "doc_id",
+            "candidate_id",
+            "doc_type",
+            "page",
+            "content",
+            "token_start",
+            "token_end",
+            "token_count",
+            "publisher",
+            "title",
+            "url",
+            "published_at",
+            "local_path",
+            "sha256",
+        }
+        metadata = dict(data.get("metadata", {}))
+        metadata.update(
+            {key: value for key, value in data.items() if key not in known_fields | {"metadata"}}
+        )
+        return cls(
+            chunk_id=data["chunk_id"],
+            page_id=data["page_id"],
+            source_id=data["source_id"],
+            doc_id=data["doc_id"],
+            candidate_id=data.get("candidate_id"),
+            doc_type=DocumentType(data["doc_type"]),
+            page=int(data["page"]),
+            content=data["content"],
+            token_start=int(data["token_start"]),
+            token_end=int(data["token_end"]),
+            token_count=int(data["token_count"]),
+            publisher=data["publisher"],
+            title=data["title"],
+            url=data.get("url"),
+            published_at=date.fromisoformat(published_at) if published_at else None,
+            local_path=Path(data["local_path"]),
+            sha256=data["sha256"],
+            metadata=metadata,
+        )
 
 
 @dataclass(frozen=True, slots=True)

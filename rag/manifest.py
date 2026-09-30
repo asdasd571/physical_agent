@@ -137,7 +137,7 @@ def _reject_duplicates(entries: Iterable[ManifestEntry]) -> None:
 
 
 def load_manifest(
-    path: str | Path = "data/manifest.csv",
+    path: str | Path = "data/rag/manifest.csv",
     *,
     max_pages: int = MAX_TOTAL_PAGES,
 ) -> Manifest:

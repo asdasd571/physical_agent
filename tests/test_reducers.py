@@ -67,14 +67,15 @@ def test_merge_evaluations_removes_identical_duplicates() -> None:
     assert result == [evaluation]
 
 
-def test_merge_evaluations_rejects_conflicting_candidate_results() -> None:
+def test_merge_evaluations_replaces_existing_candidate_result() -> None:
     current = make_evaluation(status=DecisionStatus.HOLD)
     incoming = make_evaluation(status=DecisionStatus.INVEST)
 
-    with pytest.raises(ValueError, match="candidate-1"):
-        merge_evaluations([current], [incoming])
+    result = merge_evaluations([current], [incoming])
+
+    assert result == [incoming]
 
 
 def test_reducers_accept_empty_values() -> None:
-    assert merge_sources(None, None) == []
-    assert merge_evaluations(None, None) == []
+    assert merge_sources([], []) == []
+    assert merge_evaluations([], []) == []

@@ -13,7 +13,7 @@ from schemas import (
 
 
 def test_interface_version_is_fixed() -> None:
-    assert INTERFACE_VERSION == "1.0.0"
+    assert INTERFACE_VERSION == "1.1.0"
 
 
 def test_verified_zero_is_distinct_from_missing_data() -> None:

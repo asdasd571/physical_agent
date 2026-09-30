@@ -1,45 +1,72 @@
+"""Reducers used by concurrent LangGraph State updates."""
+
 from __future__ import annotations
 
-from schemas import EvaluationRecord, SourceRecord
+from collections.abc import Sequence
+from typing import TYPE_CHECKING, TypeVar
+
+if TYPE_CHECKING:
+    from schemas.evaluation import EvaluationRecord
+    from schemas.evidence import SourceRecord
+
+
+T = TypeVar("T")
+
+
+def _stable_unique(values: Sequence[T]) -> list[T]:
+    """Return values in first-seen order without duplicates."""
+
+    result: list[T] = []
+    for value in values:
+        if value not in result:
+            result.append(value)
+    return result
 
 
 def merge_sources(
-    current: list[SourceRecord] | None,
-    incoming: list[SourceRecord] | None,
+    current: list[SourceRecord],
+    update: list[SourceRecord],
 ) -> list[SourceRecord]:
+    """Merge sources by ``source_id`` and reject conflicting provenance.
 
-    merged: dict[str, SourceRecord] = {}
+    A retry may emit the same source again. Identical records are idempotent,
+    but two different records must never silently share one canonical ID.
+    """
 
-    for source in [*(current or []), *(incoming or [])]:
-        existing = merged.get(source.source_id)
-
-        if existing is not None and existing != source:
-            raise ValueError(
-                "출처 ID가 중복되지만 내용이 다릅니다: "
-                f"source_id={source.source_id!r}"
-            )
-
-        merged[source.source_id] = source
-
-    return list(merged.values())
+    merged = list(current)
+    positions = {source.source_id: index for index, source in enumerate(merged)}
+    for source in update:
+        index = positions.get(source.source_id)
+        if index is None:
+            positions[source.source_id] = len(merged)
+            merged.append(source)
+        elif merged[index] != source:
+            raise ValueError(f"conflicting SourceRecord for source_id={source.source_id}")
+    return merged
 
 
 def merge_evaluations(
-    current: list[EvaluationRecord] | None,
-    incoming: list[EvaluationRecord] | None,
+    current: list[EvaluationRecord],
+    update: list[EvaluationRecord],
 ) -> list[EvaluationRecord]:
+    """Keep one evaluation per candidate, replacing it on a later repair."""
 
-    merged: dict[str, EvaluationRecord] = {}
+    merged = list(current)
+    positions = {
+        evaluation.candidate_id: index
+        for index, evaluation in enumerate(merged)
+    }
+    for evaluation in update:
+        index = positions.get(evaluation.candidate_id)
+        if index is None:
+            positions[evaluation.candidate_id] = len(merged)
+            merged.append(evaluation)
+        else:
+            merged[index] = evaluation
+    return merged
 
-    for evaluation in [*(current or []), *(incoming or [])]:
-        existing = merged.get(evaluation.candidate_id)
 
-        if existing is not None and existing != evaluation:
-            raise ValueError(
-                "후보 평가가 중복되지만 내용이 다릅니다: "
-                f"candidate_id={evaluation.candidate_id!r}"
-            )
+def merge_errors(current: list[str], update: list[str]) -> list[str]:
+    """Accumulate error messages idempotently in first-seen order."""
 
-        merged[evaluation.candidate_id] = evaluation
-
-    return list(merged.values())
+    return _stable_unique([*current, *update])
