@@ -1,6 +1,6 @@
 # AI Startup Investment Evaluation Agent
 
-에너지·화학·배터리 제조기업의 CVC 관점에서 **정밀 조작 Physical AI 스타트업의 투자 가능성**을 평가하는 LLM 기반 Agentic RAG 프로젝트입니다.
+에너지·화학·배터리 제조기업의 CVC 관점에서 **정밀 조작 Physical AI 스타트업의 투자 가능성**을 평가하는 LLM 기반 Agentic RAG 시스템입니다.
 
 평가 대상은 로봇 손·그리퍼, 힘·촉각 센서, VLA 기반 조작 지능 기업입니다. LLM의 주관적인 추천 대신, 공개 문서에서 찾은 원값과 출처를 Python 평가 규칙에 적용하여 재현 가능한 투자 검토 보고서를 생성합니다.
 
