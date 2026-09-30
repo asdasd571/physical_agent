@@ -4,7 +4,7 @@
 
 - 담당자: 김낙근
 - 브랜치: `main`
-- 현재 단계: 투자지표 원값 corpus 재정리와 40문항 실제 평가 완료
+- 현재 단계: OpenAI LLM 기반 기술·시너지 RAG 추출과 투자 해설 연결 완료
 - 마지막 업데이트: 2026-09-30
 
 ## 완료된 작업
@@ -79,6 +79,16 @@
 - [x] 평가 정답 doc_id·page와 운영 manifest 일치 자동 검증
 - [x] BGE-M3·Kiwi 실인덱스 197 chunks 재생성
 - [x] 40문항 Hit Rate@5 1.0, MRR@5 0.7442 실제 측정
+- [x] OpenAI Responses API 모델 어댑터 구현
+- [x] `tech`·`synergy` Agent의 기존 LLM extractor를 실제 실행 경로에 연결
+- [x] 근거 검토 실패 시 기존 LangGraph repair 루프 재검색 유지
+- [x] Judge 확정 후 LLM 근거 해설을 생성하는 narrative 단계 추가
+- [x] LLM의 미등록 source_id 인용 및 점수·판정 변경 차단
+- [x] OpenAI JSON mode 강제 및 비정형 JSON 응답 오류 보완
+- [x] source_ids 누락 LLM record 안전 폐기 및 미등록 출처 엄격 차단
+- [x] 실제 OpenAI API로 RAG 추출·repair·판정·보고서 end-to-end 실행
+- [x] `investment_report_llm_verified.pdf/json` 생성 및 PDF 5페이지 검증
+- [x] LLM 연결 포함 전체 테스트 190개 통과
 
 ## 진행 중인 작업
 
@@ -425,8 +435,8 @@ STEP 9와 `data/rag/` 경로 정리는 `feature/rag`에 commit/push 완료됐다
 
 STEP 10까지 `a191b7a`로 `feature/rag`에 commit/push 완료됐다.
 
-투자지표 corpus와 coverage 검사는 `3ae7746`, 40문항 평가셋과 결과는 `5493230`으로 커밋했다. 사용자 요청에 따라 문서 커밋 후 `origin/main`에 push한다.
+투자지표 corpus와 40문항 평가는 기존 `3ae7746`, `5493230`에 반영했다. Agentic RAG 기능은 `43c8a36`, LLM 검증 테스트는 `a8b2ad7`로 커밋했으며 문서 커밋 후 `origin/main`에 push한다.
 
 다음 commit 후보 메시지:
 
-`:page_facing_up:[DOCS] 투자지표 RAG 검증 문서 갱신`
+`:page_facing_up:[DOCS] Agentic RAG 실행 및 검증 결과 문서화`
