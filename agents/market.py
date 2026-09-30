@@ -51,6 +51,33 @@ VLA_AI_SEGMENTS = {
 }
 
 
+def _extract_repair_indicator_ids(control: Any, agent_owner: str = "market") -> list[str]:
+    """Safely extract target indicator IDs from ControlState (Pydantic), dict, or EvidenceReview."""
+    if not control:
+        return []
+    if isinstance(control, dict):
+        if "repaired_indicator_ids" in control:
+            return list(control["repaired_indicator_ids"])
+        if "repair_targets" in control:
+            result = []
+            for t in control["repair_targets"]:
+                if isinstance(t, dict) and t.get("owner") in (agent_owner, "*"):
+                    result.extend(t.get("indicator_ids", []))
+                elif hasattr(t, "owner") and getattr(t, "owner") in (agent_owner, "*"):
+                    result.extend(getattr(t, "indicator_ids", []))
+            return result
+    if hasattr(control, "repaired_indicator_ids"):
+        return list(control.repaired_indicator_ids)
+    if hasattr(control, "repair_targets"):
+        result = []
+        for t in control.repair_targets:
+            if getattr(t, "owner", "") in (agent_owner, "*"):
+                result.extend(getattr(t, "indicator_ids", []))
+        return result
+    return []
+
+
+
 def map_segment_to_evidence_key(segment: str) -> str | None:
     """Map candidate primary segment to official Korean statistics category."""
     norm = segment.strip().lower().replace("-", "_").replace(" ", "_")
@@ -313,9 +340,9 @@ def market_node(state: GraphState) -> AgentNodeUpdate:
     # Check repair targets
     control = state.get("control")
     target_ids = None
-    if control and control.repaired_indicator_ids:
-        if "P1" in control.repaired_indicator_ids:
-            target_ids = ["P1"]
+    extracted = _extract_repair_indicator_ids(control, agent_owner="market")
+    if "P1" in extracted:
+        target_ids = ["P1"]
 
     analysis, sources, ref_info = market_candidate(
         candidate=candidate,
