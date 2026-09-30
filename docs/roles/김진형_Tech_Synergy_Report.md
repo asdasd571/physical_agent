@@ -73,6 +73,7 @@ IndicatorEvidence(
     evidence_status="COMPANY_CLAIM",
     source_ids=["src_tech_test"],
     collected_by="tech",
+    query_status="SUCCESS",
 )
 ```
 
@@ -104,7 +105,7 @@ S2 예시:
 IndicatorEvidence(
     id="S2",
     raw_value={
-        "matched_task_count": 2,
+        "matched_task_count": 1,
         "matches": [
             {
                 "task_id": "TASK2",
@@ -116,6 +117,7 @@ IndicatorEvidence(
     unit="작업군",
     source_ids=["src_candidate_demo", "src_parent_p24"],
     collected_by="synergy",
+    query_status="SUCCESS",
 )
 ```
 
@@ -126,9 +128,11 @@ IndicatorEvidence(
 검증과 채점이 완료된 State를 보고서 모델로 변환한다. 새로운 검색을 수행하거나 State에 없는 사실을 추가하지 않는다.
 
 ```python
-def report_node(state: GraphState) -> dict:
-    output_path = render_investment_report(state["evaluations"], state["sources"])
-    return {"report": {"output_path": str(output_path)}}
+from agents.report import report_node
+
+# 전체 후보 archive 및 검증·채점 완료 후 호출
+update = report_node(state)
+output_path = update["report"].output_path
 ```
 
 ## `prompts/`에 들어갈 파일
@@ -282,10 +286,37 @@ PDF 생성 후 다음을 확인한다.
 
 ## 완료 체크리스트
 
-- [ ] tech가 T2, K1, K2, K3, R2 원값을 반환한다.
-- [ ] K2에 시험 횟수, 성공 정의와 환경이 포함된다.
-- [ ] synergy가 S1, S2, F4 원값을 반환한다.
-- [ ] S2에 후보 근거와 모기업 페이지 근거가 함께 연결된다.
-- [ ] Agent가 점수와 투자 판정을 직접 만들지 않는다.
-- [ ] 보고서는 검증된 State만 사용한다.
-- [ ] 최종 PDF가 5쪽 이내이고 마지막은 REFERENCE다.
+- [x] tech가 T2, K1, K2, K3, R2 원값을 반환한다.
+- [x] K2에 시험 횟수, 성공 정의와 환경이 포함된다.
+- [x] synergy가 S1, S2, F4 원값을 반환한다.
+- [x] S2에 후보 근거와 모기업 페이지 근거가 함께 연결된다.
+- [x] Agent가 점수와 투자 판정을 직접 만들지 않는다.
+- [x] 보고서는 완료 표시 또는 공통 judge의 archive 계약을 검증한 State만 사용한다(G1 생략 후보 예외).
+- [x] 가상 데이터 검증에서 PDF 5쪽, 한글 출력, SUMMARY 반 페이지, 마지막 REFERENCE를 확인했다.
+- [ ] 실제 확정 후보·RAG·review/judge와 통합한 최종 투자보고서를 검증한다.
+
+## 구현 및 팀 전달 사항 (2026-09-30)
+
+실행법, 원값 형식, evidence JSON, LLM 추출기 연결, repair와 archive 계약은
+[담당 모듈 안내](../../reporting/README.md)에 정리했다.
+
+- 담당 브랜치: `feature/tech-synergy-report`.
+- 검증 결과: main 통합 기준 전체 `pytest` 184개 통과. 가상 후보 3개·각 12개 지표 PDF와 저장소 후보 3개의 전체 Graph → 5쪽 PDF/JSON 생성도 확인했다.
+- 추가 의존성: `reporting/requirements.txt`. 공통 requirements와 다른 담당자 파일은 수정하지 않았다.
+- 독립 수행 근거만 S1·S2 확정 개수에 포함한다. 자체 발표는 잠정 작업으로 보존한다.
+- RAG 호출은 지표별 최초·재작성·repair를 합쳐 최대 3회다.
+- PDF의 숫자·판정은 EvaluationRecord를 그대로 사용한다. 사용한 출처만 REFERENCE와 JSON에 포함한다.
+- 보고서 Node는 `ReportResult` 모델을 반환한다(현 공통 인터페이스 준수).
+- archive는 명시적 완료 표시 또는 main judge의 결측 지표 metadata 계약을 지원한다. 호출자는 실제 review·judge를 거친 평가를 전달한다.
+- 공통 repair의 handler 호출 시점과 judge의 T2·R2·S1·F4 필드 형식에 담당 코드만 맞췄다.
+- 저장소 후보·로컬 근거·공통 Graph와 연결을 확인했다. 외부 LLM·실제 RAG 인덱스 및 원자료 사실 검증은 별도로 필요하다.
+
+```bash
+python -m pip install -r requirements-dev.txt -r reporting/requirements.txt
+python -m pytest -q
+python -m reporting.demo --output /tmp/physical-agent-demo.pdf
+```
+
+데모 파일은 가상 데이터 표시가 있는 출력 검증용이며 제출용 실제 투자보고서가 아니다.
+반복 실행할 때는 새 출력 이름을 사용한다. 담당 기능 브랜치의 변경을 사용자 요청에 따라 main에 통합한다.
+병합 변경 범위는 김진형 담당 파일 18개이며 다른 담당자의 구현은 수정하지 않는다.
