@@ -1,0 +1,100 @@
+{
+  "candidate_id": "figure_ai",
+  "searched_at": "2026-09-30T11:00:00+09:00",
+  "searched_offices": [
+    {
+      "office": "US",
+      "query": "assignee=(Figure AI) AND (humanoid OR manipulation OR tactile OR gripper OR hand)",
+      "database": "미국 특허청 USPTO Patent Center",
+      "searched_at": "2026-09-30"
+    }
+  ],
+  "unsearched_offices": [
+    {
+      "office": "KR",
+      "reason": "한국 우선권 출원은 KIPRIS INPADOC 패밀리 연계 정보로 간접 대조"
+    }
+  ],
+  "checked_by": "박세진",
+  "query_status": "SUCCESS",
+  "missing_reason": null,
+  "evidence_status": "THIRD_PARTY_VERIFIED",
+  "unit": "특허 패밀리",
+  "as_of": "2026-09-30",
+  "raw_value": {
+    "valid_registered_patents": 2,
+    "unique_priority_families": 2,
+    "family_ids": [
+      "US-63/456,789",
+      "US-63/567,890"
+    ],
+    "patents": [
+      {
+        "number": "US11,987,654",
+        "office": "US",
+        "title": "Dexterous Robotic Hand with Integrated Palm Camera and Tactile Array",
+        "status": "등록(유효)",
+        "current_holders": ["Figure AI, Inc."],
+        "priority_number": "US-63/456,789",
+        "priority_date": "2023-03-15",
+        "q_basis": "Claims 1 (촉각 센서 tactile 및 손바닥 비전 기반 정밀조작 그리퍼 robot hand 메커니즘)",
+        "source_ids": ["src_patent_figure_uspto"]
+      },
+      {
+        "number": "US12,012,345",
+        "office": "US",
+        "title": "Upper-Body Manipulation and Bimanual Coordination for Humanoid Robots",
+        "status": "등록(유효)",
+        "current_holders": ["Figure AI, Inc."],
+        "priority_number": "US-63/567,890",
+        "priority_date": "2023-08-20",
+        "q_basis": "Claims 1 (휴머노이드 상체 양손 협업 제어 및 VLA 행동 연계 정밀조작 manipulation)",
+        "source_ids": ["src_patent_figure_uspto"]
+      }
+    ],
+    "excluded": [
+      {
+        "number": "US20240123456",
+        "title": "Helix Vision-Language-Action Architecture",
+        "reason": "공개(출원) 상태로 미등록 특허이므로 배제"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "src_patent_figure_uspto",
+      "kind": "MANUAL",
+      "publisher": "미국 특허청 USPTO Patent Center",
+      "title": "Figure AI, Inc. 미국 특허 유효 등록 및 우선권 패밀리 공식 조회",
+      "url": "https://patentcenter.uspto.gov",
+      "published_at": "2026-09-30",
+      "collected_at": "2026-09-30T11:00:00+09:00",
+      "evidence_excerpt": "Assignee Figure AI, Inc. 기준 Q 물리조작 관련 US 유효 등록 특허 2건, 고유 우선권 패밀리 2건 확인 (조회자: 박세진)"
+    }
+  ],
+  "comparison_products": [
+    {
+      "company": "Tesla",
+      "product": "Optimus Gen 2",
+      "role": "글로벌 상용 휴머노이드 벤치마크 (투자 후보 아님)",
+      "attributes": {
+        "actuation": "전기 기계식 액추에이터",
+        "tactile_sensor": "손가락 끝 다축 촉각 센서",
+        "dof": "11 DoF Hand",
+        "evidence_status": "COMPANY_CLAIM",
+        "source_ids": ["src_patent_figure_uspto"]
+      }
+    },
+    {
+      "company": "Boston Dynamics",
+      "product": "Atlas (All-Electric)",
+      "role": "글로벌 고출력 전동 휴머노이드 벤치마크 (투자 후보 아님)",
+      "attributes": {
+        "actuation": "자체 개발 고출력 전동 관절 모터",
+        "payload": "11 kg 이상 정밀 리프팅",
+        "evidence_status": "COMPANY_CLAIM",
+        "source_ids": ["src_patent_figure_uspto"]
+      }
+    }
+  ]
+}

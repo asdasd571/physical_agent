@@ -179,3 +179,61 @@ def test_pipeline_repair_with_evidence_review_dict(all_candidates: list[Candidat
     assert state["company_profile"] is not None
     assert state["market_analysis"] is not None
     assert state["competitor_analysis"] is not None
+
+
+def test_full_pipeline_figure_ai_global_vla(all_candidates: list[Candidate]) -> None:
+    """Verify Figure AI as a global VLA candidate: Series C, VLA NO_DATA market rule, USPTO patents."""
+    figure_candidate = next((c for c in all_candidates if c.candidate_id == "figure_ai"), None)
+    assert figure_candidate is not None, "figure_ai must exist in candidates.json"
+    assert figure_candidate.country == "US"
+    assert figure_candidate.primary_segment == "vla"
+    assert figure_candidate.latest_round == "Series C"
+
+    state = _build_initial_state(figure_candidate, all_candidates)
+
+    # 1. Discover node
+    discover_update = discover_node(state)
+    _apply_update(state, discover_update)
+    profile = state["company_profile"]
+    assert profile.candidate_id == "figure_ai"
+
+    g1 = next(ind for ind in profile.indicators if ind.id == "G1")
+    assert g1.raw_value["latest_round"]["value"] == "Series C"
+    # COMPANY_CLAIM reflects high self-reported bias (Section 5-2)
+    assert g1.evidence_status.value in ("COMPANY_CLAIM", "SELF_REPORTED")
+
+    r1 = next(ind for ind in profile.indicators if ind.id == "R1")
+    assert r1.raw_value["cumulative_amount"] > 1_000_000_000_000  # > 1 trillion KRW ($1B+)
+
+    # 2. Market node: VLA segment must result in NO_DATA according to Design Spec 5-8
+    market_update = market_node(state)
+    _apply_update(state, market_update)
+    market_analysis = state["market_analysis"]
+    p1 = next(ind for ind in market_analysis.indicators if ind.id == "P1")
+    assert p1.query_status == QueryStatus.NO_DATA
+    assert p1.raw_value is None
+    assert "VLA" in (p1.missing_reason or "")
+
+    # 3. Competitor node: USPTO registered patents and global benchmarks
+    competitor_update = competitor_node(state)
+    _apply_update(state, competitor_update)
+    competitor_analysis = state["competitor_analysis"]
+    m1 = next(ind for ind in competitor_analysis.indicators if ind.id == "M1")
+    assert m1.query_status == QueryStatus.SUCCESS
+    assert m1.raw_value["valid_registered_patents"] == 2
+    assert m1.raw_value["unique_priority_families"] == 2
+
+    # Global benchmarks: Tesla, Boston Dynamics
+    assert "comparison_products" in state
+    comp_companies = {cp["company"] for cp in state["comparison_products"]}
+    assert "Tesla" in comp_companies
+    assert "Boston Dynamics" in comp_companies
+
+    # Source linkage integrity
+    accumulated_source_ids = {s.source_id for s in state["sources"]}
+    all_tested_indicators = profile.indicators + market_analysis.indicators + competitor_analysis.indicators
+
+    for ind in all_tested_indicators:
+        for sid in ind.source_ids:
+            assert sid in accumulated_source_ids, f"Indicator {ind.id} references missing source: {sid}"
+

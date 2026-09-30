@@ -10,15 +10,15 @@
 ## 완료된 작업
 
 - [x] 담당 영역 기본 디렉터리 구조 생성
-- [x] `data/candidates.json` 평가 대상 후보 2개사(에이로봇, 에이딘로보틱스) 확정
+- [x] `data/candidates.json` 평가 대상 후보 3개사(에이로봇, 에이딘로보틱스, Figure AI) 확정 및 글로벌 레퍼런스 확장
 - [x] `prompts/discover.md`, `market.md`, `competitor.md` 프롬프트 3종 작성
-- [x] `data/evidence/company/arobot.json`, `aidin_robotics.json` 기업별 원천 팩트 데이터 구축
+- [x] `data/evidence/company/arobot.json`, `aidin_robotics.json`, `figure_ai.json` 기업별 원천 팩트 데이터 구축
 - [x] `agents/discover.py` 후보 정보 확인, G1 팩트 및 T1/R1/R3/F1~F3 원값 수집 노드 구현
 - [x] `tests/test_discover.py` 단위 테스트 5종 작성 및 통과
 - [x] `data/evidence/market/robot_parts_sales_2022_2025.json`, `manufacturing_robot_sales_2022_2025.json` 공식 통계 원천 데이터 구축
-- [x] `agents/market.py` 한국 도입 시장 기준 P1 3개년 CAGR 계산용 원값 수집 노드 `market_node` 구현
+- [x] `agents/market.py` 한국 도입 시장 기준 P1 3개년 CAGR 계산용 원값 수집 노드 `market_node` 구현 (VLA 세그먼트 결측 규칙 지원)
 - [x] `tests/test_market.py` 단위 테스트 7종 작성 및 통과
-- [x] `data/evidence/patent/arobot_patents.json`, `aidin_robotics_patents.json` KIPRIS/USPTO 공식 특허 권리자 및 고유 패밀리 데이터 구축
+- [x] `data/evidence/patent/arobot_patents.json`, `aidin_robotics_patents.json`, `figure_ai_patents.json` KIPRIS/USPTO 공식 특허 권리자 및 고유 패밀리 데이터 구축
 - [x] `agents/competitor.py` 경쟁 제품 비교 및 M1 유효 등록 특허 고유 패밀리 수집 노드 `competitor_node` 구현
   - 조회 실패(ACCESS_FAILED 등) 시 summary에 "0개 패밀리"로 왜곡되지 않고 실패 상태 명시
   - `query_status`, `evidence_status` 누락 시 기본값 SUCCESS 허용하지 않고 검증 에러 발생
@@ -27,8 +27,8 @@
   - 벤치마크 기업과 투자 평가 대상 후보군(`candidates`) 충돌 방지 로직 적용
   - Q(정밀조작/센서) 키워드 기반 유효 등록 특허 검증
 - [x] `tests/test_competitor.py` 단위 테스트 7종 작성 및 통과
-- [x] `tests/test_integration_agents.py` 3대 노드 E2E 파이프라인 및 Repair 통합 테스트 4종 작성 및 통과
-- [x] 세진 님 담당 에이전트 단위/통합 테스트 27종 전원 통과 (27/27 passed)
+- [x] `tests/test_integration_agents.py` 3대 노드 E2E 파이프라인(국내/글로벌 Figure AI 포함) 및 Repair 통합 테스트 5종 작성 및 통과
+- [x] 세진 님 담당 에이전트 단위/통합 테스트 28종 전원 통과 (28/28 passed)
 
 ## 진행 중인 작업
 
@@ -41,20 +41,14 @@
 
 ## 변경된 파일
 
-- `agents/discover.py`
-  - ControlState, dict, repair_targets 객체를 유연하게 파싱하는 `_extract_repair_indicator_ids` 적용
-- `agents/market.py`
-  - ControlState, dict, repair_targets 객체를 유연하게 파싱하는 `_extract_repair_indicator_ids` 적용
-- `agents/competitor.py`
-  - KIPRIS/USPTO 공식 권리자 기준 Q 유효 등록 특허 파싱, 고유 패밀리 중복 제거, 벤치마크 제품 비교 생성 `competitor_node`, `competitor_candidate` 구현 및 검증 로직 강화
-- `data/evidence/patent/arobot_patents.json`
-  - 에이로봇 KIPRIS 특허 검색식, 유효 등록 특허 3건, 고유 우선권 패밀리 3건, 벤치마크 제품(Shadow Robot, Wonik) 데이터
-- `data/evidence/patent/aidin_robotics_patents.json`
-  - 에이딘로보틱스 KIPRIS 및 USPTO 특허 검색식, 유효 등록 특허 5건, 고유 우선권 패밀리 4건, 벤치마크 제품(ATI, Robotiq) 데이터
-- `tests/test_competitor.py`
-  - 에이로봇/에이딘로보틱스 검증, ACCESS_FAILED 시 summary 상태 표기 검증, 파일 부재 검증, raw_value 정합성 검증, 후보군 충돌 방지 검증, repair 검증 등 7종
+- `data/candidates.json`
+  - 평가 대상 후보에 글로벌 기준점 기업인 `Figure AI, Inc.` (미국, Series C, VLA) 추가 (총 3개사)
+- `data/evidence/company/figure_ai.json`
+  - Figure AI 법인·투자(Series C $1B+ 누적)·인력(Brett Adcock, Jerry Pratt)·재무·제재(FTC/OSHA) 원천 팩트 구축 (COMPANY_CLAIM 반영)
+- `data/evidence/patent/figure_ai_patents.json`
+  - Figure AI USPTO 공식 유효 등록 특허 2건, 고유 패밀리 2건 및 Tesla, Boston Dynamics 벤치마크 데이터 구축
 - `tests/test_integration_agents.py`
-  - 3대 에이전트(Discover -> Market -> Competitor) 파이프라인 E2E 시뮬레이션 및 State 누적, 출처 연결 정합성, Repair Loop 검증 4종 신규 추가
+  - Figure AI 글로벌 VLA 파이프라인(Series C 검증, VLA NO_DATA 시장 결측 규칙, USPTO 특허) 테스트 추가
 - `DEVELOPMENT_STATUS.md`
   - 개발 현황 갱신
 
@@ -87,14 +81,15 @@ python3 -m pytest tests/test_schemas.py tests/test_discover.py tests/test_market
 
 결과:
 
-PASS (27 passed in 0.08s)
+PASS (28 passed in 0.10s)
 
 확인한 항목:
-- 에이로봇 / 에이딘로보틱스 2개사 전체 Discover ➔ Market ➔ Competitor 연속 실행 파이프라인 검증 완료.
-- State에 `company_profile`, `market_analysis`, `competitor_analysis`, `comparison_products`, `sources` 정상 누적 확인.
-- 전체 수집된 9개 지표(G1, T1, R1, R3, F1, F2, F3, P1, M1) 및 벤치마크 제품의 모든 `source_id`가 누적된 `sources`에 1:1로 결측 없이 연결됨을 검증.
-- ControlState (Pydantic 객체) 및 EvidenceReview (dict 형태) 양쪽 모두에서 Repair Loop(지표 개별 재수집)가 정상 작동함을 검증.
-- 세진 님 담당 3대 노드 및 통합 테스트 27개 테스트 전원 통과.
+- 에이로봇 / 에이딘로보틱스 / Figure AI 3개사 전체 Discover ➔ Market ➔ Competitor 연속 실행 파이프라인 검증 완료.
+- Figure AI(미국 국외 기업)의 Series C 공식 발표, 1조 4,400억 원 누적 펀딩, 핵심 창업자 경력(T1) 정상 수집 확인.
+- VLA 소프트웨어 세그먼트에 대한 시장 통계 결측 규칙(설계서 5-8 준수: 임의 배정 없이 `NO_DATA` + missing_reason 기록) 검증 완료.
+- Figure AI의 USPTO(미국 특허청) 등록 특허 2건 및 Tesla, Boston Dynamics 글로벌 벤치마크 제품 비교군 정상 파싱 확인.
+- 전체 수집된 9개 지표 및 벤치마크 제품의 모든 `source_id`가 누적된 `sources`에 1:1로 결측 없이 연결됨을 검증.
+- 세진 님 담당 3대 노드 및 통합 테스트 28개 테스트 전원 통과.
 
 ## 작업 이력 (Work History)
 
@@ -107,7 +102,8 @@ PASS (27 passed in 0.08s)
 | 2026-09-30 | `701b1f2` | `:sparkles:[FEAT]` | Market 에이전트(`agents/market.py`), 한국 로봇 시장 공식 통계 데이터(`data/evidence/market/`), 단위 테스트(`tests/test_market.py`) 구현 |
 | 2026-09-30 | `0ad5a3e` | `:sparkles:[FEAT]` | Competitor 에이전트(`agents/competitor.py`), KIPRIS/USPTO 특허 원천 데이터(`data/evidence/patent/`), 단위 테스트(`tests/test_competitor.py`) 구현 및 실패 상태/출처 유효성 검증 로직 반영 |
 | 2026-09-30 | `87aec07` | `:recycle:[REF]` | 개발 현황 문서(`DEVELOPMENT_STATUS.md`) 최신 진행 상황 갱신 |
-| 2026-09-30 | (현재) | `:white_check_mark:[TEST]` | 3대 에이전트 통합 E2E 파이프라인 테스트(`tests/test_integration_agents.py`) 추가 및 `discover.py`/`market.py` 보정(repair) 인터페이스 호환성 강화 |
+| 2026-09-30 | `93f8b4a` | `:white_check_mark:[TEST]` | 3대 에이전트 통합 E2E 파이프라인 테스트(`tests/test_integration_agents.py`) 추가 및 `discover.py`/`market.py` 보정(repair) 인터페이스 호환성 강화 |
+| 2026-09-30 | (현재) | `:sparkles:[FEAT]` | 글로벌 VLA 기준점 후보 기업 Figure AI(`figure_ai`) 추가, 기업/특허 원천 데이터 구축 및 28개 테스트 전원 통과 검증 |
 
 ## 미해결 문제
 
@@ -123,5 +119,5 @@ PASS (27 passed in 0.08s)
 ## Git 상태
 
 원격 브랜치(`origin/feature/discover-market-competitor`)로 커밋 및 푸시 완료.
-모든 단위/통합 테스트(27/27 PASS) 통과 확인.
+모든 단위/통합 테스트(28/28 PASS) 통과 확인.
 

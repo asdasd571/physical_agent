@@ -36,5 +36,25 @@
       "https://thevc.kr/aidin-robotics",
       "https://aidinrobotics.co.kr/"
     ]
+  },
+  {
+    "candidate_id": "figure_ai",
+    "legal_name": "Figure AI, Inc.",
+    "country": "US",
+    "legal_id": "DE-6829102",
+    "founded_at": "2022-05-01",
+    "primary_segment": "vla",
+    "latest_round": "Series C",
+    "listing_sources": [
+      "https://www.sec.gov/edgar/searchedgar/companysearch"
+    ],
+    "registry_sources": [
+      "https://icis.corp.delaware.gov/"
+    ],
+    "evidence_urls": [
+      "https://www.figure.ai/news/series-c",
+      "https://www.figure.ai/news/helix",
+      "https://www.figure.ai/news/helix-02"
+    ]
   }
 ]
