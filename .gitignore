@@ -4,6 +4,8 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 data/rag/documents/**/*.pdf
+!data/rag/documents/parent/sk_2022_esg_report_eng.pdf
+!data/rag/documents/parent/sk_incheon_clx_safety_regulation.pdf
 data/rag/index/**
 !data/rag/index/.gitkeep
 data/rag/manifest.*.local.csv
