@@ -4,7 +4,7 @@
 
 - 담당자: 김낙근
 - 브랜치: `main`
-- 현재 단계: 운영 RAG 실인덱스 검증 및 GraphState reducer 반영 완료
+- 현재 단계: 투자지표 원값 corpus 재정리와 40문항 실제 평가 완료
 - 마지막 업데이트: 2026-09-30
 
 ## 완료된 작업
@@ -71,21 +71,41 @@
 - [x] `sources`, `evaluations`, `errors` 병렬 State reducer 구현
 - [x] reducer의 retry 중복, 출처 충돌, repair 교체 테스트 구현
 - [x] RAG 필요 Agent를 위한 최소 연동 가이드 작성
+- [x] 일반론 risk 43쪽을 운영 manifest에서 제외
+- [x] SK parent 직접 근거 2개 문서 12쪽 추가
+- [x] 운영 corpus 14개 문서 161쪽으로 재구성
+- [x] 16개 투자지표 coverage 명세와 Top5 검사 CLI 구현
+- [x] 평가셋을 tech 16·market 12·parent 12, 총 40문항으로 확장
+- [x] 평가 정답 doc_id·page와 운영 manifest 일치 자동 검증
+- [x] BGE-M3·Kiwi 실인덱스 197 chunks 재생성
+- [x] 40문항 Hit Rate@5 1.0, MRR@5 0.7442 실제 측정
 
 ## 진행 중인 작업
 
-- [ ] 팀원이 검수한 실제 질문과 정답 doc_id·page를 40문항까지 수집
-- [ ] 운영 문서 기반 질문·정답 doc_id·page 평가셋 확장
+- [ ] T1·K2·R2·R3·M1·F1~F4 후보별 공개 원문 추가 확보
 
 ## 다음 작업
 
-1. 팀원에게 실제 질문과 정답 doc_id·page 수집
-2. 문항을 `evaluation/retrieval_questions.json`에 추가
-3. 40문항 전체 평가를 실행하고 결과 해석
-4. 팀 전체 Agent·Graph 구현이 합쳐진 뒤 최종 end-to-end 실행
-5. 운영 manifest로 index를 생성하고 후보별 대표 질문을 육안 검수
+1. 공개되지 않은 후보별 원값은 Agent에서 `자료 없음`으로 처리
+2. 신규 공식 원문 확보 시 200쪽 안에서 manifest 교체
+3. 팀 전체 Agent·Graph 구현이 합쳐진 뒤 최종 end-to-end 실행
 
 ## 변경된 파일
+
+- `data/rag/manifest.csv`
+  - 일반론 risk 문서 제외, SK parent 공식 문서 12쪽 등록, 총 161쪽
+- `data/rag/documents/parent/`
+  - SK Innovation ESG Report와 Incheon CLX Safety Regulation 원문 추가
+- `evaluation/metric_coverage.py`, `evaluation/metric_coverage.json`
+  - 16개 지표의 정답 페이지 검증과 실제 Top5 coverage 검사
+- `evaluation/retrieval_questions.json`
+  - tech 16·market 12·parent 12 총 40문항
+- `evaluation/results/investment_corpus_40.json`
+  - 실제 BGE-M3·Kiwi 검색 평가 결과
+- `tests/rag/test_metric_coverage.py`
+  - 페이지 예산, 40문항 구성, manifest 정답 일치, coverage 명세 테스트
+- `rag/docs/corpus/METRIC_COVERAGE.md`
+  - 지표별 가용 근거와 자료 없음 항목, 사용자 실행 절차
 
 - `data/rag/manifest.csv`
   - 후보 기술·경쟁 제품·시장·투자 위험 공식 문서 14개와 선택 페이지 192쪽 등록
@@ -376,16 +396,16 @@ compileall PASS
 
 ## 미해결 문제
 
-- 문제: 현재 평가셋이 한 문서의 검증 문항 2개뿐이므로 전체 검색 품질을 대표하지 않음
-- 원인: 팀원이 확인한 정답 doc_id·page 평가셋이 아직 준비되지 않음
-- 현재 상태: 평가 코드와 2문항 실측은 완료했으며, 설계 목표 40문항 수집 대기
+- 문제: T1, K2, R2, R3, M1, F1, F2, F3, F4의 후보별 원값 근거 부족
+- 원인: 현재 확보한 공식 공개 문서에 성공/시도 횟수, 재무 원장값, 고용 시계열, 특허 패밀리, 공식 제재·필수 인증 자료가 없음
+- 현재 상태: 임의 추정하지 않고 coverage에서 `MISSING` 및 Agent의 `자료 없음` 대상으로 명시
 
 ## 다른 팀원에게 영향을 주는 변경
 
 - API 변경 여부: `search_documents()` 시그니처는 변경 없음. `candidate_id=COMMON`을 `tech`·`risk`에도 사용할 수 있음
 - State/Schema 변경 여부: 공통 인터페이스 `1.1.0`. `sources`, `evaluations`, `errors`에 reducer 적용
 - requirements 변경 여부: 없음
-- 다른 브랜치에서 대응이 필요한 내용: Agent가 후보별 검색을 해도 공통 투자·AI 위험 문서가 함께 반환될 수 있으므로 `candidate_id=None`을 정상 공통 근거로 처리해야 함
+- 다른 브랜치에서 대응이 필요한 내용: Agent는 coverage가 `MISSING`인 지표를 임의 생성하지 말고 `자료 없음`으로 처리해야 함. parent 결과의 `candidate_id=None`은 정상 공통 근거임
 
 ## Git 상태
 
@@ -405,8 +425,8 @@ STEP 9와 `data/rag/` 경로 정리는 `feature/rag`에 commit/push 완료됐다
 
 STEP 10까지 `a191b7a`로 `feature/rag`에 commit/push 완료됐다.
 
-Reducer, 운영 RAG 실검증과 Agent 사용 문서는 사용자 요청에 따라 commit/push 진행한다.
+투자지표 corpus와 coverage 검사는 `3ae7746`, 40문항 평가셋과 결과는 `5493230`으로 커밋했다. 사용자 요청에 따라 문서 커밋 후 `origin/main`에 push한다.
 
 다음 commit 후보 메시지:
 
-`[FEAT] GraphState reducer와 운영 RAG 검증 추가`
+`:page_facing_up:[DOCS] 투자지표 RAG 검증 문서 갱신`
