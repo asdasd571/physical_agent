@@ -15,6 +15,7 @@ def merge_sources(
 
         if existing is not None and existing != source:
             raise ValueError(
+                "출처 ID가 중복되지만 내용이 다릅니다: "
                 f"source_id={source.source_id!r}"
             )
 
@@ -35,6 +36,7 @@ def merge_evaluations(
 
         if existing is not None and existing != evaluation:
             raise ValueError(
+                "후보 평가가 중복되지만 내용이 다릅니다: "
                 f"candidate_id={evaluation.candidate_id!r}"
             )
 

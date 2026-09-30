@@ -11,7 +11,7 @@ def route_after_eligibility(
     eligibility = state["eligibility"]
 
     if eligibility is None:
-        raise ValueError("eligibility is required")
+        raise ValueError("적격성 결과가 없습니다")
 
     if eligibility.status == EligibilityStatus.PASS:
         return "tech"
@@ -25,7 +25,7 @@ def route_after_review(
     review = state["evidence_review"]
 
     if review is None:
-        raise ValueError("evidence_review is required")
+        raise ValueError("근거 검증 결과가 없습니다")
 
     if review.repair_required and state["control"].retry_count < 1:
         return "repair"
@@ -40,7 +40,7 @@ def route_after_archive(
     candidate_count = len(state["candidates"])
 
     if completed_count > candidate_count:
-        raise ValueError("evaluations cannot exceed candidates")
+        raise ValueError("완료된 평가 수가 전체 후보 수보다 많습니다")
 
     if completed_count < candidate_count:
         return "select_candidate"

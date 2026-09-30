@@ -17,13 +17,13 @@ def skip_node(state: GraphState) -> dict[str, Any]:
     eligibility = state["eligibility"]
 
     if candidate is None:
-        raise ValueError("current_candidate is required")
+        raise ValueError("현재 평가 후보가 없습니다")
 
     if eligibility is None:
-        raise ValueError("eligibility is required")
+        raise ValueError("적격성 결과가 없습니다")
 
     if eligibility.status == EligibilityStatus.PASS:
-        raise ValueError("PASS candidate cannot be skipped")
+        raise ValueError("적격성을 통과한 후보는 분석을 생략할 수 없습니다")
 
     decision = Decision(
         status=DecisionStatus.HOLD,

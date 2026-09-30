@@ -10,12 +10,12 @@ def select_candidate_node(state: GraphState) -> dict[str, Any]:
     candidates = state["candidates"]
 
     if current_index < -1:
-        raise ValueError("candidate_index must be -1 or greater")
+        raise ValueError("후보 인덱스는 -1 이상이어야 합니다")
 
     next_index = current_index + 1
 
     if next_index >= len(candidates):
-        raise IndexError("no remaining candidate")
+        raise IndexError("평가할 후보가 더 이상 없습니다")
 
     return {
         "candidate_index": next_index,

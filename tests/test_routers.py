@@ -45,7 +45,7 @@ def test_route_after_eligibility(
 def test_route_after_eligibility_requires_result() -> None:
     state = cast(GraphState, {"eligibility": None})
 
-    with pytest.raises(ValueError, match="eligibility"):
+    with pytest.raises(ValueError, match="적격성 결과"):
         route_after_eligibility(state)
 
 
@@ -110,7 +110,7 @@ def test_route_after_review_selects_judge(
 def test_route_after_review_requires_result() -> None:
     state = cast(GraphState, {"evidence_review": None})
 
-    with pytest.raises(ValueError, match="evidence_review"):
+    with pytest.raises(ValueError, match="근거 검증 결과"):
         route_after_review(state)
 
 
@@ -143,5 +143,5 @@ def test_route_after_archive_rejects_excess_results() -> None:
         },
     )
 
-    with pytest.raises(ValueError, match="exceed"):
+    with pytest.raises(ValueError, match="완료된 평가 수"):
         route_after_archive(state)

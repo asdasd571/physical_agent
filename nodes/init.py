@@ -9,12 +9,12 @@ def init_node(state: GraphState) -> dict[str, Any]:
     candidates = state["candidates"]
 
     if not 2 <= len(candidates) <= 3:
-        raise ValueError("candidates must contain 2 or 3 items")
+        raise ValueError("후보는 2개 또는 3개여야 합니다")
 
     candidate_ids = [candidate.candidate_id for candidate in candidates]
 
     if len(candidate_ids) != len(set(candidate_ids)):
-        raise ValueError("candidate_id must be unique")
+        raise ValueError("후보 ID는 중복될 수 없습니다")
 
     return {
         "candidate_index": -1,
