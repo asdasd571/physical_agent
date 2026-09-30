@@ -160,6 +160,66 @@ class DocumentPage:
 
 
 @dataclass(frozen=True, slots=True)
+class DocumentChunk:
+    """A token-bounded chunk that belongs to exactly one original PDF page."""
+
+    chunk_id: str
+    page_id: str
+    source_id: str
+    doc_id: str
+    candidate_id: str | None
+    doc_type: DocumentType
+    page: int
+    content: str
+    token_start: int
+    token_end: int
+    token_count: int
+    publisher: str
+    title: str
+    url: str | None
+    published_at: date | None
+    local_path: Path
+    sha256: str
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+    def __post_init__(self) -> None:
+        if self.page <= 0:
+            raise ValueError("page must be a 1-based original PDF page number")
+        if not self.content.strip():
+            raise ValueError("chunk content must not be empty")
+        if self.token_start < 0:
+            raise ValueError("token_start must not be negative")
+        if self.token_end <= self.token_start:
+            raise ValueError("token_end must be greater than token_start")
+        if self.token_count != self.token_end - self.token_start:
+            raise ValueError("token_count must equal token_end - token_start")
+        object.__setattr__(self, "content", self.content.strip())
+
+    def to_metadata(self) -> dict[str, Any]:
+        """Return metadata stored alongside Dense and BM25 indexes."""
+
+        return {
+            "chunk_id": self.chunk_id,
+            "page_id": self.page_id,
+            "source_id": self.source_id,
+            "doc_id": self.doc_id,
+            "candidate_id": self.candidate_id,
+            "doc_type": self.doc_type.value,
+            "page": self.page,
+            "token_start": self.token_start,
+            "token_end": self.token_end,
+            "token_count": self.token_count,
+            "publisher": self.publisher,
+            "title": self.title,
+            "url": self.url,
+            "published_at": self.published_at.isoformat() if self.published_at else None,
+            "local_path": str(self.local_path),
+            "sha256": self.sha256,
+            **self.metadata,
+        }
+
+
+@dataclass(frozen=True, slots=True)
 class RetrievedChunk:
     """Public result model returned by the future ``search_documents`` API."""
 
