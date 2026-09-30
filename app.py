@@ -8,7 +8,13 @@ from pathlib import Path
 from typing import Any
 from uuid import uuid4
 
+from dotenv import load_dotenv
+
 from graph.builder import NodeBindings, build_graph
+from agents.narrative import make_narrative_node
+from agents.synergy import make_synergy_node
+from agents.tech import make_llm_extractor, make_tech_node
+from llm import OpenAIResponsesModel
 from rag import (
     BgeM3Embedder,
     KiwiTechnicalTokenizer,
@@ -25,6 +31,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--rule-version", default="1.0.0")
     parser.add_argument("--document-version", default="1.0.0")
     parser.add_argument("--skip-rag", action="store_true")
+    parser.add_argument("--skip-llm", action="store_true")
+    parser.add_argument("--llm-model", default=None)
+    parser.add_argument("--report-output", default=None)
     return parser.parse_args()
 
 
@@ -57,14 +66,16 @@ def load_node(module_name: str, function_name: str):
         ) from error
 
 
-def load_bindings() -> NodeBindings:
+def load_bindings(model=None) -> NodeBindings:
+    extractor = make_llm_extractor(model) if model is not None else None
     return NodeBindings(
         discover=load_node("agents.discover", "discover_node"),
-        tech=load_node("agents.tech", "tech_node"),
+        tech=make_tech_node(extractor=extractor),
         market=load_node("agents.market", "market_node"),
         competitor=load_node("agents.competitor", "competitor_node"),
-        synergy=load_node("agents.synergy", "synergy_node"),
+        synergy=make_synergy_node(extractor=extractor),
         report=load_node("agents.report", "report_node"),
+        narrative=make_narrative_node(model),
     )
 
 
@@ -80,18 +91,23 @@ def configure_rag(index_directory: str) -> None:
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
+    load_dotenv()
     candidates = load_candidates(args.candidates)
 
     if not args.skip_rag:
         configure_rag(args.index)
 
-    graph = build_graph(load_bindings())
+    model = None if args.skip_llm else OpenAIResponsesModel(model=args.llm_model)
+    graph = build_graph(load_bindings(model))
+    run_id = str(uuid4())
+    settings = {"report_output_path": args.report_output} if args.report_output else {}
     initial_state = {
         "run": RunConfig(
-            run_id=str(uuid4()),
+            run_id=run_id,
             evaluation_date=date.today(),
             rule_version=args.rule_version,
             document_version=args.document_version,
+            settings=settings,
         ),
         "candidates": candidates,
     }
