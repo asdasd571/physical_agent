@@ -15,7 +15,7 @@ feature/rag
 | STEP 3 | 페이지 단위 token chunker | 완료 |
 | STEP 4 | BGE-M3 embedding과 FAISS | 구현 완료, 실제 모델 smoke test 대기 |
 | STEP 5 | Kiwi tokenizer와 BM25 | 완료 |
-| STEP 6 | RRF 순위 융합 | 대기 |
+| STEP 6 | RRF 순위 융합 | 완료 |
 | STEP 7 | 필터 포함 `search_documents()` 완성 | 대기 |
 | STEP 8 | 실제 문서 indexing과 Top5 검색 | 대기 |
 | STEP 9 | Hit Rate@5와 MRR@5 평가 | 대기 |
@@ -57,7 +57,7 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 
 1. `BAAI/bge-m3` 실제 모델 다운로드와 한국어·영어 문장 embedding 확인
 2. 실제 BGE-M3 tokenizer를 STEP 3 chunker에 연결
-3. STEP 6 RRF 구현
+3. STEP 7 후보·문서 유형 필터와 hybrid retriever 구현
 
 ## STEP 4 작업 기록
 
@@ -99,6 +99,27 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 - 전체 테스트 `36 passed`
 - 최초 테스트에서 `rag/__init__.py` export 위치 오류를 발견해 최소 수정 후 재검증
 
+## STEP 6 작업 기록
+
+### 구현 내용
+
+- Dense Top20과 BM25 Top20 입력 제한
+- RRF `k=60`
+- Dense와 BM25 동일 가중치
+- 중복 chunk ID의 점수 합산
+- 기본 최종 Top5 반환
+- 채널별 rank와 원검색 score를 retrieval metadata에 보존
+- 동일 chunk ID의 출처·페이지·본문 충돌 검증
+
+### 테스트 결과
+
+- STEP 6 단독 테스트 `7 passed`
+- 전체 회귀 테스트 `43 passed`
+- `2 / 61`, `1 / 61 + 1 / 62` 수식 검증
+- 원검색 score가 아닌 rank로 융합되는지 검증
+- 각 채널 21위 이후 제외와 기본 Top5 확인
+- 수동 확인 방법을 `rag/STEP6_VERIFICATION.md`에 기록
+
 ## 변경 이력
 
 | 날짜 | 내용 |
@@ -106,3 +127,4 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 | 2026-09-30 | STEP 3 token chunker와 테스트 작성 |
 | 2026-09-30 | STEP 4 BGE-M3 embedding wrapper와 FAISS Dense store 작성 |
 | 2026-09-30 | STEP 5 Kiwi tokenizer와 BM25 Sparse store 작성 |
+| 2026-09-30 | STEP 6 Dense·BM25 RRF 순위 융합 작성 |

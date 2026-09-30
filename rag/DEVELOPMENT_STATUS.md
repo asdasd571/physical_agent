@@ -4,7 +4,7 @@
 
 - 담당자: 김낙근
 - 브랜치: `feature/rag`
-- 현재 단계: STEP 5 Kiwi tokenizer와 BM25 구현 완료
+- 현재 단계: STEP 6 Dense·BM25 Reciprocal Rank Fusion 구현 완료
 - 마지막 업데이트: 2026-09-30
 
 ## 완료된 작업
@@ -27,6 +27,10 @@
 - [x] BM25 점수 계산과 Sparse Top20 검색 구현
 - [x] BM25 index와 chunk metadata 저장·복원 구현
 - [x] Dense·BM25 공용 `DocumentChunk` 직렬화 규격 구현
+- [x] Dense Top20과 BM25 Top20 RRF 결합 구현
+- [x] RRF `k=60`, 동일 가중치와 최종 기본 Top5 적용
+- [x] RRF 결과에 채널별 원순위와 원점수 metadata 기록
+- [x] RRF score 의미와 수동 확인 방법 문서화
 
 ## 진행 중인 작업
 
@@ -34,10 +38,10 @@
 
 ## 다음 작업
 
-1. STEP 6 Dense Top20과 BM25 Top20의 RRF 구현
-2. RRF `k=60`, 동일 가중치와 중복 chunk 결합 테스트
-3. 실제 BGE-M3로 짧은 한국어·영어 문장 embedding smoke test
-4. 실제 PDF page를 BGE-M3 tokenizer로 chunking
+1. STEP 7 candidate_id·doc_type 필터를 포함한 hybrid retriever 구현
+2. `search_documents()`에 Dense, BM25와 RRF backend 연결
+3. 공통 `parent`, `market` 문서 필터 동작 테스트
+4. 실제 BGE-M3로 짧은 한국어·영어 문장 embedding smoke test
 
 ## 변경된 파일
 
@@ -71,6 +75,12 @@
   - Unicode, 하이픈, 영문 기술명, 숫자 보존 테스트
 - `tests/test_bm25_store.py`
   - Sparse 검색 순위, 저장·복원, 중복과 파라미터 테스트
+- `rag/fusion.py`
+  - Dense Top20과 BM25 Top20 동일 가중치 RRF 구현
+- `tests/test_fusion.py`
+  - RRF 수식, 순위 기반 결합, Top20 제한과 Top5 반환 테스트
+- `rag/STEP6_VERIFICATION.md`
+  - 사용자가 직접 실행할 명령과 예상 결과 기록
 
 ## 현재 인터페이스
 
@@ -111,6 +121,14 @@ bm25_store.build(chunks, tokenizer)
 results = bm25_store.search(query, tokenizer, top_k=20)
 ```
 
+```python
+results = reciprocal_rank_fusion(
+    dense_results,
+    bm25_results,
+    top_k=5,
+)
+```
+
 ## 테스트 결과
 
 실행 명령:
@@ -124,7 +142,7 @@ results = bm25_store.search(query, tokenizer, top_k=20)
 결과:
 
 ```text
-36 passed in 1.31s
+43 passed in 1.14s
 compileall PASS
 ```
 
@@ -147,6 +165,12 @@ compileall PASS
 - BM25 관련 문서가 1위로 반환되고 무관한 질의는 빈 결과 반환
 - BM25 저장·복원 후 chunk page와 custom metadata 유지
 - 기존 Dense index 저장·복원 테스트 영향 없음
+- Dense·BM25 양쪽 1위 chunk의 RRF score가 `2 / 61`인지 확인
+- Dense와 BM25의 동일 순위에 동일 가중치가 적용되는지 확인
+- 원검색 score 크기가 아닌 검색 순위로 결합되는지 확인
+- 각 채널의 21위 이후 결과 제외 확인
+- 최종 기본 Top5와 RRF metadata 확인
+- 같은 chunk ID의 출처·페이지·본문 충돌 시 오류 확인
 
 ## 미해결 문제
 
@@ -156,10 +180,10 @@ compileall PASS
 
 ## 다른 팀원에게 영향을 주는 변경
 
-- API 변경 여부: `KiwiTechnicalTokenizer`, `Bm25Store`가 추가됐으나 기존 `search_documents()` 규격은 변경 없음
+- API 변경 여부: `reciprocal_rank_fusion()`이 추가됐으나 기존 `search_documents()` 규격은 변경 없음
 - State/Schema 변경 여부: 없음
-- requirements 변경 여부: `kiwipiepy` 추가
-- 다른 브랜치에서 대응이 필요한 내용: 병합 후 `pip install -r requirements.txt` 재실행 필요
+- requirements 변경 여부: 없음
+- 다른 브랜치에서 대응이 필요한 내용: 없음
 
 ## Git 상태
 
@@ -167,8 +191,10 @@ STEP 3 코드는 이전 요청에 따라 `2a9841d`로 `feature/rag`에 commit/pu
 
 STEP 4까지는 `feature/rag`에 commit/push 완료됐다.
 
-STEP 5 코드, requirements와 개발 현황 문서는 검증을 마쳤으며 `feature/rag`에 commit/push한다.
+STEP 5까지는 `feature/rag`에 commit/push 완료됐다.
+
+STEP 6 코드, 테스트와 확인 문서는 검증을 마쳤으며 `feature/rag`에 commit/push한다.
 
 다음 commit 후보 메시지:
 
-`:sparkles:[FEAT] Kiwi BM25 Sparse 검색 구현`
+`:sparkles:[FEAT] Dense BM25 RRF 순위 융합 구현`
