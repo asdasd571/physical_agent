@@ -17,8 +17,8 @@ SOURCE_URL = (
 )
 EXPECTED_SHA256 = "e69629ffc7176568cbceea738970a148cc28dc7709025696d2acd5f3a0c94071"
 EXPECTED_PAGES = 177
-PDF_PATH = Path("data/documents/parent/sk_2022_esg_report_eng.pdf")
-MANIFEST_PATH = Path("data/manifest.step8.local.csv")
+PDF_PATH = Path("data/rag/documents/parent/sk_2022_esg_report_eng.pdf")
+MANIFEST_PATH = Path("data/rag/manifest.step8.local.csv")
 
 
 def main() -> int:

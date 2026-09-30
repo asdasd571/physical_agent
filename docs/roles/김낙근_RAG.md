@@ -112,7 +112,7 @@ RetrievedChunk(
 
 ### `rag/manifest.py`
 
-`data/manifest.csv`를 읽고 다음을 검사한다.
+`data/rag/manifest.csv`를 읽고 다음을 검사한다.
 
 - 필수 컬럼 존재 여부
 - `doc_id`와 원문 중복
@@ -168,8 +168,8 @@ FAISS 인덱스를 생성하고 저장·불러오기 한다.
 저장 예시:
 
 ```text
-data/index/faiss/index.faiss
-data/index/faiss/chunk_ids.json
+data/rag/index/faiss/index.faiss
+data/rag/index/faiss/chunk_ids.json
 ```
 
 Dense 검색은 필터가 적용된 문서 집합에서 상위 20개를 반환한다.
@@ -234,7 +234,7 @@ results = search_documents(
 
 ## `data/`에 들어갈 파일
 
-### `data/manifest.csv`
+### `data/rag/manifest.csv`
 
 ```csv
 doc_id,publisher,published_at,source_url,sha256,original_pages,used_pages,doc_type,candidate_id,local_path,title,page_ranges
@@ -242,11 +242,11 @@ figure_tech_001,Figure AI,2026-01-20,https://example.com/report.pdf,64자리해�
 sk_parent_001,SK Innovation,2025-12-01,https://example.com/sk.pdf,64자리해시,50,6,parent,COMMON,documents/parent/sk_report.pdf,SK Innovation Report,21-26
 ```
 
-### `data/documents/`
+### `data/rag/documents/`
 
 검색에 사용할 공개 PDF 원문을 유형별로 저장한다. 저작권이나 저장소 용량 때문에 Git에 올리면 안 되는 원문은 `.gitignore` 처리하고, 다운로드 URL과 준비 방법만 README에 기록한다.
 
-### `data/index/`
+### `data/rag/index/`
 
 재생성 가능한 검색 인덱스를 둔다. 대용량 FAISS와 모델 파일은 기본적으로 Git에 올리지 않는다. 빈 폴더 유지가 필요하면 `.gitkeep`만 커밋한다.
 

@@ -39,7 +39,7 @@ def make_page(*, page_number: int, tokens: list[str]) -> DocumentPage:
         title="Robot Hand Test Report",
         url="https://example.com/report.pdf",
         published_at=None,
-        local_path=Path("data/documents/tech/test.pdf"),
+        local_path=Path("data/rag/documents/tech/test.pdf"),
         sha256="a" * 64,
         page=page_number,
         content=" ".join(tokens),

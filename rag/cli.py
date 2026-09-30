@@ -16,14 +16,14 @@ def _build_parser() -> argparse.ArgumentParser:
     commands = parser.add_subparsers(dest="command", required=True)
 
     index = commands.add_parser("index", help="build Dense and BM25 indexes")
-    index.add_argument("--manifest", default="data/manifest.csv")
-    index.add_argument("--index-dir", default="data/index")
+    index.add_argument("--manifest", default="data/rag/manifest.csv")
+    index.add_argument("--index-dir", default="data/rag/index")
     index.add_argument("--device", default=None)
     index.add_argument("--batch-size", type=int, default=8)
 
     search = commands.add_parser("search", help="search a persisted hybrid index")
     search.add_argument("query")
-    search.add_argument("--index-dir", default="data/index")
+    search.add_argument("--index-dir", default="data/rag/index")
     search.add_argument("--candidate-id", default=None)
     search.add_argument("--doc-type", action="append", dest="doc_types")
     search.add_argument("--top-k", type=int, default=5)

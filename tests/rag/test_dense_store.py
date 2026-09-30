@@ -48,7 +48,7 @@ def make_chunk(index: int, content: str, page: int) -> DocumentChunk:
         title="Test Report",
         url="https://example.com/report.pdf",
         published_at=None,
-        local_path=Path("data/documents/tech/test.pdf"),
+        local_path=Path("data/rag/documents/tech/test.pdf"),
         sha256="a" * 64,
     )
 
@@ -93,7 +93,7 @@ def test_save_and_load_preserves_index_and_chunk_metadata(
     assert results[0].chunk.chunk_id == "chunk_0"
     assert results[0].chunk.page == 3
     assert results[0].chunk.source_id == "src_test"
-    assert results[0].chunk.local_path == Path("data/documents/tech/test.pdf")
+    assert results[0].chunk.local_path == Path("data/rag/documents/tech/test.pdf")
 
 
 def test_duplicate_chunk_ids_are_rejected(chunks: list[DocumentChunk]) -> None:

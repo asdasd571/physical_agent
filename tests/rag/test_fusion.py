@@ -27,7 +27,7 @@ def make_chunk(index: int, *, content: str | None = None) -> DocumentChunk:
         title="Test Report",
         url="https://example.com/report.pdf",
         published_at=None,
-        local_path=Path("data/documents/tech/test.pdf"),
+        local_path=Path("data/rag/documents/tech/test.pdf"),
         sha256="a" * 64,
         metadata={"section": "test"},
     )

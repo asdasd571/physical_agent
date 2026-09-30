@@ -91,8 +91,8 @@ def build_indexes(
 
 
 def index_manifest(
-    manifest_path: str | Path = "data/manifest.csv",
-    index_directory: str | Path = "data/index",
+    manifest_path: str | Path = "data/rag/manifest.csv",
+    index_directory: str | Path = "data/rag/index",
     *,
     embedder: BgeM3Embedder | None = None,
     sparse_tokenizer: KiwiTechnicalTokenizer | None = None,
@@ -116,7 +116,7 @@ def index_manifest(
 
 
 def load_hybrid_retriever(
-    index_directory: str | Path = "data/index",
+    index_directory: str | Path = "data/rag/index",
     *,
     embedder: DenseEmbedder,
     sparse_tokenizer: SparseTokenizer,

@@ -28,7 +28,7 @@ python -m scripts.prepare_step8_sample
 
 ```text
 Pages: 177 (using original pages 101-102)
-Manifest: data/manifest.step8.local.csv
+Manifest: data/rag/manifest.step8.local.csv
 ```
 
 스크립트는 공식 PDF의 SHA256과 전체 177페이지를 검사한다. 검색에는 원문 101~102페이지만 사용하므로 페이지 예산에는 2페이지가 반영된다.
@@ -39,8 +39,8 @@ Apple Silicon Mac:
 
 ```bash
 python -m rag.cli index \
-  --manifest data/manifest.step8.local.csv \
-  --index-dir data/index/step8_ski \
+  --manifest data/rag/manifest.step8.local.csv \
+  --index-dir data/rag/index/step8_ski \
   --device mps \
   --batch-size 4
 ```
@@ -49,8 +49,8 @@ CPU 환경:
 
 ```bash
 python -m rag.cli index \
-  --manifest data/manifest.step8.local.csv \
-  --index-dir data/index/step8_ski \
+  --manifest data/rag/manifest.step8.local.csv \
+  --index-dir data/rag/index/step8_ski \
   --device cpu \
   --batch-size 4
 ```
@@ -73,7 +73,7 @@ chunk_overlap: 60
 ```bash
 python -m rag.cli search \
   "What is the highest priority of SK Innovation and its subsidiaries for workplace operations?" \
-  --index-dir data/index/step8_ski \
+  --index-dir data/rag/index/step8_ski \
   --doc-type parent \
   --top-k 5 \
   --device mps
@@ -104,7 +104,7 @@ Top1 RRF score 예상값:
 ```bash
 python -m rag.cli search \
   "SK이노베이션과 자회사의 안전하고 건강한 사업장 운영에서 최우선 과제는 무엇인가?" \
-  --index-dir data/index/step8_ski \
+  --index-dir data/rag/index/step8_ski \
   --doc-type parent \
   --top-k 5 \
   --device mps
@@ -118,7 +118,7 @@ macOS에서 PDF를 열고 102페이지로 이동하거나 다음 명령으로 �
 
 ```bash
 pdftoppm -f 102 -l 102 -png -singlefile -r 110 \
-  data/documents/parent/sk_2022_esg_report_eng.pdf \
+  data/rag/documents/parent/sk_2022_esg_report_eng.pdf \
   /tmp/sk-page-102
 ```
 

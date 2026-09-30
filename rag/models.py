@@ -57,7 +57,7 @@ def _normalize_candidate_id(
 
 @dataclass(frozen=True, slots=True)
 class ManifestEntry:
-    """One source document registered in ``data/manifest.csv``.
+    """One source document registered in ``data/rag/manifest.csv``.
 
     ``page_ranges`` is optional. When present, it selects 1-based pages from the
     original PDF (for example ``1-3;8;11-12``). This preserves original page
