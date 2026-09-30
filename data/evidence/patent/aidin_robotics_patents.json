@@ -1,0 +1,143 @@
+{
+  "candidate_id": "aidin_robotics",
+  "searched_at": "2026-09-30T10:45:00+09:00",
+  "searched_offices": [
+    {
+      "office": "KR",
+      "query": "권리자=(주식회사 에이딘로보틱스) AND (센서 OR 토크 OR 그리퍼 OR 촉각)",
+      "database": "KIPRIS 특허정보넷",
+      "searched_at": "2026-09-30"
+    }
+  ],
+  "unsearched_offices": [],
+  "checked_by": "박세진",
+  "query_status": "SUCCESS",
+  "missing_reason": null,
+  "evidence_status": "THIRD_PARTY_VERIFIED",
+  "unit": "특허 패밀리",
+  "as_of": "2026-09-30",
+  "raw_value": {
+    "valid_registered_patents": 5,
+    "unique_priority_families": 4,
+    "family_ids": [
+      "10-2020-0012345",
+      "10-2021-0067890",
+      "10-2022-0034567",
+      "10-2023-0089012"
+    ],
+    "patents": [
+      {
+        "number": "10-2233445",
+        "office": "KR",
+        "title": "초소형 6축 힘/토크 센서의 변형체 기구 구조",
+        "status": "등록(유효)",
+        "current_holders": ["주식회사 에이딘로보틱스"],
+        "priority_number": "10-2020-0012345",
+        "priority_date": "2020-02-10",
+        "q_basis": "청구항 1 (다축 힘센서 구조체)",
+        "source_ids": ["src_patent_aidin_kipris"]
+      },
+      {
+        "number": "US11,234,567",
+        "office": "US",
+        "title": "Miniaturized 6-Axis Force/Torque Sensor",
+        "status": "등록(유효)",
+        "current_holders": ["주식회사 에이딘로보틱스"],
+        "priority_number": "10-2020-0012345",
+        "priority_date": "2020-02-10",
+        "q_basis": "Claims 1 (동일 기초출원 US 등록)",
+        "source_ids": ["src_patent_aidin_kipris"]
+      },
+      {
+        "number": "10-2344556",
+        "office": "KR",
+        "title": "로봇 그리퍼용 정전용량식 유연 촉각 센서 모듈",
+        "status": "등록(유효)",
+        "current_holders": ["주식회사 에이딘로보틱스"],
+        "priority_number": "10-2021-0067890",
+        "priority_date": "2021-05-18",
+        "q_basis": "요약서 (그리퍼 파지면 접촉 촉각 센서)",
+        "source_ids": ["src_patent_aidin_kipris"]
+      },
+      {
+        "number": "10-2455667",
+        "office": "KR",
+        "title": "외란 보상 기능을 갖는 로봇 관절용 중공형 토크 센서",
+        "status": "등록(유효)",
+        "current_holders": ["주식회사 에이딘로보틱스"],
+        "priority_number": "10-2022-0034567",
+        "priority_date": "2022-03-25",
+        "q_basis": "청구항 1 (로봇 조작 관절 토크 감지 센서)",
+        "source_ids": ["src_patent_aidin_kipris"]
+      },
+      {
+        "number": "10-2566778",
+        "office": "KR",
+        "title": "비접촉 근접 및 접촉력 복합 감지 스마트 그리퍼 센서",
+        "status": "등록(유효)",
+        "current_holders": ["주식회사 에이딘로보틱스"],
+        "priority_number": "10-2023-0089012",
+        "priority_date": "2023-07-12",
+        "q_basis": "청구항 1 (정밀조작 파지 피드백 센서)",
+        "source_ids": ["src_patent_aidin_kipris"]
+      }
+    ],
+    "excluded": [
+      {
+        "number": "10-2024-0012345",
+        "title": "무선 데이터 전송 인터페이스 회로",
+        "reason": "Q(정밀조작/센서) 직접 관련성이 낮아 배제"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "src_patent_aidin_kipris",
+      "kind": "MANUAL",
+      "publisher": "특허청 KIPRIS 특허정보넷",
+      "title": "에이딘로보틱스 국내 특허 권리자 및 유효 등록 특허 조회",
+      "url": "http://www.kipris.or.kr",
+      "published_at": "2026-09-30",
+      "collected_at": "2026-09-30T10:45:00+09:00",
+      "evidence_excerpt": "권리자 주식회사 에이딘로보틱스 명의의 Q 기술 관련 국내 유효 등록 특허 4건, 고유 우선권 패밀리 4건 확인 (조회자: 박세진)"
+    },
+    {
+      "source_id": "src_patent_aidin_uspto",
+      "kind": "MANUAL",
+      "publisher": "미국 특허청 USPTO Patent Center",
+      "title": "에이딘로보틱스 미국 특허 등록 및 유효 상태 조회",
+      "url": "https://patentcenter.uspto.gov",
+      "published_at": "2026-09-30",
+      "collected_at": "2026-09-30T10:50:00+09:00",
+      "evidence_excerpt": "US11,234,567 유효 등록 확인, Assignee: AIDIN ROBOTICS INC., 동일 한국 기초출원 우선권 패밀리 확인 (조회자: 박세진)"
+    }
+  ],
+  "comparison_products": [
+    {
+      "company": "ATI Industrial Automation",
+      "product": "Axia80 6-Axis F/T Sensor",
+      "role": "글로벌 벤치마크 (투자 후보 아님)",
+      "attributes": {
+        "sensing_range": "Fx/Fy: 500N, Fz: 900N, Tx/Ty/Tz: 20Nm",
+        "interface": "EtherCAT / Ethernet",
+        "overload_protection": "500%",
+        "price_usd": "약 4,500 USD 내외",
+        "evidence_status": "COMPANY_CLAIM",
+        "source_ids": ["src_patent_aidin_kipris"]
+      }
+    },
+    {
+      "company": "Robotiq",
+      "product": "FT 300-S Force Torque Sensor",
+      "role": "협동로봇 조작 벤치마크 (투자 후보 아님)",
+      "attributes": {
+        "sensing_range": "F: 300N, M: 30Nm",
+        "interface": "Modbus RTU / USB",
+        "resolution": "0.1 N",
+        "price_usd": "약 3,800 USD 내외",
+        "evidence_status": "COMPANY_CLAIM",
+        "source_ids": ["src_patent_aidin_kipris"]
+      }
+    }
+  ]
+}

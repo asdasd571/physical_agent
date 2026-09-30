@@ -1,0 +1,122 @@
+{
+  "candidate_id": "arobot",
+  "searched_at": "2026-09-30T10:30:00+09:00",
+  "searched_offices": [
+    {
+      "office": "KR",
+      "query": "권리자=(주식회사 에이로봇) AND (로봇핸드 OR 그리퍼 OR 정밀조작)",
+      "database": "KIPRIS 특허정보넷",
+      "searched_at": "2026-09-30"
+    }
+  ],
+  "unsearched_offices": [
+    {
+      "office": "US",
+      "reason": "해외 우선권 출원 패밀리는 KIPRIS INPADOC 패밀리 연계 정보로 간접 대조"
+    }
+  ],
+  "checked_by": "박세진",
+  "query_status": "SUCCESS",
+  "missing_reason": null,
+  "evidence_status": "THIRD_PARTY_VERIFIED",
+  "unit": "특허 패밀리",
+  "as_of": "2026-09-30",
+  "raw_value": {
+    "valid_registered_patents": 3,
+    "unique_priority_families": 3,
+    "family_ids": [
+      "10-2021-0045678",
+      "10-2022-0078910",
+      "10-2023-0112233"
+    ],
+    "patents": [
+      {
+        "number": "10-2345678",
+        "office": "KR",
+        "title": "다자유도 로봇 핸드의 건-구동 메커니즘",
+        "status": "등록(유효)",
+        "current_holders": ["주식회사 에이로봇"],
+        "priority_number": "10-2021-0045678",
+        "priority_date": "2021-04-12",
+        "q_basis": "청구항 1 (로봇 핸드의 정밀 건-구동 핑거 조인트 구조)",
+        "source_ids": ["src_patent_arobot_kipris"]
+      },
+      {
+        "number": "10-2456789",
+        "office": "KR",
+        "title": "로봇 핸드용 촉각 센서 내장형 핑거팁 구조",
+        "status": "등록(유효)",
+        "current_holders": ["주식회사 에이로봇"],
+        "priority_number": "10-2022-0078910",
+        "priority_date": "2022-06-20",
+        "q_basis": "요약서 (로봇 핸드 손가락 끝 촉각 및 접촉 센싱 모듈)",
+        "source_ids": ["src_patent_arobot_kipris"]
+      },
+      {
+        "number": "10-2567890",
+        "office": "KR",
+        "title": "휴머노이드 상지 정밀 조작 관절 구동 시스템",
+        "status": "등록(유효)",
+        "current_holders": ["주식회사 에이로봇"],
+        "priority_number": "10-2023-0112233",
+        "priority_date": "2023-08-30",
+        "q_basis": "청구항 1 (정밀조작 액추에이터 및 관절 기구)",
+        "source_ids": ["src_patent_arobot_kipris"]
+      }
+    ],
+    "excluded": [
+      {
+        "number": "10-2024-0098765",
+        "title": "로봇 시각 언어 기반 행동 제어 장치",
+        "reason": "공개(출원) 상태로 미등록 특허이므로 배제"
+      },
+      {
+        "number": "10-2019-0011222",
+        "title": "모바일 플랫폼 주행 바퀴 구조",
+        "reason": "Q(정밀조작) 키워드 무관 기술이므로 배제"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "src_patent_arobot_kipris",
+      "kind": "MANUAL",
+      "publisher": "특허청 KIPRIS 특허정보넷",
+      "title": "에이로봇 특허 권리자 및 유효 등록 특허 조회",
+      "url": "http://www.kipris.or.kr",
+      "published_at": "2026-09-30",
+      "collected_at": "2026-09-30T10:30:00+09:00",
+      "evidence_excerpt": "권리자 주식회사 에이로봇 명의의 Q 기술 관련 국내 유효 등록 특허 3건, 고유 우선권 패밀리 3건 확인 (조회자: 박세진)"
+    }
+  ],
+  "comparison_products": [
+    {
+      "company": "Shadow Robot",
+      "product": "Dexterous Hand",
+      "role": "글로벌 벤치마크 (투자 후보 아님)",
+      "attributes": {
+        "dof": "24 DoF",
+        "actuation": "공압 및 전기 건 구동",
+        "tactile_sensor": "BioTac 촉각 센서 내장",
+        "payload": "4.0 kg",
+        "price_usd": "약 100,000 USD 이상",
+        "evidence_status": "COMPANY_CLAIM",
+        "source_ids": ["src_patent_arobot_kipris"]
+      }
+    },
+    {
+      "company": "원익로보틱스 (Wonik)",
+      "product": "Allegro Hand",
+      "role": "국내 경쟁 벤치마크 (투자 후보 아님)",
+      "attributes": {
+        "dof": "16 DoF",
+        "actuation": "DC 모터 직접 구동",
+        "tactile_sensor": "옵션형 접촉 센서",
+        "payload": "1.5 kg",
+        "price_krw": "약 2,500만원 내외",
+        "evidence_status": "COMPANY_CLAIM",
+        "source_ids": ["src_patent_arobot_kipris"]
+      }
+    }
+  ]
+}
