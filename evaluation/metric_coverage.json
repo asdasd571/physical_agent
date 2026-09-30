@@ -1,0 +1,18 @@
+[
+  {"metric":"T1","status":"MISSING","reason":"후보별 핵심 기술진의 검증 가능한 경력 원값이 부족함"},
+  {"metric":"T2","status":"OK","query":"에이딘로보틱스 성균관대학교 로보틱스 연구실 창업 선행 연구","candidate_id":"aidin_robotics","doc_types":["tech"],"relevant_pages":[{"doc_id":"aidin_catalog_ko","page":2}]},
+  {"metric":"K1","status":"OK","query":"Figure Helix 공개 연구 결과 zero-shot household object manipulation","candidate_id":"figure_ai","doc_types":["tech"],"relevant_pages":[{"doc_id":"figure_helix_2025","page":2}]},
+  {"metric":"K2","status":"MISSING","reason":"성공 횟수와 전체 시도 횟수를 함께 제공하는 원문이 없음"},
+  {"metric":"K3","status":"OK","query":"Figure BMW 30000 cars 90000 parts 1250 hours production deployment","candidate_id":"figure_ai","doc_types":["tech"],"relevant_pages":[{"doc_id":"figure_bmw_deployment_2025","page":1}]},
+  {"metric":"S1","status":"OK","query":"에이딘 로봇 핸드 물체 파지 작업","candidate_id":"aidin_robotics","doc_types":["tech"],"relevant_pages":[{"doc_id":"aidin_catalog_ko","page":12}]},
+  {"metric":"S2","status":"OK","query":"울산CLX 스마트 로봇 배관 검사 가스 누출 밸브 작업 수요","doc_types":["parent"],"relevant_pages":[{"doc_id":"sk_innovation_esg_2022","page":34},{"doc_id":"sk_innovation_esg_2022","page":80}]},
+  {"metric":"P1","status":"OK","query":"로봇 부품 생산액 2021 2022 2023 시장 성장률","doc_types":["market"],"relevant_pages":[{"doc_id":"kiria_robot_industry_survey_2023","page":69}]},
+  {"metric":"R1","status":"OK","query":"Figure Series C funding amount one billion dollars","candidate_id":"figure_ai","doc_types":["risk"],"relevant_pages":[{"doc_id":"figure_series_c_2025","page":1}]},
+  {"metric":"R2","status":"MISSING","reason":"국가 연구비의 확정 금액 원값이 없음"},
+  {"metric":"R3","status":"MISSING","reason":"후보 기업별 기간 시작·종료 인원 원값이 없음"},
+  {"metric":"M1","status":"MISSING","reason":"등록 상태와 패밀리를 함께 검증할 특허 원문이 없음"},
+  {"metric":"F1","status":"MISSING","reason":"후보별 현금성자산·단기금융상품·영업현금흐름 공개자료가 없음"},
+  {"metric":"F2","status":"MISSING","reason":"후보별 자본총계·부채·감사의견 원문이 없음"},
+  {"metric":"F3","status":"MISSING","reason":"후보별 공식 제재 조회 결과 원문이 없음"},
+  {"metric":"F4","status":"MISSING","reason":"KCs·IECEx·방폭 인증 또는 취득 진행 근거가 없음"}
+]

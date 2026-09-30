@@ -1,0 +1,131 @@
+{
+  "evaluated_at": "2026-09-30T02:12:53.289278+00:00",
+  "question_count": 2,
+  "top_k": 5,
+  "hit_rate_at_5": 1.0,
+  "mrr_at_5": 1.0,
+  "mean_latency_ms": 663.58431201661,
+  "p50_latency_ms": 663.58431201661,
+  "p95_latency_ms": 1233.8041934068315,
+  "by_language_pair": {
+    "en-en": {
+      "question_count": 1,
+      "hit_rate_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "mean_latency_ms": 1297.161958005745,
+      "p50_latency_ms": 1297.161958005745,
+      "p95_latency_ms": 1297.161958005745
+    },
+    "ko-en": {
+      "question_count": 1,
+      "hit_rate_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "mean_latency_ms": 30.00666602747515,
+      "p50_latency_ms": 30.00666602747515,
+      "p95_latency_ms": 30.00666602747515
+    }
+  },
+  "questions": [
+    {
+      "question_id": "parent-en-001",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 1297.161958005745,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "ski_esg_report_2022",
+          "page": 102,
+          "chunk_id": "chunk_4197f269cef4d57a4b64bf52",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "ski_esg_report_2022",
+          "page": 102,
+          "chunk_id": "chunk_ce6115ea653cb19113f103f2",
+          "score": 0.0315136476426799
+        },
+        {
+          "rank": 3,
+          "doc_id": "ski_esg_report_2022",
+          "page": 101,
+          "chunk_id": "chunk_aa2c2ac3c2d0cc05922e189a",
+          "score": 0.03149801587301587
+        },
+        {
+          "rank": 4,
+          "doc_id": "ski_esg_report_2022",
+          "page": 101,
+          "chunk_id": "chunk_ba7b63763dd9ff83aa5abcc7",
+          "score": 0.03149801587301587
+        },
+        {
+          "rank": 5,
+          "doc_id": "ski_esg_report_2022",
+          "page": 102,
+          "chunk_id": "chunk_750facc1e8cf09d4e1f2abe5",
+          "score": 0.03128054740957967
+        }
+      ]
+    },
+    {
+      "question_id": "parent-ko-en-001",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 30.00666602747515,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "ski_esg_report_2022",
+          "page": 102,
+          "chunk_id": "chunk_4197f269cef4d57a4b64bf52",
+          "score": 0.03252247488101534
+        },
+        {
+          "rank": 2,
+          "doc_id": "ski_esg_report_2022",
+          "page": 101,
+          "chunk_id": "chunk_ba7b63763dd9ff83aa5abcc7",
+          "score": 0.03177805800756621
+        },
+        {
+          "rank": 3,
+          "doc_id": "ski_esg_report_2022",
+          "page": 101,
+          "chunk_id": "chunk_aa2c2ac3c2d0cc05922e189a",
+          "score": 0.031754032258064516
+        },
+        {
+          "rank": 4,
+          "doc_id": "ski_esg_report_2022",
+          "page": 102,
+          "chunk_id": "chunk_750facc1e8cf09d4e1f2abe5",
+          "score": 0.031024531024531024
+        },
+        {
+          "rank": 5,
+          "doc_id": "ski_esg_report_2022",
+          "page": 102,
+          "chunk_id": "chunk_ce6115ea653cb19113f103f2",
+          "score": 0.031024531024531024
+        }
+      ]
+    }
+  ],
+  "index": {
+    "format_version": 1,
+    "document_count": 1,
+    "page_count": 2,
+    "chunk_count": 6,
+    "embedding_model": "BAAI/bge-m3",
+    "chunk_size": 450,
+    "chunk_overlap": 60,
+    "model_load_seconds": 8.38036320800893,
+    "dense_indexing_seconds": 1.0367602089536376,
+    "bm25_indexing_seconds": 0.7744146659970284,
+    "total_indexing_seconds": 2.2837000410072505
+  }
+}

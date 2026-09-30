@@ -1,0 +1,1811 @@
+{
+  "evaluated_at": "2026-09-30T04:52:38.479893+00:00",
+  "question_count": 40,
+  "top_k": 5,
+  "hit_rate_at_5": 1.0,
+  "mrr_at_5": 0.7441666666666666,
+  "mean_latency_ms": 62.07223122619325,
+  "p50_latency_ms": 23.66604149574414,
+  "p95_latency_ms": 28.421285099466314,
+  "by_language_pair": {
+    "en-en": {
+      "question_count": 14,
+      "hit_rate_at_5": 1.0,
+      "mrr_at_5": 0.8273809523809524,
+      "mean_latency_ms": 24.098889710980334,
+      "p50_latency_ms": 23.779667011694983,
+      "p95_latency_ms": 27.235426756669767
+    },
+    "ko-en": {
+      "question_count": 13,
+      "hit_rate_at_5": 1.0,
+      "mrr_at_5": 0.6397435897435897,
+      "mean_latency_ms": 142.61103846813336,
+      "p50_latency_ms": 24.647707992698997,
+      "p95_latency_ms": 638.4314831928328
+    },
+    "ko-ko": {
+      "question_count": 13,
+      "hit_rate_at_5": 1.0,
+      "mrr_at_5": 0.758974358974359,
+      "mean_latency_ms": 22.427791769867046,
+      "p50_latency_ms": 22.822084021754563,
+      "p95_latency_ms": 24.304441572166976
+    }
+  },
+  "questions": [
+    {
+      "question_id": "tech-01",
+      "hit": true,
+      "reciprocal_rank": 0.25,
+      "first_relevant_rank": 4,
+      "latency_ms": 1544.6238330332562,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "arobot_brochure_2025",
+          "page": 8,
+          "chunk_id": "chunk_af2e3c0da2067fe82e0bda62",
+          "score": 0.03252247488101534
+        },
+        {
+          "rank": 2,
+          "doc_id": "arobot_brochure_2025",
+          "page": 4,
+          "chunk_id": "chunk_5ea431b84d802161ea2934a6",
+          "score": 0.031544957774465976
+        },
+        {
+          "rank": 3,
+          "doc_id": "arobot_brochure_2025",
+          "page": 9,
+          "chunk_id": "chunk_443dca6b4907a043d9c13b7b",
+          "score": 0.0315136476426799
+        },
+        {
+          "rank": 4,
+          "doc_id": "arobot_brochure_2025",
+          "page": 5,
+          "chunk_id": "chunk_e71bd04b63c6433da66372d9",
+          "score": 0.03125763125763126
+        },
+        {
+          "rank": 5,
+          "doc_id": "arobot_brochure_2025",
+          "page": 14,
+          "chunk_id": "chunk_c58871ab619ad12788631d83",
+          "score": 0.031024531024531024
+        }
+      ]
+    },
+    {
+      "question_id": "tech-02",
+      "hit": true,
+      "reciprocal_rank": 0.5,
+      "first_relevant_rank": 2,
+      "latency_ms": 34.30324996588752,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "arobot_brochure_2025",
+          "page": 8,
+          "chunk_id": "chunk_af2e3c0da2067fe82e0bda62",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "arobot_brochure_2025",
+          "page": 9,
+          "chunk_id": "chunk_443dca6b4907a043d9c13b7b",
+          "score": 0.031754032258064516
+        },
+        {
+          "rank": 3,
+          "doc_id": "arobot_brochure_2025",
+          "page": 14,
+          "chunk_id": "chunk_c58871ab619ad12788631d83",
+          "score": 0.0315136476426799
+        },
+        {
+          "rank": 4,
+          "doc_id": "arobot_brochure_2025",
+          "page": 5,
+          "chunk_id": "chunk_e71bd04b63c6433da66372d9",
+          "score": 0.031009615384615385
+        },
+        {
+          "rank": 5,
+          "doc_id": "arobot_brochure_2025",
+          "page": 2,
+          "chunk_id": "chunk_ef13dd9039f2f37d7e5bc063",
+          "score": 0.030798389007344232
+        }
+      ]
+    },
+    {
+      "question_id": "tech-03",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 22.683040995616466,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "arobot_brochure_2025",
+          "page": 8,
+          "chunk_id": "chunk_af2e3c0da2067fe82e0bda62",
+          "score": 0.032266458495966696
+        },
+        {
+          "rank": 2,
+          "doc_id": "arobot_brochure_2025",
+          "page": 9,
+          "chunk_id": "chunk_443dca6b4907a043d9c13b7b",
+          "score": 0.031754032258064516
+        },
+        {
+          "rank": 3,
+          "doc_id": "arobot_brochure_2025",
+          "page": 3,
+          "chunk_id": "chunk_59ffa7161d60351534de6982",
+          "score": 0.030798389007344232
+        },
+        {
+          "rank": 4,
+          "doc_id": "arobot_brochure_2025",
+          "page": 5,
+          "chunk_id": "chunk_e71bd04b63c6433da66372d9",
+          "score": 0.029513888888888888
+        },
+        {
+          "rank": 5,
+          "doc_id": "shadow_dexterous_hand_2024",
+          "page": 7,
+          "chunk_id": "chunk_955e49dd5a81315b41729c7c",
+          "score": 0.02946912242686891
+        }
+      ]
+    },
+    {
+      "question_id": "tech-04",
+      "hit": true,
+      "reciprocal_rank": 0.5,
+      "first_relevant_rank": 2,
+      "latency_ms": 22.54904102301225,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "shadow_dexterous_hand_2024",
+          "page": 3,
+          "chunk_id": "chunk_9461dcb35f9cb2c262bcb0cc",
+          "score": 0.032266458495966696
+        },
+        {
+          "rank": 2,
+          "doc_id": "shadow_dexterous_hand_2024",
+          "page": 6,
+          "chunk_id": "chunk_1c05ec0cd997b5c9a0de1c41",
+          "score": 0.032018442622950824
+        },
+        {
+          "rank": 3,
+          "doc_id": "shadow_dexterous_hand_2024",
+          "page": 8,
+          "chunk_id": "chunk_aa4c4ca02db54216cead97ab",
+          "score": 0.031754032258064516
+        },
+        {
+          "rank": 4,
+          "doc_id": "shadow_dexterous_hand_2024",
+          "page": 7,
+          "chunk_id": "chunk_955e49dd5a81315b41729c7c",
+          "score": 0.030834914611005692
+        },
+        {
+          "rank": 5,
+          "doc_id": "shadow_dexterous_hand_2024",
+          "page": 5,
+          "chunk_id": "chunk_8ab58a84c313f352b3792661",
+          "score": 0.03057889822595705
+        }
+      ]
+    },
+    {
+      "question_id": "tech-05",
+      "hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "first_relevant_rank": 3,
+      "latency_ms": 22.44358300231397,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "shadow_dexterous_hand_2024",
+          "page": 3,
+          "chunk_id": "chunk_9461dcb35f9cb2c262bcb0cc",
+          "score": 0.03252247488101534
+        },
+        {
+          "rank": 2,
+          "doc_id": "shadow_dexterous_hand_2024",
+          "page": 1,
+          "chunk_id": "chunk_f83a528f47a4298562fdb6d1",
+          "score": 0.032018442622950824
+        },
+        {
+          "rank": 3,
+          "doc_id": "shadow_dexterous_hand_2024",
+          "page": 8,
+          "chunk_id": "chunk_aa4c4ca02db54216cead97ab",
+          "score": 0.03149801587301587
+        },
+        {
+          "rank": 4,
+          "doc_id": "shadow_dexterous_hand_2024",
+          "page": 5,
+          "chunk_id": "chunk_8ab58a84c313f352b3792661",
+          "score": 0.03128054740957967
+        },
+        {
+          "rank": 5,
+          "doc_id": "shadow_dexterous_hand_2024",
+          "page": 2,
+          "chunk_id": "chunk_607d5f860284eb60d15acf70",
+          "score": 0.03125763125763126
+        }
+      ]
+    },
+    {
+      "question_id": "tech-06",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 22.27841701824218,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "aidin_catalog_ko",
+          "page": 2,
+          "chunk_id": "chunk_ee60b382446b20bead0486c3",
+          "score": 0.032266458495966696
+        },
+        {
+          "rank": 2,
+          "doc_id": "aidin_catalog_ko",
+          "page": 4,
+          "chunk_id": "chunk_575f230e7454c3486c300a32",
+          "score": 0.03225806451612903
+        },
+        {
+          "rank": 3,
+          "doc_id": "aidin_catalog_ko",
+          "page": 4,
+          "chunk_id": "chunk_a9f3b883848adf9148cc2171",
+          "score": 0.032018442622950824
+        },
+        {
+          "rank": 4,
+          "doc_id": "aidin_catalog_ko",
+          "page": 3,
+          "chunk_id": "chunk_ed6952e2843e31f5ef960053",
+          "score": 0.031024531024531024
+        },
+        {
+          "rank": 5,
+          "doc_id": "aidin_catalog_ko",
+          "page": 12,
+          "chunk_id": "chunk_0b7b7d3223fa98b9f04a01cd",
+          "score": 0.03055037313432836
+        }
+      ]
+    },
+    {
+      "question_id": "tech-07",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 22.025958984158933,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "aidin_catalog_ko",
+          "page": 4,
+          "chunk_id": "chunk_575f230e7454c3486c300a32",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "aidin_catalog_ko",
+          "page": 4,
+          "chunk_id": "chunk_a9f3b883848adf9148cc2171",
+          "score": 0.031754032258064516
+        },
+        {
+          "rank": 3,
+          "doc_id": "aidin_catalog_ko",
+          "page": 3,
+          "chunk_id": "chunk_ed6952e2843e31f5ef960053",
+          "score": 0.0315136476426799
+        },
+        {
+          "rank": 4,
+          "doc_id": "aidin_catalog_ko",
+          "page": 2,
+          "chunk_id": "chunk_ee60b382446b20bead0486c3",
+          "score": 0.03149801587301587
+        },
+        {
+          "rank": 5,
+          "doc_id": "aidin_catalog_ko",
+          "page": 13,
+          "chunk_id": "chunk_3ef465a436af5ad1ba713a7c",
+          "score": 0.030303030303030304
+        }
+      ]
+    },
+    {
+      "question_id": "tech-08",
+      "hit": true,
+      "reciprocal_rank": 0.2,
+      "first_relevant_rank": 5,
+      "latency_ms": 22.822084021754563,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "aidin_catalog_ko",
+          "page": 7,
+          "chunk_id": "chunk_eb5b6eb6b7b00d0159917685",
+          "score": 0.032266458495966696
+        },
+        {
+          "rank": 2,
+          "doc_id": "aidin_catalog_ko",
+          "page": 4,
+          "chunk_id": "chunk_a9f3b883848adf9148cc2171",
+          "score": 0.032018442622950824
+        },
+        {
+          "rank": 3,
+          "doc_id": "aidin_catalog_ko",
+          "page": 5,
+          "chunk_id": "chunk_d474fb72e4fcd75ff1a68fef",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 4,
+          "doc_id": "aidin_catalog_ko",
+          "page": 9,
+          "chunk_id": "chunk_0f4cfbbe59412acb1b6fb87b",
+          "score": 0.0315136476426799
+        },
+        {
+          "rank": 5,
+          "doc_id": "aidin_catalog_ko",
+          "page": 6,
+          "chunk_id": "chunk_65c2f619c064ff4ed279dce9",
+          "score": 0.030776515151515152
+        }
+      ]
+    },
+    {
+      "question_id": "tech-09",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 22.74099999340251,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "aidin_catalog_ko",
+          "page": 12,
+          "chunk_id": "chunk_0b7b7d3223fa98b9f04a01cd",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "aidin_catalog_ko",
+          "page": 15,
+          "chunk_id": "chunk_bb35704ca8ceebf6156c86d3",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 3,
+          "doc_id": "aidin_catalog_ko",
+          "page": 5,
+          "chunk_id": "chunk_d474fb72e4fcd75ff1a68fef",
+          "score": 0.03125763125763126
+        },
+        {
+          "rank": 4,
+          "doc_id": "aidin_catalog_ko",
+          "page": 3,
+          "chunk_id": "chunk_ed6952e2843e31f5ef960053",
+          "score": 0.030834914611005692
+        },
+        {
+          "rank": 5,
+          "doc_id": "aidin_catalog_ko",
+          "page": 10,
+          "chunk_id": "chunk_01fab895f84e4084c32d2966",
+          "score": 0.030090497737556562
+        }
+      ]
+    },
+    {
+      "question_id": "tech-10",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 23.615917016286403,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "aidin_catalog_ko",
+          "page": 16,
+          "chunk_id": "chunk_3b1ba061cb57c4c9075a6ab6",
+          "score": 0.032266458495966696
+        },
+        {
+          "rank": 2,
+          "doc_id": "aidin_catalog_ko",
+          "page": 10,
+          "chunk_id": "chunk_01fab895f84e4084c32d2966",
+          "score": 0.03128054740957967
+        },
+        {
+          "rank": 3,
+          "doc_id": "aidin_catalog_ko",
+          "page": 5,
+          "chunk_id": "chunk_d474fb72e4fcd75ff1a68fef",
+          "score": 0.03125763125763126
+        },
+        {
+          "rank": 4,
+          "doc_id": "aidin_catalog_ko",
+          "page": 4,
+          "chunk_id": "chunk_575f230e7454c3486c300a32",
+          "score": 0.031009615384615385
+        },
+        {
+          "rank": 5,
+          "doc_id": "aidin_catalog_ko",
+          "page": 12,
+          "chunk_id": "chunk_0b7b7d3223fa98b9f04a01cd",
+          "score": 0.030017921146953404
+        }
+      ]
+    },
+    {
+      "question_id": "tech-11",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 23.280917026568204,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 1,
+          "chunk_id": "chunk_1ec598cd63bf76ede76515a2",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 2,
+          "chunk_id": "chunk_fc2680fdc62e394058ebc415",
+          "score": 0.03225806451612903
+        },
+        {
+          "rank": 3,
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 5,
+          "chunk_id": "chunk_21797696bf413d0ecc7b1aae",
+          "score": 0.031746031746031744
+        },
+        {
+          "rank": 4,
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 3,
+          "chunk_id": "chunk_f82b6b96fbea126873fd537c",
+          "score": 0.031009615384615385
+        },
+        {
+          "rank": 5,
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 4,
+          "chunk_id": "chunk_83f79e7cbb69d9ed48a77fc9",
+          "score": 0.030776515151515152
+        }
+      ]
+    },
+    {
+      "question_id": "tech-12",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 24.647707992698997,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 1,
+          "chunk_id": "chunk_1ec598cd63bf76ede76515a2",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 2,
+          "chunk_id": "chunk_fc2680fdc62e394058ebc415",
+          "score": 0.03225806451612903
+        },
+        {
+          "rank": 3,
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 5,
+          "chunk_id": "chunk_21797696bf413d0ecc7b1aae",
+          "score": 0.031746031746031744
+        },
+        {
+          "rank": 4,
+          "doc_id": "figure_03_2025",
+          "page": 7,
+          "chunk_id": "chunk_e653a4f04d19c5dd9fec5d46",
+          "score": 0.029910714285714284
+        },
+        {
+          "rank": 5,
+          "doc_id": "figure_03_2025",
+          "page": 4,
+          "chunk_id": "chunk_0c92821fe4bd2448d9714094",
+          "score": 0.029236022193768675
+        }
+      ]
+    },
+    {
+      "question_id": "tech-13",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 24.83283297624439,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "figure_helix_2025",
+          "page": 1,
+          "chunk_id": "chunk_ca8c0b551ca0bdbcad63efe4",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "figure_helix_2025",
+          "page": 9,
+          "chunk_id": "chunk_37fe8f7ea51db10bff0df1a4",
+          "score": 0.03225806451612903
+        },
+        {
+          "rank": 3,
+          "doc_id": "figure_helix_2025",
+          "page": 5,
+          "chunk_id": "chunk_00f2e157121ae92176f56495",
+          "score": 0.03149801587301587
+        },
+        {
+          "rank": 4,
+          "doc_id": "figure_helix_logistics_2025",
+          "page": 1,
+          "chunk_id": "chunk_9c355ae10e22e2e3027713cc",
+          "score": 0.03149801587301587
+        },
+        {
+          "rank": 5,
+          "doc_id": "figure_helix_2025",
+          "page": 6,
+          "chunk_id": "chunk_eea2cd69021316bf9dd11b48",
+          "score": 0.03007688828584351
+        }
+      ]
+    },
+    {
+      "question_id": "tech-14",
+      "hit": true,
+      "reciprocal_rank": 0.25,
+      "first_relevant_rank": 4,
+      "latency_ms": 24.27504095248878,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "figure_helix_2025",
+          "page": 9,
+          "chunk_id": "chunk_37fe8f7ea51db10bff0df1a4",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "figure_helix_2025",
+          "page": 10,
+          "chunk_id": "chunk_77dd046fb02482b06a42e33e",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 3,
+          "doc_id": "figure_helix_2025",
+          "page": 12,
+          "chunk_id": "chunk_84ae19c337285b6d1d9b35b6",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 4,
+          "doc_id": "figure_helix_2025",
+          "page": 2,
+          "chunk_id": "chunk_760a08198fa05573d333a837",
+          "score": 0.031009615384615385
+        },
+        {
+          "rank": 5,
+          "doc_id": "figure_helix_logistics_2025",
+          "page": 1,
+          "chunk_id": "chunk_9c355ae10e22e2e3027713cc",
+          "score": 0.02964426877470356
+        }
+      ]
+    },
+    {
+      "question_id": "tech-15",
+      "hit": true,
+      "reciprocal_rank": 0.2,
+      "first_relevant_rank": 5,
+      "latency_ms": 25.067082955501974,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "figure_03_2025",
+          "page": 7,
+          "chunk_id": "chunk_e653a4f04d19c5dd9fec5d46",
+          "score": 0.03252247488101534
+        },
+        {
+          "rank": 2,
+          "doc_id": "figure_03_2025",
+          "page": 4,
+          "chunk_id": "chunk_0c92821fe4bd2448d9714094",
+          "score": 0.03057889822595705
+        },
+        {
+          "rank": 3,
+          "doc_id": "figure_03_2025",
+          "page": 8,
+          "chunk_id": "chunk_7adab68169a58ebd58e7160c",
+          "score": 0.030117753623188408
+        },
+        {
+          "rank": 4,
+          "doc_id": "figure_03_2025",
+          "page": 7,
+          "chunk_id": "chunk_d006cda6f48f89417335a269",
+          "score": 0.029827662395050816
+        },
+        {
+          "rank": 5,
+          "doc_id": "figure_helix_logistics_2025",
+          "page": 1,
+          "chunk_id": "chunk_9c355ae10e22e2e3027713cc",
+          "score": 0.029273504273504274
+        }
+      ]
+    },
+    {
+      "question_id": "tech-16",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 26.26929199323058,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "figure_03_2025",
+          "page": 5,
+          "chunk_id": "chunk_5b0e760a08f42aaeccaaa984",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "figure_03_2025",
+          "page": 1,
+          "chunk_id": "chunk_7250ff929f7c13f7e85287a8",
+          "score": 0.031054405392392875
+        },
+        {
+          "rank": 3,
+          "doc_id": "figure_03_2025",
+          "page": 4,
+          "chunk_id": "chunk_0c92821fe4bd2448d9714094",
+          "score": 0.03076923076923077
+        },
+        {
+          "rank": 4,
+          "doc_id": "figure_03_2025",
+          "page": 8,
+          "chunk_id": "chunk_7adab68169a58ebd58e7160c",
+          "score": 0.030621785881252923
+        },
+        {
+          "rank": 5,
+          "doc_id": "figure_03_2025",
+          "page": 6,
+          "chunk_id": "chunk_513d0bc9b5093f8e802f25a0",
+          "score": 0.029910714285714284
+        }
+      ]
+    },
+    {
+      "question_id": "market-01",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 25.097415957134217,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 52,
+          "chunk_id": "chunk_6e6b8ba15a21177a50de1109",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 59,
+          "chunk_id": "chunk_a62975aa308f43fe0470f37b",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 3,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 54,
+          "chunk_id": "chunk_bef28c6628a0a42125529ced",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 4,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 60,
+          "chunk_id": "chunk_55679fdf05e78f2738ea704a",
+          "score": 0.030776515151515152
+        },
+        {
+          "rank": 5,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 53,
+          "chunk_id": "chunk_5f45e40ec89031b7cc7b2e4c",
+          "score": 0.030776515151515152
+        }
+      ]
+    },
+    {
+      "question_id": "market-02",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 23.226582969073206,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 57,
+          "chunk_id": "chunk_7e2b3adc486d99266ac31fb9",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 54,
+          "chunk_id": "chunk_bef28c6628a0a42125529ced",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 3,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 58,
+          "chunk_id": "chunk_5c717a4225dd1a0f616accdd",
+          "score": 0.031024531024531024
+        },
+        {
+          "rank": 4,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 52,
+          "chunk_id": "chunk_bd942541bcb903580922b0a7",
+          "score": 0.031009615384615385
+        },
+        {
+          "rank": 5,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 90,
+          "chunk_id": "chunk_7f686f7d19d82246c9f743f4",
+          "score": 0.02928692699490662
+        }
+      ]
+    },
+    {
+      "question_id": "market-03",
+      "hit": true,
+      "reciprocal_rank": 0.5,
+      "first_relevant_rank": 2,
+      "latency_ms": 19.984833023045212,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 52,
+          "chunk_id": "chunk_6e6b8ba15a21177a50de1109",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 60,
+          "chunk_id": "chunk_55679fdf05e78f2738ea704a",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 3,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 54,
+          "chunk_id": "chunk_bef28c6628a0a42125529ced",
+          "score": 0.0315136476426799
+        },
+        {
+          "rank": 4,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 59,
+          "chunk_id": "chunk_a62975aa308f43fe0470f37b",
+          "score": 0.03149801587301587
+        },
+        {
+          "rank": 5,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 64,
+          "chunk_id": "chunk_111044beff9deff1a9b99b30",
+          "score": 0.030536130536130537
+        }
+      ]
+    },
+    {
+      "question_id": "market-04",
+      "hit": true,
+      "reciprocal_rank": 0.5,
+      "first_relevant_rank": 2,
+      "latency_ms": 19.1252920194529,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 52,
+          "chunk_id": "chunk_6e6b8ba15a21177a50de1109",
+          "score": 0.032266458495966696
+        },
+        {
+          "rank": 2,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 64,
+          "chunk_id": "chunk_111044beff9deff1a9b99b30",
+          "score": 0.03125763125763126
+        },
+        {
+          "rank": 3,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 60,
+          "chunk_id": "chunk_55679fdf05e78f2738ea704a",
+          "score": 0.030536130536130537
+        },
+        {
+          "rank": 4,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 67,
+          "chunk_id": "chunk_b42df0fe15af72779ee7c34a",
+          "score": 0.029850746268656716
+        },
+        {
+          "rank": 5,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 54,
+          "chunk_id": "chunk_bef28c6628a0a42125529ced",
+          "score": 0.02964254577157803
+        }
+      ]
+    },
+    {
+      "question_id": "market-05",
+      "hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "first_relevant_rank": 3,
+      "latency_ms": 23.625000030733645,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 64,
+          "chunk_id": "chunk_111044beff9deff1a9b99b30",
+          "score": 0.03252247488101534
+        },
+        {
+          "rank": 2,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 52,
+          "chunk_id": "chunk_bd942541bcb903580922b0a7",
+          "score": 0.032018442622950824
+        },
+        {
+          "rank": 3,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 69,
+          "chunk_id": "chunk_57ef65f93c737b32df0556f4",
+          "score": 0.031009615384615385
+        },
+        {
+          "rank": 4,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 52,
+          "chunk_id": "chunk_6e6b8ba15a21177a50de1109",
+          "score": 0.030536130536130537
+        },
+        {
+          "rank": 5,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 53,
+          "chunk_id": "chunk_5f45e40ec89031b7cc7b2e4c",
+          "score": 0.030017921146953404
+        }
+      ]
+    },
+    {
+      "question_id": "market-06",
+      "hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "first_relevant_rank": 3,
+      "latency_ms": 23.464375000912696,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 83,
+          "chunk_id": "chunk_bd0034f6727b45e5252b5fd3",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 70,
+          "chunk_id": "chunk_8ed9987c9d588ba66128cb77",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 3,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 85,
+          "chunk_id": "chunk_f8da8b8fc21294472c007bde",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 4,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 89,
+          "chunk_id": "chunk_f637fa6bb84d46f988a43630",
+          "score": 0.02946912242686891
+        },
+        {
+          "rank": 5,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 76,
+          "chunk_id": "chunk_2aafa80f23180242f174b282",
+          "score": 0.029437229437229435
+        }
+      ]
+    },
+    {
+      "question_id": "market-07",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 23.77579198218882,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 90,
+          "chunk_id": "chunk_7f686f7d19d82246c9f743f4",
+          "score": 0.03252247488101534
+        },
+        {
+          "rank": 2,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 64,
+          "chunk_id": "chunk_111044beff9deff1a9b99b30",
+          "score": 0.03125
+        },
+        {
+          "rank": 3,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 54,
+          "chunk_id": "chunk_bef28c6628a0a42125529ced",
+          "score": 0.031099324975891997
+        },
+        {
+          "rank": 4,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 66,
+          "chunk_id": "chunk_6f90fe04a38212372262dafc",
+          "score": 0.028693528693528692
+        },
+        {
+          "rank": 5,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 52,
+          "chunk_id": "chunk_6e6b8ba15a21177a50de1109",
+          "score": 0.028373015873015873
+        }
+      ]
+    },
+    {
+      "question_id": "market-08",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 19.778624991886318,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 171,
+          "chunk_id": "chunk_59ac738e2c146823c1c20b2f",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 64,
+          "chunk_id": "chunk_111044beff9deff1a9b99b30",
+          "score": 0.031054405392392875
+        },
+        {
+          "rank": 3,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 66,
+          "chunk_id": "chunk_6f90fe04a38212372262dafc",
+          "score": 0.030536130536130537
+        },
+        {
+          "rank": 4,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 179,
+          "chunk_id": "chunk_8b336ed1981a5d063bec72f3",
+          "score": 0.0304147465437788
+        },
+        {
+          "rank": 5,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 76,
+          "chunk_id": "chunk_2aafa80f23180242f174b282",
+          "score": 0.029709507042253523
+        }
+      ]
+    },
+    {
+      "question_id": "market-09",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 23.892541998066008,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 4,
+          "chunk_id": "chunk_6ae495e3a6d9016f056ed804",
+          "score": 0.032266458495966696
+        },
+        {
+          "rank": 2,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 6,
+          "chunk_id": "chunk_8a1c03ac9881eac3b232ee0b",
+          "score": 0.032266458495966696
+        },
+        {
+          "rank": 3,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 5,
+          "chunk_id": "chunk_0d1e122d257692244865de38",
+          "score": 0.03225806451612903
+        },
+        {
+          "rank": 4,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 7,
+          "chunk_id": "chunk_efab597f62599b9ca77b6073",
+          "score": 0.03125
+        },
+        {
+          "rank": 5,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 7,
+          "chunk_id": "chunk_8f608cc17fda1fc287191f6e",
+          "score": 0.03076923076923077
+        }
+      ]
+    },
+    {
+      "question_id": "market-10",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 28.05983304278925,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 5,
+          "chunk_id": "chunk_0d1e122d257692244865de38",
+          "score": 0.031754032258064516
+        },
+        {
+          "rank": 2,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 6,
+          "chunk_id": "chunk_8a1c03ac9881eac3b232ee0b",
+          "score": 0.031746031746031744
+        },
+        {
+          "rank": 3,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 4,
+          "chunk_id": "chunk_6ae495e3a6d9016f056ed804",
+          "score": 0.031544957774465976
+        },
+        {
+          "rank": 4,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 7,
+          "chunk_id": "chunk_efab597f62599b9ca77b6073",
+          "score": 0.03055037313432836
+        },
+        {
+          "rank": 5,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 7,
+          "chunk_id": "chunk_8f608cc17fda1fc287191f6e",
+          "score": 0.030309988518943745
+        }
+      ]
+    },
+    {
+      "question_id": "market-11",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 24.084042001049966,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 7,
+          "chunk_id": "chunk_efab597f62599b9ca77b6073",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 4,
+          "chunk_id": "chunk_6ae495e3a6d9016f056ed804",
+          "score": 0.03225806451612903
+        },
+        {
+          "rank": 3,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 6,
+          "chunk_id": "chunk_8a1c03ac9881eac3b232ee0b",
+          "score": 0.03149801587301587
+        },
+        {
+          "rank": 4,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 7,
+          "chunk_id": "chunk_8f608cc17fda1fc287191f6e",
+          "score": 0.03149801587301587
+        },
+        {
+          "rank": 5,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 5,
+          "chunk_id": "chunk_0d1e122d257692244865de38",
+          "score": 0.030536130536130537
+        }
+      ]
+    },
+    {
+      "question_id": "market-12",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 23.536792024970055,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 8,
+          "chunk_id": "chunk_e0d8b593ae2084188b8897da",
+          "score": 0.032018442622950824
+        },
+        {
+          "rank": 2,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 1,
+          "chunk_id": "chunk_f38e5ea263c577435fc4c35f",
+          "score": 0.032018442622950824
+        },
+        {
+          "rank": 3,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 66,
+          "chunk_id": "chunk_6f90fe04a38212372262dafc",
+          "score": 0.02967032967032967
+        },
+        {
+          "rank": 4,
+          "doc_id": "kiria_robot_industry_survey_2023",
+          "page": 76,
+          "chunk_id": "chunk_2aafa80f23180242f174b282",
+          "score": 0.02964426877470356
+        },
+        {
+          "rank": 5,
+          "doc_id": "ifr_world_robotics_2025",
+          "page": 6,
+          "chunk_id": "chunk_8a1c03ac9881eac3b232ee0b",
+          "score": 0.02964254577157803
+        }
+      ]
+    },
+    {
+      "question_id": "parent-01",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 28.111708001233637,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 6,
+          "chunk_id": "chunk_ff245bc77fda073142cb6a5d",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 118,
+          "chunk_id": "chunk_23bb3c89d833d8b7e9cf1222",
+          "score": 0.031754032258064516
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 14,
+          "chunk_id": "chunk_daca0874cf599d5d40b03fb0",
+          "score": 0.03125763125763126
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 104,
+          "chunk_id": "chunk_f53ae5bd51455d1cc6524ba0",
+          "score": 0.03055037313432836
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 14,
+          "chunk_id": "chunk_8ec17b24f19083ab5721cee9",
+          "score": 0.030536130536130537
+        }
+      ]
+    },
+    {
+      "question_id": "parent-02",
+      "hit": true,
+      "reciprocal_rank": 0.2,
+      "first_relevant_rank": 5,
+      "latency_ms": 27.504666009917855,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 118,
+          "chunk_id": "chunk_23bb3c89d833d8b7e9cf1222",
+          "score": 0.031024531024531024
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_7937bf388e7a4eee9313521e",
+          "score": 0.03055037313432836
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 14,
+          "chunk_id": "chunk_8ec17b24f19083ab5721cee9",
+          "score": 0.030536130536130537
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 80,
+          "chunk_id": "chunk_23a1d3ada6f807949ce56fff",
+          "score": 0.03009207275993712
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 6,
+          "chunk_id": "chunk_ff245bc77fda073142cb6a5d",
+          "score": 0.03009207275993712
+        }
+      ]
+    },
+    {
+      "question_id": "parent-03",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 26.763583009596914,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 34,
+          "chunk_id": "chunk_6d4a18aecd02f46bdd144c30",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_7937bf388e7a4eee9313521e",
+          "score": 0.031754032258064516
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_2c0e8e922b681e41ee8e7778",
+          "score": 0.0315136476426799
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 80,
+          "chunk_id": "chunk_35e0875dc9ec733d67313415",
+          "score": 0.03149801587301587
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_incheon_clx_safety",
+          "page": 8,
+          "chunk_id": "chunk_640bc902ff046d7304dd9c13",
+          "score": 0.031024531024531024
+        }
+      ]
+    },
+    {
+      "question_id": "parent-04",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 24.465791997499764,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 34,
+          "chunk_id": "chunk_6d4a18aecd02f46bdd144c30",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_2c0e8e922b681e41ee8e7778",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_7937bf388e7a4eee9313521e",
+          "score": 0.0315136476426799
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_incheon_clx_safety",
+          "page": 4,
+          "chunk_id": "chunk_e3aae827e6b5bfb5f15016eb",
+          "score": 0.03057889822595705
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_incheon_clx_safety",
+          "page": 8,
+          "chunk_id": "chunk_640bc902ff046d7304dd9c13",
+          "score": 0.03055037313432836
+        }
+      ]
+    },
+    {
+      "question_id": "parent-05",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 23.666792025323957,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 79,
+          "chunk_id": "chunk_9e52cc84d68f13e75c425d0c",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 79,
+          "chunk_id": "chunk_309595dad02bf761a627aa6f",
+          "score": 0.03225806451612903
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 6,
+          "chunk_id": "chunk_ff245bc77fda073142cb6a5d",
+          "score": 0.03149801587301587
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 104,
+          "chunk_id": "chunk_f350ae4fdb3847d2b25ccd54",
+          "score": 0.029083245521601686
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_a3600b40a32ac0290f4c6b94",
+          "score": 0.02886002886002886
+        }
+      ]
+    },
+    {
+      "question_id": "parent-06",
+      "hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "first_relevant_rank": 3,
+      "latency_ms": 23.583625035826117,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 34,
+          "chunk_id": "chunk_6d4a18aecd02f46bdd144c30",
+          "score": 0.029910714285714284
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 80,
+          "chunk_id": "chunk_23a1d3ada6f807949ce56fff",
+          "score": 0.029726775956284153
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 79,
+          "chunk_id": "chunk_9e52cc84d68f13e75c425d0c",
+          "score": 0.02964254577157803
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 79,
+          "chunk_id": "chunk_309595dad02bf761a627aa6f",
+          "score": 0.029051670471052088
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_7937bf388e7a4eee9313521e",
+          "score": 0.02900988017658188
+        }
+      ]
+    },
+    {
+      "question_id": "parent-07",
+      "hit": true,
+      "reciprocal_rank": 0.5,
+      "first_relevant_rank": 2,
+      "latency_ms": 22.629541985224932,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_2c0e8e922b681e41ee8e7778",
+          "score": 0.03252247488101534
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 80,
+          "chunk_id": "chunk_35e0875dc9ec733d67313415",
+          "score": 0.032266458495966696
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 34,
+          "chunk_id": "chunk_6d4a18aecd02f46bdd144c30",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_7937bf388e7a4eee9313521e",
+          "score": 0.03125
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_a3600b40a32ac0290f4c6b94",
+          "score": 0.029877369007803793
+        }
+      ]
+    },
+    {
+      "question_id": "parent-08",
+      "hit": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "first_relevant_rank": 3,
+      "latency_ms": 23.11466704122722,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 34,
+          "chunk_id": "chunk_6d4a18aecd02f46bdd144c30",
+          "score": 0.032018442622950824
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_incheon_clx_safety",
+          "page": 8,
+          "chunk_id": "chunk_640bc902ff046d7304dd9c13",
+          "score": 0.03131881575727918
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 80,
+          "chunk_id": "chunk_35e0875dc9ec733d67313415",
+          "score": 0.03128054740957967
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_7937bf388e7a4eee9313521e",
+          "score": 0.03128054740957967
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_2c0e8e922b681e41ee8e7778",
+          "score": 0.03125763125763126
+        }
+      ]
+    },
+    {
+      "question_id": "parent-09",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 24.506499990820885,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 104,
+          "chunk_id": "chunk_f53ae5bd51455d1cc6524ba0",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 104,
+          "chunk_id": "chunk_f350ae4fdb3847d2b25ccd54",
+          "score": 0.03128054740957967
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 118,
+          "chunk_id": "chunk_23bb3c89d833d8b7e9cf1222",
+          "score": 0.03076923076923077
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 14,
+          "chunk_id": "chunk_8ec17b24f19083ab5721cee9",
+          "score": 0.029116045245077504
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 6,
+          "chunk_id": "chunk_ff245bc77fda073142cb6a5d",
+          "score": 0.028782894736842105
+        }
+      ]
+    },
+    {
+      "question_id": "parent-10",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 24.21400003368035,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 104,
+          "chunk_id": "chunk_f53ae5bd51455d1cc6524ba0",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 104,
+          "chunk_id": "chunk_f350ae4fdb3847d2b25ccd54",
+          "score": 0.03125763125763126
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 118,
+          "chunk_id": "chunk_23bb3c89d833d8b7e9cf1222",
+          "score": 0.029910714285714284
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 80,
+          "chunk_id": "chunk_23a1d3ada6f807949ce56fff",
+          "score": 0.029411764705882353
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 14,
+          "chunk_id": "chunk_8ec17b24f19083ab5721cee9",
+          "score": 0.02878726010616578
+        }
+      ]
+    },
+    {
+      "question_id": "parent-11",
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "first_relevant_rank": 1,
+      "latency_ms": 23.66529096616432,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_incheon_clx_safety",
+          "page": 4,
+          "chunk_id": "chunk_e3aae827e6b5bfb5f15016eb",
+          "score": 0.03278688524590164
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_incheon_clx_safety",
+          "page": 8,
+          "chunk_id": "chunk_640bc902ff046d7304dd9c13",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_incheon_clx_safety",
+          "page": 4,
+          "chunk_id": "chunk_6a6ed430ac746fc822a7de01",
+          "score": 0.03200204813108039
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_incheon_clx_safety",
+          "page": 8,
+          "chunk_id": "chunk_70b910a771b014648beab3c5",
+          "score": 0.03125
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_2c0e8e922b681e41ee8e7778",
+          "score": 0.030536130536130537
+        }
+      ]
+    },
+    {
+      "question_id": "parent-12",
+      "hit": true,
+      "reciprocal_rank": 0.5,
+      "first_relevant_rank": 2,
+      "latency_ms": 24.552958959247917,
+      "returned_pages": [
+        {
+          "rank": 1,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 34,
+          "chunk_id": "chunk_6d4a18aecd02f46bdd144c30",
+          "score": 0.03177805800756621
+        },
+        {
+          "rank": 2,
+          "doc_id": "sk_incheon_clx_safety",
+          "page": 8,
+          "chunk_id": "chunk_640bc902ff046d7304dd9c13",
+          "score": 0.03131881575727918
+        },
+        {
+          "rank": 3,
+          "doc_id": "sk_incheon_clx_safety",
+          "page": 4,
+          "chunk_id": "chunk_e3aae827e6b5bfb5f15016eb",
+          "score": 0.030834914611005692
+        },
+        {
+          "rank": 4,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 104,
+          "chunk_id": "chunk_f350ae4fdb3847d2b25ccd54",
+          "score": 0.030776515151515152
+        },
+        {
+          "rank": 5,
+          "doc_id": "sk_innovation_esg_2022",
+          "page": 77,
+          "chunk_id": "chunk_2c0e8e922b681e41ee8e7778",
+          "score": 0.030158730158730156
+        }
+      ]
+    }
+  ],
+  "index": {
+    "format_version": 1,
+    "document_count": 14,
+    "page_count": 161,
+    "chunk_count": 197,
+    "embedding_model": "BAAI/bge-m3",
+    "chunk_size": 450,
+    "chunk_overlap": 60,
+    "model_load_seconds": 8.568045207997784,
+    "dense_indexing_seconds": 15.984775834018365,
+    "bm25_indexing_seconds": 1.169433625007514,
+    "total_indexing_seconds": 17.651926541991998
+  }
+}
