@@ -1,123 +1,103 @@
-# Development Status
+# Discover / Market / Competitor 개발 현황
 
-## 현재 상태
+- **담당자**: 박세진
+- **작업 브랜치**: `feature/discover-market-competitor`
+- **진행 상태**: 담당 에이전트 3종(Discover, Market, Competitor), 프롬프트, 원천 증거 데이터, 단위/통합 테스트 구현 완료 (테스트 28/28 PASS)
 
-- 담당자: 박세진
-- 브랜치: feature/discover-market-competitor
-- 현재 단계: STEP 4 세진 님 담당 3개 에이전트(discover, market, competitor) 및 원천 데이터·단위 테스트 전원 구현 및 검증 완료
-- 마지막 업데이트: 2026-09-30 11:50
+---
 
-## 완료된 작업
+## 1. 구현 모듈 요약
 
-- [x] 담당 영역 기본 디렉터리 구조 생성
-- [x] `data/candidates.json` 평가 대상 후보 3개사(에이로봇, 에이딘로보틱스, Figure AI) 확정 및 글로벌 레퍼런스 확장
-- [x] `prompts/discover.md`, `market.md`, `competitor.md` 프롬프트 3종 작성
-- [x] `data/evidence/company/arobot.json`, `aidin_robotics.json`, `figure_ai.json` 기업별 원천 팩트 데이터 구축
-- [x] `agents/discover.py` 후보 정보 확인, G1 팩트 및 T1/R1/R3/F1~F3 원값 수집 노드 구현
-- [x] `tests/test_discover.py` 단위 테스트 5종 작성 및 통과
-- [x] `data/evidence/market/robot_parts_sales_2022_2025.json`, `manufacturing_robot_sales_2022_2025.json` 공식 통계 원천 데이터 구축
-- [x] `agents/market.py` 한국 도입 시장 기준 P1 3개년 CAGR 계산용 원값 수집 노드 `market_node` 구현 (VLA 세그먼트 결측 규칙 지원)
-- [x] `tests/test_market.py` 단위 테스트 7종 작성 및 통과
-- [x] `data/evidence/patent/arobot_patents.json`, `aidin_robotics_patents.json`, `figure_ai_patents.json` KIPRIS/USPTO 공식 특허 권리자 및 고유 패밀리 데이터 구축
-- [x] `agents/competitor.py` 경쟁 제품 비교 및 M1 유효 등록 특허 고유 패밀리 수집 노드 `competitor_node` 구현
-  - 조회 실패(ACCESS_FAILED 등) 시 summary에 "0개 패밀리"로 왜곡되지 않고 실패 상태 명시
-  - `query_status`, `evidence_status` 누락 시 기본값 SUCCESS 허용하지 않고 검증 에러 발생
-  - 원천 파일 미존재 시 조용한 1점 fallback 대신 명시적 `FileNotFoundError` 발생
-  - KIPRIS, USPTO 등 복수 출처(`sources`) 및 패밀리/제품별 `source_ids` 유효성 검증
-  - 벤치마크 기업과 투자 평가 대상 후보군(`candidates`) 충돌 방지 로직 적용
-  - Q(정밀조작/센서) 키워드 기반 유효 등록 특허 검증
-- [x] `tests/test_competitor.py` 단위 테스트 7종 작성 및 통과
-- [x] `tests/test_integration_agents.py` 3대 노드 E2E 파이프라인(국내/글로벌 Figure AI 포함) 및 Repair 통합 테스트 5종 작성 및 통과
-- [x] 세진 님 담당 에이전트 단위/통합 테스트 28종 전원 통과 (28/28 passed)
+### 1) 후보 기업 관리 (`data/candidates.json`)
+- 국내 피지컬 AI 로봇 부품 기업 2곳 확정
+  - **에이로봇 (`arobot`)**: 다자유도 로봇 핸드 / Series A
+  - **에이딘로보틱스 (`aidin_robotics`)**: 6축 힘·토크 및 촉각 센서 / Series B
+- 글로벌 기준점 및 VLA 세그먼트 검증용 해외 기업 1곳 추가
+  - **Figure AI (`figure_ai`)**: 미국 법인 / Series C / VLA 조작 지능
 
-## 진행 중인 작업
+### 2) Discover 에이전트 (`agents/discover.py`)
+- **담당 지표**: G1(적격성 사실), T1(핵심인력), R1(누적투자), R3(고용증가), F1(유동성/현금흐름), F2(자본건전성), F3(행정처분/제재)
+- **주요 구현 사항**:
+  - 점수 계산이나 적격 판정 없이 있는 그대로의 원값(`raw_value`)과 단위, 출처(`source_ids`)만 수집.
+  - 기업 보도자료, 홈페이지, LinkedIn 등 자체 주장 자료는 `COMPANY_CLAIM`으로 분리하여 향후 평가 노드에서 3점 상한이 적용될 수 있도록 구성.
+  - 공시/감사보고서 기반 데이터는 `THIRD_PARTY_VERIFIED` 처리.
+  - F1, F2, F3 출처를 evidence 파일에서 동적으로 읽도록 구현 (하드코딩 제거).
 
-- [x] 3대 에이전트 통합 E2E 테스트 및 repair 호환성 강화, 작업 이력 갱신 완료
+### 3) Market 에이전트 (`agents/market.py`)
+- **담당 지표**: P1 (한국 도입 시장 기준 3개년 CAGR 계산용 원값)
+- **주요 구현 사항**:
+  - 후보 기업 소재지와 무관하게 한국 도입 시장 공식 통계(로봇산업실태조사, KOSIS)를 기준으로 고정.
+  - 제품군 매핑: 로봇 핸드/센서는 '로봇 부품 및 부분품', 완제품은 '제조업용 로봇' 매핑.
+  - VLA 소프트웨어 세그먼트(Figure AI 등)는 제조 통계에 임의 배정하지 않고 `QueryStatus.NO_DATA` 및 누락 사유(`missing_reason`) 처리 (설계서 5-8 준수).
+  - 시작연도 매출이 0 이하인 경우 `INVALID_DENOMINATOR` 예외 상태 처리.
 
-## 다음 작업
+### 4) Competitor 에이전트 (`agents/competitor.py`)
+- **담당 지표**: M1 (특허청 공식 권리자 기준 Q 유효 등록 특허 및 고유 우선권 패밀리 수), 벤치마크 제품 비교군
+- **주요 구현 사항**:
+  - KIPRIS 및 USPTO 등록원부 기준 등록(유효) 특허만 집계 (공개 출원 및 비Q 특허는 `excluded`로 제외).
+  - 최초 우선권 번호 기준 패밀리 중복 제거 검증 (`len(family_ids) == unique_priority_families`).
+  - 물리 AI 관련 기술(Q 키워드: 그리퍼, 로봇핸드, 촉각, 토크, 센서 등) 정합성 확인.
+  - 글로벌/국내 벤치마크 비교 제품(Shadow Robot, Wonik, ATI, Robotiq, Tesla, Boston Dynamics) 데이터 구축 및 투자 후보군 충돌 방지 로직 적용.
+  - 조회 실패(`ACCESS_FAILED` 등) 시 요약문에 "0개 패밀리"로 왜곡 표기되지 않고 실패 상태 및 사유를 명시하도록 안전장치 보완.
+  - `query_status`, `evidence_status` 미기재 시 기본 SUCCESS 간주를 차단하고 검증 에러 발생.
 
-1. 김진형 님 브랜치(tech, synergy) 및 김도현 님 브랜치(graph, judge) 연계를 위한 인터페이스 점검 및 통합 테스트
-2. 메인 브랜치 머지 준비
+### 5) 보정(Repair) 루프 공통 헬퍼 (`_extract_repair_indicator_ids`)
+- `discover.py`, `market.py`, `competitor.py` 전체에 동일 헬퍼 적용.
+- `ControlState` (Pydantic 모델), 일반 `dict`, `EvidenceReview.repair_targets` 등 어떤 형태로 재시도 요청이 들어와도 에러 없이 대상 지표만 재수집하도록 호환성 강화.
 
-## 변경된 파일
+---
 
-- `data/candidates.json`
-  - 평가 대상 후보에 글로벌 기준점 기업인 `Figure AI, Inc.` (미국, Series C, VLA) 추가 (총 3개사)
-- `data/evidence/company/figure_ai.json`
-  - Figure AI 법인·투자(Series C $1B+ 누적)·인력(Brett Adcock, Jerry Pratt)·재무·제재(FTC/OSHA) 원천 팩트 구축 (COMPANY_CLAIM 반영)
-- `data/evidence/patent/figure_ai_patents.json`
-  - Figure AI USPTO 공식 유효 등록 특허 2건, 고유 패밀리 2건 및 Tesla, Boston Dynamics 벤치마크 데이터 구축
-- `tests/test_integration_agents.py`
-  - Figure AI 글로벌 VLA 파이프라인(Series C 검증, VLA NO_DATA 시장 결측 규칙, USPTO 특허) 테스트 추가
-- `DEVELOPMENT_STATUS.md`
-  - 개발 현황 갱신
-
-## 현재 인터페이스
-
-```python
-from schemas import AgentNodeUpdate, AnalysisResult, Candidate, GraphState, IndicatorEvidence, SourceRecord
-
-def competitor_candidate(
-    candidate: Candidate,
-    evidence_dir: Path | str | None = None,
-    candidate_pool: list[Candidate] | None = None,
-    indicator_ids: list[str] | None = None,
-) -> tuple[AnalysisResult, list[SourceRecord], list[dict[str, Any]]]:
-    """공식 권리정보 기준 M1 유효 등록 특허 고유 패밀리 수집 및 벤치마크 비교."""
-    ...
-
-def competitor_node(state: GraphState) -> AgentNodeUpdate:
-    """LangGraph node: current_candidate 대상 competitor 분석 및 competitor_analysis, comparison_products 부분 반환."""
-    ...
-```
-
-## 테스트 결과
-
-실행 명령:
+## 2. 테스트 결과
 
 ```bash
 python3 -m pytest tests/test_schemas.py tests/test_discover.py tests/test_market.py tests/test_competitor.py tests/test_integration_agents.py
 ```
 
-결과:
+- **결과**: `28 passed in 0.10s` (100% PASS)
+- **주요 검증 항목**:
+  - `test_discover.py` (5종): 원값 수집, 출처 매핑, 결측 처리, repair 동작 검증
+  - `test_market.py` (7종): 부품/제조로봇 CAGR 계산, VLA 결측 규칙, 분모 0 오류 방어 검증
+  - `test_competitor.py` (7종): 패밀리 중복 제거, 비Q/출원 특허 배제, ACCESS_FAILED 요약문 왜곡 방지, 벤치마크 충돌 방지 검증
+  - `test_integration_agents.py` (5종): 
+    - 에이로봇 / 에이딘로보틱스 Discover ➔ Market ➔ Competitor 순차 실행 및 State 누적 E2E 검증
+    - Figure AI 글로벌 VLA 파이프라인(Series C 수집, VLA 시장 통계 결측 규칙, USPTO 특허 수집) 검증
+    - 수집된 모든 Indicator 및 벤치마크 제품의 `source_id`가 누적된 `sources`에 1:1로 결측 없이 존재하는지 무결성 검증
+    - Pydantic / Dict 양방향 Repair Loop 시뮬레이션 검증
 
-PASS (28 passed in 0.10s)
+---
 
-확인한 항목:
-- 에이로봇 / 에이딘로보틱스 / Figure AI 3개사 전체 Discover ➔ Market ➔ Competitor 연속 실행 파이프라인 검증 완료.
-- Figure AI(미국 국외 기업)의 Series C 공식 발표, 1조 4,400억 원 누적 펀딩, 핵심 창업자 경력(T1) 정상 수집 확인.
-- VLA 소프트웨어 세그먼트에 대한 시장 통계 결측 규칙(설계서 5-8 준수: 임의 배정 없이 `NO_DATA` + missing_reason 기록) 검증 완료.
-- Figure AI의 USPTO(미국 특허청) 등록 특허 2건 및 Tesla, Boston Dynamics 글로벌 벤치마크 제품 비교군 정상 파싱 확인.
-- 전체 수집된 9개 지표 및 벤치마크 제품의 모든 `source_id`가 누적된 `sources`에 1:1로 결측 없이 연결됨을 검증.
-- 세진 님 담당 3대 노드 및 통합 테스트 28개 테스트 전원 통과.
+## 3. 팀원 공유 사항 (인터페이스 메모)
 
-## 작업 이력 (Work History)
+### 김도현 님 (Graph / Judge) 참고
+- **G1 반환 규격**: `company_profile.indicators` 내 `id="G1"`, `unit="4개 요건 사실"`로 단일 IndicatorEvidence 반환.
+  ```python
+  raw_value = {
+      "unlisted": {"value": True, "checked_markets": [...], "source_id": "..."},
+      "latest_round": {"value": "Series A", "announced_at": "...", "source_id": "..."},
+      "exit_completed": {"value": False, "source_id": "..."},
+      "operating_status": {"value": "정상", "as_of": "...", "source_id": "..."}
+  }
+  ```
+  `judge` 노드에서 `ind.id == "G1"` 조회 후 위 키값으로 적격 여부(PASS/FAIL)를 판정하시면 됩니다.
+- **Figure AI 특이사항**: 미국 비상장 법인이지만 `latest_round`가 `Series C`입니다. 설계서상 Seed~Series B 기준 적용 시 적격성 분기(FAIL/HOLD) 검증용 케이스로 활용 가능합니다.
 
-| 일시 | 커밋 해시 | 커밋 구분 | 주요 작업 내용 |
+### 김진형 님 (Tech / Synergy / Report) 참고
+- 후보 기업별 벤치마크 제품 데이터(`comparison_products`)는 `data/evidence/patent/{candidate_id}_patents.json`에 정리되어 있으며, `competitor_analysis.summary`에도 비교 현황이 요약되어 있습니다.
+- `discover` 수행 중 수집된 연구진 논문/실증 관련 URL은 필요 시 `data/evidence/company/{candidate_id}.json` 내 출처 링크를 통해 연계 가능합니다.
+
+---
+
+## 4. 커밋 이력
+
+| 일시 | 커밋 | 태그 | 내용 |
 | :--- | :--- | :--- | :--- |
-| 2026-09-30 | `96006e3` | `:sparkles:[FEAT]` | 담당 영역 디렉터리 구조(`agents/`, `prompts/`, `data/evidence/`) 초기화 |
-| 2026-09-30 | `8ce0ea9` | `:sparkles:[FEAT]` | 평가 대상 후보 2개사(에이로봇, 에이딘로보틱스) 확정 데이터(`candidates.json`) 생성 |
-| 2026-09-30 | `7395959` | `:sparkles:[FEAT]` | 후보 탐색, 시장 분석, 경쟁사 분석 프롬프트 3종 작성(`prompts/*.md`) |
-| 2026-09-30 | `fca8ad1` | `:sparkles:[FEAT]` | Discover 에이전트(`agents/discover.py`), 기업별 원천 팩트 데이터(`data/evidence/company/`), 단위 테스트(`tests/test_discover.py`) 구현 |
-| 2026-09-30 | `701b1f2` | `:sparkles:[FEAT]` | Market 에이전트(`agents/market.py`), 한국 로봇 시장 공식 통계 데이터(`data/evidence/market/`), 단위 테스트(`tests/test_market.py`) 구현 |
-| 2026-09-30 | `0ad5a3e` | `:sparkles:[FEAT]` | Competitor 에이전트(`agents/competitor.py`), KIPRIS/USPTO 특허 원천 데이터(`data/evidence/patent/`), 단위 테스트(`tests/test_competitor.py`) 구현 및 실패 상태/출처 유효성 검증 로직 반영 |
-| 2026-09-30 | `87aec07` | `:recycle:[REF]` | 개발 현황 문서(`DEVELOPMENT_STATUS.md`) 최신 진행 상황 갱신 |
-| 2026-09-30 | `93f8b4a` | `:white_check_mark:[TEST]` | 3대 에이전트 통합 E2E 파이프라인 테스트(`tests/test_integration_agents.py`) 추가 및 `discover.py`/`market.py` 보정(repair) 인터페이스 호환성 강화 |
-| 2026-09-30 | (현재) | `:sparkles:[FEAT]` | 글로벌 VLA 기준점 후보 기업 Figure AI(`figure_ai`) 추가, 기업/특허 원천 데이터 구축 및 28개 테스트 전원 통과 검증 |
-
-## 미해결 문제
-
-- 없음.
-
-## 다른 팀원에게 영향을 주는 변경
-
-- API 변경 여부: 없음.
-- State/Schema 변경 여부: 없음 (`AgentNodeUpdate` 부분 반환 규격 준수).
-- requirements 변경 여부: 없음.
-- 다른 브랜치에서 대응이 필요한 내용: 없음.
-
-## Git 상태
-
-원격 브랜치(`origin/feature/discover-market-competitor`)로 커밋 및 푸시 완료.
-모든 단위/통합 테스트(28/28 PASS) 통과 확인.
-
+| 2026-09-30 | `96006e3` | `:sparkles:[FEAT]` | 담당 영역(agents, prompts, evidence) 디렉터리 구조 생성 |
+| 2026-09-30 | `8ce0ea9` | `:sparkles:[FEAT]` | 평가 대상 후보 2개사(에이로봇, 에이딘로보틱스) 확정 데이터 추가 |
+| 2026-09-30 | `7395959` | `:sparkles:[FEAT]` | 후보 탐색, 시장 분석, 경쟁사 분석 프롬프트 3종 작성 |
+| 2026-09-30 | `fca8ad1` | `:sparkles:[FEAT]` | Discover 에이전트 구현 및 기업별 원천 팩트 데이터 구축 |
+| 2026-09-30 | `701b1f2` | `:sparkles:[FEAT]` | Market 에이전트 구현 및 한국 로봇 시장 공식 통계 수집 로직 추가 |
+| 2026-09-30 | `0ad5a3e` | `:sparkles:[FEAT]` | Competitor 에이전트 구현 및 특허 패밀리·벤치마크 수집 로직 추가 |
+| 2026-09-30 | `87aec07` | `:recycle:[REF]` | 개발 현황 문서 갱신 |
+| 2026-09-30 | `93f8b4a` | `:white_check_mark:[TEST]` | 3대 에이전트 통합 E2E 파이프라인 테스트 추가 및 repair 호환성 강화 |
+| 2026-09-30 | `08a324a` | `:sparkles:[FEAT]` | 글로벌 VLA 기준점 후보 기업 Figure AI 추가 및 원천 데이터·검증 테스트 구현 |
+| 2026-09-30 | (현재) | `:recycle:[REF]` | 개발 현황 문서(DEVELOPMENT_STATUS.md) 가독성 개선 및 팀 공유 인터페이스 명세 정리 |
