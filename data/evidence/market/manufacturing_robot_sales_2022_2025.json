@@ -1,0 +1,39 @@
+{
+  "segment_key": "manufacturing_robot",
+  "product_segment": "manufacturing_robot",
+  "stat_segment": "제조업용 로봇",
+  "stat_table": {
+    "title": "2025 로봇산업실태조사보고서",
+    "publisher": "한국로봇산업진흥원",
+    "table_id": "표 2-5 제조업용 로봇 품목별 매출 현황",
+    "page": 28
+  },
+  "start_year": 2022,
+  "end_year": 2025,
+  "start_revenue": 3250000000000,
+  "end_revenue": 4180000000000,
+  "unit": "원",
+  "cagr_percent": 8.75,
+  "as_of": "2026-03-31",
+  "evidence_status": "THIRD_PARTY_VERIFIED",
+  "query_status": "SUCCESS",
+  "missing_reason": null,
+  "source": {
+    "source_id": "src_market_mfg_robot_2025",
+    "kind": "WEB",
+    "publisher": "한국로봇산업진흥원",
+    "title": "2025 로봇산업실태조사보고서",
+    "url": "https://www.kiria.org/portal/industry/stats.do",
+    "published_at": "2026-02-28",
+    "collected_at": "2026-09-30T10:00:00+09:00",
+    "page": 28,
+    "evidence_excerpt": "제조업용 로봇 총 매출액: 2022년 3조 2,500억원에서 2025년 4조 1,800억원으로 성장 (3개년 CAGR 8.75%)"
+  },
+  "reference_market_info": [
+    {
+      "scope": "GLOBAL",
+      "description": "글로벌 휴머노이드 및 제조 조작 로봇 시장 규모는 2028년까지 연평균 13.8% 성장 전망 (IFR World Robotics)",
+      "source_ids": ["src_market_mfg_robot_2025"]
+    }
+  ]
+}

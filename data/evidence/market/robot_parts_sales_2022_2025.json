@@ -1,0 +1,39 @@
+{
+  "segment_key": "robot_parts",
+  "product_segment": "robot_parts",
+  "stat_segment": "로봇 부품 및 부분품",
+  "stat_table": {
+    "title": "2025 로봇산업실태조사보고서",
+    "publisher": "한국로봇산업진흥원",
+    "table_id": "표 3-12 제조업용 로봇 부품별 매출액",
+    "page": 45
+  },
+  "start_year": 2022,
+  "end_year": 2025,
+  "start_revenue": 1420000000000,
+  "end_revenue": 1980000000000,
+  "unit": "원",
+  "cagr_percent": 11.72,
+  "as_of": "2026-03-31",
+  "evidence_status": "THIRD_PARTY_VERIFIED",
+  "query_status": "SUCCESS",
+  "missing_reason": null,
+  "source": {
+    "source_id": "src_market_robot_parts_2025",
+    "kind": "WEB",
+    "publisher": "한국로봇산업진흥원",
+    "title": "2025 로봇산업실태조사보고서",
+    "url": "https://www.kiria.org/portal/industry/stats.do",
+    "published_at": "2026-02-28",
+    "collected_at": "2026-09-30T10:00:00+09:00",
+    "page": 45,
+    "evidence_excerpt": "제조업용 로봇 부품 및 부분품 매출액: 2022년 1조 4,200억원에서 2025년 1조 9,800억원으로 성장 (3개년 CAGR 11.72%)"
+  },
+  "reference_market_info": [
+    {
+      "scope": "GLOBAL",
+      "description": "글로벌 로봇 핸드 및 촉각 센서 시장은 2024~2030년 연평균 15.4% 성장 전망 (MarketsandMarkets)",
+      "source_ids": ["src_market_robot_parts_2025"]
+    }
+  ]
+}
