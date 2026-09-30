@@ -1,0 +1,40 @@
+[
+  {
+    "candidate_id": "arobot",
+    "legal_name": "주식회사 에이로봇",
+    "country": "KR",
+    "legal_id": "854-88-00929",
+    "founded_at": "2018-04-01",
+    "primary_segment": "robot_hand",
+    "latest_round": "Series A",
+    "listing_sources": [
+      "https://kind.krx.co.kr/corpgeneral/corpList.do"
+    ],
+    "registry_sources": [
+      "https://dart.fss.or.kr/"
+    ],
+    "evidence_urls": [
+      "https://thevc.kr/a-robot",
+      "https://www.arobot4all.com/"
+    ]
+  },
+  {
+    "candidate_id": "aidin_robotics",
+    "legal_name": "주식회사 에이딘로보틱스",
+    "country": "KR",
+    "legal_id": "355-87-00980",
+    "founded_at": "2019-11-21",
+    "primary_segment": "force_tactile_sensor",
+    "latest_round": "Series B",
+    "listing_sources": [
+      "https://kind.krx.co.kr/corpgeneral/corpList.do"
+    ],
+    "registry_sources": [
+      "https://dart.fss.or.kr/"
+    ],
+    "evidence_urls": [
+      "https://thevc.kr/aidin-robotics",
+      "https://aidinrobotics.co.kr/"
+    ]
+  }
+]
