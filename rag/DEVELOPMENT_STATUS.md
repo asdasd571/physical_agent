@@ -4,7 +4,7 @@
 
 - 담당자: 김낙근
 - 브랜치: `feature/rag`
-- 현재 단계: STEP 9 검색 평가 구현 완료, 팀 40문항 수집 대기
+- 현재 단계: STEP 10 다른 Agent 연동 확인 완료
 - 마지막 업데이트: 2026-09-30
 
 ## 완료된 작업
@@ -52,6 +52,11 @@
 - [x] 질문별 Top5 결과와 평가 결과 JSON 저장
 - [x] 실제 BGE-M3 index로 영어·한국어 2문항 평가
 - [x] RAG 전용 데이터를 `data/rag/` 아래로 분리
+- [x] 다른 Agent 형태의 공개 `search_documents()` 호출 통합 테스트
+- [x] 저장 index 복원부터 backend 등록과 공개 검색까지 연결 확인
+- [x] 실제 BGE-M3 index를 공개 Agent 호출 경로로 검색
+- [x] `RetrievedChunk` 타입과 근거 필드 반환 확인
+- [x] GraphState와 공통 Schema를 변경하지 않는 RAG 경계 확인
 
 ## 진행 중인 작업
 
@@ -62,7 +67,7 @@
 1. 팀원에게 실제 질문과 정답 doc_id·page 수집
 2. 문항을 `evaluation/retrieval_questions.json`에 추가
 3. 40문항 전체 평가를 실행하고 결과 해석
-4. STEP 10 다른 Agent의 `search_documents()` 호출 통합 확인
+4. 팀 전체 Agent·Graph 구현이 합쳐진 뒤 최종 end-to-end 실행
 
 ## 변경된 파일
 
@@ -142,6 +147,12 @@
   - 정답 순위, exact page, 입력 검증과 Top5 고정 테스트
 - `rag/STEP9_VERIFICATION.md`
   - 자동 테스트, 실제 평가 실행과 평가셋 확장 방법 기록
+- `scripts/verify_step10_agent_call.py`
+  - 저장된 실제 index를 공개 Agent API로 호출하는 검증 스크립트
+- `tests/rag/test_agent_integration.py`
+  - 다른 Agent 호출, 필터와 RetrievedChunk 계약 통합 테스트
+- `rag/STEP10_VERIFICATION.md`
+  - 자동·실제 Agent 연동 실행 방법과 확인 항목 기록
 
 ## 현재 인터페이스
 
@@ -240,8 +251,9 @@ report = evaluate_retrieval(retriever, questions, top_k=5)
 
 ```text
 STEP 9 tests: 7 passed
-RAG tests: 54 passed
-All tests: 58 passed
+STEP 10 integration test: 1 passed
+RAG tests: 55 passed
+All tests: 59 passed
 compileall PASS
 ```
 
@@ -288,6 +300,11 @@ compileall PASS
 - 중복 question_id와 잘못된 page 입력 거부
 - candidate_id와 doc_types가 검색 backend에 전달되는지 확인
 - 실제 영어·한국어 질문 모두 정답 102페이지 Top1 확인
+- 다른 Agent가 공개 import와 설계된 인자만으로 검색 가능한지 확인
+- persisted index 복원 후 공개 backend 등록과 호출 확인
+- company_a·tech 필터가 다른 후보와 market 문서를 제외하는지 확인
+- 반환값이 `list[RetrievedChunk]`이고 필수 근거 필드를 포함하는지 확인
+- 실제 공개 호출 경로의 Top1이 공식 PDF 102페이지인지 확인
 
 ## 미해결 문제
 
@@ -316,8 +333,10 @@ STEP 7까지는 `feature/rag`에 commit/push 완료됐다.
 
 STEP 8까지 `feature/rag`에 commit/push 완료됐다.
 
-STEP 9와 `data/rag/` 경로 정리는 검증을 완료했으며 `feature/rag`에 commit/push한다.
+STEP 9와 `data/rag/` 경로 정리는 `feature/rag`에 commit/push 완료됐다.
+
+STEP 10은 로컬 개발과 실제 index 검증을 완료했으며 아직 commit/push 하지 않았다.
 
 다음 commit 후보 메시지:
 
-`:sparkles:[FEAT] RAG 검색 품질 평가 구현`
+`:white_check_mark:[TEST] Agent RAG 통합 검증 추가`

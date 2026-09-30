@@ -19,7 +19,7 @@ feature/rag
 | STEP 7 | 필터 포함 `search_documents()` 완성 | 완료 |
 | STEP 8 | 실제 문서 indexing과 Top5 검색 | 완료 |
 | STEP 9 | Hit Rate@5와 MRR@5 평가 | 구현 완료, 40문항 수집 대기 |
-| STEP 10 | 다른 Agent 호출 통합 확인 | 대기 |
+| STEP 10 | 다른 Agent 호출 통합 확인 | 완료 |
 
 ## STEP 3 작업 기록
 
@@ -194,6 +194,31 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 - 전체 테스트 `58 passed`
 - 수동 재현 방법을 `rag/STEP9_VERIFICATION.md`에 기록
 
+## STEP 10 작업 기록
+
+### 구현 내용
+
+- 다른 Agent가 공개 `search_documents()`만 사용하는 통합 테스트 추가
+- 저장된 Dense·BM25 index 복원 후 공개 backend 등록 확인
+- 설계의 `query`, `candidate_id`, `doc_types`, `top_k` 호출 형식 검증
+- `RetrievedChunk` 반환 타입과 필수 근거 필드 검증
+- 실제 BGE-M3 index를 공개 API로 실행하는 검증 스크립트 추가
+- GraphState, 공통 Schema와 Agent 출력 형식은 변경하지 않음
+
+### 실제 문서 검증
+
+- SK Innovation 공식 PDF index를 공개 `search_documents()` 경로로 검색
+- Top1 `doc_id`: `ski_esg_report_2022`
+- Top1 원문 페이지: `102`
+- Dense·BM25 RRF metadata 반환 확인
+
+### 테스트 결과
+
+- STEP 10 통합 테스트 `1 passed`
+- RAG 테스트 `55 passed`
+- 전체 테스트 `59 passed`
+- 직접 확인 방법을 `rag/STEP10_VERIFICATION.md`에 기록
+
 ## 변경 이력
 
 | 날짜 | 내용 |
@@ -205,3 +230,4 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 | 2026-09-30 | STEP 7 후보·문서 유형 필터와 Hybrid Search 작성 |
 | 2026-09-30 | STEP 8 실제 BGE-M3와 공식 PDF Hybrid RAG 검증 |
 | 2026-09-30 | STEP 9 고정 평가셋과 Hit Rate@5·MRR@5·latency 구현 |
+| 2026-09-30 | STEP 10 다른 Agent의 공개 RAG API 통합 확인 |
