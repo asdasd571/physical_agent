@@ -13,7 +13,7 @@ feature/rag
 | STEP 1 | RAG 구조와 공개 인터페이스 확정 | 완료 |
 | STEP 2 | 데이터 모델, manifest, PDF loader | 완료 |
 | STEP 3 | 페이지 단위 token chunker | 완료 |
-| STEP 4 | BGE-M3 embedding과 FAISS | 대기 |
+| STEP 4 | BGE-M3 embedding과 FAISS | 구현 완료, 실제 모델 smoke test 대기 |
 | STEP 5 | Kiwi tokenizer와 BM25 | 대기 |
 | STEP 6 | RRF 순위 융합 | 대기 |
 | STEP 7 | 필터 포함 `search_documents()` 완성 | 대기 |
@@ -55,12 +55,32 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 
 ## 다음 작업
 
-1. STEP 3 커밋과 `feature/rag` push
-2. BGE-M3 모델 로딩 시간 측정
-3. 문서 embedding과 FAISS 인덱스 저장 구조 구현
+1. `BAAI/bge-m3` 실제 모델 다운로드와 한국어·영어 문장 embedding 확인
+2. 실제 BGE-M3 tokenizer를 STEP 3 chunker에 연결
+3. STEP 5 Kiwi tokenizer와 BM25 구현
+
+## STEP 4 작업 기록
+
+### 구현 내용
+
+- `sentence-transformers` 기반 BGE-M3 lazy loading
+- Dense vector만 생성하고 L2 normalization 적용
+- batch 문서 embedding과 단일 query embedding
+- 모델 로딩 시간과 마지막 embedding 시간 기록
+- FAISS `IndexFlatIP` 기반 cosine 검색
+- 인덱스와 전체 chunk metadata 저장·복원
+- 중복 chunk ID, dimension, NaN·무한값 검증
+
+### 테스트 결과
+
+- deterministic fake embedder를 이용한 FAISS 검색과 저장·복원 확인
+- 전체 테스트 `28 passed`
+- `faiss 1.15.1`, `numpy 2.5.3`, `sentence-transformers 5.7.0` import 확인
+- 실제 BGE-M3 모델 파일 다운로드는 아직 실행하지 않음
 
 ## 변경 이력
 
 | 날짜 | 내용 |
 |---|---|
 | 2026-09-30 | STEP 3 token chunker와 테스트 작성 |
+| 2026-09-30 | STEP 4 BGE-M3 embedding wrapper와 FAISS Dense store 작성 |

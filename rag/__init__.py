@@ -1,6 +1,8 @@
 """Shared retrieval components for the investment-evaluation system."""
 
 from .chunker import chunk_page, chunk_pages
+from .dense_store import DenseSearchResult, FaissDenseStore
+from .embeddings import BgeM3Embedder, DenseEmbedder, EmbeddingMetrics
 from .loader import load_manifest_documents, load_pdf_pages
 from .manifest import Manifest, load_manifest
 from .models import (
@@ -20,6 +22,11 @@ __all__ = [
     "DocumentChunk",
     "DocumentPage",
     "DocumentType",
+    "DenseEmbedder",
+    "DenseSearchResult",
+    "EmbeddingMetrics",
+    "BgeM3Embedder",
+    "FaissDenseStore",
     "Manifest",
     "ManifestEntry",
     "RetrievedChunk",
