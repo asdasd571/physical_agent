@@ -18,6 +18,18 @@ main
 - 운영 manifest가 참조하는 공식 원문 PDF 14개(총 68.85 MiB)를 팀 공유 대상으로 추가
 - 사용자 요청에 따라 이번 변경을 commit/push 진행
 
+## 운영 RAG 및 State reducer 검증
+
+- 운영 원문 14개, 선택 페이지 192쪽을 실제 BGE-M3·Kiwi로 색인
+- 233개 chunk 생성, Dense 17.66초, BM25 1.01초, 전체 색인 19.13초
+- 에이로봇·에이딘로보틱스·Figure AI 후보 필터와 공통 위험 문서 검색 확인
+- `sources`는 `source_id`, `evaluations`는 `candidate_id`, `errors`는 문자열 기준으로 reducer 적용
+- 공통 인터페이스 버전 `1.1.0`
+- reducer 연결 검증을 포함한 전체 테스트 `66 passed`
+- 실행·육안 검수 절차를 `rag/docs/corpus/OPERATING_CORPUS_VERIFICATION.md`에 기록
+- RAG 필요 Agent의 최소 연동 방법을 `rag/docs/integration/AGENT_RAG_USAGE.md`에 추가
+- 사용자 요청에 따라 reducer와 Agent 연동 문서를 commit/push 진행
+
 ## 전체 진행 상태
 
 | 단계 | 내용 | 상태 |

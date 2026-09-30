@@ -4,7 +4,7 @@
 
 - 담당자: 김낙근
 - 브랜치: `main`
-- 현재 단계: 투자평가 운영 문서 풀 192페이지 구성 및 검증 완료
+- 현재 단계: 운영 RAG 실인덱스 검증 및 GraphState reducer 반영 완료
 - 마지막 업데이트: 2026-09-30
 
 ## 완료된 작업
@@ -66,11 +66,16 @@
 - [x] 공통 기술·위험 기준을 모든 후보가 조회할 수 있는 `COMMON` 범위 지원
 - [x] SK ESG 문서를 운영 manifest에서 제외하고 기존 테스트 데이터로만 유지
 - [x] 운영 manifest가 참조하는 공식 원문 PDF 14개를 팀 공유 대상으로 확정
+- [x] 운영 문서 192쪽을 BGE-M3·Kiwi로 233개 chunk 색인
+- [x] 에이로봇·에이딘·Figure·공통 위험 후보 필터 실검색 확인
+- [x] `sources`, `evaluations`, `errors` 병렬 State reducer 구현
+- [x] reducer의 retry 중복, 출처 충돌, repair 교체 테스트 구현
+- [x] RAG 필요 Agent를 위한 최소 연동 가이드 작성
 
 ## 진행 중인 작업
 
 - [ ] 팀원이 검수한 실제 질문과 정답 doc_id·page를 40문항까지 수집
-- [ ] 운영 문서 192쪽으로 Dense·BM25 index 생성 및 검색 품질 검수
+- [ ] 운영 문서 기반 질문·정답 doc_id·page 평가셋 확장
 
 ## 다음 작업
 
@@ -94,6 +99,20 @@
   - 문서 유형과 무관하게 `candidate_id=None`인 문서를 공통 근거로 검색
 - `tests/rag/test_manifest.py`, `tests/rag/test_filters.py`
   - 공통 위험 문서 등록 및 후보별 검색 회귀 테스트 추가
+- `graph/reducers.py`
+  - 출처·평가·오류 누적 reducer와 중복·충돌 정책 구현
+- `schemas/state.py`
+  - 누적 State 필드에 `Annotated` reducer 연결
+- `schemas/__init__.py`
+  - 공통 인터페이스 버전을 `1.1.0`으로 갱신
+- `tests/test_state_reducers.py`
+  - 병렬 결과 병합, retry 멱등성, repair 교체와 충돌 검증
+- `rag/docs/corpus/OPERATING_CORPUS_VERIFICATION.md`
+  - 자동 테스트, 실제 색인, 후보별 검색과 원문 육안 확인 절차 기록
+- `docs/공통_인터페이스.md`
+  - reducer 적용 필드와 병렬 제어 규칙 문서화
+- `rag/docs/integration/AGENT_RAG_USAGE.md`
+  - Agent별 검색 유형, backend 등록과 공개 검색 호출 방법 정리
 
 - `rag/DEVELOPMENT_STATUS.md`
   - 김낙근 담당 RAG 개발 절차와 현재 진행 상태 기록
@@ -284,6 +303,7 @@ report = evaluate_retrieval(retriever, questions, top_k=5)
 ```text
 운영 manifest: 14 documents / 192 selected pages / 192 loaded pages
 현재 전체 테스트: 61 passed
+Reducer 반영 후 전체 테스트: 66 passed
 STEP 9 tests: 7 passed
 STEP 10 integration test: 1 passed
 Config test: 1 passed
@@ -299,6 +319,13 @@ compileall PASS
 - 선택한 PDF 192쪽 모두 텍스트 추출 및 원문 페이지 번호 유지
 - 공통 NIST·투자평가 문서가 모든 후보 검색 범위에 포함됨
 - SK이노베이션 문서가 운영 manifest에 포함되지 않음
+- 실제 BGE-M3로 192쪽에서 233개 chunk 생성
+- Dense indexing `17.66초`, BM25 indexing `1.01초`, 전체 `19.13초`
+- BMW 실증 질문 Top1이 `figure_bmw_deployment_2025` 원문 1페이지
+- 에이로봇·에이딘 기술 질문에서 각 후보 문서만 반환
+- 에이로봇 위험 검색에서 `candidate_id=None`인 공통 NIST 문서 반환
+- 동일 `source_id` 재시도는 중복 없이 병합하고 내용 충돌은 오류 처리
+- 동일 후보 재평가 결과는 기존 위치에서 repair 결과로 교체
 
 - 짧은 페이지는 단일 청크 생성
 - 450 tokens 초과 페이지 분할
@@ -356,7 +383,7 @@ compileall PASS
 ## 다른 팀원에게 영향을 주는 변경
 
 - API 변경 여부: `search_documents()` 시그니처는 변경 없음. `candidate_id=COMMON`을 `tech`·`risk`에도 사용할 수 있음
-- State/Schema 변경 여부: manifest 의미 확장. `candidate_id=None`인 모든 문서는 공통 검색 대상으로 처리됨
+- State/Schema 변경 여부: 공통 인터페이스 `1.1.0`. `sources`, `evaluations`, `errors`에 reducer 적용
 - requirements 변경 여부: 없음
 - 다른 브랜치에서 대응이 필요한 내용: Agent가 후보별 검색을 해도 공통 투자·AI 위험 문서가 함께 반환될 수 있으므로 `candidate_id=None`을 정상 공통 근거로 처리해야 함
 
@@ -378,8 +405,8 @@ STEP 9와 `data/rag/` 경로 정리는 `feature/rag`에 commit/push 완료됐다
 
 STEP 10까지 `a191b7a`로 `feature/rag`에 commit/push 완료됐다.
 
-운영 문서 풀과 원문 PDF 공유 변경은 사용자 요청에 따라 commit/push 대상으로 확정했다.
+Reducer, 운영 RAG 실검증과 Agent 사용 문서는 사용자 요청에 따라 commit/push 진행한다.
 
 다음 commit 후보 메시지:
 
-`[FEAT] 투자평가 RAG 문서 풀 구성`
+`[FEAT] GraphState reducer와 운영 RAG 검증 추가`

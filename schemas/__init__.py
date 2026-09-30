@@ -1,6 +1,6 @@
 """Public data contracts shared across RAG, Agents, Graph, and reporting."""
 
-INTERFACE_VERSION = "1.0.0"
+INTERFACE_VERSION = "1.1.0"
 
 from .analysis import AgentNodeUpdate, AnalysisResult, Candidate
 from .evaluation import (
