@@ -17,7 +17,7 @@ feature/rag
 | STEP 5 | Kiwi tokenizer와 BM25 | 완료 |
 | STEP 6 | RRF 순위 융합 | 완료 |
 | STEP 7 | 필터 포함 `search_documents()` 완성 | 완료 |
-| STEP 8 | 실제 문서 indexing과 Top5 검색 | 대기 |
+| STEP 8 | 실제 문서 indexing과 Top5 검색 | 완료 |
 | STEP 9 | Hit Rate@5와 MRR@5 평가 | 대기 |
 | STEP 10 | 다른 Agent 호출 통합 확인 | 대기 |
 
@@ -57,7 +57,7 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 
 1. `BAAI/bge-m3` 실제 모델 다운로드와 한국어·영어 문장 embedding 확인
 2. 실제 BGE-M3 tokenizer를 STEP 3 chunker에 연결
-3. STEP 8 실제 PDF indexing과 Top5 검색
+3. STEP 9 Hit Rate@5와 MRR@5 평가 구현
 
 ## STEP 4 작업 기록
 
@@ -141,6 +141,32 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 - tech 전용 검색에서 공통 문서 제외 확인
 - 수동 확인 방법을 `rag/STEP7_VERIFICATION.md`에 기록
 
+## STEP 8 작업 기록
+
+### 구현 내용
+
+- manifest부터 PDF loader, BGE tokenizer chunking, Dense·BM25 index 저장까지 통합
+- 저장 index에서 HybridRetriever 복원
+- indexing과 Top5 검색 CLI
+- 공식 검증 PDF 다운로드와 SHA256 검증 스크립트
+- RAG 테스트를 `tests/rag/`로 이동
+
+### 실제 문서 검증
+
+- SK Innovation ESG Report 2022 공식 PDF
+- 전체 177페이지 중 원문 101~102페이지 사용
+- 실제 BGE-M3로 6개 chunk 생성
+- 모델 로딩 9.44초, Dense indexing 1.29초, BM25 indexing 0.85초
+- 영어 질문 Top1: 원문 102페이지, RRF score `0.0327868852`
+- 한국어 질문 Top1: 영어 원문 102페이지, RRF score `0.0325224749`
+- 실제 PDF 102페이지 육안 대조 완료
+
+### 테스트 결과
+
+- RAG 테스트 `47 passed`
+- 전체 테스트 `51 passed`
+- 수동 재현 방법을 `rag/STEP8_VERIFICATION.md`에 기록
+
 ## 변경 이력
 
 | 날짜 | 내용 |
@@ -150,3 +176,4 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 | 2026-09-30 | STEP 5 Kiwi tokenizer와 BM25 Sparse store 작성 |
 | 2026-09-30 | STEP 6 Dense·BM25 RRF 순위 융합 작성 |
 | 2026-09-30 | STEP 7 후보·문서 유형 필터와 Hybrid Search 작성 |
+| 2026-09-30 | STEP 8 실제 BGE-M3와 공식 PDF Hybrid RAG 검증 |

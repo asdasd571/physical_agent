@@ -4,7 +4,7 @@
 
 - 담당자: 김낙근
 - 브랜치: `feature/rag`
-- 현재 단계: STEP 7 필터 포함 Hybrid Search와 `search_documents()` 연결 완료
+- 현재 단계: STEP 8 실제 공식 PDF indexing과 Top5 검색 완료
 - 마지막 업데이트: 2026-09-30
 
 ## 완료된 작업
@@ -37,17 +37,25 @@
 - [x] 특정 후보 검색에서도 공통 parent·market 문서 허용
 - [x] Dense Top20 + BM25 Top20 + RRF HybridRetriever 구현
 - [x] 공개 `search_documents()`에 실제 hybrid backend 연결
+- [x] RAG 테스트 파일을 `tests/rag/`로 정리
+- [x] manifest → PDF → chunk → Dense·BM25 index 통합 파이프라인 구현
+- [x] 저장된 index에서 HybridRetriever 복원 구현
+- [x] indexing과 search CLI 구현
+- [x] 실제 `BAAI/bge-m3` 모델 다운로드와 Dense embedding 실행
+- [x] SK Innovation 공식 PDF 원문 101~102페이지 indexing
+- [x] 영어와 한국어 질문으로 영어 원문 102페이지 Top1 검색
+- [x] Top1 검색 결과와 실제 PDF 102페이지 육안 대조
 
 ## 진행 중인 작업
 
-- [ ] `BAAI/bge-m3` 모델 파일 다운로드 후 실제 embedding smoke test
+- [ ] STEP 9 고정 검색 평가셋과 Hit Rate@5·MRR@5 구현
 
 ## 다음 작업
 
-1. STEP 8 실제 공개 PDF 한 개를 manifest에 등록
-2. 실제 BGE-M3 모델 다운로드와 한국어·영어 embedding smoke test
-3. PDF load → chunk → Dense·BM25 index → Top5 검색 통합 실행
-4. 반환된 원문 page와 PDF 실제 페이지를 사람이 대조
+1. retrieval_questions.json 평가 데이터 형식 확정
+2. Hit Rate@5와 MRR@5 구현
+3. search latency, p50과 p95 측정
+4. 팀원에게 실제 질문과 정답 doc_id·page 수집
 
 ## 변경된 파일
 
@@ -101,6 +109,20 @@
   - hybrid 검색과 공개 search_documents 통합 테스트
 - `rag/STEP7_VERIFICATION.md`
   - STEP 7 직접 실행 명령과 확인 항목 기록
+- `rag/indexing.py`
+  - manifest부터 Dense·BM25 index 저장까지 통합 파이프라인 구현
+- `rag/cli.py`
+  - 실제 index 생성과 Top5 검색 CLI 구현
+- `scripts/prepare_step8_sample.py`
+  - 공식 검증 PDF 다운로드, SHA256 확인과 로컬 manifest 생성
+- `tests/rag/`
+  - 모든 RAG 테스트를 담당 폴더로 이동
+- `tests/rag/test_indexing.py`
+  - index 생성·저장·복원·검색 통합 테스트
+- `rag/STEP8_VERIFICATION.md`
+  - 실제 BGE-M3와 공식 PDF 재현 절차 기록
+- `.gitignore`
+  - 원문 PDF, 생성 index와 로컬 manifest 제외
 
 ## 현재 인터페이스
 
@@ -166,6 +188,20 @@ results = search_documents(
 )
 ```
 
+```bash
+python -m rag.cli index \
+  --manifest data/manifest.step8.local.csv \
+  --index-dir data/index/step8_ski \
+  --device mps
+
+python -m rag.cli search \
+  "What is the highest priority of SK Innovation and its subsidiaries for workplace operations?" \
+  --index-dir data/index/step8_ski \
+  --doc-type parent \
+  --top-k 5 \
+  --device mps
+```
+
 ## 테스트 결과
 
 실행 명령:
@@ -179,7 +215,8 @@ results = search_documents(
 결과:
 
 ```text
-50 passed in 1.35s
+RAG tests: 47 passed in 1.24s
+All tests: 51 passed in 1.06s
 compileall PASS
 ```
 
@@ -213,19 +250,26 @@ compileall PASS
 - `doc_types=["tech"]` 검색에서 공통 문서 제외 확인
 - Dense와 BM25 모두 필터된 후보군에서 Top20 계산 확인
 - 공개 `search_documents()`가 hybrid backend와 RRF 결과를 반환하는지 확인
+- 공식 PDF SHA256과 전체 177페이지 확인
+- manifest 사용 페이지가 원문 101~102페이지로 유지되는지 확인
+- 실제 BGE-M3 tokenizer로 6개 chunk 생성 확인
+- 실제 BGE-M3 Dense와 Kiwi BM25 index 생성 확인
+- 영어 질문 Top1이 원문 102페이지, RRF score가 `2/61`인지 확인
+- 한국어 질문으로 영어 원문 102페이지 Top1 검색 확인
+- PDF 102페이지를 이미지로 렌더링해 검색 본문과 육안 대조
 
 ## 미해결 문제
 
-- 문제: 실제 `BAAI/bge-m3` 모델 파일을 다운로드하는 smoke test는 아직 실행하지 않음
-- 원인: 모델 파일이 크고 이번 로컬 테스트는 deterministic fake embedder로 FAISS 계약을 우선 검증함
-- 현재 상태: `sentence-transformers` 런타임 import는 확인했으며 실제 모델 다운로드·embedding은 다음 확인 대상으로 남김
+- 문제: 한 문서와 두 질문만 검증했으므로 전체 검색 품질 수치는 아직 없음
+- 원인: 팀원이 확인한 정답 doc_id·page 평가셋이 아직 준비되지 않음
+- 현재 상태: STEP 9에서 Hit Rate@5, MRR@5와 latency를 측정할 예정
 
 ## 다른 팀원에게 영향을 주는 변경
 
-- API 변경 여부: `HybridRetriever`가 추가되고 `search_documents()`가 실제 hybrid backend를 호출함. 공개 함수 시그니처는 변경 없음
+- API 변경 여부: `index_manifest()`, `load_hybrid_retriever()`와 CLI가 추가됨. 기존 `search_documents()` 시그니처는 변경 없음
 - State/Schema 변경 여부: 없음
 - requirements 변경 여부: 없음
-- 다른 브랜치에서 대응이 필요한 내용: 없음
+- 다른 브랜치에서 대응이 필요한 내용: RAG 테스트 경로가 `tests/rag/`로 이동함. 전체 `pytest` 명령에는 영향 없음
 
 ## Git 상태
 
@@ -237,8 +281,10 @@ STEP 5까지는 `feature/rag`에 commit/push 완료됐다.
 
 STEP 6까지는 `feature/rag`에 commit/push 완료됐다.
 
-STEP 7 코드, 테스트와 확인 문서는 검증을 마쳤으며 `feature/rag`에 commit/push한다.
+STEP 7까지는 `feature/rag`에 commit/push 완료됐다.
+
+STEP 8 코드, 테스트 이동과 실제 문서 검증 문서는 검증을 마쳤으며 `feature/rag`에 commit/push한다.
 
 다음 commit 후보 메시지:
 
-`:sparkles:[FEAT] 후보 문서 필터와 Hybrid Search 구현`
+`:sparkles:[FEAT] 실제 PDF Hybrid RAG 인덱싱 실행 구현`

@@ -6,6 +6,7 @@ from .dense_store import DenseSearchResult, FaissDenseStore
 from .embeddings import BgeM3Embedder, DenseEmbedder, EmbeddingMetrics
 from .fusion import reciprocal_rank_fusion
 from .filters import chunk_matches_filters, filter_chunk_indices
+from .indexing import IndexBuildReport, index_manifest, load_hybrid_retriever
 from .loader import load_manifest_documents, load_pdf_pages
 from .manifest import Manifest, load_manifest
 from .models import (
@@ -35,6 +36,7 @@ __all__ = [
     "BgeM3Embedder",
     "FaissDenseStore",
     "HybridRetriever",
+    "IndexBuildReport",
     "KiwiTechnicalTokenizer",
     "Manifest",
     "ManifestEntry",
@@ -48,6 +50,8 @@ __all__ = [
     "load_manifest_documents",
     "load_pdf_pages",
     "filter_chunk_indices",
+    "index_manifest",
+    "load_hybrid_retriever",
     "normalize_search_text",
     "reciprocal_rank_fusion",
     "search_documents",

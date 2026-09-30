@@ -66,7 +66,10 @@ class BgeM3Embedder:
 
         started = perf_counter()
         self._model = SentenceTransformer(self.model_name, device=self.device)
-        self._dimension = int(self._model.get_sentence_embedding_dimension())
+        get_dimension = getattr(self._model, "get_embedding_dimension", None)
+        if get_dimension is None:
+            get_dimension = self._model.get_sentence_embedding_dimension
+        self._dimension = int(get_dimension())
         self._model_load_seconds = perf_counter() - started
 
     @property

@@ -3,3 +3,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .DS_Store
+data/documents/**/*.pdf
+data/index/**
+!data/index/.gitkeep
+data/manifest.*.local.csv
