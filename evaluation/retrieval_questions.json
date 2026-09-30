@@ -1,0 +1,22 @@
+[
+  {
+    "question_id": "parent-en-001",
+    "query": "What is the highest priority of SK Innovation and its subsidiaries for workplace operations?",
+    "candidate_id": null,
+    "doc_types": ["parent"],
+    "relevant_pages": [
+      {"doc_id": "ski_esg_report_2022", "page": 102}
+    ],
+    "language_pair": "en-en"
+  },
+  {
+    "question_id": "parent-ko-en-001",
+    "query": "SK이노베이션과 자회사의 안전하고 건강한 사업장 운영에서 최우선 과제는 무엇인가?",
+    "candidate_id": null,
+    "doc_types": ["parent"],
+    "relevant_pages": [
+      {"doc_id": "ski_esg_report_2022", "page": 102}
+    ],
+    "language_pair": "ko-en"
+  }
+]

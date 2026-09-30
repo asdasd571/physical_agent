@@ -18,7 +18,7 @@ feature/rag
 | STEP 6 | RRF 순위 융합 | 완료 |
 | STEP 7 | 필터 포함 `search_documents()` 완성 | 완료 |
 | STEP 8 | 실제 문서 indexing과 Top5 검색 | 완료 |
-| STEP 9 | Hit Rate@5와 MRR@5 평가 | 대기 |
+| STEP 9 | Hit Rate@5와 MRR@5 평가 | 구현 완료, 40문항 수집 대기 |
 | STEP 10 | 다른 Agent 호출 통합 확인 | 대기 |
 
 ## STEP 3 작업 기록
@@ -167,6 +167,33 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 - 전체 테스트 `51 passed`
 - 수동 재현 방법을 `rag/STEP8_VERIFICATION.md`에 기록
 
+## STEP 9 작업 기록
+
+### 구현 내용
+
+- 고정 `retrieval_questions.json` 로드와 입력 검증
+- 정확한 `doc_id + page` 기준 Hit Rate@5와 MRR@5
+- 질문별 latency와 전체 평균, p50, p95 계산
+- `language_pair`별 품질·latency 집계
+- 질문별 Top5 문서·페이지·chunk ID·score 결과 저장
+- 저장된 Hybrid index를 평가하는 로컬 CLI
+
+### 실제 문서 검증
+
+- STEP 8 공식 PDF 평가 문항 2개 실행
+- 영어→영어 1문항과 한국어→영어 1문항 모두 원문 102페이지 Top1
+- Hit Rate@5 `1.0`, MRR@5 `1.0`
+- 결과를 `evaluation/results/step9_sample.json`에 기록
+- 2문항은 실행 검증용이며, 설계 목표 40문항의 검색 품질을 대표하지 않음
+- 공용 `data/`에서 담당 영역을 구분하도록 RAG 데이터를 `data/rag/`로 이동
+
+### 테스트 결과
+
+- STEP 9 단독 테스트 `7 passed`
+- RAG 테스트 `54 passed`
+- 전체 테스트 `58 passed`
+- 수동 재현 방법을 `rag/STEP9_VERIFICATION.md`에 기록
+
 ## 변경 이력
 
 | 날짜 | 내용 |
@@ -177,3 +204,4 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 | 2026-09-30 | STEP 6 Dense·BM25 RRF 순위 융합 작성 |
 | 2026-09-30 | STEP 7 후보·문서 유형 필터와 Hybrid Search 작성 |
 | 2026-09-30 | STEP 8 실제 BGE-M3와 공식 PDF Hybrid RAG 검증 |
+| 2026-09-30 | STEP 9 고정 평가셋과 Hit Rate@5·MRR@5·latency 구현 |

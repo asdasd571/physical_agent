@@ -4,7 +4,7 @@
 
 - 담당자: 김낙근
 - 브랜치: `feature/rag`
-- 현재 단계: STEP 8 실제 공식 PDF indexing과 Top5 검색 완료
+- 현재 단계: STEP 9 검색 평가 구현 완료, 팀 40문항 수집 대기
 - 마지막 업데이트: 2026-09-30
 
 ## 완료된 작업
@@ -45,17 +45,24 @@
 - [x] SK Innovation 공식 PDF 원문 101~102페이지 indexing
 - [x] 영어와 한국어 질문으로 영어 원문 102페이지 Top1 검색
 - [x] Top1 검색 결과와 실제 PDF 102페이지 육안 대조
+- [x] 고정 검색 평가셋 JSON 로드와 검증
+- [x] 정확한 doc_id·page 기준 Hit Rate@5와 MRR@5 구현
+- [x] 검색 평균 latency, p50과 p95 구현
+- [x] 언어쌍별 검색 품질과 latency 집계
+- [x] 질문별 Top5 결과와 평가 결과 JSON 저장
+- [x] 실제 BGE-M3 index로 영어·한국어 2문항 평가
+- [x] RAG 전용 데이터를 `data/rag/` 아래로 분리
 
 ## 진행 중인 작업
 
-- [ ] STEP 9 고정 검색 평가셋과 Hit Rate@5·MRR@5 구현
+- [ ] 팀원이 검수한 실제 질문과 정답 doc_id·page를 40문항까지 수집
 
 ## 다음 작업
 
-1. retrieval_questions.json 평가 데이터 형식 확정
-2. Hit Rate@5와 MRR@5 구현
-3. search latency, p50과 p95 측정
-4. 팀원에게 실제 질문과 정답 doc_id·page 수집
+1. 팀원에게 실제 질문과 정답 doc_id·page 수집
+2. 문항을 `evaluation/retrieval_questions.json`에 추가
+3. 40문항 전체 평가를 실행하고 결과 해석
+4. STEP 10 다른 Agent의 `search_documents()` 호출 통합 확인
 
 ## 변경된 파일
 
@@ -122,7 +129,19 @@
 - `rag/STEP8_VERIFICATION.md`
   - 실제 BGE-M3와 공식 PDF 재현 절차 기록
 - `.gitignore`
-  - 원문 PDF, 생성 index와 로컬 manifest 제외
+  - `data/rag/`의 원문 PDF, 생성 index와 로컬 manifest 제외
+- `data/rag/`
+  - RAG manifest, 원문 문서와 생성 index의 전용 경로로 정리
+- `evaluation/retrieval_eval.py`
+  - Hit Rate@5, MRR@5, latency와 언어쌍별 평가 구현
+- `evaluation/retrieval_questions.json`
+  - 실제 공식 PDF로 검수한 고정 질문 2개 추가
+- `evaluation/results/step9_sample.json`
+  - 실제 BGE-M3와 STEP 8 index 평가 결과 기록
+- `tests/rag/test_retrieval_eval.py`
+  - 정답 순위, exact page, 입력 검증과 Top5 고정 테스트
+- `rag/STEP9_VERIFICATION.md`
+  - 자동 테스트, 실제 평가 실행과 평가셋 확장 방법 기록
 
 ## 현재 인터페이스
 
@@ -190,16 +209,21 @@ results = search_documents(
 
 ```bash
 python -m rag.cli index \
-  --manifest data/manifest.step8.local.csv \
-  --index-dir data/index/step8_ski \
+  --manifest data/rag/manifest.step8.local.csv \
+  --index-dir data/rag/index/step8_ski \
   --device mps
 
 python -m rag.cli search \
   "What is the highest priority of SK Innovation and its subsidiaries for workplace operations?" \
-  --index-dir data/index/step8_ski \
+  --index-dir data/rag/index/step8_ski \
   --doc-type parent \
   --top-k 5 \
   --device mps
+```
+
+```python
+questions = load_questions("evaluation/retrieval_questions.json")
+report = evaluate_retrieval(retriever, questions, top_k=5)
 ```
 
 ## 테스트 결과
@@ -209,14 +233,15 @@ python -m rag.cli search \
 ```bash
 .venv/bin/python -m pip install -r requirements-dev.txt
 .venv/bin/python -m pytest -q
-.venv/bin/python -m compileall -q rag schemas tests
+.venv/bin/python -m compileall -q rag evaluation schemas tests
 ```
 
 결과:
 
 ```text
-RAG tests: 47 passed in 1.24s
-All tests: 51 passed in 1.06s
+STEP 9 tests: 7 passed
+RAG tests: 54 passed
+All tests: 58 passed
 compileall PASS
 ```
 
@@ -257,19 +282,25 @@ compileall PASS
 - 영어 질문 Top1이 원문 102페이지, RRF score가 `2/61`인지 확인
 - 한국어 질문으로 영어 원문 102페이지 Top1 검색 확인
 - PDF 102페이지를 이미지로 렌더링해 검색 본문과 육안 대조
+- 같은 doc_id라도 정답 page가 다르면 hit로 계산하지 않음
+- 정답이 3위일 때 reciprocal rank가 1/3인지 확인
+- 정답이 없으면 hit와 reciprocal rank가 0인지 확인
+- 중복 question_id와 잘못된 page 입력 거부
+- candidate_id와 doc_types가 검색 backend에 전달되는지 확인
+- 실제 영어·한국어 질문 모두 정답 102페이지 Top1 확인
 
 ## 미해결 문제
 
-- 문제: 한 문서와 두 질문만 검증했으므로 전체 검색 품질 수치는 아직 없음
+- 문제: 현재 평가셋이 한 문서의 검증 문항 2개뿐이므로 전체 검색 품질을 대표하지 않음
 - 원인: 팀원이 확인한 정답 doc_id·page 평가셋이 아직 준비되지 않음
-- 현재 상태: STEP 9에서 Hit Rate@5, MRR@5와 latency를 측정할 예정
+- 현재 상태: 평가 코드와 2문항 실측은 완료했으며, 설계 목표 40문항 수집 대기
 
 ## 다른 팀원에게 영향을 주는 변경
 
-- API 변경 여부: `index_manifest()`, `load_hybrid_retriever()`와 CLI가 추가됨. 기존 `search_documents()` 시그니처는 변경 없음
+- API 변경 여부: 평가용 `load_questions()`, `evaluate_retrieval()`와 CLI가 추가됨. 기존 `search_documents()` 시그니처는 변경 없음
 - State/Schema 변경 여부: 없음
 - requirements 변경 여부: 없음
-- 다른 브랜치에서 대응이 필요한 내용: RAG 테스트 경로가 `tests/rag/`로 이동함. 전체 `pytest` 명령에는 영향 없음
+- 다른 브랜치에서 대응이 필요한 내용: RAG 데이터 기본 경로가 `data/rag/manifest.csv`, `data/rag/documents/`, `data/rag/index/`로 변경됨
 
 ## Git 상태
 
@@ -283,8 +314,10 @@ STEP 6까지는 `feature/rag`에 commit/push 완료됐다.
 
 STEP 7까지는 `feature/rag`에 commit/push 완료됐다.
 
-STEP 8 코드, 테스트 이동과 실제 문서 검증 문서는 검증을 마쳤으며 `feature/rag`에 commit/push한다.
+STEP 8까지 `feature/rag`에 commit/push 완료됐다.
+
+STEP 9와 `data/rag/` 경로 정리는 검증을 완료했으며 `feature/rag`에 commit/push한다.
 
 다음 commit 후보 메시지:
 
-`:sparkles:[FEAT] 실제 PDF Hybrid RAG 인덱싱 실행 구현`
+`:sparkles:[FEAT] RAG 검색 품질 평가 구현`
