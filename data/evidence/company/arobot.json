@@ -1,0 +1,265 @@
+{
+  "candidate_id": "arobot",
+  "legal_name": "주식회사 에이로봇",
+  "country": "KR",
+  "legal_id": "854-88-00929",
+  "indicators": {
+    "G1": {
+      "raw_value": {
+        "unlisted": {
+          "value": true,
+          "checked_markets": ["KRX KIND"],
+          "cross_checks": ["KIND 상장공시시스템 미등재", "DART 비상장 확인"],
+          "source_id": "src_arobot_registry"
+        },
+        "latest_round": {
+          "value": "Series A",
+          "announced_at": "2025-07-15",
+          "source_id": "src_arobot_funding"
+        },
+        "exit_completed": {
+          "value": false,
+          "source_id": "src_arobot_registry"
+        },
+        "operating_status": {
+          "value": "정상",
+          "as_of": "2026-09-30",
+          "source_id": "src_arobot_registry"
+        }
+      },
+      "unit": "4개 요건 사실",
+      "period": "2026-09-30",
+      "as_of": "2026-09-30",
+      "evidence_status": "THIRD_PARTY_VERIFIED",
+      "source_ids": ["src_arobot_registry", "src_arobot_funding"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "T1": {
+      "raw_value": {
+        "qualified_count": 2,
+        "members": [
+          {
+            "name": "한재권",
+            "role": "CTO / 핵심 창업자",
+            "org": "로보티즈 / 한양대학교",
+            "org_type": "제조 대기업 / 공인 로봇 연구기관",
+            "start": "2015-03",
+            "end": "2026-09",
+            "evidence_status": "COMPANY_CLAIM",
+            "source_ids": ["src_arobot_founder"]
+          },
+          {
+            "name": "엄윤설",
+            "role": "대표이사",
+            "org": "한국공학대학교 / 에이로봇",
+            "org_type": "공인 로봇 연구기관",
+            "start": "2018-04",
+            "end": "2026-09",
+            "evidence_status": "COMPANY_CLAIM",
+            "source_ids": ["src_arobot_founder"]
+          }
+        ],
+        "excluded": []
+      },
+      "unit": "명",
+      "period": "설립 전후 통산",
+      "as_of": "2026-09-30",
+      "evidence_status": "COMPANY_CLAIM",
+      "source_ids": ["src_arobot_founder"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "R1": {
+      "raw_value": {
+        "rounds": [
+          {
+            "round_name": "Seed",
+            "announced_at": "2024-05-10",
+            "amount_original": 3500000000,
+            "currency": "KRW",
+            "is_cumulative_announcement": false,
+            "source_ids": ["src_arobot_funding"]
+          },
+          {
+            "round_name": "Series A",
+            "announced_at": "2025-07-15",
+            "amount_original": 10000000000,
+            "currency": "KRW",
+            "is_cumulative_announcement": false,
+            "source_ids": ["src_arobot_funding"]
+          }
+        ],
+        "excluded_items": []
+      },
+      "unit": "원",
+      "period": "2024-05-10~2025-07-15",
+      "as_of": "2025-07-15",
+      "evidence_status": "COMPANY_CLAIM",
+      "source_ids": ["src_arobot_funding"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "R3": {
+      "raw_value": {
+        "latest": {
+          "count": 28,
+          "as_of": "2026-08-31",
+          "scope": "동일 법인 상시근로자",
+          "report_type": "국민연금 납부 사업장 기준 공인 데이터",
+          "source_ids": ["src_arobot_employment"]
+        },
+        "prior": {
+          "count": 18,
+          "as_of": "2025-08-31",
+          "scope": "동일 법인 상시근로자",
+          "report_type": "국민연금 납부 사업장 기준 공인 데이터",
+          "source_ids": ["src_arobot_employment"]
+        },
+        "reference_only": []
+      },
+      "unit": "명",
+      "period": "2025-08-31~2026-08-31",
+      "as_of": "2026-08-31",
+      "evidence_status": "THIRD_PARTY_VERIFIED",
+      "source_ids": ["src_arobot_employment"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "F1": {
+      "raw_value": {
+        "fiscal_period": "2025-01-01~2025-12-31",
+        "currency": "KRW",
+        "unit": "원",
+        "accounting_standard": "일반기업회계기준",
+        "cash_and_equivalents": 8500000000,
+        "short_term_financial_instruments": 1500000000,
+        "operating_cash_flow": -3600000000,
+        "post_closing_funding": []
+      },
+      "unit": "원",
+      "period": "2025-01-01~2025-12-31",
+      "as_of": "2026-03-31",
+      "evidence_status": "THIRD_PARTY_VERIFIED",
+      "source_ids": ["src_arobot_financials"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "F2": {
+      "raw_value": {
+        "fiscal_period": "2025-01-01~2025-12-31",
+        "currency": "KRW",
+        "unit": "원",
+        "accounting_standard": "일반기업회계기준",
+        "capital_stock": 250000000,
+        "total_equity": 6800000000,
+        "total_liabilities": 2200000000,
+        "audit_opinion": "적정",
+        "going_concern_uncertainty": false,
+        "rcps": {"classified_as_liability": false, "amount": 0},
+        "unconfirmed_items": []
+      },
+      "unit": "원",
+      "period": "2025-01-01~2025-12-31",
+      "as_of": "2026-03-31",
+      "evidence_status": "THIRD_PARTY_VERIFIED",
+      "source_ids": ["src_arobot_financials"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "F3": {
+      "raw_value": {
+        "lookback": "2021-10-01~2026-09-30",
+        "jurisdictions_checked": [
+          {"agency": "공정거래위원회", "case_types": ["시정명령", "과징금", "고발"], "searched_at": "2026-09-30", "source_ids": ["src_arobot_risk"]},
+          {"agency": "고용노동부", "case_types": ["중대재해 공표"], "searched_at": "2026-09-30", "source_ids": ["src_arobot_risk"]}
+        ],
+        "cases": [],
+        "case_count": 0
+      },
+      "unit": "건",
+      "period": "2021-10-01~2026-09-30",
+      "as_of": "2026-09-30",
+      "evidence_status": "THIRD_PARTY_VERIFIED",
+      "source_ids": ["src_arobot_risk"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    }
+  },
+  "sources": [
+    {
+      "source_id": "src_arobot_registry",
+      "kind": "WEB",
+      "publisher": "KRX KIND / DART",
+      "title": "에이로봇 법인 및 상장 여부 조회",
+      "url": "https://kind.krx.co.kr/corpgeneral/corpList.do",
+      "published_at": "2026-09-30",
+      "collected_at": "2026-09-30T09:15:00+09:00",
+      "evidence_excerpt": "법인등록번호 854-88-00929, 비상장 정상 법인 확인"
+    },
+    {
+      "source_id": "src_arobot_funding",
+      "kind": "WEB",
+      "publisher": "THE VC / 로봇신문",
+      "title": "에이로봇 투자 유치 내역",
+      "url": "https://thevc.kr/a-robot",
+      "published_at": "2025-07-16",
+      "collected_at": "2026-09-30T09:20:00+09:00",
+      "evidence_excerpt": "시드 35억원(2024.05), 시리즈 A 100억원(2025.07) 유치 발표"
+    },
+    {
+      "source_id": "src_arobot_founder",
+      "kind": "WEB",
+      "publisher": "에이로봇 공식 웹사이트",
+      "title": "에이로봇 창업팀 및 연구진 소개",
+      "url": "https://www.arobot4all.com/",
+      "published_at": "2026-01-10",
+      "collected_at": "2026-09-30T09:25:00+09:00",
+      "evidence_excerpt": "CTO 한재권 교수 로보티즈 수석연구원 및 한양대 ERICA 로봇공학과 재직, 대표 엄윤설"
+    },
+    {
+      "source_id": "src_arobot_employment",
+      "kind": "API",
+      "publisher": "국민연금공단",
+      "title": "에이로봇 국민연금 가입자 추이 공공데이터",
+      "collected_at": "2026-09-30T09:30:00+09:00",
+      "response_id": "nps_emp_arobot_202608",
+      "evidence_excerpt": "2025년 8월 18명, 2026년 8월 28명 동일 법인 가입자 확인"
+    },
+    {
+      "source_id": "src_arobot_financials",
+      "kind": "WEB",
+      "publisher": "중소벤처기업부 기업정보 / 혁신의숲",
+      "title": "에이로봇 2025년도 재무제표 요약",
+      "url": "https://innoforest.co.kr/company/CP00015482",
+      "published_at": "2026-03-31",
+      "collected_at": "2026-09-30T09:35:00+09:00",
+      "evidence_excerpt": "현금및현금성자산 85억, 단기금융 15억, 영업현금흐름 -36억, 자본금 2.5억, 자본총계 68억"
+    },
+    {
+      "source_id": "src_arobot_risk",
+      "kind": "MANUAL",
+      "publisher": "공정거래위원회 / 고용노동부",
+      "title": "에이로봇 행정처분 및 산재 공표 이력 조회",
+      "collected_at": "2026-09-30T09:40:00+09:00",
+      "evidence_excerpt": "최근 5년간 공정위 시정명령/과징금/고발 0건, 노동부 중대재해 공표 0건 확인 (조회일: 2026-09-30, 확인자: 박세진)"
+    }
+  ],
+  "handoff_urls": [
+    {
+      "type": "founder_profile",
+      "url": "https://scholar.google.com/citations?user=han_jaekwon",
+      "note": "한재권 CTO 구글 스콜라 프로필 및 연구 이력"
+    },
+    {
+      "type": "pre_founding_paper",
+      "url": "https://doi.org/10.1109/ROBIO.2019.8961723",
+      "note": "휴머노이드 핸드 및 정밀 조작 관련 선행 연구 논문 DOI"
+    },
+    {
+      "type": "gov_rnd",
+      "url": "https://www.ntis.go.kr/ThProjectInfoR.do?pjtId=1415178921",
+      "note": "산업통상자원부 로봇산업기술개발사업 과제"
+    }
+  ]
+}
