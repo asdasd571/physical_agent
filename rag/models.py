@@ -155,7 +155,7 @@ class DocumentPage:
             "local_path": str(self.local_path),
             "sha256": self.sha256,
             "page": self.page,
-            **self.metadata,
+            "metadata": dict(self.metadata),
         }
 
 
@@ -215,8 +215,65 @@ class DocumentChunk:
             "published_at": self.published_at.isoformat() if self.published_at else None,
             "local_path": str(self.local_path),
             "sha256": self.sha256,
-            **self.metadata,
+            "metadata": dict(self.metadata),
         }
+
+    def model_dump(self) -> dict[str, Any]:
+        """Return a complete JSON-serializable representation for local indexes."""
+
+        return {
+            **self.to_metadata(),
+            "content": self.content,
+        }
+
+    @classmethod
+    def model_validate(cls, data: dict[str, Any]) -> "DocumentChunk":
+        """Restore a chunk persisted by :meth:`model_dump`."""
+
+        published_at = data.get("published_at")
+        known_fields = {
+            "chunk_id",
+            "page_id",
+            "source_id",
+            "doc_id",
+            "candidate_id",
+            "doc_type",
+            "page",
+            "content",
+            "token_start",
+            "token_end",
+            "token_count",
+            "publisher",
+            "title",
+            "url",
+            "published_at",
+            "local_path",
+            "sha256",
+        }
+        metadata = dict(data.get("metadata", {}))
+        metadata.update(
+            {key: value for key, value in data.items() if key not in known_fields | {"metadata"}}
+        )
+        return cls(
+            chunk_id=data["chunk_id"],
+            page_id=data["page_id"],
+            source_id=data["source_id"],
+            doc_id=data["doc_id"],
+            candidate_id=data.get("candidate_id"),
+            doc_type=DocumentType(data["doc_type"]),
+            page=int(data["page"]),
+            content=data["content"],
+            token_start=int(data["token_start"]),
+            token_end=int(data["token_end"]),
+            token_count=int(data["token_count"]),
+            publisher=data["publisher"],
+            title=data["title"],
+            url=data.get("url"),
+            published_at=date.fromisoformat(published_at) if published_at else None,
+            local_path=Path(data["local_path"]),
+            sha256=data["sha256"],
+            metadata=metadata,
+        )
 
 
 @dataclass(frozen=True, slots=True)

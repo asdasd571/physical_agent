@@ -2,16 +2,15 @@
 
 from __future__ import annotations
 
-from datetime import date
 import json
 from pathlib import Path
 from time import perf_counter
-from typing import Any, Sequence
+from typing import Sequence
 
 import numpy as np
 
 from .embeddings import DenseEmbedder
-from .models import DocumentChunk, DocumentType
+from .models import DocumentChunk
 
 
 INDEX_FILENAME = "index.faiss"
@@ -39,53 +38,6 @@ def _import_faiss():
             "faiss-cpu is required for the Dense index; install requirements.txt"
         ) from exc
     return faiss
-
-
-def _chunk_to_dict(chunk: DocumentChunk) -> dict[str, Any]:
-    return {
-        "chunk_id": chunk.chunk_id,
-        "page_id": chunk.page_id,
-        "source_id": chunk.source_id,
-        "doc_id": chunk.doc_id,
-        "candidate_id": chunk.candidate_id,
-        "doc_type": chunk.doc_type.value,
-        "page": chunk.page,
-        "content": chunk.content,
-        "token_start": chunk.token_start,
-        "token_end": chunk.token_end,
-        "token_count": chunk.token_count,
-        "publisher": chunk.publisher,
-        "title": chunk.title,
-        "url": chunk.url,
-        "published_at": chunk.published_at.isoformat() if chunk.published_at else None,
-        "local_path": str(chunk.local_path),
-        "sha256": chunk.sha256,
-        "metadata": chunk.metadata,
-    }
-
-
-def _chunk_from_dict(data: dict[str, Any]) -> DocumentChunk:
-    published_at = data.get("published_at")
-    return DocumentChunk(
-        chunk_id=data["chunk_id"],
-        page_id=data["page_id"],
-        source_id=data["source_id"],
-        doc_id=data["doc_id"],
-        candidate_id=data.get("candidate_id"),
-        doc_type=DocumentType(data["doc_type"]),
-        page=int(data["page"]),
-        content=data["content"],
-        token_start=int(data["token_start"]),
-        token_end=int(data["token_end"]),
-        token_count=int(data["token_count"]),
-        publisher=data["publisher"],
-        title=data["title"],
-        url=data.get("url"),
-        published_at=date.fromisoformat(published_at) if published_at else None,
-        local_path=Path(data["local_path"]),
-        sha256=data["sha256"],
-        metadata=data.get("metadata", {}),
-    )
 
 
 class FaissDenseStore:
@@ -190,7 +142,7 @@ class FaissDenseStore:
             "format_version": INDEX_FORMAT_VERSION,
             "dimension": self.dimension,
             "chunk_count": len(self._chunks),
-            "chunks": [_chunk_to_dict(chunk) for chunk in self._chunks],
+            "chunks": [chunk.model_dump() for chunk in self._chunks],
         }
         (target / METADATA_FILENAME).write_text(
             json.dumps(payload, ensure_ascii=False, indent=2),
@@ -208,7 +160,7 @@ class FaissDenseStore:
         payload = json.loads(metadata_path.read_text(encoding="utf-8"))
         if payload.get("format_version") != INDEX_FORMAT_VERSION:
             raise DenseStoreError("unsupported Dense index format version")
-        chunks = [_chunk_from_dict(item) for item in payload.get("chunks", [])]
+        chunks = [DocumentChunk.model_validate(item) for item in payload.get("chunks", [])]
         if payload.get("chunk_count") != len(chunks):
             raise DenseStoreError("Dense metadata chunk_count mismatch")
 

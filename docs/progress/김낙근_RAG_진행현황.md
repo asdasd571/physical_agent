@@ -14,7 +14,7 @@ feature/rag
 | STEP 2 | 데이터 모델, manifest, PDF loader | 완료 |
 | STEP 3 | 페이지 단위 token chunker | 완료 |
 | STEP 4 | BGE-M3 embedding과 FAISS | 구현 완료, 실제 모델 smoke test 대기 |
-| STEP 5 | Kiwi tokenizer와 BM25 | 대기 |
+| STEP 5 | Kiwi tokenizer와 BM25 | 완료 |
 | STEP 6 | RRF 순위 융합 | 대기 |
 | STEP 7 | 필터 포함 `search_documents()` 완성 | 대기 |
 | STEP 8 | 실제 문서 indexing과 Top5 검색 | 대기 |
@@ -57,7 +57,7 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 
 1. `BAAI/bge-m3` 실제 모델 다운로드와 한국어·영어 문장 embedding 확인
 2. 실제 BGE-M3 tokenizer를 STEP 3 chunker에 연결
-3. STEP 5 Kiwi tokenizer와 BM25 구현
+3. STEP 6 RRF 구현
 
 ## STEP 4 작업 기록
 
@@ -78,9 +78,31 @@ STEP 3에서 임의의 tokenizer를 production 기본값으로 두지 않는다.
 - `faiss 1.15.1`, `numpy 2.5.3`, `sentence-transformers 5.7.0` import 확인
 - 실제 BGE-M3 모델 파일 다운로드는 아직 실행하지 않음
 
+## STEP 5 작업 기록
+
+### 구현 내용
+
+- Kiwi 기반 한국어 형태소 분석
+- 영문 단어, 숫자, 소수·백분율과 하이픈 기술명 보존
+- Unicode 폭과 다양한 dash 문자를 일관된 표기로 정규화
+- BM25 `k1=1.5`, `b=0.75` 기본값 적용
+- Sparse Top20 검색
+- BM25 token corpus와 전체 chunk metadata 저장·복원
+- Dense와 BM25가 공유하는 `DocumentChunk` 직렬화 규격 추가
+
+### 테스트 결과
+
+- 실제 Kiwi tokenizer 실행 확인
+- `vision-language-action`, `3-finger`, `12.8%` 보존 확인
+- BM25 관련 문서 순위와 무관한 질의 처리 확인
+- BM25 저장·복원 후 원문 page와 metadata 유지
+- 전체 테스트 `36 passed`
+- 최초 테스트에서 `rag/__init__.py` export 위치 오류를 발견해 최소 수정 후 재검증
+
 ## 변경 이력
 
 | 날짜 | 내용 |
 |---|---|
 | 2026-09-30 | STEP 3 token chunker와 테스트 작성 |
 | 2026-09-30 | STEP 4 BGE-M3 embedding wrapper와 FAISS Dense store 작성 |
+| 2026-09-30 | STEP 5 Kiwi tokenizer와 BM25 Sparse store 작성 |

@@ -1,5 +1,6 @@
 """Shared retrieval components for the investment-evaluation system."""
 
+from .bm25_store import Bm25SearchResult, Bm25Store
 from .chunker import chunk_page, chunk_pages
 from .dense_store import DenseSearchResult, FaissDenseStore
 from .embeddings import BgeM3Embedder, DenseEmbedder, EmbeddingMetrics
@@ -17,8 +18,11 @@ from .service import (
     configure_search_backend,
     search_documents,
 )
+from .tokenizer import KiwiTechnicalTokenizer, normalize_search_text
 
 __all__ = [
+    "Bm25SearchResult",
+    "Bm25Store",
     "DocumentChunk",
     "DocumentPage",
     "DocumentType",
@@ -27,6 +31,7 @@ __all__ = [
     "EmbeddingMetrics",
     "BgeM3Embedder",
     "FaissDenseStore",
+    "KiwiTechnicalTokenizer",
     "Manifest",
     "ManifestEntry",
     "RetrievedChunk",
@@ -37,5 +42,6 @@ __all__ = [
     "load_manifest",
     "load_manifest_documents",
     "load_pdf_pages",
+    "normalize_search_text",
     "search_documents",
 ]
