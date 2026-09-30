@@ -50,8 +50,10 @@ def _normalize_candidate_id(
                 f"{doc_type.value} documents are common and must not have candidate_id"
             )
         return None
+    # Candidate-specific documents normally have an ID, while shared technical
+    # standards and risk frameworks use ``candidate_id=COMMON``.
     if value is None:
-        raise ValueError(f"{doc_type.value} documents require candidate_id")
+        return None
     return value
 
 

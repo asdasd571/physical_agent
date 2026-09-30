@@ -3,8 +3,8 @@
 ## 현재 상태
 
 - 담당자: 김낙근
-- 브랜치: `feature/rag`
-- 현재 단계: STEP 1~10 완료, main 병합 전 구조 정리 완료
+- 브랜치: `main`
+- 현재 단계: 투자평가 운영 문서 풀 192페이지 구성 및 검증 완료
 - 마지막 업데이트: 2026-09-30
 
 ## 완료된 작업
@@ -60,10 +60,17 @@
 - [x] 역할 문서의 완료 체크리스트와 실제 구현 대조
 - [x] 공통 검색 설정을 `rag/config.py`로 중앙화
 - [x] STEP 검증 문서를 `rag/docs/` 기능별 폴더로 정리
+- [x] 특정 투자회사와 무관한 AI·로봇 스타트업 투자평가 문서 풀 구성
+- [x] 14개 공식 원문에서 기술 97쪽·시장 49쪽·위험 46쪽 선별
+- [x] 총 192쪽으로 200페이지 제한 준수 및 선택 페이지 전체 로드 검증
+- [x] 공통 기술·위험 기준을 모든 후보가 조회할 수 있는 `COMMON` 범위 지원
+- [x] SK ESG 문서를 운영 manifest에서 제외하고 기존 테스트 데이터로만 유지
+- [x] 운영 manifest가 참조하는 공식 원문 PDF 14개를 팀 공유 대상으로 확정
 
 ## 진행 중인 작업
 
 - [ ] 팀원이 검수한 실제 질문과 정답 doc_id·page를 40문항까지 수집
+- [ ] 운영 문서 192쪽으로 Dense·BM25 index 생성 및 검색 품질 검수
 
 ## 다음 작업
 
@@ -71,8 +78,22 @@
 2. 문항을 `evaluation/retrieval_questions.json`에 추가
 3. 40문항 전체 평가를 실행하고 결과 해석
 4. 팀 전체 Agent·Graph 구현이 합쳐진 뒤 최종 end-to-end 실행
+5. 운영 manifest로 index를 생성하고 후보별 대표 질문을 육안 검수
 
 ## 변경된 파일
+
+- `data/rag/manifest.csv`
+  - 후보 기술·경쟁 제품·시장·투자 위험 공식 문서 14개와 선택 페이지 192쪽 등록
+- `data/rag/DOCUMENT_COLLECTION_PLAN.md`
+  - 문서 선정 이유, 후보별 용도, 페이지 예산과 제외 기준 기록
+- `data/rag/documents/`
+  - 운영 manifest의 공식 원문 PDF 14개, 총 68.85 MiB를 Git 공유 대상으로 추가
+- `rag/models.py`
+  - `tech`·`risk`에도 `candidate_id=COMMON` 공통 문서 허용
+- `rag/filters.py`
+  - 문서 유형과 무관하게 `candidate_id=None`인 문서를 공통 근거로 검색
+- `tests/rag/test_manifest.py`, `tests/rag/test_filters.py`
+  - 공통 위험 문서 등록 및 후보별 검색 회귀 테스트 추가
 
 - `rag/DEVELOPMENT_STATUS.md`
   - 김낙근 담당 RAG 개발 절차와 현재 진행 상태 기록
@@ -261,6 +282,8 @@ report = evaluate_retrieval(retriever, questions, top_k=5)
 결과:
 
 ```text
+운영 manifest: 14 documents / 192 selected pages / 192 loaded pages
+현재 전체 테스트: 61 passed
 STEP 9 tests: 7 passed
 STEP 10 integration test: 1 passed
 Config test: 1 passed
@@ -270,6 +293,12 @@ compileall PASS
 ```
 
 확인한 항목:
+
+- 운영 manifest 합계 `192/200` 확인
+- 기술 97쪽, 시장 49쪽, 위험 46쪽 배분 확인
+- 선택한 PDF 192쪽 모두 텍스트 추출 및 원문 페이지 번호 유지
+- 공통 NIST·투자평가 문서가 모든 후보 검색 범위에 포함됨
+- SK이노베이션 문서가 운영 manifest에 포함되지 않음
 
 - 짧은 페이지는 단일 청크 생성
 - 450 tokens 초과 페이지 분할
@@ -326,10 +355,10 @@ compileall PASS
 
 ## 다른 팀원에게 영향을 주는 변경
 
-- API 변경 여부: 평가용 `load_questions()`, `evaluate_retrieval()`와 CLI가 추가됨. 기존 `search_documents()` 시그니처는 변경 없음
-- State/Schema 변경 여부: 없음
+- API 변경 여부: `search_documents()` 시그니처는 변경 없음. `candidate_id=COMMON`을 `tech`·`risk`에도 사용할 수 있음
+- State/Schema 변경 여부: manifest 의미 확장. `candidate_id=None`인 모든 문서는 공통 검색 대상으로 처리됨
 - requirements 변경 여부: 없음
-- 다른 브랜치에서 대응이 필요한 내용: RAG 데이터 기본 경로가 `data/rag/manifest.csv`, `data/rag/documents/`, `data/rag/index/`로 변경됨
+- 다른 브랜치에서 대응이 필요한 내용: Agent가 후보별 검색을 해도 공통 투자·AI 위험 문서가 함께 반환될 수 있으므로 `candidate_id=None`을 정상 공통 근거로 처리해야 함
 
 ## Git 상태
 
@@ -349,8 +378,8 @@ STEP 9와 `data/rag/` 경로 정리는 `feature/rag`에 commit/push 완료됐다
 
 STEP 10까지 `a191b7a`로 `feature/rag`에 commit/push 완료됐다.
 
-main 병합 전 설정·문서 구조 정리는 로컬에서 완료했으며 아직 commit/push 하지 않았다.
+운영 문서 풀과 원문 PDF 공유 변경은 사용자 요청에 따라 commit/push 대상으로 확정했다.
 
 다음 commit 후보 메시지:
 
-`:recycle:[REF] RAG 설정과 검증 문서 구조 정리`
+`[FEAT] 투자평가 RAG 문서 풀 구성`

@@ -10,4 +10,6 @@ data/rag/
 └── index/                    # 재생성 가능한 Dense·BM25 index (Git 제외)
 ```
 
-원문 PDF와 생성 index는 용량과 저작권 문제로 Git에 올리지 않는다. 재현 가능한 다운로드 URL, SHA256과 실행 방법은 `rag/docs/indexing/STEP8_VERIFICATION.md`에 기록한다.
+`manifest.csv`가 참조하는 운영 원문 PDF는 팀원이 병합 직후 동일한 문서로 색인·테스트할 수 있도록 Git에 포함한다. manifest에 등록되지 않은 실험용 PDF와 생성 index는 Git에 올리지 않는다. 재현 가능한 다운로드 URL과 SHA256은 manifest에 기록한다.
+
+운영 문서의 선정 기준과 192페이지 배분은 `DOCUMENT_COLLECTION_PLAN.md`에 기록하며, 실제 색인 대상은 `manifest.csv`의 `page_ranges`만 사용한다. 기존 SK ESG 원문은 검색 기능 검증용 로컬 데이터이며 운영 manifest에는 포함하지 않는다.

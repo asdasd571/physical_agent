@@ -44,6 +44,12 @@ def test_candidate_filter_includes_matching_and_common_documents() -> None:
     )
 
 
+def test_common_risk_document_is_included_for_every_candidate() -> None:
+    assert chunk_matches_filters(
+        make_chunk(DocumentType.RISK, None), candidate_id="company_a"
+    )
+
+
 def test_doc_type_filter_is_applied_before_common_document_rule() -> None:
     assert not chunk_matches_filters(
         make_chunk(DocumentType.PARENT, None),

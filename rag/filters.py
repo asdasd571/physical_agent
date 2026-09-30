@@ -15,9 +15,10 @@ def chunk_matches_filters(
 ) -> bool:
     """Return whether a chunk belongs to the requested retrieval scope.
 
-    ``parent`` and ``market`` are common documents and remain visible during a
-    candidate-specific search. A requested ``doc_types`` list is always applied,
-    so ``doc_types=[TECH]`` does not implicitly add common documents.
+    Any document whose ``candidate_id`` is ``None`` is common and remains
+    visible during a candidate-specific search. A requested ``doc_types`` list
+    is always applied, so ``doc_types=[TECH]`` does not implicitly add other
+    document types.
     """
 
     if doc_types is not None and chunk.doc_type not in set(doc_types):
@@ -26,7 +27,7 @@ def chunk_matches_filters(
         return True
     if chunk.candidate_id == candidate_id:
         return True
-    return chunk.doc_type.is_common and chunk.candidate_id is None
+    return chunk.candidate_id is None
 
 
 def filter_chunk_indices(
