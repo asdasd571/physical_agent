@@ -1,0 +1,254 @@
+{
+  "candidate_id": "figure_ai",
+  "legal_name": "Figure AI, Inc.",
+  "country": "US",
+  "legal_id": "DE-6829102",
+  "indicators": {
+    "G1": {
+      "raw_value": {
+        "unlisted": {
+          "value": true,
+          "checked_markets": ["SEC EDGAR", "Delaware Division of Corporations"],
+          "cross_checks": ["SEC EDGAR 상장공시 미등재", "델라웨어 비상장 법인 확인"],
+          "source_id": "src_figure_registry"
+        },
+        "latest_round": {
+          "value": "Series C",
+          "announced_at": "2025-02-20",
+          "source_id": "src_figure_series_c"
+        },
+        "exit_completed": {
+          "value": false,
+          "source_id": "src_figure_registry"
+        },
+        "operating_status": {
+          "value": "정상",
+          "as_of": "2026-09-30",
+          "source_id": "src_figure_registry"
+        }
+      },
+      "unit": "4개 요건 사실",
+      "period": "2026-09-30",
+      "as_of": "2026-09-30",
+      "evidence_status": "COMPANY_CLAIM",
+      "source_ids": ["src_figure_registry", "src_figure_series_c"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "T1": {
+      "raw_value": {
+        "qualified_count": 2,
+        "members": [
+          {
+            "name": "Brett Adcock",
+            "role": "CEO / 창업자",
+            "org": "Archer Aviation / Vettery 창업",
+            "degree": "B.S. in Business",
+            "career_years": 15,
+            "physical_ai_relevance": "Figure 01/02 및 Helix 상용 휴머노이드 전략 총괄",
+            "source_ids": ["src_figure_series_c"]
+          },
+          {
+            "name": "Jerry Pratt",
+            "role": "CTO / 최고기술책임자",
+            "org": "IHMC (Florida Institute for Human and Machine Cognition)",
+            "degree": "Ph.D. in Mechanical Engineering, MIT",
+            "career_years": 22,
+            "physical_ai_relevance": "MIT Leg Lab 출신 휴머노이드 보행 및 정밀 상지 조작 로보틱스 선임 연구원 20년 이상 경력",
+            "source_ids": ["src_figure_helix"]
+          }
+        ],
+        "excluded_members": []
+      },
+      "unit": "명",
+      "period": "2026-09-30",
+      "as_of": "2026-09-30",
+      "evidence_status": "COMPANY_CLAIM",
+      "source_ids": ["src_figure_series_c", "src_figure_helix"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "R1": {
+      "raw_value": {
+        "cumulative_amount": 1440000000000,
+        "currency": "KRW",
+        "latest_round": "Series C",
+        "rounds": [
+          {
+            "round": "Seed",
+            "amount": 13500000000,
+            "announced_at": "2022-08-01",
+            "investors": ["Brett Adcock (자체 출자)"],
+            "source_ids": ["src_figure_series_c"]
+          },
+          {
+            "round": "Series A",
+            "amount": 94500000000,
+            "announced_at": "2023-05-24",
+            "investors": ["Parkway Venture Capital", "Aliya Capital"],
+            "source_ids": ["src_figure_series_c"]
+          },
+          {
+            "round": "Series B",
+            "amount": 911000000000,
+            "announced_at": "2024-02-29",
+            "investors": ["OpenAI", "NVIDIA", "Microsoft", "Amazon Industrial Innovation Fund", "Jeff Bezos"],
+            "source_ids": ["src_figure_series_c"]
+          },
+          {
+            "round": "Series C",
+            "amount": 421000000000,
+            "announced_at": "2025-02-20",
+            "investors": ["Align Ventures", "Parkway Venture Capital", "Intel Capital"],
+            "source_ids": ["src_figure_series_c"]
+          }
+        ],
+        "excluded_items": []
+      },
+      "unit": "원",
+      "period": "2022-08-01~2025-02-20",
+      "as_of": "2025-02-20",
+      "evidence_status": "COMPANY_CLAIM",
+      "source_ids": ["src_figure_series_c"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "R3": {
+      "raw_value": {
+        "latest": {
+          "count": 140,
+          "as_of": "2026-08-31",
+          "scope": "글로벌 상시 근로자 및 연구인력",
+          "report_type": "공식 채용 및 LinkedIn 기업 페이지 공표 기준",
+          "source_ids": ["src_figure_helix_02"]
+        },
+        "prior": {
+          "count": 80,
+          "as_of": "2025-08-31",
+          "scope": "글로벌 상시 근로자 및 연구인력",
+          "report_type": "공식 보도자료 기준",
+          "source_ids": ["src_figure_series_c"]
+        },
+        "reference_only": []
+      },
+      "unit": "명",
+      "period": "2025-08-31~2026-08-31",
+      "as_of": "2026-08-31",
+      "evidence_status": "COMPANY_CLAIM",
+      "source_ids": ["src_figure_series_c", "src_figure_helix_02"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "F1": {
+      "raw_value": {
+        "fiscal_period": "2025-01-01~2025-12-31",
+        "currency": "KRW",
+        "unit": "원",
+        "accounting_standard": "US-GAAP (비상장 자체 추정 공표)",
+        "cash_and_equivalents": 900000000000,
+        "short_term_financial_instruments": 0,
+        "operating_cash_flow": -250000000000,
+        "post_closing_funding": []
+      },
+      "unit": "원",
+      "period": "2025-01-01~2025-12-31",
+      "as_of": "2026-03-31",
+      "evidence_status": "COMPANY_CLAIM",
+      "source_ids": ["src_figure_series_c"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "F2": {
+      "raw_value": {
+        "fiscal_period": "2025-01-01~2025-12-31",
+        "currency": "KRW",
+        "unit": "원",
+        "accounting_standard": "US-GAAP (비상장 자체 추정 공표)",
+        "capital_stock": 100000000,
+        "total_equity": 850000000000,
+        "total_liabilities": 120000000000,
+        "audit_opinion": "미감사(비상장)",
+        "going_concern_uncertainty": false,
+        "rcps": {"classified_as_liability": false, "amount": 0},
+        "unconfirmed_items": []
+      },
+      "unit": "원",
+      "period": "2025-01-01~2025-12-31",
+      "as_of": "2026-03-31",
+      "evidence_status": "COMPANY_CLAIM",
+      "source_ids": ["src_figure_series_c"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    },
+    "F3": {
+      "raw_value": {
+        "lookback": "2021-10-01~2026-09-30",
+        "jurisdictions_checked": [
+          {"agency": "US Federal Trade Commission (FTC)", "case_types": ["독점 및 불공정거래 조사"], "searched_at": "2026-09-30", "source_ids": ["src_figure_risk"]},
+          {"agency": "US Occupational Safety and Health Administration (OSHA)", "case_types": ["산업재해 및 안전위반 처분"], "searched_at": "2026-09-30", "source_ids": ["src_figure_risk"]}
+        ],
+        "cases": [],
+        "case_count": 0
+      },
+      "unit": "건",
+      "period": "2021-10-01~2026-09-30",
+      "as_of": "2026-09-30",
+      "evidence_status": "THIRD_PARTY_VERIFIED",
+      "source_ids": ["src_figure_risk"],
+      "query_status": "SUCCESS",
+      "missing_reason": null
+    }
+  },
+  "sources": [
+    {
+      "source_id": "src_figure_registry",
+      "kind": "WEB",
+      "publisher": "State of Delaware Division of Corporations",
+      "title": "Figure AI, Inc. Delaware Corporate Filing",
+      "url": "https://icis.corp.delaware.gov/",
+      "published_at": "2026-09-30",
+      "collected_at": "2026-09-30T10:00:00+09:00",
+      "evidence_excerpt": "Entity ID DE-6829102, Figure AI, Inc., 비상장 정상 법인 확인"
+    },
+    {
+      "source_id": "src_figure_series_c",
+      "kind": "WEB",
+      "publisher": "Figure AI Official Press",
+      "title": "Figure Announces Series C Funding and Commercial Humanoid Scaling",
+      "url": "https://www.figure.ai/news/series-c",
+      "published_at": "2025-02-20",
+      "collected_at": "2026-09-30T10:15:00+09:00",
+      "evidence_excerpt": "Figure announces Series C financing with Align Ventures and existing partners. Cumulative funding exceeds $1B."
+    },
+    {
+      "source_id": "src_figure_helix",
+      "kind": "WEB",
+      "publisher": "Figure AI Engineering",
+      "title": "Helix: A Vision-Language-Action Model for Dexterous Manipulation",
+      "url": "https://www.figure.ai/news/helix",
+      "published_at": "2024-10-10",
+      "collected_at": "2026-09-30T10:20:00+09:00",
+      "evidence_excerpt": "Helix enables real-time upper-body and finger coordination, tactile sensor integration, and unstructured bimanual object picking."
+    },
+    {
+      "source_id": "src_figure_helix_02",
+      "kind": "WEB",
+      "publisher": "Figure AI Engineering",
+      "title": "Helix 02: Scaling Physical AI Models for Manufacturing & Logistics",
+      "url": "https://www.figure.ai/news/helix-02",
+      "published_at": "2025-05-15",
+      "collected_at": "2026-09-30T10:25:00+09:00",
+      "evidence_excerpt": "Helix 02 deployed in pilot manufacturing lines, verifying palm camera visual feedback and tactile grip stability."
+    },
+    {
+      "source_id": "src_figure_risk",
+      "kind": "WEB",
+      "publisher": "US Federal Enforcement Database (FTC/OSHA)",
+      "title": "Figure AI Regulatory and Workplace Safety Search",
+      "url": "https://www.osha.gov/enforcement",
+      "published_at": "2026-09-30",
+      "collected_at": "2026-09-30T10:30:00+09:00",
+      "evidence_excerpt": "No administrative sanctions or serious workplace violations found for Figure AI, Inc."
+    }
+  ]
+}
