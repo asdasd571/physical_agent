@@ -208,8 +208,8 @@ def test_model_cannot_cite_unprovided_source(tmp_path):
         score=1, publisher="test", title="test", local_path="/fixture.pdf", metadata={"sha256": "a" * 64})
     def extractor(*args):
         return {"candidate_id": "가상후보1", "records": [trial(source_ids=["demo_fixture"])]}
-    result = make_tech_node(search=lambda **kw: [chunk], extractor=extractor, evidence_dir=tmp_path)(demo_state())
-    assert all("demo_fixture" not in item.source_ids for item in result["tech_analysis"].indicators)
+    with pytest.raises(ValueError, match="outside supplied"):
+        make_tech_node(search=lambda **kw: [chunk], extractor=extractor, evidence_dir=tmp_path)(demo_state())
 
 
 def test_common_bundle_cannot_supply_candidate_facts(tmp_path):

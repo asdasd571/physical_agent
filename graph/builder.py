@@ -31,7 +31,6 @@ class NodeBindings:
     competitor: RepairHandler
     synergy: RepairHandler
     report: RepairHandler
-    narrative: RepairHandler | None = None
     repair_handlers: dict[str, RepairHandler] = field(default_factory=dict)
 
 
@@ -57,7 +56,6 @@ def build_graph(bindings: NodeBindings):
     builder.add_node("review", review_node)
     builder.add_node("repair", make_repair_node(repair_handlers))
     builder.add_node("judge", judge_node)
-    builder.add_node("narrative", bindings.narrative or (lambda state: {"evaluation": state["evaluation"]}))
     builder.add_node("archive", archive_node)
     builder.add_node("report", bindings.report)
     builder.add_edge(START, "init")
@@ -79,8 +77,7 @@ def build_graph(bindings: NodeBindings):
         {"repair": "repair", "judge": "judge"},
     )
     builder.add_edge("repair", "review")
-    builder.add_edge("judge", "narrative")
-    builder.add_edge("narrative", "archive")
+    builder.add_edge("judge", "archive")
     builder.add_edge("skip", "archive")
     builder.add_conditional_edges(
         "archive",

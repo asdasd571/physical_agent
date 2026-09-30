@@ -17,8 +17,7 @@ def report_node(state: GraphState) -> dict:
     _, used_sources = validate_report_inputs(evaluations, state.get("sources", []))
     output = state["run"].settings.get("report_output_path")
     if output is None:
-        suffix = state["run"].run_id.split("-")[0]
-        output = Path(__file__).resolve().parents[1] / "reporting/output" / f"investment_report_{state['run'].evaluation_date}_{suffix}.pdf"
+        output = Path(__file__).resolve().parents[1] / "reporting/output" / f"investment_report_{state['run'].evaluation_date}.pdf"
     path = render_investment_report(evaluations, state.get("sources", []), Path(output),
                                     evaluation_date=state["run"].evaluation_date)
     return {"report": ReportResult(output_path=str(path), source_ids=[s.source_id for s in used_sources])}

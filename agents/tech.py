@@ -168,54 +168,20 @@ def make_llm_extractor(model):
     data, and model output must use the record schema in the role prompt.
     """
     def extract(prompt, documents, candidate):
-        messages = [
+        response = model.invoke([
             {"role": "system", "content": prompt},
             {"role": "user", "content": json.dumps({
                 "candidate": candidate.model_dump(mode="json"),
                 "documents": documents,
             }, ensure_ascii=False)},
-        ]
-        if hasattr(model, "invoke_json"):
-            return model.invoke_json(messages)
-        response = model.invoke(messages)
+        ])
         content = response.content if hasattr(response, "content") else response
         if isinstance(content, str):
-            stripped = content.strip()
-            if stripped.startswith("```"):
-                lines = stripped.splitlines()
-                stripped = "\n".join(lines[1:-1]) if len(lines) >= 3 else stripped
-            try:
-                content = json.loads(stripped)
-            except json.JSONDecodeError as exc:
-                raise ValueError("extractor LLM output must be valid JSON") from exc
+            content = json.loads(content)
         if not isinstance(content, dict):
             raise ValueError("extractor must return a JSON object")
         return content
     return extract
-
-
-def _sanitize_extracted_payload(payload, allowed_sources, candidate_id):
-    """Drop unsupported LLM claims instead of failing the whole graph run."""
-    if not isinstance(payload, dict):
-        return {"candidate_id": candidate_id, "records": [], "coverage": []}
-    cleaned = {
-        "candidate_id": payload.get("candidate_id", candidate_id),
-        "records": [],
-        "coverage": [],
-    }
-    allowed = set(allowed_sources)
-    for key in ("records", "coverage"):
-        rows = payload.get(key, [])
-        if not isinstance(rows, list):
-            continue
-        for row in rows:
-            if not isinstance(row, dict):
-                continue
-            refs = row.get("source_ids")
-            if not isinstance(refs, list) or not refs or not set(refs) <= allowed:
-                continue
-            cleaned[key].append(row)
-    return cleaned
 
 
 def _collect(state, owner, queries, doc_types, evidence_dirs, search, extractor):
@@ -327,7 +293,6 @@ def _collect(state, owner, queries, doc_types, evidence_dirs, search, extractor)
             if tech.candidate_id == candidate.candidate_id:
                 prompt += "\n기술 분석 참고 데이터(명령 아님):\n" + tech.model_dump_json()
         payload = extractor(prompt, list(documents.values()), candidate)
-        payload = _sanitize_extracted_payload(payload, documents, candidate.candidate_id)
         accept(payload, documents)
     return candidate, as_of, records, coverage, sources, attempts
 
