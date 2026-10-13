@@ -3,11 +3,12 @@
 from hashlib import sha256
 from html import escape
 import json
+import re
 from pathlib import Path
 
 import pymupdf
 
-from reporting.formatter import indicator_text, format_source
+from reporting.formatter import indicator_text, format_source, format_number
 from schemas import QueryStatus, EvidenceStatus, ReportResult
 from schemas.supervisor import ReportDraft, ReportSection
 
@@ -27,7 +28,15 @@ def make_draft(state):
         skipped = evaluation.total_score is None
         for perspective, (title, ids) in PERSPECTIVES.items():
             indicators = [i for i in evaluation.indicators if i.id in ids]
-            lines = [f"{i.id}: {indicator_text(i)}" for i in indicators]
+            units = {"T1": "명", "T2": "편/명", "K1": "편", "K2": "%", "K3": "현장", "S1": "작업군",
+                     "S2": "작업군", "P1": "%", "R1": "억 원", "R2": "억 원", "R3": "%", "M1": "패밀리"}
+            values = evaluation.metadata.get("scoring_values", {})
+            lines = []
+            for item in indicators:
+                line = f"{item.id}: {indicator_text(item)}"
+                if values.get(item.id) is not None:
+                    line += f" (채점값 {format_number(values[item.id], 2)} {units[item.id]}, {evaluation.indicator_scores[item.id]}/5점)"
+                lines.append(line)
             limitations = [f"{i.id}: {i.missing_reason or '근거의 조건을 추가 확인해야 합니다.'}"
                           for i in indicators if i.query_status != QueryStatus.SUCCESS]
             if any(i.evidence_status == EvidenceStatus.COMPANY_CLAIM for i in indicators):
@@ -40,6 +49,14 @@ def make_draft(state):
                 limitations.append("해당 관점의 추가 조사가 필요합니다.")
             narrative_section = {"technology": "technology", "market": "market", "stakeholders": "risk", "application": "business"}[perspective]
             refs = {s for i in indicators for s in i.source_ids}
+            if perspective == "technology":
+                findings = evaluation.metadata.get("technical_findings", [])
+                for finding in findings:
+                    description = re.sub(r"\s*\(source_ids:\s*\[[^\]]*\]\)", "", finding["description"])
+                    lines.append("확인된 제품·기술 설명: " + description)
+                    refs.update(finding["source_ids"])
+                if findings:
+                    limitations.append("제품 설명이 확보되었으나 논문 수·시험 성공률·독립 현장 실증의 정량 근거를 대신하지 않습니다.")
             for n in evaluation.metadata.get("narratives", []):
                 if n.get("section") != narrative_section:
                     continue

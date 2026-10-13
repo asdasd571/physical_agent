@@ -213,3 +213,20 @@ def test_repository_agents_obey_adapter_contract(tmp_path):
     assert result["routing_history"]["arobot"].attempts["tech"] == 2
     assert result["routing_history"]["figure_ai"].termination_reason == "ineligible"
     assert result["completion_status"] == "passed"
+    assert all(e.total_score > 20 for e in result["evaluations"] if e.total_score is not None)
+
+
+def test_qualitative_technology_reaches_report_without_inventing_scores(tmp_path):
+    from schemas.analysis import TechnicalFinding
+
+    def tech(state):
+        update = fixture.tech_node(state)
+        update["tech_analysis"] = update["tech_analysis"].model_copy(update={
+            "findings": [TechnicalFinding(description="힘센서의 공개 제품 사양을 확인했습니다.", source_ids=[fixture.SOURCE.source_id])],
+        })
+        return update
+    result = execute(tmp_path, replace(bindings(), tech=tech))
+    section = next(s for s in result["draft"].sections if s.candidate_id == "candidate-1" and s.perspective == "technology")
+    assert "힘센서의 공개 제품 사양" in section.text
+    assert fixture.SOURCE.source_id in section.source_ids
+    assert result["quality"].passed

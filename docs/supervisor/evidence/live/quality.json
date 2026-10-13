@@ -1,7 +1,7 @@
 {
-  "run_id": "supervisor-final-20261013",
+  "run_id": "supervisor-reviewed-20261013",
   "status": "passed",
-  "report": "artifacts/supervisor-final-20261013/report.r0.pdf",
+  "report": "artifacts/supervisor-reviewed-20261013/report.r0.pdf",
   "evaluation_mode": "rules",
   "semantic_entailment_verified": false,
   "history": [

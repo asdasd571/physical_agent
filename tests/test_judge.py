@@ -2,7 +2,10 @@ from datetime import date
 from decimal import Decimal
 from typing import Any, cast
 
-from nodes.judge import calculate_total_score, judge_node, score_indicator
+from nodes.judge import calculate_total_score, judge_node, score_indicator, numeric_value, score_risk_indicator
+import json
+from pathlib import Path
+import pytest
 from schemas import (
     AnalysisResult,
     Candidate,
@@ -177,3 +180,59 @@ def test_failed_g2_forces_hold() -> None:
 
     assert result["evaluation"].gates["G2"].passed is False
     assert result["decision"].status.value == "HOLD"
+
+
+@pytest.mark.parametrize("key,raw,expected", [
+    ("T1", {"qualified_count": 2}, Decimal(2)),
+    ("P1", {"cagr_percent": 9.5}, Decimal("9.5")),
+    ("M1", {"unique_priority_families": 4}, Decimal(4)),
+    ("F3", {"case_count": 0}, Decimal(0)),
+    ("R2", {"amount_krw_100m": "2.5"}, Decimal("2.5")),
+])
+def test_producer_field_names_are_read(key, raw, expected):
+    assert numeric_value(raw, key) == expected
+
+
+def test_round_amounts_exclude_cumulative_and_deduplicate():
+    row = {"round_name": "A", "announced_at": "2025-01-01", "amount_original": 10_000_000_000,
+           "currency": "KRW", "is_cumulative_announcement": False}
+    cumulative = {**row, "amount_original": 20_000_000_000, "is_cumulative_announcement": True}
+    assert numeric_value({"rounds": [row, dict(row), cumulative]}, "R1") == Decimal(100)
+    with pytest.raises(ValueError):
+        numeric_value({"rounds": [row, {**row, "amount_original": 1}]}, "R1")
+    assert numeric_value({"rounds": [{**row, "currency": "USD"}]}, "R1") is None
+
+
+def test_growth_uses_matching_scope_and_small_baseline_cap():
+    raw = {"prior": {"count": 5, "as_of": "2025-01-01", "scope": "법인"},
+           "latest": {"count": 10, "as_of": "2026-01-01", "scope": "법인"}}
+    assert numeric_value(raw, "R3") == Decimal(100)
+    assert score_indicator(make_indicator("R3", raw)) == 3
+    raw["prior"]["count"] = 0
+    assert numeric_value(raw, "R3") is None
+    raw["prior"]["count"] = 5
+    raw["latest"]["scope"] = "그룹"
+    assert numeric_value(raw, "R3") is None
+
+
+def test_financial_raw_values_support_risk_rules():
+    raw = {"cash_and_equivalents": 100, "short_term_financial_instruments": 20,
+           "operating_cash_flow": -60, "currency": "KRW", "fiscal_period": "2025-01-01~2025-12-31"}
+    assert numeric_value(raw, "F1") == Decimal(24)
+    assert score_risk_indicator(make_indicator("F1", raw)) == 5
+    assert score_risk_indicator(make_indicator("F1", {**raw, "operating_cash_flow": 10})) == 5
+    assert score_risk_indicator(make_indicator("F2", {"capital_stock": 100, "total_equity": 50,
+                                                     "total_liabilities": 20})) == 2
+    assert score_risk_indicator(make_indicator("F2", {"capital_stock": 100, "total_equity": 200,
+                                                     "total_liabilities": 100})) == 5
+
+
+@pytest.mark.parametrize("candidate", ["arobot", "aidin_robotics"])
+def test_repository_values_do_not_all_fall_back_to_one(candidate):
+    root = Path(__file__).resolve().parents[1]
+    company = json.loads((root / f"data/evidence/company/{candidate}.json").read_text())
+    for key in ("T1", "R1", "R3"):
+        indicator = IndicatorEvidence.model_validate({"id": key, "collected_by": "discover",
+                                                     **company["indicators"][key]})
+        assert numeric_value(indicator.raw_value, key) is not None
+        assert score_indicator(indicator) > 1

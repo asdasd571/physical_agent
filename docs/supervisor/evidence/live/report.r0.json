@@ -1,6 +1,6 @@
 {
   "draft": {
-    "run_id": "supervisor-final-20261013",
+    "run_id": "supervisor-reviewed-20261013",
     "revision": 0,
     "summary": "공개 자료를 바탕으로 기술 성숙도, 시장성, 이해관계자, 도메인 적용을 검토한 보고서입니다. 투자 규칙의 계산 결과와 기술의 우열은 구분합니다. 미확인 자료는 추정하지 않고 후속 확인 항목으로 남깁니다.",
     "sections": [
@@ -8,8 +8,12 @@
         "candidate_id": "arobot",
         "perspective": "technology",
         "title": "기술 성숙도",
-        "text": "T2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK1: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK3: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음",
-        "source_ids": [],
+        "text": "T2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK1: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK3: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\n확인된 제품·기술 설명: 에이로봇의 휴머노이드 로봇 앨리스 시리즈는 다양한 작업 수행을 위해 개발된 플랫폼으로, 자체 개발한 리니어 액추에이터를 탑재하여 효율성과 내구성을 겸비하고 있습니다.\n확인된 제품·기술 설명: AI와 결합하여 Physical AI로 진화한 에이로봇의 로봇은 산업 현장을 겨냥한 RFM을 탑재하여 부가가치를 창출하고, 다양한 환경에서도 높은 성능을 발휘할 수 있습니다.",
+        "source_ids": [
+          "src_ab840a4c68943e6e54692931_574bbe3fbf59e5e1",
+          "src_ab840a4c68943e6e54692931_86888ab7839158bf",
+          "src_ab840a4c68943e6e54692931_939a82621749f6a3"
+        ],
         "indicator_ids": [
           "T2",
           "K1",
@@ -20,14 +24,15 @@
           "T2: 원값·대상·기간·출처가 충족된 자료 없음",
           "K1: 원값·대상·기간·출처가 충족된 자료 없음",
           "K2: 원값·대상·기간·출처가 충족된 자료 없음",
-          "K3: 원값·대상·기간·출처가 충족된 자료 없음"
+          "K3: 원값·대상·기간·출처가 충족된 자료 없음",
+          "제품 설명이 확보되었으나 논문 수·시험 성공률·독립 현장 실증의 정량 근거를 대신하지 않습니다."
         ]
       },
       {
         "candidate_id": "arobot",
         "perspective": "market",
         "title": "시장성",
-        "text": "R1: Seed (2024-05-10): 3,500,000,000 KRW; Series A (2025-07-15): 10,000,000,000 KRW\nR3: 이전 2025-08-31: 18명; 최근 2026-08-31: 28명\nR2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nP1: 로봇 부품 및 부분품: 2022년 1,420,000,000,000 → 2025년 1,980,000,000,000 원; 저장된 CAGR 11.72%\nM1: 유효 등록 3건; 우선권 기준 3패밀리",
+        "text": "R1: Seed (2024-05-10): 3,500,000,000 KRW; Series A (2025-07-15): 10,000,000,000 KRW (채점값 135.00 억 원, 3/5점)\nR3: 이전 2025-08-31: 18명; 최근 2026-08-31: 28명 (채점값 55.56 %, 4/5점)\nR2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nP1: 로봇 부품 및 부분품: 2022년 1,420,000,000,000 → 2025년 1,980,000,000,000 원; 저장된 CAGR 11.72% (채점값 11.72 %, 4/5점)\nM1: 유효 등록 3건; 우선권 기준 3패밀리 (채점값 3.00 패밀리, 3/5점)",
         "source_ids": [
           "src_arobot_employment",
           "src_arobot_funding",
@@ -50,7 +55,7 @@
         "candidate_id": "arobot",
         "perspective": "stakeholders",
         "title": "이해관계자",
-        "text": "T1: 해당 경력 2명 (한재권, 엄윤설)\nF1: 현금 8,500,000,000 KRW; 단기금융상품 1,500,000,000 KRW; 영업현금흐름 -3,600,000,000 KRW\nF2: 자본금 250,000,000 KRW; 자본총계 6,800,000,000 KRW; 부채총계 2,200,000,000 KRW; 감사의견 적정; 계속기업 불확실성 아니오\nF3: 확인 사건 0건; 조회 기관: 공정거래위원회, 고용노동부",
+        "text": "T1: 해당 경력 2명 (한재권, 엄윤설) (채점값 2.00 명, 3/5점)\nF1: 현금 8,500,000,000 KRW; 단기금융상품 1,500,000,000 KRW; 영업현금흐름 -3,600,000,000 KRW\nF2: 자본금 250,000,000 KRW; 자본총계 6,800,000,000 KRW; 부채총계 2,200,000,000 KRW; 감사의견 적정; 계속기업 불확실성 아니오\nF3: 확인 사건 0건; 조회 기관: 공정거래위원회, 고용노동부",
         "source_ids": [
           "src_arobot_financials",
           "src_arobot_founder",
@@ -70,14 +75,12 @@
         "candidate_id": "arobot",
         "perspective": "application",
         "title": "도메인 적용",
-        "text": "S1: 0개: \nS2: 자료 없음 — 독립 수행 근거 또는 모기업 원문 페이지 미확인\nF4: 자료 없음 — 공정 방폭 구역·장비·인증 조회 미확인\n에이로봇은 로봇 손 기술을 중심으로 혁신을 추구하는 기업이며, 시드 및 시리즈 A 자금을 확보하고 비상장 정상 법인으로 운영되고 있습니다. 지속적인 로봇산업 성장과 기술 혁신을 통해 미래의 시장 기회를 모색하고 있습니다.",
+        "text": "S1: 0개:  (채점값 0.00 작업군, 1/5점)\nS2: 자료 없음 — 독립 수행 근거 또는 모기업 원문 페이지 미확인\nF4: 자료 없음 — 공정 방폭 구역·장비·인증 조회 미확인\n에이로봇은 두 가지 라운드에서 총 135억 원을 유치하며 안정적인 재정 지원을 확보하였고, 직원 수는 28명으로 증가하여 성장 가능성을 보이고 있습니다. 하지만 모기업 수요와 연결된 인정 작업 부족으로 'HOLD' 상태입니다.",
         "source_ids": [
-          "src_ab840a4c68943e6e54692931_34dc574b9ffd0786",
-          "src_ab840a4c68943e6e54692931_45ee617bec71d5d3",
-          "src_ab840a4c68943e6e54692931_b8fc6b87734e7c85",
-          "src_ab840a4c68943e6e54692931_f1dde2e3fd5b18cd",
-          "src_arobot_funding",
-          "src_arobot_registry"
+          "src_76b175663494f0f306cc79e9_5fb5a05167e68ac7",
+          "src_76b175663494f0f306cc79e9_bb695c4648bd7066",
+          "src_arobot_employment",
+          "src_arobot_funding"
         ],
         "indicator_ids": [
           "S1",
@@ -94,8 +97,11 @@
         "candidate_id": "aidin_robotics",
         "perspective": "technology",
         "title": "기술 성숙도",
-        "text": "T2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK1: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK3: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음",
-        "source_ids": [],
+        "text": "T2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK1: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nK3: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\n확인된 제품·기술 설명: 에이딘로보틱스는 손상을 우려하는 물체를 다룰 수 있는 힘 센서를 탑재한 인간형 로봇 핸드와, 정전 용량 기반 힘/토크 센서 기술을 보유하고 있습니다. 이 기술은 다양한 로봇 응용 분야에 적합합니다.",
+        "source_ids": [
+          "src_2ad45bad7620941d8c624be5_8a2cd08d79ed078d",
+          "src_2ad45bad7620941d8c624be5_9cf2a39bb2af2949"
+        ],
         "indicator_ids": [
           "T2",
           "K1",
@@ -106,14 +112,15 @@
           "T2: 원값·대상·기간·출처가 충족된 자료 없음",
           "K1: 원값·대상·기간·출처가 충족된 자료 없음",
           "K2: 원값·대상·기간·출처가 충족된 자료 없음",
-          "K3: 원값·대상·기간·출처가 충족된 자료 없음"
+          "K3: 원값·대상·기간·출처가 충족된 자료 없음",
+          "제품 설명이 확보되었으나 논문 수·시험 성공률·독립 현장 실증의 정량 근거를 대신하지 않습니다."
         ]
       },
       {
         "candidate_id": "aidin_robotics",
         "perspective": "market",
         "title": "시장성",
-        "text": "R1: Seed (2020-08-01): 1,000,000,000 KRW; Series A (2022-03-15): 4,500,000,000 KRW; Series B (2026-09-10): 16,000,000,000 KRW\nR3: 이전 2025-08-31: 24명; 최근 2026-08-31: 38명\nR2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nP1: 로봇 부품 및 부분품: 2022년 1,420,000,000,000 → 2025년 1,980,000,000,000 원; 저장된 CAGR 11.72%\nM1: 유효 등록 5건; 우선권 기준 4패밀리",
+        "text": "R1: Seed (2020-08-01): 1,000,000,000 KRW; Series A (2022-03-15): 4,500,000,000 KRW; Series B (2026-09-10): 16,000,000,000 KRW (채점값 215.00 억 원, 3/5점)\nR3: 이전 2025-08-31: 24명; 최근 2026-08-31: 38명 (채점값 58.33 %, 4/5점)\nR2: 자료 없음 — 원값·대상·기간·출처가 충족된 자료 없음\nP1: 로봇 부품 및 부분품: 2022년 1,420,000,000,000 → 2025년 1,980,000,000,000 원; 저장된 CAGR 11.72% (채점값 11.72 %, 4/5점)\nM1: 유효 등록 5건; 우선권 기준 4패밀리 (채점값 4.00 패밀리, 4/5점)",
         "source_ids": [
           "src_aidin_employment",
           "src_aidin_funding",
@@ -136,7 +143,7 @@
         "candidate_id": "aidin_robotics",
         "perspective": "stakeholders",
         "title": "이해관계자",
-        "text": "T1: 해당 경력 2명 (최혁렬, 이윤행)\nF1: 현금 12,000,000,000 KRW; 단기금융상품 3,000,000,000 KRW; 영업현금흐름 -4,200,000,000 KRW\nF2: 자본금 350,000,000 KRW; 자본총계 11,500,000,000 KRW; 부채총계 3,100,000,000 KRW; 감사의견 적정; 계속기업 불확실성 아니오\nF3: 확인 사건 0건; 조회 기관: 공정거래위원회, 고용노동부",
+        "text": "T1: 해당 경력 2명 (최혁렬, 이윤행) (채점값 2.00 명, 3/5점)\nF1: 현금 12,000,000,000 KRW; 단기금융상품 3,000,000,000 KRW; 영업현금흐름 -4,200,000,000 KRW\nF2: 자본금 350,000,000 KRW; 자본총계 11,500,000,000 KRW; 부채총계 3,100,000,000 KRW; 감사의견 적정; 계속기업 불확실성 아니오\nF3: 확인 사건 0건; 조회 기관: 공정거래위원회, 고용노동부",
         "source_ids": [
           "src_aidin_financials",
           "src_aidin_founder",
@@ -156,11 +163,14 @@
         "candidate_id": "aidin_robotics",
         "perspective": "application",
         "title": "도메인 적용",
-        "text": "S1: 0개: \nS2: 자료 없음 — 독립 수행 근거 또는 모기업 원문 페이지 미확인\nF4: 자료 없음 — 공정 방폭 구역·장비·인증 조회 미확인\n에이딘로보틱스는 2019년 설립된 한국의 비상장 로봇기술 기업으로, 2026년 9월 기준 시리즈 B에서 160억 원의 자금을 유치하는 등 지속적인 투자 성장을 이루고 있습니다.",
+        "text": "S1: 0개:  (채점값 0.00 작업군, 1/5점)\nS2: 자료 없음 — 독립 수행 근거 또는 모기업 원문 페이지 미확인\nF4: 자료 없음 — 공정 방폭 구역·장비·인증 조회 미확인\n에이딘로보틱스는 힘/토크 센서 기술을 바탕으로 한 로봇 부품 제조업체입니다. 현금흐름과 자본구조가 부정적인 점은 있으나, 비즈니스의 성장 가능성을 보여주는 CAGP 11.72%의 시장 전망이 있습니다.",
         "source_ids": [
-          "src_2ad45bad7620941d8c624be5_fc2ccb9c86d15fc5",
-          "src_aidin_funding",
-          "src_aidin_registry"
+          "src_2ad45bad7620941d8c624be5_012f17831b080678",
+          "src_2ad45bad7620941d8c624be5_6041bc7ec780ec7b",
+          "src_2ad45bad7620941d8c624be5_725f5a34645078f8",
+          "src_2ad45bad7620941d8c624be5_8a2cd08d79ed078d",
+          "src_2ad45bad7620941d8c624be5_e04db9c3cab9cc35",
+          "src_market_robot_parts_2025"
         ],
         "indicator_ids": [
           "S1",
@@ -231,22 +241,26 @@
       }
     ],
     "reference_ids": [
-      "src_2ad45bad7620941d8c624be5_fc2ccb9c86d15fc5",
-      "src_ab840a4c68943e6e54692931_34dc574b9ffd0786",
-      "src_ab840a4c68943e6e54692931_45ee617bec71d5d3",
-      "src_ab840a4c68943e6e54692931_b8fc6b87734e7c85",
-      "src_ab840a4c68943e6e54692931_f1dde2e3fd5b18cd",
+      "src_2ad45bad7620941d8c624be5_012f17831b080678",
+      "src_2ad45bad7620941d8c624be5_6041bc7ec780ec7b",
+      "src_2ad45bad7620941d8c624be5_725f5a34645078f8",
+      "src_2ad45bad7620941d8c624be5_8a2cd08d79ed078d",
+      "src_2ad45bad7620941d8c624be5_9cf2a39bb2af2949",
+      "src_2ad45bad7620941d8c624be5_e04db9c3cab9cc35",
+      "src_76b175663494f0f306cc79e9_5fb5a05167e68ac7",
+      "src_76b175663494f0f306cc79e9_bb695c4648bd7066",
+      "src_ab840a4c68943e6e54692931_574bbe3fbf59e5e1",
+      "src_ab840a4c68943e6e54692931_86888ab7839158bf",
+      "src_ab840a4c68943e6e54692931_939a82621749f6a3",
       "src_aidin_employment",
       "src_aidin_financials",
       "src_aidin_founder",
       "src_aidin_funding",
-      "src_aidin_registry",
       "src_aidin_risk",
       "src_arobot_employment",
       "src_arobot_financials",
       "src_arobot_founder",
       "src_arobot_funding",
-      "src_arobot_registry",
       "src_arobot_risk",
       "src_figure_registry",
       "src_figure_series_c",
@@ -719,10 +733,8 @@
           },
           "evidence_status": "COMPANY_CLAIM",
           "source_ids": [
-            "src_ab840a4c68943e6e54692931_34dc574b9ffd0786",
-            "src_ab840a4c68943e6e54692931_45ee617bec71d5d3",
-            "src_ab840a4c68943e6e54692931_b8fc6b87734e7c85",
-            "src_ab840a4c68943e6e54692931_f1dde2e3fd5b18cd"
+            "src_76b175663494f0f306cc79e9_5fb5a05167e68ac7",
+            "src_76b175663494f0f306cc79e9_bb695c4648bd7066"
           ],
           "collected_by": "synergy",
           "query_status": "SUCCESS",
@@ -768,23 +780,23 @@
         "K1": 1,
         "K2": 1,
         "K3": 1,
-        "M1": 1,
-        "P1": 1,
-        "R1": 1,
+        "M1": 3,
+        "P1": 4,
+        "R1": 3,
         "R2": 1,
-        "R3": 1,
+        "R3": 4,
         "S1": 1,
         "S2": 1,
-        "T1": 1,
+        "T1": 3,
         "T2": 1
       },
       "category_scores": {
-        "team": "1.00",
+        "team": "2.00",
         "tech": "1.00",
         "synergy": "1.00",
-        "market": "1.00",
-        "traction": "1.00",
-        "moat": "1.00"
+        "market": "4.00",
+        "traction": "2.67",
+        "moat": "3.00"
       },
       "gates": {
         "G1": {
@@ -818,35 +830,26 @@
             "src_arobot_risk"
           ],
           "unknown_items": [
-            "F1",
-            "F2",
-            "F3",
             "F4"
           ]
         }
       },
-      "total_score": "20.0",
+      "total_score": "42.0",
       "decision": {
         "status": "HOLD",
         "reasons": [
           "미통과 게이트: G2",
-          "총점이 70점 미만입니다: 20.0",
+          "총점이 70점 미만입니다: 42.0",
           "Supervisor가 근거 충분성을 확인하지 못하여 판정을 보류합니다."
         ]
       },
       "evidence_coverage": "0.50",
       "unknown_items": [
         "S2 모기업 수요 연결",
-        "F1",
-        "F2",
-        "F3",
         "F4"
       ],
       "due_diligence_items": [
         "S2 모기업 수요 연결",
-        "F1",
-        "F2",
-        "F3",
         "F4",
         "자료 없음 지표가 6개이므로 정보 부족 검토가 필요합니다",
         "K1 원값과 근거를 추가 확인해야 합니다",
@@ -866,15 +869,45 @@
           "S2",
           "T2"
         ],
+        "scoring_values": {
+          "K1": null,
+          "K2": null,
+          "K3": null,
+          "M1": "3",
+          "P1": "11.72",
+          "R1": "135",
+          "R2": null,
+          "R3": "55.55555555555555555555555556",
+          "S1": "0",
+          "S2": null,
+          "T1": "2",
+          "T2": null
+        },
         "evidence_sufficient": false,
         "termination_reason": "evidence_exhausted",
+        "technical_findings": [
+          {
+            "description": "에이로봇의 휴머노이드 로봇 앨리스 시리즈는 다양한 작업 수행을 위해 개발된 플랫폼으로, 자체 개발한 리니어 액추에이터를 탑재하여 효율성과 내구성을 겸비하고 있습니다.",
+            "source_ids": [
+              "src_ab840a4c68943e6e54692931_86888ab7839158bf",
+              "src_ab840a4c68943e6e54692931_939a82621749f6a3"
+            ]
+          },
+          {
+            "description": "AI와 결합하여 Physical AI로 진화한 에이로봇의 로봇은 산업 현장을 겨냥한 RFM을 탑재하여 부가가치를 창출하고, 다양한 환경에서도 높은 성능을 발휘할 수 있습니다.",
+            "source_ids": [
+              "src_ab840a4c68943e6e54692931_86888ab7839158bf",
+              "src_ab840a4c68943e6e54692931_574bbe3fbf59e5e1"
+            ]
+          }
+        ],
         "narratives": [
           {
             "section": "business",
-            "text": "에이로봇은 로봇 손 기술을 중심으로 혁신을 추구하는 기업이며, 시드 및 시리즈 A 자금을 확보하고 비상장 정상 법인으로 운영되고 있습니다. 지속적인 로봇산업 성장과 기술 혁신을 통해 미래의 시장 기회를 모색하고 있습니다.",
+            "text": "에이로봇은 두 가지 라운드에서 총 135억 원을 유치하며 안정적인 재정 지원을 확보하였고, 직원 수는 28명으로 증가하여 성장 가능성을 보이고 있습니다. 하지만 모기업 수요와 연결된 인정 작업 부족으로 'HOLD' 상태입니다.",
             "source_ids": [
-              "src_arobot_registry",
-              "src_arobot_funding"
+              "src_arobot_funding",
+              "src_arobot_employment"
             ]
           }
         ],
@@ -1380,7 +1413,11 @@
           },
           "evidence_status": "COMPANY_CLAIM",
           "source_ids": [
-            "src_2ad45bad7620941d8c624be5_fc2ccb9c86d15fc5"
+            "src_2ad45bad7620941d8c624be5_012f17831b080678",
+            "src_2ad45bad7620941d8c624be5_6041bc7ec780ec7b",
+            "src_2ad45bad7620941d8c624be5_725f5a34645078f8",
+            "src_2ad45bad7620941d8c624be5_8a2cd08d79ed078d",
+            "src_2ad45bad7620941d8c624be5_e04db9c3cab9cc35"
           ],
           "collected_by": "synergy",
           "query_status": "SUCCESS",
@@ -1426,23 +1463,23 @@
         "K1": 1,
         "K2": 1,
         "K3": 1,
-        "M1": 1,
-        "P1": 1,
-        "R1": 1,
+        "M1": 4,
+        "P1": 4,
+        "R1": 3,
         "R2": 1,
-        "R3": 1,
+        "R3": 4,
         "S1": 1,
         "S2": 1,
-        "T1": 1,
+        "T1": 3,
         "T2": 1
       },
       "category_scores": {
-        "team": "1.00",
+        "team": "2.00",
         "tech": "1.00",
         "synergy": "1.00",
-        "market": "1.00",
-        "traction": "1.00",
-        "moat": "1.00"
+        "market": "4.00",
+        "traction": "2.67",
+        "moat": "4.00"
       },
       "gates": {
         "G1": {
@@ -1476,35 +1513,26 @@
             "src_aidin_risk"
           ],
           "unknown_items": [
-            "F1",
-            "F2",
-            "F3",
             "F4"
           ]
         }
       },
-      "total_score": "20.0",
+      "total_score": "44.0",
       "decision": {
         "status": "HOLD",
         "reasons": [
           "미통과 게이트: G2",
-          "총점이 70점 미만입니다: 20.0",
+          "총점이 70점 미만입니다: 44.0",
           "Supervisor가 근거 충분성을 확인하지 못하여 판정을 보류합니다."
         ]
       },
       "evidence_coverage": "0.50",
       "unknown_items": [
         "S2 모기업 수요 연결",
-        "F1",
-        "F2",
-        "F3",
         "F4"
       ],
       "due_diligence_items": [
         "S2 모기업 수요 연결",
-        "F1",
-        "F2",
-        "F3",
         "F4",
         "자료 없음 지표가 6개이므로 정보 부족 검토가 필요합니다",
         "K1 원값과 근거를 추가 확인해야 합니다",
@@ -1524,15 +1552,37 @@
           "S2",
           "T2"
         ],
+        "scoring_values": {
+          "K1": null,
+          "K2": null,
+          "K3": null,
+          "M1": "4",
+          "P1": "11.72",
+          "R1": "215",
+          "R2": null,
+          "R3": "58.33333333333333333333333333",
+          "S1": "0",
+          "S2": null,
+          "T1": "2",
+          "T2": null
+        },
         "evidence_sufficient": false,
         "termination_reason": "evidence_exhausted",
+        "technical_findings": [
+          {
+            "description": "에이딘로보틱스는 손상을 우려하는 물체를 다룰 수 있는 힘 센서를 탑재한 인간형 로봇 핸드와, 정전 용량 기반 힘/토크 센서 기술을 보유하고 있습니다. 이 기술은 다양한 로봇 응용 분야에 적합합니다.",
+            "source_ids": [
+              "src_2ad45bad7620941d8c624be5_9cf2a39bb2af2949",
+              "src_2ad45bad7620941d8c624be5_8a2cd08d79ed078d"
+            ]
+          }
+        ],
         "narratives": [
           {
             "section": "business",
-            "text": "에이딘로보틱스는 2019년 설립된 한국의 비상장 로봇기술 기업으로, 2026년 9월 기준 시리즈 B에서 160억 원의 자금을 유치하는 등 지속적인 투자 성장을 이루고 있습니다.",
+            "text": "에이딘로보틱스는 힘/토크 센서 기술을 바탕으로 한 로봇 부품 제조업체입니다. 현금흐름과 자본구조가 부정적인 점은 있으나, 비즈니스의 성장 가능성을 보여주는 CAGP 11.72%의 시장 전망이 있습니다.",
             "source_ids": [
-              "src_aidin_registry",
-              "src_aidin_funding"
+              "src_market_robot_parts_2025"
             ]
           }
         ],
@@ -1576,22 +1626,6 @@
     }
   ],
   "sources": [
-    {
-      "source_id": "src_arobot_registry",
-      "kind": "WEB",
-      "publisher": "KRX KIND / DART",
-      "title": "에이로봇 법인 및 상장 여부 조회",
-      "url": "https://kind.krx.co.kr/corpgeneral/corpList.do",
-      "published_at": "2026-09-30",
-      "collected_at": "2026-09-30T09:15:00+09:00",
-      "local_path": null,
-      "sha256": null,
-      "doc_id": null,
-      "page": null,
-      "chunk_id": null,
-      "response_id": null,
-      "evidence_excerpt": "법인등록번호 854-88-00929, 비상장 정상 법인 확인"
-    },
     {
       "source_id": "src_arobot_funding",
       "kind": "WEB",
@@ -1673,68 +1707,52 @@
       "evidence_excerpt": "최근 5년간 공정위 시정명령/과징금/고발 0건, 노동부 중대재해 공표 0건 확인 (조회일: 2026-09-30, 확인자: 박세진)"
     },
     {
-      "source_id": "src_ab840a4c68943e6e54692931_34dc574b9ffd0786",
+      "source_id": "src_ab840a4c68943e6e54692931_939a82621749f6a3",
       "kind": "PDF",
       "publisher": "AeiROBOT",
       "title": "AeiROBOT Company and Product Brochure",
       "url": "https://www.ces2026-humanoidmaxalliance.com/_files/ugd/e1822d_b26c5b12645649b0942f3f4a6023655e.pdf",
       "published_at": null,
-      "collected_at": "2026-10-13T05:01:03.778871Z",
+      "collected_at": "2026-10-13T05:16:09.679152Z",
       "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/arobot/arobot_brochure_en.pdf",
       "sha256": "c2acce4a617d81e226d44fc7a37426b39b81573ac0bd3d3cdacab8f2f927f61f",
       "doc_id": "arobot_brochure_2025",
-      "page": 2,
-      "chunk_id": "chunk_ef13dd9039f2f37d7e5bc063",
+      "page": 4,
+      "chunk_id": "chunk_5ea431b84d802161ea2934a6",
       "response_id": null,
-      "evidence_excerpt": "CEO 엄윤설 에이로봇, 미래를 향한 도약 최근 휴머노이드 로봇 분야는 미국과 중국을 중심으로 치열한 패권 경쟁이 전개되고 있습니다. 압도적인 기술력과 가격경쟁력을 갖춘 강대국 사이에서 한국이 직면한 현실은 결코 녹록지 않습니다. 그러나 위기 속에서야말로 새로운 기회가 열리는 법입니다. 대한민국은 제조업 토대를 기반으로 성장해온 국가로서,재료 수급에서 시장 진입까지 전 주기에 걸쳐 휴머노이드 로봇 생태계를 조성하기에 최적의 환경을 갖추고 있습니다. 또한, 제조업 중심의 산업 환경은 피지컬 AI의 출발점인 원시데이터 확보 측면에서도 분명한 강점을 지니고 있습니다. 이러한 기반 위에서 우리는 글로벌 선도 그룹에 도약할 수 있다는 확신을 가지고 있습니다. 휴머노이드 ALICE 시리즈를 비롯한 저희 로봇들이 곧 다가올 미래를 보여주는 단서가 되기를 바랍니다. AeiROBOT은 언제나처럼, 글로벌 무대에서 K-로봇이 당당히 자리매김할 수 있도록 최선을 다하겠습니다. 감사합니다."
+      "evidence_excerpt": "이족보행 휴머노이드 로봇 앨리스 4 앨리스 4는 한층 진보된 미래지향적 휴머노이드 로봇 플랫폼으로 인간이 할 수 있는 모든 활동을 수행할 수 있도록 개발되고 있습니다. 앨리스 4는 ‘InnoVEX 2025’ 행사에서 엔비디아상과 오키나와혁신상을 동시에 수상한 로봇인만큼 사람과의 물리적 상호작용에서도 자연스러운 대응이 가능합니다. 또한, 자체 개발한 리니어 액추에이터가 탑재되어 있는 로봇으로 효율성과 내구성, 정밀한 제어까지 모두 겸비하여 다양한 환경에서 최적의 성능을 제공합니다. /cid34/cid45/cid42/cid36/cid38/cid21"
     },
     {
-      "source_id": "src_ab840a4c68943e6e54692931_45ee617bec71d5d3",
+      "source_id": "src_76b175663494f0f306cc79e9_5fb5a05167e68ac7",
       "kind": "PDF",
-      "publisher": "AeiROBOT",
-      "title": "AeiROBOT Company and Product Brochure",
-      "url": "https://www.ces2026-humanoidmaxalliance.com/_files/ugd/e1822d_b26c5b12645649b0942f3f4a6023655e.pdf",
+      "publisher": "SK Innovation",
+      "title": "SK Innovation ESG Report 2022",
+      "url": "https://www.skinnovation.com/files/sustainability/esg_report/2022%20SKI%20ESG%20Report_eng.pdf",
       "published_at": null,
-      "collected_at": "2026-10-13T05:01:03.898119Z",
-      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/arobot/arobot_brochure_en.pdf",
-      "sha256": "c2acce4a617d81e226d44fc7a37426b39b81573ac0bd3d3cdacab8f2f927f61f",
-      "doc_id": "arobot_brochure_2025",
-      "page": 7,
-      "chunk_id": "chunk_460685fdb4a16ce5847e31e8",
+      "collected_at": "2026-10-13T05:16:13.723336Z",
+      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/parent/sk_2022_esg_report_eng.pdf",
+      "sha256": "e69629ffc7176568cbceea738970a148cc28dc7709025696d2acd5f3a0c94071",
+      "doc_id": "sk_innovation_esg_2022",
+      "page": 80,
+      "chunk_id": "chunk_23a1d3ada6f807949ce56fff",
       "response_id": null,
-      "evidence_excerpt": "보행 및 관절 다중 링크 병렬 구조 리니어 액추에이터 앨리스 4의 다리는 다수의 리니어 액추에이터가 협업하는 다중 링크 병렬 구조로 설계되어 외력에 강인한 특성을 지녔습니다. 모든 액추에이터가 지면에 수직 배치되어 반발력을 고르게 분산시켜 안정적인 보행을 지원합니다. 제어 난이도가 높은 구조이지만, 에이로봇은 자체 프레임워크와 축적된 노하우로 구현에 성공했습니다. SLIP 모델 기반 이족보행 제어 보행은 위치 외 힘을 동시에 고려한 키노-다이나믹스(Kino-Dynamics) 해석을 통해 임피던스 제어가 가능합니다. 또한, 스프링 상수를 반영하여 달리기에 유리한 보행 모델 SLIP(Spring-Loaded Inverted Pendulum)을 구현하였으며, 3m/s의 보행속도 달성을 목표로 개발하고 있습니다. 시뮬레이션을 통해 보행을 위한 강화 학습 및 모방학습을 진행 중이며, 전신 제어기(Whole-body Control)와 모델 예측 제어기(Model Predictive Control)를 통해 빠르고 안정적인 보행을 구현하고 있습니다."
+      "evidence_excerpt": "response to marine pollution such as oil spills. We conduct emergency response drills according to the scenarios and inspect the readiness of prevention equipment every month. Joint response drills with the Self-Defense & Prevention Team, which is composed of the private and public sectors, take place every six months. Regular Monitoring of Marine Facilities The company runs facility inspections periodically following internal work standards and procedures in a bid to prevent marine pollution accidents and marine pollution prevention managers are assigned to each marine facility to manage and supervise the prevention of accidents around the clock. As a result of these efforts, there have been no accidents causing marine pollution so far and we always stay alert to the risks of marine pollution, exercising emergency response drills. Environmental Audit Environmental Management System (ISO 14001) Certifications The Jeungpyeong Plant of SK IE Technology acquired the ISO14001 certification in September 2022, with which all domestic business sites of SK Innovation and its subsidiaries are now certified with ISO14001. Particularly we focused on having our overseas operations certified last year and SK On and SK IE Technology successfully had all their overseas sites certified with ISO14001. Environmental Management Reinforced by Audits Through periodic environmental audits, SK Innovation examines its compliance with internal regulations on environmental management, work procedures, and relevant laws. We also check corrective actions taken to follow up on previous audit findings and improvement plans by business sites. Those business sites certified with ISO 14001 receive internal inspections every year on their compliance with relevant laws and follow-up measures pursuant to the certification standards, and have the feasibility of their system operations verified through the post-audits by the certifier. In particular, SK Innovation’s subsidiaries (SKBMP , SKBMC, SKBA, SKOH, SKBM, SKOJ) had major overseas business sites certified with ISO 14001 for the first time in 2022 and plan to conduct self-audits every year, starting from 2023."
     },
     {
-      "source_id": "src_ab840a4c68943e6e54692931_f1dde2e3fd5b18cd",
+      "source_id": "src_76b175663494f0f306cc79e9_bb695c4648bd7066",
       "kind": "PDF",
-      "publisher": "AeiROBOT",
-      "title": "AeiROBOT Company and Product Brochure",
-      "url": "https://www.ces2026-humanoidmaxalliance.com/_files/ugd/e1822d_b26c5b12645649b0942f3f4a6023655e.pdf",
+      "publisher": "SK Innovation",
+      "title": "SK Innovation ESG Report 2022",
+      "url": "https://www.skinnovation.com/files/sustainability/esg_report/2022%20SKI%20ESG%20Report_eng.pdf",
       "published_at": null,
-      "collected_at": "2026-10-13T05:01:03.871905Z",
-      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/arobot/arobot_brochure_en.pdf",
-      "sha256": "c2acce4a617d81e226d44fc7a37426b39b81573ac0bd3d3cdacab8f2f927f61f",
-      "doc_id": "arobot_brochure_2025",
-      "page": 10,
-      "chunk_id": "chunk_770e7c7fdc6eabe1c058ad97",
+      "collected_at": "2026-10-13T05:16:13.727847Z",
+      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/parent/sk_2022_esg_report_eng.pdf",
+      "sha256": "e69629ffc7176568cbceea738970a148cc28dc7709025696d2acd5f3a0c94071",
+      "doc_id": "sk_innovation_esg_2022",
+      "page": 77,
+      "chunk_id": "chunk_7937bf388e7a4eee9313521e",
       "response_id": null,
-      "evidence_excerpt": "웰컴 로봇 에이미 Ai Meet You 에이미는 자율주행으로 실내공간을 누비며 고객에게 정보를 제공하는 안내로봇입니다. 기존 안내로봇과 에이미의 가장 큰 차별점은 고객을 만족시킬 세심한 HRI 요소의 적용입니다. 고객과 눈을 마주치며 자연스러운 상호작용하는 에이미의 섬세함은 사용자들로 하여금 더욱 존중받는 듯한 기분을 선사합니다. 이는 곧 고객의 긍정적인 경험으로 이어져 클라이언트의 사업에 큰 도움이 될 것 입니다. /cid34/cid74/cid46/cid58"
-    },
-    {
-      "source_id": "src_ab840a4c68943e6e54692931_b8fc6b87734e7c85",
-      "kind": "PDF",
-      "publisher": "AeiROBOT",
-      "title": "AeiROBOT Company and Product Brochure",
-      "url": "https://www.ces2026-humanoidmaxalliance.com/_files/ugd/e1822d_b26c5b12645649b0942f3f4a6023655e.pdf",
-      "published_at": null,
-      "collected_at": "2026-10-13T05:01:10.657358Z",
-      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/arobot/arobot_brochure_en.pdf",
-      "sha256": "c2acce4a617d81e226d44fc7a37426b39b81573ac0bd3d3cdacab8f2f927f61f",
-      "doc_id": "arobot_brochure_2025",
-      "page": 5,
-      "chunk_id": "chunk_e71bd04b63c6433da66372d9",
-      "response_id": null,
-      "evidence_excerpt": "1.6 m / 45 kgHeight / Weight GENE-RAP6 NVIDIA Orin NX Computing Module Head (2), Hand (6*2) Leg (6*2), Waist (1), Arm (7*2) 41DOF IMU , Load Cell Stereo Camera Sensors BASIC SPECS 온디바이스 AI 로봇에 탑재된 컴퓨터에 인공지능 알고리즘을 내장하여 통신에 의존 하는 방식보다 안정적입니다. 여자유도 조작 팔(7DOF)과 손(6DOF)을 통하여 섬세하고, 복잡한 작업이 가능합니다. 외부 힘에 반응할 수 있도록 임피던스 제어가 적용되어 있습니다. 이족보행 계단을 오르거나 좁은 공간, 불규칙한 지면 등 다양한 환경에서 작업 수행이 가능합니다. ALICE 4"
+      "evidence_excerpt": "77 SK Innovation ESG Report 2022Overview Sustainable ManagementSK Innovation GROWTH Strategy ESG Data AppendixESG Policy & Performance Mitigation of Environmental Impact Protection of Biodiversity Response to Climate Change SOCIAL GOVERNANCEENVIRONMENTAL Air Quality Management Air Pollutants Management SK Innovation is increasing investments in the installation of air pollutants mitigation facilities and changing fuels for combustion facilities as part of its continued endeavors to cut back on air pollutants emissions. Total Air Pollution Load Management System SK Innovation encourages the business sites which are newly affected by the tightened regulation on Total Air Pollution Load Management System to lead the way in legal compliance and contribute to air quality improvement. Affected business sites are allocated an annual emission quota for the 1 st phase (2020~2024) during which time they are demanded to gradually slash emissions. The company has successfully fulfilled the duty of total load management thus far and is gearing up to cut emissions far more than what the law requires. The Ulsan CLX, to this end, has mapped out investments of KRW 300 billion planned through 2024. Our investment schemes include boilers modification, installation of pre-treatment facilities and fuel supply lines for introducing clean fuels to boilers. We also install scrubbers or ultra-low NOx burners to reduce nitrogen oxides (NOx). Urea solution spraying devices are added to processes with high NOx emissions. Vent gas capturing facilities are under construction to reduce fine dust and we are also rebuilding LDARs to manage HAPs. SK Innovation will continue on with such endeavors to directly reduce the amount of fine dust and indirectly reduce greenhouse gas emissions. Fulfilling the Agreement to Cut Air Pollutants Back in 2018, the Ulsan CLX entered into a voluntary agreement with the Ulsan municipality, the Office of Environment, and 30 corporations in the hope of improving air"
     },
     {
       "source_id": "src_patent_arobot_kipris",
@@ -1769,20 +1787,36 @@
       "evidence_excerpt": "제조업용 로봇 부품 및 부분품 매출액: 2022년 1조 4,200억원에서 2025년 1조 9,800억원으로 성장 (3개년 CAGR 11.72%)"
     },
     {
-      "source_id": "src_aidin_registry",
-      "kind": "WEB",
-      "publisher": "KRX KIND / DART",
-      "title": "에이딘로보틱스 법인 및 상장 여부 조회",
-      "url": "https://kind.krx.co.kr/corpgeneral/corpList.do",
-      "published_at": "2026-09-30",
-      "collected_at": "2026-09-30T09:15:00+09:00",
-      "local_path": null,
-      "sha256": null,
-      "doc_id": null,
-      "page": null,
-      "chunk_id": null,
+      "source_id": "src_ab840a4c68943e6e54692931_574bbe3fbf59e5e1",
+      "kind": "PDF",
+      "publisher": "AeiROBOT",
+      "title": "AeiROBOT Company and Product Brochure",
+      "url": "https://www.ces2026-humanoidmaxalliance.com/_files/ugd/e1822d_b26c5b12645649b0942f3f4a6023655e.pdf",
+      "published_at": null,
+      "collected_at": "2026-10-13T05:16:16.532229Z",
+      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/arobot/arobot_brochure_en.pdf",
+      "sha256": "c2acce4a617d81e226d44fc7a37426b39b81573ac0bd3d3cdacab8f2f927f61f",
+      "doc_id": "arobot_brochure_2025",
+      "page": 13,
+      "chunk_id": "chunk_59f44dfa7e3e47888e3f6edd",
       "response_id": null,
-      "evidence_excerpt": "법인등록번호 355-87-00980, 비상장 정상 법인 확인"
+      "evidence_excerpt": "230(W) x 230(D) x 177(H) mmSize DOF 3 hour / 8 hourCharging / Running AI Processor RK 3588Computing Module Display Leg (2), Ear(2) 4 Sensors Wide FOV Camera Laser Sensor , IMU , FSR 5” Round LCD DisplayHAILO-8 , Lightspeeur 2803S BASIC SPECS EDIE 8 강화학습 로봇 사용자와의 장기적인 상호작용을 통해 사용자의 특성과 생활패턴을 학습,진화 하며 맞춤형 서비스를 제공합니다. 고도화된 AI 인식 에디는 표정, 감정, 제스처를 인식하여 상황에 맞게 대응합니다. 위험 상황에서 외부에도 도움을 요청할 수 있습니다. 검증된 정서적 HRI 가톨릭 의대 뇌 인지 공학팀의 뇌기능 영상(fMRI) 기술을 통해 에디와의 정서적 교감이 사용자에게 긍정적으로 작용함을 입증했습니다."
+    },
+    {
+      "source_id": "src_ab840a4c68943e6e54692931_86888ab7839158bf",
+      "kind": "PDF",
+      "publisher": "AeiROBOT",
+      "title": "AeiROBOT Company and Product Brochure",
+      "url": "https://www.ces2026-humanoidmaxalliance.com/_files/ugd/e1822d_b26c5b12645649b0942f3f4a6023655e.pdf",
+      "published_at": null,
+      "collected_at": "2026-10-13T05:16:16.531377Z",
+      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/arobot/arobot_brochure_en.pdf",
+      "sha256": "c2acce4a617d81e226d44fc7a37426b39b81573ac0bd3d3cdacab8f2f927f61f",
+      "doc_id": "arobot_brochure_2025",
+      "page": 14,
+      "chunk_id": "chunk_c58871ab619ad12788631d83",
+      "response_id": null,
+      "evidence_excerpt": "CTO 한재권 인공지능 휴머노이드, 산업 현장의 새로운 동반자 AI가 스크린 안에서만 활동하는 한계를 벗어나 현실 세계에서 다양한 작업을 수행할 수 있는 가장 완벽한 솔루션이 바로 휴머노이드 로봇입니다. AI는 휴머노이드 로봇과 결합하여 Physical AI로 진화하고 있으며, 2025년 본격적으로 등장한 로봇 파운데이션 모델(RFM)은 이러한 변화를 가속화하고 있습니다. 현재, RFM을 탑재한 휴머노이드 로봇이 산업 현장에서 부가가치를 창출하기 위한 글로벌 경쟁이 치열하게 전개되고 있습니다. 에이로봇은 치열한 글로벌 경쟁의 최전선에서 RFM을 탑재한 최신 휴머노이드 로봇을 선보이고 있습니다. 제조 현장에서 가성비와 효율성을 입증할 바퀴 기반 휴머노이드 ‘앨리스 M1’, 험난한 환경에서도 작업 가능한 이족보행 풀사이즈 휴머노이드 ‘앨리스 4’ 이 두 가지 혁신적 솔루션을 통해 우리는 산업 현장에서 에이로봇 휴머노이드 로봇의 우수한 기술성과 경제성을 동시에 증명하려고 합니다. 우리의 휴머노이드 로봇이 우리의 산업 현장에서 우리의 노동자들과 함께 대한민국 제조업에 활기를 불어넣는 모습, 저희 에이로봇이 실현하겠습니다."
     },
     {
       "source_id": "src_aidin_funding",
@@ -1865,20 +1899,100 @@
       "evidence_excerpt": "최근 5년간 공정위 시정명령/과징금/고발 0건, 노동부 중대재해 공표 0건 확인 (조회일: 2026-09-30, 확인자: 박세진)"
     },
     {
-      "source_id": "src_2ad45bad7620941d8c624be5_fc2ccb9c86d15fc5",
+      "source_id": "src_2ad45bad7620941d8c624be5_8a2cd08d79ed078d",
       "kind": "PDF",
       "publisher": "AIDIN Robotics",
       "title": "AIDIN Robotics 제품 카탈로그",
       "url": "https://www.aidinrobotics.co.kr/_files/ugd/ba4131_a5b2bd5a70fb418eacd565420041efb9.pdf?index=true",
       "published_at": null,
-      "collected_at": "2026-10-13T05:01:28.539664Z",
+      "collected_at": "2026-10-13T05:16:24.224117Z",
+      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/aidin_robotics/aidin_catalog_ko.pdf",
+      "sha256": "6d4d940117c319c10ea6fdb3deda8a17c979e335f07fa9af82dc2c1deb16299c",
+      "doc_id": "aidin_catalog_ko",
+      "page": 7,
+      "chunk_id": "chunk_eb5b6eb6b7b00d0159917685",
+      "response_id": null,
+      "evidence_excerpt": "사양사양 응용분야 13 특징 Smart 6 axis F/T Sensor KIT 스마트 6축 힘/토크 센서 키트 모델명 AFT200-KIT-RB AFT200-KIT-NRMK 차세대 힘센싱 기반 힘/토크 센서 올인원 키트 적용가능로봇 레인보우로보틱스 RB3, RB5, RB10, RB16 뉴로메카 Indy7 그 외 파트너사 모집중 스마트 6축 힘/토크 센서 키트 에이딘로보틱스가 자체 개발한 차세대 정전용량 측정방식의 힘토크 센서 적용 협동로봇 브랜드별 맞춤 Plug&Play 모드 지원 협동로봇 브랜드별 맞춤 커스텀 키트 제작 가능 티칭팬던트 내 손쉬운 셋업 기능 지원 힘제어 기술이 필요한 다양한 공정에 응용 가능 (폴리싱, 샌딩, 그라인딩 등) 케이블이나 부품을 조립하는 공정 일반 산업용 제조 / 협동로봇 스마트팩토리 / 자동화 라인 Rainbow Robotics Neuromeka 12 지원기능 정밀한 힘 측정 티칭 펜던트에서 바로 사용 가능한 힘제어 기능 힘 측정을 통한 충돌 감지 및 정지 기능 구현 가능 AFT200-KIT-NRMK C(CAN)AFT200-KIT-RB C(CAN)UnitIndex 635 (Sensor 236g, Bracket 399g) 505 (Sensor 236g, Bracket 269g) gWeight 5VDCOperating voltage 12VDCMax. Safe excitation voltage 200NNominal force range 15NmNominal torque range 0.15NResolution(Fxyz) 0.015NmResolution(Txyz) D80 * H56.3D80 * H52.3mmDimensions IP56IP Rating 10-60°COperating temperature"
+    },
+    {
+      "source_id": "src_2ad45bad7620941d8c624be5_9cf2a39bb2af2949",
+      "kind": "PDF",
+      "publisher": "AIDIN Robotics",
+      "title": "AIDIN Robotics 제품 카탈로그",
+      "url": "https://www.aidinrobotics.co.kr/_files/ugd/ba4131_a5b2bd5a70fb418eacd565420041efb9.pdf?index=true",
+      "published_at": null,
+      "collected_at": "2026-10-13T05:16:24.189564Z",
+      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/aidin_robotics/aidin_catalog_ko.pdf",
+      "sha256": "6d4d940117c319c10ea6fdb3deda8a17c979e335f07fa9af82dc2c1deb16299c",
+      "doc_id": "aidin_catalog_ko",
+      "page": 12,
+      "chunk_id": "chunk_0b7b7d3223fa98b9f04a01cd",
+      "response_id": null,
+      "evidence_excerpt": "특징 응용분야 22 23 AIDIN HAND 인간형 로봇 핸드 > 사양사양 인간형 로봇 핸드 에이딘 로보틱스에서 자체 개발한 힘 센서를 탑재한 인간형 핸드 기존의 그리퍼로 할 수 없는 다재다능한 작업이 가능한 미래형 피킹 시스템 다양한 종류의 물체에 적절한 파지동작 (파워, 3지점, 핀치 등)이 가능하며, 힘센서의 결합으로 과일 등 손상이 쉬운 물체를 높은 신뢰도로 핸들링 가능 산업용 제조-조립 로봇 물류용 피킹 로봇 가정용 가사 보조 로봇 의료용 로봇 의수 인간 수준의 컴팩트한 사이즈와 가벼운 무게 링크 구조 기반으로 제작되어 제어 정밀도와 힘효율이 높음 5 X AFT-Mini 초소형 6축 힘토크센서 탑재 *본 제품은 연구용 목적으로만 판매 ValueUnitIndex Power Mode (cylindrical, spherical, etc.) Precision Mode (pinch, tripod, etc.) ModeGrasping mode 3DoFDegree of Freedom (Finger) 15DoFDegree of Freedom (Hand) 20 or 50NFinger-tip force 15kgPayload 291 x 112 x 120mmSize 1.3kgWeight 5 (Miniature 6-axis F/T Sensor, AFT20-D15) EAFinger-tip sensor"
+    },
+    {
+      "source_id": "src_2ad45bad7620941d8c624be5_012f17831b080678",
+      "kind": "PDF",
+      "publisher": "AIDIN Robotics",
+      "title": "AIDIN Robotics 제품 카탈로그",
+      "url": "https://www.aidinrobotics.co.kr/_files/ugd/ba4131_a5b2bd5a70fb418eacd565420041efb9.pdf?index=true",
+      "published_at": null,
+      "collected_at": "2026-10-13T05:16:27.428558Z",
       "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/aidin_robotics/aidin_catalog_ko.pdf",
       "sha256": "6d4d940117c319c10ea6fdb3deda8a17c979e335f07fa9af82dc2c1deb16299c",
       "doc_id": "aidin_catalog_ko",
       "page": 4,
-      "chunk_id": "chunk_575f230e7454c3486c300a32",
+      "chunk_id": "chunk_a9f3b883848adf9148cc2171",
       "response_id": null,
-      "evidence_excerpt": "에이딘로보틱스만의 경쟁력 기존 정전 용량 기반 힘/토크 센싱의 한계점을 극복한 에이딘로보틱스의 차별화된 Fringe effect 기반 차세대 힘 센싱 기술 2019년 법인 설립 2020년 경기도 로봇창업지원 프로그램 우수기업 선정 기업부설연구소 설립 초기창업패키지 과제 선정 벤처기업인증 기술보증 20억 한도 보증 퓨처플레이, 산업은행 캐피탈, 신한은행 캐피탈 투자유치 중소기업청 기술창업지원 프로그램 (TIPS) 선정 R-biz 챌린지 한국로봇산업협회장 상 수상 올해의 대한민국 로봇기업 선정 로보월드 우수제품 수상 2021년 로봇산업 핵심기술 개발사업 선정 (과제규모, 30억) 로보월드 우수제품 2년연속 수상 올해의 대한민국 로봇기업 2년연속 수상 2022년 시리즈 A 투자 유치 (45억원 규모) 서비스 로봇용 핵심 토크 센서 맞춤형 제작 기술 개발 주관기관 선정 스누아이랩과 사족보행로봇용 비전 인공지능(AI) 기술협력 사업 확장 업무협약 체결 로보월드 우수제품 3년연속 수상 올해의 대한민국 로봇기업 3년연속 수상 2023년 초격차 스타트업 1000+ 선정 IEEE 국제 로봇 및 자동화 컨퍼런스(ICRA) 2023 참가 포스코와 사족보행 로봇 개발 협약 체결 국제로봇콘테스트 및 R-biz 챌린지 대회 수상 ISO9001:2015 품질경영시스템 인증 획득 로보월드 우수제품 4년연속 수상 올해의 대한민국 로봇기업 4년연속 수상 2024년 숙련된 로봇 조작의 평가 표준 공동개발 기관 선정 (한국전자기술연구원, 미국 국립표준기술연구소) 딩스(DINGS)와 중국 현지 공급 및 판매계약 체결 시리즈B 150억 투자 유치 CJ대한통운과 물류용 로봇 솔루션 공동개발 MOU 협약 체결 회사 연혁 7 정전용량 측정 독자적인 원천기술 보유 힘/토크 센서 관련 논문/특허 로봇 연구 인력 염가의 로봇"
+      "evidence_excerpt": "150억 투자 유치 CJ대한통운과 물류용 로봇 솔루션 공동개발 MOU 협약 체결 회사 연혁 7 정전용량 측정 독자적인 원천기술 보유 힘/토크 센서 관련 논문/특허 로봇 연구 인력 염가의 로봇용 센서 10분의 1 가격 초소형/6축/단축 센서 국산 센서시장 선도 로봇용 차세대 부품 & 솔루션 분야 확장 2024 2세대 기술 제품 양산화 2022 정전용량 타입 힘/토크 센서 1세대 제품 상업화 2019 정전용량 타입 힘/토크 센서 핵심 기술 개발 ~2019 기존 힘/토크 센서 제품의 라인 다변화 및 신규 안전 센서 라인업 확보. 자사 센서 기반 로봇 자동화 솔루션 분야 확장으로 로봇 부품 및 통합 솔루션 기업으로 시장 리드 목표 기존 자사 제품 대비 2배 이상 성능 향상 및 신뢰성 확보된 2세대 제품 런칭 대한민국 로봇 산업의 경쟁력 제고와 제품 양산화를 위해 에이딘로보틱스 창업 성균관대학교 연구실에서 수십년의 연구 끝에 ‘로봇용 초저가 정전용량형 힘/토크 센싱 기술’ 개발 6"
+    },
+    {
+      "source_id": "src_2ad45bad7620941d8c624be5_6041bc7ec780ec7b",
+      "kind": "PDF",
+      "publisher": "AIDIN Robotics",
+      "title": "AIDIN Robotics 제품 카탈로그",
+      "url": "https://www.aidinrobotics.co.kr/_files/ugd/ba4131_a5b2bd5a70fb418eacd565420041efb9.pdf?index=true",
+      "published_at": null,
+      "collected_at": "2026-10-13T05:16:27.394904Z",
+      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/aidin_robotics/aidin_catalog_ko.pdf",
+      "sha256": "6d4d940117c319c10ea6fdb3deda8a17c979e335f07fa9af82dc2c1deb16299c",
+      "doc_id": "aidin_catalog_ko",
+      "page": 2,
+      "chunk_id": "chunk_ee60b382446b20bead0486c3",
+      "response_id": null,
+      "evidence_excerpt": "2 3 주식회사 에이딘로보틱스는 성균관대학교 기계공학부 내 Robotics Innovatory 실험실에서 출발한 로봇기업입니다. 1995년부터 축적한 Field Sensing 기술에 기반하여 새로운 센서기술과 AI 기반 로봇 응용 기술을 개발하고 있습니다. The world’s leading field sensing technology AIDIN ROBOTICS"
+    },
+    {
+      "source_id": "src_2ad45bad7620941d8c624be5_725f5a34645078f8",
+      "kind": "PDF",
+      "publisher": "AIDIN Robotics",
+      "title": "AIDIN Robotics 제품 카탈로그",
+      "url": "https://www.aidinrobotics.co.kr/_files/ugd/ba4131_a5b2bd5a70fb418eacd565420041efb9.pdf?index=true",
+      "published_at": null,
+      "collected_at": "2026-10-13T05:16:27.398459Z",
+      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/aidin_robotics/aidin_catalog_ko.pdf",
+      "sha256": "6d4d940117c319c10ea6fdb3deda8a17c979e335f07fa9af82dc2c1deb16299c",
+      "doc_id": "aidin_catalog_ko",
+      "page": 6,
+      "chunk_id": "chunk_65c2f619c064ff4ed279dce9",
+      "response_id": null,
+      "evidence_excerpt": "사양 특징 사양 10 11 응용분야 EtherNET CAN EtherCAT 산업용 제조 / 협동 로봇 작업교시용 lead-thru 장치 용접, 샌딩, 그라인딩, 조립 작업용 센서 물류용 로봇 스마트팩토리 / 자동화 라인 Fringe Effect 기반의 높은 정밀도를 보이는 차세 대 정전용량 측정방식 힘토크 센서 협동 로봇의 손목에 부착하여 센서에 인가되는 힘 을 측정하여, 물체 무게 측정, 힘제어, 작업교시, 충 돌 감지 등을 위한 필수 센서 우수한 내환경성 4kV 방전 테스트 통과 방수/방진 등급 획득 스마트 6축 힘/토크 센서 Smart 6 axis F/T Sensor 스마트 6축 힘/토크 센서 모델명 AFT200-D80 실제크기 80mm x 20.5mm 적용가능로봇 Universal Robots 두산로보틱스 레인보우로보틱스, 뉴로메카 그 외 협동/산업용 로봇 >> KC 인증번호 CAN R-R-And-AFT200-D8-C EtherNet R-R-And-AFT200-D8-EN EtherCAT R-R-Adn-AFT200-D8-EC ValueUnitIndex EC (EtherCAT)EN (EtherNET)C (CAN) 12125VDCOperating voltage 242412VDCMax. safe excitation voltage 200NNominal force range 15NmNominal torque range 300NLimit force (Fxyz) 25NmLimit torque 0.15NResolution (Fxyz) 0.015NmResolution (Txyz) 1,000HzMaximum sample rate D80 x H20.5mmDimensions IP65IP65IP56IP rating 10-60 Operating temperature"
+    },
+    {
+      "source_id": "src_2ad45bad7620941d8c624be5_e04db9c3cab9cc35",
+      "kind": "PDF",
+      "publisher": "AIDIN Robotics",
+      "title": "AIDIN Robotics 제품 카탈로그",
+      "url": "https://www.aidinrobotics.co.kr/_files/ugd/ba4131_a5b2bd5a70fb418eacd565420041efb9.pdf?index=true",
+      "published_at": null,
+      "collected_at": "2026-10-13T05:16:27.393038Z",
+      "local_path": "/Users/kimjinhyeong/Desktop/10.13 team p/physical_agent/data/rag/documents/tech/aidin_robotics/aidin_catalog_ko.pdf",
+      "sha256": "6d4d940117c319c10ea6fdb3deda8a17c979e335f07fa9af82dc2c1deb16299c",
+      "doc_id": "aidin_catalog_ko",
+      "page": 3,
+      "chunk_id": "chunk_ed6952e2843e31f5ef960053",
+      "response_id": null,
+      "evidence_excerpt": "특징 응용분야 4 5 “ “ AIDIN ROBOTICS 현재의 기술적 한계로 사람-산업/협동로봇 간에 발생하 는 사고를 예방하고 작업성을 더욱 높이기 위해 노력하 고 있습니다. 주식회사 에이딘로보틱스는 사람과 로봇의 보다 더 안전한 작업과 공존이라는 회사의 Vision을 위하여 계속 노력하겠습니다. One-stop Robotic Solution for Safe Collaboration"
     },
     {
       "source_id": "src_patent_aidin_kipris",
@@ -1929,5 +2043,5 @@
       "evidence_excerpt": "Figure announces Series C financing with Align Ventures and existing partners. Cumulative funding exceeds $1B."
     }
   ],
-  "pdf_sha256": "7e12b414996f71c641ffe694d9426ef5ecdac16feeae7c0873609f33ddd43d2f"
+  "pdf_sha256": "5a45271f58e9ebc6cf9a66a2f74c1f9ce88f45cba091d7c2cc3d8cc6d3aed636"
 }

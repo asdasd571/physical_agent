@@ -1,8 +1,8 @@
 {
-  "run_id": "supervisor-final-20261013",
-  "trace_id": "8f4ce6bb-b780-4415-95ee-df0b162fc09d",
+  "run_id": "supervisor-reviewed-20261013",
+  "trace_id": "a764d0b7-5d74-49e9-b606-f80a06d9efb0",
   "status": "passed",
-  "report": "artifacts/supervisor-final-20261013/report.r0.pdf",
+  "report": "artifacts/supervisor-reviewed-20261013/report.r0.pdf",
   "routing": {
     "arobot": {
       "next_node": "judge",

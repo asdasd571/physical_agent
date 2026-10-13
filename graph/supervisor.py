@@ -56,6 +56,7 @@ def conservative_judge(state):
     result["evaluation"] = evaluation.model_copy(update={"metadata": {
         **evaluation.metadata, "evidence_sufficient": state["supervisor"].evidence_sufficient,
         "termination_reason": state["supervisor"].termination_reason,
+        "technical_findings": [f.model_dump(mode="json") for f in checked["tech_analysis"].findings],
     }})
     return result
 

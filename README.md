@@ -112,6 +112,8 @@ python app.py --resume --run-id supervisor-live
 | `reporting/supervisor_report.py` | 네 관점의 PDF·JSON을 생성합니다. |
 | `agents/`, `rag/`, `nodes/judge.py` | 기존 담당 에이전트, 검색기와 투자 규칙을 재사용합니다. |
 
+담당자의 원값은 Judge에서 명시적으로 정규화하며, 실제 채점에 사용한 값은 JSON의 `scoring_values`에 저장합니다. 기술 설명은 정량 지표와 별도로 출처와 함께 보고서에 표시합니다.
+
 설계 근거와 요구사항별 구현 위치는 [설계 문서](docs/supervisor/design.md)에 정리했습니다. 실제 검증 결과와 제출 자료는 [검증 기록](docs/supervisor/validation.md)에 기록합니다.
 
 ## 테스트

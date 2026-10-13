@@ -20,6 +20,7 @@ from schemas import (
     AgentNodeUpdate, AnalysisResult, EvidenceStatus, GraphState, IndicatorEvidence,
     QueryAttempt, QueryStatus, SourceKind, SourceRecord,
 )
+from schemas.analysis import TechnicalFinding
 
 ROOT = Path(__file__).resolve().parents[1]
 TECH_QUERIES = {
@@ -306,6 +307,7 @@ def _collect(state, owner, queries, doc_types, evidence_dirs, search, extractor)
                     sources[source.source_id] = source
                     documents[source.source_id] = {
                         "source_id": source.source_id, "doc_type": chunk.doc_type.value,
+                        "publisher": source.publisher, "title": source.title,
                         "page": source.page, "content": chunk.content,
                     }
                     valid += 1
@@ -353,13 +355,18 @@ def _finish(state, owner, indicators, sources, attempts, narratives=None):
         old = {i.id: i for i in previous.indicators}
         indicators = [i if i.id in targets else old.get(i.id, i) for i in indicators]
     narratives = narratives or []
-    used = sorted({s for item in indicators for s in item.source_ids} | set(_ids(narratives)))
+    findings = [TechnicalFinding(description=r["description"], source_ids=r["source_ids"])
+                for r in narratives[:2] if len(r["description"]) <= 500]
+    if not findings and previous is not None and _is_repair(state, owner):
+        findings = previous.findings
+    used = sorted({s for item in indicators for s in item.source_ids}
+                  | {s for finding in findings for s in finding.source_ids})
     existing = _source_map(state.get("sources", []))
     analysis = AnalysisResult(
         candidate_id=state["current_candidate"].candidate_id,
         summary="; ".join([*(f"{r['description']} [{', '.join(r['source_ids'])}]" for r in narratives),
                            *(f"{i.id}: {i.query_status.value}" for i in indicators)]),
-        indicators=indicators, source_ids=used, query_attempts=attempts,
+        indicators=indicators, source_ids=used, query_attempts=attempts, findings=findings,
     )
     return {f"{owner}_analysis": analysis,
             "sources": [sources[s] for s in used if s not in existing]}
