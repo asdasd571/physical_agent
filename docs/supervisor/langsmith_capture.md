@@ -2,15 +2,17 @@
 
 이 안내는 기존 실행을 LangSmith 웹에서 열어 촬영하는 방법입니다. 저장된 `tracing-*.png`는 API 기록을 렌더링한 이미지이며 웹 화면 캡처가 아닙니다. 실제 웹 캡처는 `docs/supervisor/evidence/ui-captures/`에 별도로 저장합니다.
 
+2026-10-13 API 키 교체 후 새 워크스페이스에서 세 실행을 다시 기록하고 완료 상태를 API로 확인했습니다. 아래 링크는 새 워크스페이스의 기록입니다. 기존 제출 근거의 원본은 이전 워크스페이스에 보존됩니다. 운영 재실행 ID는 `supervisor-newkey-20261013`이며 PDF 품질은 통과했습니다.
+
 ## 1. 프로젝트와 실행 열기
 
 LangSmith에 로그인하고 API 키가 속한 워크스페이스를 선택합니다. 프로젝트 이름은 `physical-agent-supervisor`입니다. 다음 링크로 기록된 실행을 바로 열 수 있습니다.
 
 | 실행 | 링크 | 확인할 내용 |
 |---|---|---|
-| 실제 RAG·LLM 운영 실행 | [physical-agent-supervisor](https://smith.langchain.com/o/e4414c93-2ee4-4f39-9fa6-0a03aaddc4c3/projects/p/ef520cd3-1898-45ff-bc9f-19afd6b901ff/r/de10b31f-89c7-46a1-84c4-7632ee41515a) | Supervisor 동적 라우팅과 부족 근거 재조사입니다. |
-| 품질 재작성 검증 | [controlled-quality-repair](https://smith.langchain.com/o/e4414c93-2ee4-4f39-9fa6-0a03aaddc4c3/projects/p/ef520cd3-1898-45ff-bc9f-19afd6b901ff/r/70274d27-8262-4962-b8e2-1559ad8bc89f) | 품질 미달 뒤 보고서 재작성과 재평가입니다. |
-| 작업 실패 복구 검증 | [controlled-worker-retry](https://smith.langchain.com/o/e4414c93-2ee4-4f39-9fa6-0a03aaddc4c3/projects/p/ef520cd3-1898-45ff-bc9f-19afd6b901ff/r/033d5cf0-c705-49fb-8404-419eea1cacdc) | 최초 Tech TimeoutError 이후 재호출과 복구입니다. |
+| 실제 RAG·LLM 운영 실행 | [physical-agent-supervisor](https://smith.langchain.com/o/e441cc68-4689-4954-b979-5465103d779b/projects/p/9e589d32-c32d-420b-8c45-5e5ba31438e9/r/cb5985fe-ed01-4199-b536-d3f667f1157c) | Supervisor 동적 라우팅과 부족 근거 재조사입니다. |
+| 품질 재작성 검증 | [controlled-quality-repair](https://smith.langchain.com/o/e441cc68-4689-4954-b979-5465103d779b/projects/p/9e589d32-c32d-420b-8c45-5e5ba31438e9/r/2d29362d-3d37-4d6b-beba-0a6595792be3) | 품질 미달 뒤 보고서 재작성과 재평가입니다. |
+| 작업 실패 복구 검증 | [controlled-worker-retry](https://smith.langchain.com/o/e441cc68-4689-4954-b979-5465103d779b/projects/p/9e589d32-c32d-420b-8c45-5e5ba31438e9/r/e0290600-a05f-4aaf-8dbb-361183d02443) | 최초 Tech TimeoutError 이후 재호출과 복구입니다. |
 
 접근 오류가 발생하면 로그인 계정과 워크스페이스의 프로젝트 접근 권한을 확인합니다. 직접 링크가 열리지 않으면 프로젝트의 Traces 또는 Runs 목록에서 위 실행 이름을 선택합니다.
 
