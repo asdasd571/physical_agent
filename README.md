@@ -7,8 +7,8 @@
 ## Overview
 
 - **목적**: 공개 문서의 원값과 출처로 기술 성숙도·시장성·이해관계자·도메인 적용을 검토하고 PDF/JSON 보고서를 생성합니다.
-- **Pattern과 선정 이유**: 후보마다 부족한 근거가 달라 기존 담당 에이전트를 유지하면서 필요한 관점만 재조사하는 Supervisor 패턴을 선택했습니다. 필수 지표·출처·호출 예산에 따른 규칙으로 판단을 재현하고 라우팅 이유를 기록합니다.
-- **동적 처리**: 적격성 확인 뒤 미수행 관점을 우선 조사하고, 같은 조건에서는 미확인 필수 지표가 많은 담당자를 선택합니다. 부족한 지표와 사유를 전달해 재작업하며 모든 담당자는 Supervisor로 복귀합니다.
+- **Pattern** : Supervisor — 후보마다 부족한 근거가 달라 기존 담당 에이전트를 유지하면서 필요한 관점만 재조사하도록 선택했습니다. 필수 지표·출처·호출 예산에 따른 규칙으로 판단을 재현하고 라우팅 이유를 기록합니다.
+- **동적 처리** : 고정된 에이전트 순서를 따르지 않고 현재 State의 부족 근거에 따라 다음 담당자와 재조사를 결정합니다. 적격성 확인 뒤 미수행 관점을 우선 조사하고, 같은 조건에서는 미확인 필수 지표가 많은 담당자를 선택합니다. 부족한 지표와 사유를 전달해 재작업하며 모든 담당자는 Supervisor로 복귀합니다.
 - **출력**: 후보별 투자 규칙 결과, 미확인 항목, SUMMARY·네 관점·REFERENCE를 포함한 보고서와 실행 추적을 남깁니다. 기본 `stage-benchmark` 모드에서는 투자 단계 밖의 정상 비상장사도 비교하되 투자 점수와 구분합니다.
 
 설계 근거와 구현 위치는 [설계 문서](docs/supervisor/design.md)에 정리했습니다. 현재 `main`은 Supervisor를 사용하며 이전 흐름은 `--workflow legacy`로 실행합니다.
@@ -41,6 +41,9 @@
 
 ## Selected Technologies
 
+- **SW** : VLA 기반 조작 지능(Figure AI) — 시각·언어 정보가 로봇 작업 수행으로 연결되는 조작 지능 관점을 검토하기 위해 선정했습니다. 평가 시스템은 LangGraph Supervisor로 필요한 조사만 배정하고, FAISS·BM25 Hybrid RAG로 공개 문서 근거를 검색합니다.
+- **HW** : 로봇 손·그리퍼(에이로봇), 힘·촉각 센서(에이딘로보틱스) — 제조 작업의 물리적 조작과 접촉 피드백 관점을 검토하기 위해 선정했습니다. HW는 공개 자료의 평가 대상이며, 이 프로젝트에서 실물 장비를 직접 제어하거나 시험하지는 않습니다.
+
 이 프로젝트의 평가 후보는 정밀 조작 Physical AI의 **구동부·센서·조작 지능**을 비교하도록 구성했습니다. 후보 분류는 [후보 설정](data/candidates.json)에 근거하며 선정 목적은 다음과 같습니다.
 
 | 평가 후보 | 기술 영역 | 선정 이유 |
@@ -69,15 +72,13 @@
 
 [SupervisorGraphState](schemas/supervisor.py)는 기존 [GraphState](schemas/state.py)를 확장합니다.
 
-| 설계 항목 | 구현과 제한 |
-|---|---|
-| 제어 vs 페이로드 분리 | `supervisor`, `policy`, `report_revision`, `completion_status`는 제어 정보; 분석 결과, `evaluations`, `sources`, `draft`는 작업 결과입니다. 담당자의 제어 필드 반환은 계약 위반으로 처리합니다. |
-| 관측성 위치 | 현재 후보 판단은 `SupervisorControl.decisions`, 완료 후보는 `routing_history`, 품질 이력은 `quality_history`에 저장합니다. 실제 노드 순서와 사유는 외부 `events.jsonl`과 LangSmith에 기록합니다. |
-| 지속성 비용 | PDF 원문·검색 벡터는 State 밖의 파일·인덱스에서 관리합니다. 후보 최대 3개, 출처 기본 300개 상한과 ID 병합으로 크기를 제한합니다. 초안은 최신본만 State에, 이전 PDF/JSON은 파일에 보존합니다. |
-| 상관 | `RunConfig.run_id`를 업무 ID와 SQLite `thread_id`로 사용합니다. `run.json`·`events.jsonl`에 LangSmith `trace_id`를 연결합니다. 재개 시 업무 ID는 유지하고 새 trace ID를 기록합니다. |
-| 재개/복구 | 노드 이후 State와 다음 노드를 SQLite에 저장하고 `--resume --run-id`로 복원합니다. 담당자 예외 유형을 기록하고 유효한 이전 결과를 유지하며 남은 예산 안에서 재시도합니다. 외부 API 호출 도중 중단되면 해당 호출이 다시 실행될 수 있습니다. |
-| 동시 처리 | Supervisor는 담당자 하나씩 호출합니다. `sources`는 동일 ID·동일 기록을 중복 제거하고 충돌은 거부합니다. `evaluations`는 후보 ID별 최신 결과로 교체하며 제어 상태는 단일 노드가 갱신합니다. |
-| 종료 보장 | 기본 담당자별 최대 2회, 후보별 최대 15회, 보고서 수정 최대 2회입니다. 근거 부족으로 예산 소진 시 `evidence_exhausted`·HOLD, 품질 미달이 지속되면 `quality_failed`·종료 코드 2로 끝냅니다. 한도 도달을 통과로 처리하지 않습니다. |
+- **제어 vs 페이로드 분리** : `supervisor`, `policy`, `report_revision`, `completion_status`는 제어 정보; 분석 결과, `evaluations`, `sources`, `draft`는 작업 결과입니다. 담당자의 제어 필드 반환은 계약 위반으로 처리합니다.
+- **관측성 위치** : 현재 후보 판단은 `SupervisorControl.decisions`, 완료 후보는 `routing_history`, 품질 이력은 `quality_history`에 저장합니다. 실제 노드 순서와 사유는 외부 `events.jsonl`과 LangSmith에 기록합니다.
+- **지속성 비용** : PDF 원문·검색 벡터는 State 밖의 파일·인덱스에서 관리합니다. 후보 최대 3개, 출처 기본 300개 상한과 ID 병합으로 크기를 제한합니다. 초안은 최신본만 State에, 이전 PDF/JSON은 파일에 보존합니다.
+- **상관** : `RunConfig.run_id`를 업무 ID와 SQLite `thread_id`로 사용합니다. `run.json`·`events.jsonl`에 LangSmith `trace_id`를 연결합니다. 재개 시 업무 ID는 유지하고 새 trace ID를 기록합니다.
+- **재개/복구** : 노드 이후 State와 다음 노드를 SQLite에 저장하고 `--resume --run-id`로 복원합니다. 담당자 예외 유형을 기록하고 유효한 이전 결과를 유지하며 남은 예산 안에서 재시도합니다. 외부 API 호출 도중 중단되면 해당 호출이 다시 실행될 수 있습니다.
+- **동시 처리** : Supervisor는 담당자 하나씩 호출합니다. `sources`는 동일 ID·동일 기록을 중복 제거하고 충돌은 거부합니다. `evaluations`는 후보 ID별 최신 결과로 교체하며 제어 상태는 단일 노드가 갱신합니다.
+- **종료 보장** : 기본 담당자별 최대 2회, 후보별 최대 15회, 보고서 수정 최대 2회입니다. 근거 부족으로 예산 소진 시 `evidence_exhausted`·HOLD, 품질 미달이 지속되면 `quality_failed`·종료 코드 2로 끝냅니다. 한도 도달을 통과로 처리하지 않습니다.
 
 ## Architecture
 
