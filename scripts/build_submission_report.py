@@ -4,11 +4,92 @@ import argparse
 from html import escape
 import json
 from pathlib import Path
+import re
+from types import SimpleNamespace
 import xml.etree.ElementTree as ET
 
 import pymupdf
 
-from reporting.supervisor_report import write_pdf
+from reporting.supervisor_report import report_pages, write_pdf
+from schemas import Candidate, EvaluationRecord, SourceRecord
+from schemas.supervisor import ReportDraft, SupervisorControl
+
+
+def restyle_saved_analysis(run, output, font_directory):
+    """저장된 평가 값·출처·평가일을 그대로 사용하여 글꼴만 다시 적용한다."""
+    source = Path(run["report"])
+    payload = json.loads(source.with_suffix(".json").read_text(encoding="utf-8"))
+    with pymupdf.open(source) as original:
+        match = re.search(r"평가일:\s*(\d{4}-\d{2}-\d{2})", original[0].get_text())
+    if not match:
+        raise ValueError("원본 보고서에서 평가일을 확인할 수 없습니다.")
+    candidates = json.loads(Path("data/candidates.json").read_text(encoding="utf-8"))
+    state = {
+        "candidates": [Candidate.model_validate(c) for c in candidates],
+        "evaluations": [EvaluationRecord.model_validate(e) for e in payload["evaluations"]],
+        "sources": [SourceRecord.model_validate(s) for s in payload["sources"]],
+        "routing_history": {k: SupervisorControl.model_validate(v) for k, v in run["routing"].items()},
+        "run": SimpleNamespace(evaluation_date=match[1]),
+    }
+    draft = ReportDraft.model_validate(payload["draft"])
+    write_pdf(report_pages(state, draft, font_directory=font_directory), output,
+              font_directory=font_directory)
+
+
+def attach_web_captures(document, directory):
+    """원본 PNG를 보존하고 실제 웹 캡처를 A3 부록 한 페이지에 배치한다."""
+    captures = [directory / "live/tracing-2.png",
+                directory / "quality-repair/tracing-1.png",
+                directory / "quality-repair/tracing-2.png"]
+    missing = [str(path) for path in captures if not path.is_file()]
+    if missing:
+        raise FileNotFoundError("웹 캡처가 없습니다: " + ", ".join(missing))
+    page = document.new_page(width=842, height=1191)
+
+    def label(rect, html):
+        result = page.insert_htmlbox(pymupdf.Rect(rect), html,
+            css="body {font-size:10pt; color:#18364d; font-family:sans-serif;} p {margin:0;} ")
+        if result[0] < 0:
+            raise ValueError("캡처 부록 설명이 영역을 초과했습니다.")
+
+    def screenshot(path, rect, clip):
+        with pymupdf.open(path) as image:
+            with pymupdf.open("pdf", image.convert_to_pdf()) as source:
+                pixels = pymupdf.Pixmap(path)
+                scale = pymupdf.Matrix(source[0].rect.width / pixels.width,
+                                       source[0].rect.height / pixels.height)
+                page.show_pdf_page(pymupdf.Rect(rect), source, 0,
+                                   clip=pymupdf.Rect(clip) * scale)
+        name = "ui-captures/" + path.relative_to(directory).as_posix()
+        document.embfile_add(name, path.read_bytes(), filename=path.name,
+                            desc="LangSmith 실제 웹 화면 원본 PNG")
+
+    label((36, 28, 806, 60), "<h2 style='margin:0'>LangSmith 실제 웹 트레이싱 캡처</h2>")
+    label((36, 62, 806, 102), "<p>2026-10-13 캡처. 본문의 기존 실행과 구분되는 새 워크스페이스 재실행입니다. "
+          "아래는 웹 화면의 해당 영역이며, 전체 원본 PNG 3개를 PDF 파일 첨부로 함께 보존했습니다.</p>")
+    label((36, 107, 806, 132), "<p><b>① 운영 재조사</b> - supervisor-newkey-20261013 / next_node=tech, repair=true</p>")
+    screenshot(captures[0], (36, 137, 806, 581), (60, 175, 2130, 1370))
+    label((36, 594, 405, 625), "<p><b>② 품질 실패</b> - passed=false, revision=0</p>")
+    label((437, 594, 806, 625), "<p><b>③ 재작성 후 통과</b> - passed=true, revision=1</p>")
+    screenshot(captures[1], (36, 628, 405, 869), (900, 300, 2130, 1105))
+    screenshot(captures[2], (437, 628, 806, 869), (900, 300, 2130, 1105))
+    label((36, 880, 405, 905), "<p><b>④ 보고서 수정 루프</b> - 동일한 품질 검증 실행</p>")
+    # 같은 원본에서 트리 구간을 확대 표시한다. 원본 내용을 재작성하지 않는다.
+    with pymupdf.open(captures[2]) as image:
+        with pymupdf.open("pdf", image.convert_to_pdf()) as source:
+            pixels = pymupdf.Pixmap(captures[2])
+            scale = pymupdf.Matrix(source[0].rect.width / pixels.width,
+                                   source[0].rect.height / pixels.height)
+            page.show_pdf_page(pymupdf.Rect(36, 910, 405, 1130), source, 0,
+                               clip=pymupdf.Rect(60, 1180, 895, 1690) * scale)
+    base = "https://smith.langchain.com/o/e441cc68-4689-4954-b979-5465103d779b/projects/p/9e589d32-c32d-420b-8c45-5e5ba31438e9/r/"
+    label((437, 910, 806, 1130),
+          "<p>품질 검증은 결함을 의도적으로 주입한 controlled-quality-repair 실행입니다. "
+          "운영 실행에서 품질 미달이 발생했다는 의미가 아닙니다.</p><br>"
+          "<p>report → quality → revise_report → report → quality → finalize</p><br>"
+          f"<p><a href='{base}cb5985fe-ed01-4199-b536-d3f667f1157c'>운영 트레이스 열기</a><br>"
+          f"<a href='{base}2d29362d-3d37-4d6b-beba-0a6595792be3'>품질 재작성 트레이스 열기</a></p>")
+    label((36, 1145, 806, 1174), "<p>부록은 가독성을 위해 A3로 구성했습니다. 원본: docs/supervisor/evidence/ui-captures/</p>")
 
 
 def main():
@@ -16,6 +97,9 @@ def main():
     parser.add_argument("run_directory")
     parser.add_argument("--tests", default="artifacts/pytest.xml")
     parser.add_argument("--output", default="docs/supervisor/evidence/evaluation_report.pdf")
+    parser.add_argument("--captures", type=Path, help="실제 LangSmith 웹 캡처 폴더")
+    parser.add_argument("--font-directory", type=Path, help="Pretendard TTF 글꼴 폴더")
+    parser.add_argument("--analysis-pdf", type=Path, help="동일 실행의 별도 서식 적용 보고서")
     args = parser.parse_args()
     directory = Path(args.run_directory)
     run = json.loads((directory / "run.json").read_text(encoding="utf-8"))
@@ -52,9 +136,11 @@ def main():
         "<h2>제약과 해석</h2><p>품질 평가는 형식과 구조 중심입니다. 인용된 원문이 모든 문장을 의미상 입증하는지, "
         "출처 자체가 신뢰할 만한지까지 자동으로 보장하지 않습니다. 현재 보고서의 HOLD는 수집한 근거와 규칙에 따른 결과입니다.</p>"
         "<p>기존 기준과 초기 단계 기준의 점수를 병기합니다. 공개 사양·실물 센서 시험·공개 시연은 초기 단계 기준에서 최대 2/5점만 인정합니다. "
-        "기존 투자 판정에는 이 완화 기준을 사용하지 않습니다.</p>"
-        "<p>첨부 PNG는 LangSmith API에서 실제 실행 기록을 조회하여 렌더링한 자료입니다. 웹 UI 캡처와 구분합니다. "
-        "과제에서 요구하는 웹 화면 캡처는 LangSmith의 해당 실행 화면에서 별도로 확보해야 합니다.</p>"
+        "기존 투자 판정에는 이 완화 기준을 사용하지 않습니다.</p>" +
+        ("<p>마지막 페이지에 실제 LangSmith 웹 트레이싱 캡처를 첨부했습니다. 본문의 실행은 기존 워크스페이스 기록이며, "
+         "웹 캡처는 새 워크스페이스의 운영 재실행과 품질 재작성 검증입니다. 전체 원본 PNG도 PDF에 첨부했습니다.</p>" if args.captures else
+         "<p>실제 LangSmith 웹 트레이싱 캡처는 보고서 PDF와 별도 PNG로 제출합니다. 운영 재조사와 품질 실패·재작성·통과를 "
+         "촬영했습니다. 웹 캡처는 새 워크스페이스 실행이며 본문의 기존 실행과 구분합니다.</p>") +
         "<h2>REFERENCE</h2><p>과제 안내: Multi-Agent Orchestration, 2026-10-13.<br>"
         "기존 코드: github.com/asdasd571/physical_agent.<br>"
         "실행 근거: run.json, quality.json, LangSmith trace와 pytest.xml입니다.<br>"
@@ -63,16 +149,24 @@ def main():
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     intro = output.with_name(".submission-intro.pdf")
-    write_pdf(pages, intro)
+    styled_analysis = output.with_name(".submission-analysis.pdf")
+    write_pdf(pages, intro, font_directory=args.font_directory)
     try:
-        with pymupdf.open(intro) as document, pymupdf.open(run["report"]) as report:
+        analysis = args.analysis_pdf or run["report"]
+        if args.font_directory and not args.analysis_pdf:
+            restyle_saved_analysis(run, styled_analysis, args.font_directory)
+            analysis = styled_analysis
+        with pymupdf.open(intro) as document, pymupdf.open(analysis) as report:
             document.insert_pdf(report)
+            if args.captures:
+                attach_web_captures(document, args.captures)
             if len(document) > 10:
                 raise ValueError("평가 보고서가 10페이지를 초과합니다.")
-            document.save(output)
+            document.save(output, garbage=4, deflate=True)
             print(f"{len(document)}페이지 평가 보고서를 생성했습니다: {output}")
     finally:
         intro.unlink(missing_ok=True)
+        styled_analysis.unlink(missing_ok=True)
 
 
 if __name__ == "__main__":

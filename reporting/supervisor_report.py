@@ -86,7 +86,7 @@ def make_draft(state):
     )
 
 
-def report_pages(state, draft):
+def report_pages(state, draft, font_directory=None):
     esc = lambda text: escape(str(text)).replace("\n", "<br>")
     names = {c.candidate_id: c.legal_name for c in state["candidates"]}
     reasons = {"evidence_sufficient": "근거 검토 완료", "evidence_exhausted": "조사 한도 도달·근거 부족",
@@ -131,7 +131,7 @@ def report_pages(state, draft):
     current = "<h1>REFERENCE</h1>"
     for source in refs:
         entry = f"<p>{esc(format_source(source, source.source_id))}<br>{esc(source.url or source.local_path or '원문 위치 미등록')}</p>"
-        if not fits(current + entry):
+        if not fits(current + entry, font_directory=font_directory):
             pages.append(current)
             current = "<h1>REFERENCE (계속)</h1>"
         current += entry
@@ -144,22 +144,37 @@ PAGE = pymupdf.Rect(0, 0, 595, 842)
 BODY = pymupdf.Rect(36, 36, 559, 800)
 
 
-def fits(html):
-    story = pymupdf.Story(html=html, user_css=CSS)
+def pdf_style(font_directory=None):
+    if font_directory is None:
+        return CSS, None
+    directory = Path(font_directory)
+    for weight in ("Regular", "Bold"):
+        if not (directory / f"Pretendard-{weight}.ttf").is_file():
+            raise FileNotFoundError(f"Pretendard-{weight}.ttf 글꼴이 없습니다.")
+    style = "@font-face {font-family:Pretendard; src:url(Pretendard-Regular.ttf); font-weight:400;} "
+    style += "@font-face {font-family:Pretendard; src:url(Pretendard-Bold.ttf); font-weight:700;} "
+    style += CSS + " body {font-family:Pretendard;} "
+    return style, pymupdf.Archive(str(directory))
+
+
+def fits(html, font_directory=None):
+    style, archive = pdf_style(font_directory)
+    story = pymupdf.Story(html=html, user_css=style, archive=archive)
     more, _ = story.place(BODY)
     return not more
 
 
-def write_pdf(pages, path):
+def write_pdf(pages, path, font_directory=None):
     if len(pages) > 10:
         raise ValueError("보고서가 10페이지 상한을 초과합니다.")
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(".pending.pdf")
+    style, archive = pdf_style(font_directory)
     try:
         writer = pymupdf.DocumentWriter(str(temporary))
         try:
             for html in pages:
-                story = pymupdf.Story(html=html, user_css=CSS)
+                story = pymupdf.Story(html=html, user_css=style, archive=archive)
                 more, _ = story.place(BODY)
                 if more:
                     raise ValueError("보고서 내용이 페이지 영역을 초과합니다.")

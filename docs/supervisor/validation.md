@@ -47,11 +47,11 @@
 
 ## 제출 자료와 남은 확인
 
-[평가 보고서](evidence/evaluation_report.pdf)는 설계·검증 설명 2페이지와 운영 결과 7페이지로 구성한 총 9페이지 문서입니다. 과제의 최대 10페이지 조건에 맞췄습니다. 초기 단계 비교 점수는 에이로봇 44.7점, 에이딘로보틱스 46.7점입니다. Figure의 33.3점은 투자 점수가 아닌 비교 분석 값입니다.
+[평가 보고서](evidence/evaluation_report.pdf)는 설계·검증 설명 2페이지와 운영 결과 7페이지로 구성한 총 9페이지 문서입니다. 전체 글꼴은 Pretendard Regular/Bold이며, 웹 트레이싱 사진과 PDF 내부 사진 첨부는 제거했습니다. 사진은 별도 PNG로 제출합니다. 초기 단계 비교 점수는 에이로봇 44.7점, 에이딘로보틱스 46.7점입니다. Figure의 33.3점은 투자 점수가 아닌 비교 분석 값입니다.
 
-첨부 PNG는 LangSmith API에 저장된 실제 실행 기록을 렌더링한 자료입니다. LangSmith 웹 UI를 촬영한 이미지가 아닙니다. 웹 화면 캡처를 위한 Chrome 자동화는 macOS 권한에서 거부되었습니다. 따라서 과제 안내의 웹 화면 캡처는 위 LangSmith 링크를 열어 별도로 확보해야 합니다. 긴 실행은 순서에 따라 `tracing-1.png`, `tracing-2.png`와 같이 저장하면 됩니다.
+2026-10-13 실제 LangSmith 웹 화면을 촬영하여 [웹 캡처 폴더](evidence/ui-captures/)에 저장했습니다. 운영 재실행의 Tech 재호출·`repair=true`, 통제된 품질 검증의 `passed=false/revision=0` 및 `passed=true/revision=1`, 보고서 수정 루프를 확인할 수 있습니다. 웹 캡처는 보고서 PDF와 따로 제출합니다. 웹 캡처는 새 워크스페이스 실행이며 본문의 이전 운영 실행과 구분합니다. 기존 `evidence/live/`, `quality-repair/`, `worker-retry/`의 PNG는 API 기록 렌더링 자료로 유지합니다.
 
-팀에서 확정한 추가 역할은 README와 [개발 역할분담](../개발_역할분담.md)에 반영했습니다. 실제 웹 화면은 [캡처 안내](langsmith_capture.md)에 따라 확보합니다. 제출 전에는 반별 안내에 맞춰 `Agent_{캠퍼스}_{X반}_{이름1+이름2+...}.zip`으로 묶어야 합니다. Slack 제출은 이 작업에 포함하지 않았습니다.
+팀에서 확정한 추가 역할은 README와 [개발 역할분담](../개발_역할분담.md)에 반영했습니다. 제출 파일명은 `Agent_울산캠퍼스_조승현,김도현,김진형,박세진,김낙근`으로 정리했습니다. PDF와 트레이싱 PNG는 별도 파일이며, 제출 ZIP에도 각각 분리하여 넣습니다. GitHub 링크는 https://github.com/asdasd571/physical_agent 입니다. Slack 게시는 이 작업에 포함하지 않았습니다.
 
 ## 20점 고정 결과의 수정
 

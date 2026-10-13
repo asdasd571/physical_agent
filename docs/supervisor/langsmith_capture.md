@@ -1,6 +1,6 @@
 # LangSmith 실제 웹 화면 캡처 안내
 
-이 안내는 기존 실행을 LangSmith 웹에서 열어 촬영하는 방법입니다. 저장된 `tracing-*.png`는 API 기록을 렌더링한 이미지이며 웹 화면 캡처가 아닙니다. 실제 웹 캡처는 `docs/supervisor/evidence/ui-captures/`에 별도로 저장합니다.
+2026-10-13 실제 웹 캡처를 확보하여 `docs/supervisor/evidence/ui-captures/`에 저장했습니다. 사진은 [평가 보고서](evidence/evaluation_report.pdf)와 따로 제출하며, PDF의 사진 부록과 내부 사진 첨부는 제거했습니다. `live/tracing-2.png`는 운영 재조사 할당, `quality-repair/tracing-1.png`는 최초 품질 실패, `quality-repair/tracing-2.png`는 수정 루프와 품질 통과입니다. 기존 `evidence/live/` 등의 `tracing-*.png`는 API 기록을 렌더링한 별도 자료입니다. 아래는 재촬영 안내입니다.
 
 2026-10-13 API 키 교체 후 새 워크스페이스에서 세 실행을 다시 기록하고 완료 상태를 API로 확인했습니다. 아래 링크는 새 워크스페이스의 기록입니다. 기존 제출 근거의 원본은 이전 워크스페이스에 보존됩니다. 운영 재실행 ID는 `supervisor-newkey-20261013`이며 PDF 품질은 통과했습니다.
 
@@ -52,6 +52,6 @@ docs/supervisor/evidence/ui-captures/
     └── tracing-3.png
 ```
 
-필요한 장수는 화면 길이에 따라 늘릴 수 있습니다. 위 경로는 권장 저장 구조이며 현재 웹 캡처가 확보되었다는 뜻은 아닙니다. 캡처 확보 후 제출 묶음과 점검 문서의 남은 항목을 갱신합니다.
+필요한 장수는 화면 길이에 따라 늘릴 수 있습니다. 현재 운영 화면 2개와 품질 검증 화면 2개를 저장했습니다. 위의 3장 구조는 재촬영 시 권장 예시입니다. 사진 없는 Pretendard 평가 보고서는 `python -m scripts.build_submission_report docs/supervisor/evidence/live --tests docs/supervisor/evidence/pytest.xml --font-directory reporting/fonts`로 재생성할 수 있습니다.
 
 화면의 Details와 실행 입출력 확인 방식은 [LangSmith 공식 View traces 안내](https://docs.langchain.com/langsmith/view-traces)를 기준으로 합니다.
