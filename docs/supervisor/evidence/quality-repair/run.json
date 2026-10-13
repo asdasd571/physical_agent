@@ -2,9 +2,9 @@
   "scenario": "quality-repair",
   "controlled_fault": true,
   "run_id": "controlled-quality-repair",
-  "trace_id": "b88bc73d-b7e0-4ea7-ac7c-0849d4f8b2c4",
+  "trace_id": "70274d27-8262-4962-b8e2-1559ad8bc89f",
   "status": "passed",
-  "report": "artifacts/scenarios/quality-repair/report.r1.pdf",
+  "report": "artifacts/rubric-audit-20261013/quality-repair/report.r1.pdf",
   "routing": {
     "arobot": {
       "next_node": "judge",
@@ -168,7 +168,7 @@
           "route": "synergy",
           "reason": "synergy_analysis 분석 결과가 없습니다",
           "deficits": {
-            "tech": 5,
+            "tech": 4,
             "market": 1,
             "competitor": 1,
             "synergy": 3
@@ -181,7 +181,7 @@
           "route": "competitor",
           "reason": "competitor_analysis 분석 결과가 없습니다",
           "deficits": {
-            "tech": 5,
+            "tech": 4,
             "market": 1,
             "competitor": 1,
             "synergy": 3
@@ -194,7 +194,7 @@
           "route": "market",
           "reason": "market_analysis 분석 결과가 없습니다",
           "deficits": {
-            "tech": 5,
+            "tech": 4,
             "market": 1,
             "synergy": 3
           },
@@ -204,9 +204,9 @@
           "sequence": 6,
           "candidate_id": "aidin_robotics",
           "route": "tech",
-          "reason": "T2 조회가 완료되지 않았습니다; T2 근거 자료가 없습니다; T2 관측 기간이 없습니다; K1 조회가 완료되지 않았습니다; K1 근거 자료가 없습니다; K1 관측 기간이 없습니다; K2 조회가 완료되지 않았습니다; K2 근거 자료가 없습니다; K2 계산 또는 적용 조건이 없습니다; K3 조회가 완료되지 않았습니다; K3 근거 자료가 없습니다; K3 관측 기간이 없습니다; R2 조회가 완료되지 않았습니다; R2 근거 자료가 없습니다; R2 관측 기간이 없습니다",
+          "reason": "T2 조회가 완료되지 않았습니다; T2 근거 자료가 없습니다; T2 관측 기간이 없습니다; K2 조회가 완료되지 않았습니다; K2 근거 자료가 없습니다; K3 조회가 완료되지 않았습니다; K3 근거 자료가 없습니다; K3 관측 기간이 없습니다; R2 조회가 완료되지 않았습니다; R2 근거 자료가 없습니다; R2 관측 기간이 없습니다",
           "deficits": {
-            "tech": 5,
+            "tech": 4,
             "synergy": 3
           },
           "evidence_sufficient": false
@@ -217,7 +217,7 @@
           "route": "synergy",
           "reason": "S1 조회가 완료되지 않았습니다; S1 근거 자료가 없습니다; S2 조회가 완료되지 않았습니다; S2 근거 자료가 없습니다; F4 조회가 완료되지 않았습니다; F4 근거 자료가 없습니다; F4 계산 또는 적용 조건이 없습니다",
           "deficits": {
-            "tech": 5,
+            "tech": 4,
             "synergy": 3
           },
           "evidence_sufficient": false
@@ -228,7 +228,7 @@
           "route": "judge",
           "reason": "추가 조사 한도에 도달했습니다. 미확인 근거를 명시하고 보수적으로 판정합니다.",
           "deficits": {
-            "tech": 5,
+            "tech": 4,
             "synergy": 3
           },
           "evidence_sufficient": false

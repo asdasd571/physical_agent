@@ -1,0 +1,2830 @@
+{
+  "draft": {
+    "run_id": "clean-rag-rubric-repro",
+    "revision": 0,
+    "summary": "공개 자료를 바탕으로 기술 성숙도, 시장성, 이해관계자, 도메인 적용을 검토한 보고서입니다. 투자 규칙의 계산 결과와 기술의 우열은 구분합니다. 미확인 자료는 추정하지 않고 후속 확인 항목으로 남깁니다.",
+    "sections": [
+      {
+        "candidate_id": "arobot",
+        "perspective": "technology",
+        "title": "기술 성숙도",
+        "text": "T2: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\nK1: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\nK2: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\nK3: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\n초기 단계 K1: 제품의 정량 사양을 초기 설계 근거로 인정합니다. 논문 수로 환산하지 않습니다.\n초기 단계 K3: 공개된 실물 시연 기록을 초기 실증 근거로 인정합니다. 제조 현장 배치로 간주하지 않습니다.\n확인된 제품·기술 설명: 공식 ALICE 4 사양은 키 1.6m, 무게 45kg, 전체 41자유도이며 팔 7자유도·손 6자유도를 제시합니다. 이는 제조사 공개 사양입니다.",
+        "source_ids": [
+          "src_arobot_alice4_specs",
+          "src_arobot_official_video"
+        ],
+        "indicator_ids": [
+          "T2",
+          "K1",
+          "K2",
+          "K3"
+        ],
+        "limitations": [
+          "T2: 원값·대상·기간·출처가 충족된 자료 없음",
+          "K1: 원값·대상·기간·출처가 충족된 자료 없음",
+          "K2: 원값·대상·기간·출처가 충족된 자료 없음",
+          "K3: 원값·대상·기간·출처가 충족된 자료 없음",
+          "초기 단계 기준은 해당 항목을 최대 2/5점으로 인정하며, 투자 판정에는 사용하지 않습니다.",
+          "제품 설명이 확보되었으나 논문 수·시험 성공률·독립 현장 실증의 정량 근거를 대신하지 않습니다."
+        ]
+      },
+      {
+        "candidate_id": "arobot",
+        "perspective": "market",
+        "title": "시장성",
+        "text": "R1: Seed (2024-05-10): 3,500,000,000 KRW; Series A (2025-07-15): 10,000,000,000 KRW (채점값 135.00 억 원, 3/5점)\nR3: 이전 2025-08-31: 18명; 최근 2026-08-31: 28명 (채점값 55.56 %, 4/5점)\nR2: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\nP1: 로봇 부품 및 부분품: 2022년 1,420,000,000,000 → 2025년 1,980,000,000,000 원; 저장된 CAGR 11.72% (채점값 11.72 %, 4/5점)\nM1: 유효 등록 3건; 우선권 기준 3패밀리 (채점값 3.00 패밀리, 3/5점)",
+        "source_ids": [
+          "src_arobot_employment",
+          "src_arobot_funding",
+          "src_market_robot_parts_2025",
+          "src_patent_arobot_kipris"
+        ],
+        "indicator_ids": [
+          "R1",
+          "R3",
+          "R2",
+          "P1",
+          "M1"
+        ],
+        "limitations": [
+          "R2: 원값·대상·기간·출처가 충족된 자료 없음",
+          "기업 자체 발표가 포함되어 있으며 독립 검증으로 해석하지 않습니다."
+        ]
+      },
+      {
+        "candidate_id": "arobot",
+        "perspective": "stakeholders",
+        "title": "이해관계자",
+        "text": "T1: 해당 경력 2명 (한재권, 엄윤설) (채점값 2.00 명, 3/5점)\nF1: 현금 8,500,000,000 KRW; 단기금융상품 1,500,000,000 KRW; 영업현금흐름 -3,600,000,000 KRW\nF2: 자본금 250,000,000 KRW; 자본총계 6,800,000,000 KRW; 부채총계 2,200,000,000 KRW; 감사의견 적정; 계속기업 불확실성 아니오\nF3: 확인 사건 0건; 조회 기관: 공정거래위원회, 고용노동부",
+        "source_ids": [
+          "src_arobot_financials",
+          "src_arobot_founder",
+          "src_arobot_risk"
+        ],
+        "indicator_ids": [
+          "T1",
+          "F1",
+          "F2",
+          "F3"
+        ],
+        "limitations": [
+          "기업 자체 발표가 포함되어 있으며 독립 검증으로 해석하지 않습니다."
+        ]
+      },
+      {
+        "candidate_id": "arobot",
+        "perspective": "application",
+        "title": "도메인 적용",
+        "text": "S1: 채점 요건 근거 미확보 — 독립 수행 근거 또는 모기업 원문 페이지 미확인\nS2: 채점 요건 근거 미확보 — 독립 수행 근거 또는 모기업 원문 페이지 미확인\nF4: 채점 요건 근거 미확보 — 공정 방폭 구역·장비·인증 조회 미확인",
+        "source_ids": [],
+        "indicator_ids": [
+          "S1",
+          "S2",
+          "F4"
+        ],
+        "limitations": [
+          "S1: 독립 수행 근거 또는 모기업 원문 페이지 미확인",
+          "S2: 독립 수행 근거 또는 모기업 원문 페이지 미확인",
+          "F4: 공정 방폭 구역·장비·인증 조회 미확인"
+        ]
+      },
+      {
+        "candidate_id": "aidin_robotics",
+        "perspective": "technology",
+        "title": "기술 성숙도",
+        "text": "T2: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\nK1: 1 논문 DOI (채점값 1.00 편, 2/5점)\nK2: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\nK3: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\n초기 단계 K2: 실물 센서의 시험 조건과 측정 수치를 초기 성능 근거로 인정합니다. 조작 성공률로 환산하지 않습니다.\n확인된 제품·기술 설명: 2025년 Sensors 논문은 에이딘 소속 저자와 DOI를 확인할 수 있습니다. 실물 센서를 기준 센서와 비교하여 힘·토크 측정 범위와 오차를 보고했습니다. 조작 성공률 시험과는 구분합니다.\n확인된 제품·기술 설명: 논문은 힘 측정 범위 15N, 토크 측정 범위 75N·mm를 사용합니다. 평균 상대 오차는 힘축 0.16·0.18·0.24%FSO, 토크축 0.88·0.90·0.67%FSO입니다. 자체 연구진의 기준 센서 비교 결과이며 독립 재현은 확인하지 않았습니다.",
+        "source_ids": [
+          "src_aidin_hand_specs",
+          "src_aidin_paper_2025_p1",
+          "src_aidin_paper_2025_p14",
+          "src_aidin_paper_2025_p15"
+        ],
+        "indicator_ids": [
+          "T2",
+          "K1",
+          "K2",
+          "K3"
+        ],
+        "limitations": [
+          "T2: 원값·대상·기간·출처가 충족된 자료 없음",
+          "K2: 원값·대상·기간·출처가 충족된 자료 없음",
+          "K3: 원값·대상·기간·출처가 충족된 자료 없음",
+          "초기 단계 기준은 해당 항목을 최대 2/5점으로 인정하며, 투자 판정에는 사용하지 않습니다.",
+          "제품 설명이 확보되었으나 논문 수·시험 성공률·독립 현장 실증의 정량 근거를 대신하지 않습니다."
+        ]
+      },
+      {
+        "candidate_id": "aidin_robotics",
+        "perspective": "market",
+        "title": "시장성",
+        "text": "R1: Seed (2020-08-01): 1,000,000,000 KRW; Series A (2022-03-15): 4,500,000,000 KRW; Series B (2026-09-10): 16,000,000,000 KRW (채점값 215.00 억 원, 3/5점)\nR3: 이전 2025-08-31: 24명; 최근 2026-08-31: 38명 (채점값 58.33 %, 4/5점)\nR2: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\nP1: 로봇 부품 및 부분품: 2022년 1,420,000,000,000 → 2025년 1,980,000,000,000 원; 저장된 CAGR 11.72% (채점값 11.72 %, 4/5점)\nM1: 유효 등록 5건; 우선권 기준 4패밀리 (채점값 4.00 패밀리, 4/5점)",
+        "source_ids": [
+          "src_aidin_employment",
+          "src_aidin_funding",
+          "src_market_robot_parts_2025",
+          "src_patent_aidin_kipris"
+        ],
+        "indicator_ids": [
+          "R1",
+          "R3",
+          "R2",
+          "P1",
+          "M1"
+        ],
+        "limitations": [
+          "R2: 원값·대상·기간·출처가 충족된 자료 없음",
+          "기업 자체 발표가 포함되어 있으며 독립 검증으로 해석하지 않습니다."
+        ]
+      },
+      {
+        "candidate_id": "aidin_robotics",
+        "perspective": "stakeholders",
+        "title": "이해관계자",
+        "text": "T1: 해당 경력 2명 (최혁렬, 이윤행) (채점값 2.00 명, 3/5점)\nF1: 현금 12,000,000,000 KRW; 단기금융상품 3,000,000,000 KRW; 영업현금흐름 -4,200,000,000 KRW\nF2: 자본금 350,000,000 KRW; 자본총계 11,500,000,000 KRW; 부채총계 3,100,000,000 KRW; 감사의견 적정; 계속기업 불확실성 아니오\nF3: 확인 사건 0건; 조회 기관: 공정거래위원회, 고용노동부",
+        "source_ids": [
+          "src_aidin_financials",
+          "src_aidin_founder",
+          "src_aidin_risk"
+        ],
+        "indicator_ids": [
+          "T1",
+          "F1",
+          "F2",
+          "F3"
+        ],
+        "limitations": [
+          "기업 자체 발표가 포함되어 있으며 독립 검증으로 해석하지 않습니다."
+        ]
+      },
+      {
+        "candidate_id": "aidin_robotics",
+        "perspective": "application",
+        "title": "도메인 적용",
+        "text": "S1: 채점 요건 근거 미확보 — 독립 수행 근거 또는 모기업 원문 페이지 미확인\nS2: 채점 요건 근거 미확보 — 독립 수행 근거 또는 모기업 원문 페이지 미확인\nF4: 채점 요건 근거 미확보 — 공정 방폭 구역·장비·인증 조회 미확인",
+        "source_ids": [],
+        "indicator_ids": [
+          "S1",
+          "S2",
+          "F4"
+        ],
+        "limitations": [
+          "S1: 독립 수행 근거 또는 모기업 원문 페이지 미확인",
+          "S2: 독립 수행 근거 또는 모기업 원문 페이지 미확인",
+          "F4: 공정 방폭 구역·장비·인증 조회 미확인"
+        ]
+      },
+      {
+        "candidate_id": "figure_ai",
+        "perspective": "technology",
+        "title": "기술 성숙도",
+        "text": "T2: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\nK1: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\nK2: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\nK3: 1 제조 현장 (채점값 1.00 현장, 2/5점)\n확인된 제품·기술 설명: BMW는 Figure 02가 10개월간 3만 대 이상의 X3 생산을 지원하고, 부품 9만 개 이상을 이동하며 약 1,250시간 운영되었다고 확인했습니다. 운영량은 시험 성공률의 분모로 사용하지 않습니다.",
+        "source_ids": [
+          "src_bmw_figure_customer_p4",
+          "src_figure_pilot_completion"
+        ],
+        "indicator_ids": [
+          "T2",
+          "K1",
+          "K2",
+          "K3"
+        ],
+        "limitations": [
+          "T2: 원값·대상·기간·출처가 충족된 자료 없음",
+          "K1: 원값·대상·기간·출처가 충족된 자료 없음",
+          "K2: 원값·대상·기간·출처가 충족된 자료 없음",
+          "제품 설명이 확보되었으나 논문 수·시험 성공률·독립 현장 실증의 정량 근거를 대신하지 않습니다."
+        ]
+      },
+      {
+        "candidate_id": "figure_ai",
+        "perspective": "market",
+        "title": "시장성",
+        "text": "R1: 라운드 미확인 (2022-08-01): 자료 없음; 라운드 미확인 (2023-05-24): 자료 없음; 라운드 미확인 (2024-02-29): 자료 없음; 라운드 미확인 (2025-02-20): 자료 없음\nR3: 이전 2025-08-31: 80명; 최근 2026-08-31: 140명 (채점값 75.00 %, 3/5점)\nR2: 채점 요건 근거 미확보 — 원값·대상·기간·출처가 충족된 자료 없음\nP1: 채점 요건 근거 미확보 — VLA 조작 지능 소프트웨어에 직접 대응하는 한국 공식 통계 분류가 확인되지 않아 임의 배정하지 않음 (설계서 5-8 준수)\nM1: 유효 등록 2건; 우선권 기준 2패밀리 (채점값 2.00 패밀리, 3/5점)",
+        "source_ids": [
+          "src_figure_helix_02",
+          "src_figure_series_c",
+          "src_patent_figure_uspto"
+        ],
+        "indicator_ids": [
+          "R1",
+          "R3",
+          "R2",
+          "P1",
+          "M1"
+        ],
+        "limitations": [
+          "R2: 원값·대상·기간·출처가 충족된 자료 없음",
+          "P1: VLA 조작 지능 소프트웨어에 직접 대응하는 한국 공식 통계 분류가 확인되지 않아 임의 배정하지 않음 (설계서 5-8 준수)",
+          "기업 자체 발표가 포함되어 있으며 독립 검증으로 해석하지 않습니다."
+        ]
+      },
+      {
+        "candidate_id": "figure_ai",
+        "perspective": "stakeholders",
+        "title": "이해관계자",
+        "text": "T1: 해당 경력 2명 (Brett Adcock, Jerry Pratt) (채점값 2.00 명, 3/5점)\nF1: 현금 900,000,000,000 KRW; 단기금융상품 0 KRW; 영업현금흐름 -250,000,000,000 KRW\nF2: 자본금 100,000,000 KRW; 자본총계 850,000,000,000 KRW; 부채총계 120,000,000,000 KRW; 감사의견 미감사(비상장); 계속기업 불확실성 아니오\nF3: 확인 사건 0건; 조회 기관: US Federal Trade Commission (FTC), US Occupational Safety and Health Administration (OSHA)",
+        "source_ids": [
+          "src_figure_helix",
+          "src_figure_risk",
+          "src_figure_series_c"
+        ],
+        "indicator_ids": [
+          "T1",
+          "F1",
+          "F2",
+          "F3"
+        ],
+        "limitations": [
+          "기업 자체 발표가 포함되어 있으며 독립 검증으로 해석하지 않습니다."
+        ]
+      },
+      {
+        "candidate_id": "figure_ai",
+        "perspective": "application",
+        "title": "도메인 적용",
+        "text": "S1: 1개: TASK1 (채점값 1.00 작업군, 2/5점)\nS2: 채점 요건 근거 미확보 — 독립 수행 근거 또는 모기업 원문 페이지 미확인\nF4: 채점 요건 근거 미확보 — 공정 방폭 구역·장비·인증 조회 미확인",
+        "source_ids": [
+          "src_bmw_figure_customer_p4",
+          "src_figure_pilot_completion"
+        ],
+        "indicator_ids": [
+          "S1",
+          "S2",
+          "F4"
+        ],
+        "limitations": [
+          "S2: 독립 수행 근거 또는 모기업 원문 페이지 미확인",
+          "F4: 공정 방폭 구역·장비·인증 조회 미확인"
+        ]
+      }
+    ],
+    "reference_ids": [
+      "src_aidin_employment",
+      "src_aidin_financials",
+      "src_aidin_founder",
+      "src_aidin_funding",
+      "src_aidin_hand_specs",
+      "src_aidin_paper_2025_p1",
+      "src_aidin_paper_2025_p14",
+      "src_aidin_paper_2025_p15",
+      "src_aidin_risk",
+      "src_arobot_alice4_specs",
+      "src_arobot_employment",
+      "src_arobot_financials",
+      "src_arobot_founder",
+      "src_arobot_funding",
+      "src_arobot_official_video",
+      "src_arobot_risk",
+      "src_bmw_figure_customer_p4",
+      "src_figure_helix",
+      "src_figure_helix_02",
+      "src_figure_pilot_completion",
+      "src_figure_risk",
+      "src_figure_series_c",
+      "src_market_robot_parts_2025",
+      "src_patent_aidin_kipris",
+      "src_patent_arobot_kipris",
+      "src_patent_figure_uspto"
+    ]
+  },
+  "evaluations": [
+    {
+      "candidate_id": "arobot",
+      "country": "KR",
+      "primary_segment": "robot_hand",
+      "rule_version": "1.0.0",
+      "indicators": [
+        {
+          "id": "G1",
+          "raw_value": {
+            "unlisted": {
+              "value": true,
+              "checked_markets": [
+                "KRX KIND"
+              ],
+              "cross_checks": [
+                "KIND 상장공시시스템 미등재",
+                "DART 비상장 확인"
+              ],
+              "source_id": "src_arobot_registry"
+            },
+            "latest_round": {
+              "value": "Series A",
+              "announced_at": "2025-07-15",
+              "source_id": "src_arobot_funding"
+            },
+            "exit_completed": {
+              "value": false,
+              "source_id": "src_arobot_registry"
+            },
+            "operating_status": {
+              "value": "정상",
+              "as_of": "2026-09-30",
+              "source_id": "src_arobot_registry"
+            }
+          },
+          "unit": "4개 요건 사실",
+          "period": "2026-09-30",
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_arobot_registry",
+            "src_arobot_funding"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "T1",
+          "raw_value": {
+            "qualified_count": 2,
+            "members": [
+              {
+                "name": "한재권",
+                "role": "CTO / 핵심 창업자",
+                "org": "로보티즈 / 한양대학교",
+                "org_type": "제조 대기업 / 공인 로봇 연구기관",
+                "start": "2015-03",
+                "end": "2026-09",
+                "evidence_status": "COMPANY_CLAIM",
+                "source_ids": [
+                  "src_arobot_founder"
+                ]
+              },
+              {
+                "name": "엄윤설",
+                "role": "대표이사",
+                "org": "한국공학대학교 / 에이로봇",
+                "org_type": "공인 로봇 연구기관",
+                "start": "2018-04",
+                "end": "2026-09",
+                "evidence_status": "COMPANY_CLAIM",
+                "source_ids": [
+                  "src_arobot_founder"
+                ]
+              }
+            ],
+            "excluded": []
+          },
+          "unit": "명",
+          "period": "설립 전후 통산",
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "COMPANY_CLAIM",
+          "source_ids": [
+            "src_arobot_founder"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "R1",
+          "raw_value": {
+            "rounds": [
+              {
+                "round_name": "Seed",
+                "announced_at": "2024-05-10",
+                "amount_original": 3500000000,
+                "currency": "KRW",
+                "is_cumulative_announcement": false,
+                "source_ids": [
+                  "src_arobot_funding"
+                ]
+              },
+              {
+                "round_name": "Series A",
+                "announced_at": "2025-07-15",
+                "amount_original": 10000000000,
+                "currency": "KRW",
+                "is_cumulative_announcement": false,
+                "source_ids": [
+                  "src_arobot_funding"
+                ]
+              }
+            ],
+            "excluded_items": []
+          },
+          "unit": "원",
+          "period": "2024-05-10~2025-07-15",
+          "as_of": "2025-07-15",
+          "condition": {},
+          "evidence_status": "COMPANY_CLAIM",
+          "source_ids": [
+            "src_arobot_funding"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "R3",
+          "raw_value": {
+            "latest": {
+              "count": 28,
+              "as_of": "2026-08-31",
+              "scope": "동일 법인 상시근로자",
+              "report_type": "국민연금 납부 사업장 기준 공인 데이터",
+              "source_ids": [
+                "src_arobot_employment"
+              ]
+            },
+            "prior": {
+              "count": 18,
+              "as_of": "2025-08-31",
+              "scope": "동일 법인 상시근로자",
+              "report_type": "국민연금 납부 사업장 기준 공인 데이터",
+              "source_ids": [
+                "src_arobot_employment"
+              ]
+            },
+            "reference_only": []
+          },
+          "unit": "명",
+          "period": "2025-08-31~2026-08-31",
+          "as_of": "2026-08-31",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_arobot_employment"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "F1",
+          "raw_value": {
+            "fiscal_period": "2025-01-01~2025-12-31",
+            "currency": "KRW",
+            "unit": "원",
+            "accounting_standard": "일반기업회계기준",
+            "cash_and_equivalents": 8500000000,
+            "short_term_financial_instruments": 1500000000,
+            "operating_cash_flow": -3600000000,
+            "post_closing_funding": []
+          },
+          "unit": "원",
+          "period": "2025-01-01~2025-12-31",
+          "as_of": "2026-03-31",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_arobot_financials"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "F2",
+          "raw_value": {
+            "fiscal_period": "2025-01-01~2025-12-31",
+            "currency": "KRW",
+            "unit": "원",
+            "accounting_standard": "일반기업회계기준",
+            "capital_stock": 250000000,
+            "total_equity": 6800000000,
+            "total_liabilities": 2200000000,
+            "audit_opinion": "적정",
+            "going_concern_uncertainty": false,
+            "rcps": {
+              "classified_as_liability": false,
+              "amount": 0
+            },
+            "unconfirmed_items": []
+          },
+          "unit": "원",
+          "period": "2025-01-01~2025-12-31",
+          "as_of": "2026-03-31",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_arobot_financials"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "F3",
+          "raw_value": {
+            "lookback": "2021-10-01~2026-09-30",
+            "jurisdictions_checked": [
+              {
+                "agency": "공정거래위원회",
+                "case_types": [
+                  "시정명령",
+                  "과징금",
+                  "고발"
+                ],
+                "searched_at": "2026-09-30",
+                "source_ids": [
+                  "src_arobot_risk"
+                ]
+              },
+              {
+                "agency": "고용노동부",
+                "case_types": [
+                  "중대재해 공표"
+                ],
+                "searched_at": "2026-09-30",
+                "source_ids": [
+                  "src_arobot_risk"
+                ]
+              }
+            ],
+            "cases": [],
+            "case_count": 0
+          },
+          "unit": "건",
+          "period": "2021-10-01~2026-09-30",
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_arobot_risk"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "T2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "K1",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {
+            "early_stage_evidence": [
+              {
+                "kind": "specification",
+                "model": "ALICE 4",
+                "metrics": {
+                  "height_m": 1.6,
+                  "weight_kg": 45,
+                  "degrees_of_freedom": 41,
+                  "arm_dof": 7,
+                  "hand_dof": 6
+                },
+                "source_ids": [
+                  "src_arobot_alice4_specs"
+                ],
+                "independent_verified": false
+              }
+            ]
+          },
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [
+            "src_arobot_alice4_specs"
+          ],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "K2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "K3",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {
+            "early_stage_evidence": [
+              {
+                "kind": "demonstration",
+                "model": "ALICE v4",
+                "event": "MWC 2025",
+                "performed_year": 2025,
+                "completed": true,
+                "physical": true,
+                "confirmation": "company_video_listing",
+                "manufacturing": false,
+                "source_ids": [
+                  "src_arobot_official_video"
+                ],
+                "independent_verified": false
+              }
+            ]
+          },
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [
+            "src_arobot_official_video"
+          ],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "R2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "P1",
+          "raw_value": {
+            "product_segment": "robot_hand",
+            "stat_segment": "로봇 부품 및 부분품",
+            "stat_table": {
+              "title": "2025 로봇산업실태조사보고서",
+              "publisher": "한국로봇산업진흥원",
+              "table_id": "표 3-12 제조업용 로봇 부품별 매출액",
+              "page": 45
+            },
+            "start_year": 2022,
+            "end_year": 2025,
+            "start_revenue": 1420000000000,
+            "end_revenue": 1980000000000,
+            "unit_original": "원",
+            "cagr_percent": 11.72,
+            "mapping_note": null
+          },
+          "unit": "원",
+          "period": "2022-2025",
+          "as_of": "2026-03-31",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_market_robot_parts_2025"
+          ],
+          "collected_by": "market",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "M1",
+          "raw_value": {
+            "valid_registered_patents": 3,
+            "unique_priority_families": 3,
+            "family_ids": [
+              "10-2021-0045678",
+              "10-2022-0078910",
+              "10-2023-0112233"
+            ],
+            "patents": [
+              {
+                "number": "10-2345678",
+                "office": "KR",
+                "title": "다자유도 로봇 핸드의 건-구동 메커니즘",
+                "status": "등록(유효)",
+                "current_holders": [
+                  "주식회사 에이로봇"
+                ],
+                "priority_number": "10-2021-0045678",
+                "priority_date": "2021-04-12",
+                "q_basis": "청구항 1 (로봇 핸드의 정밀 건-구동 핑거 조인트 구조)",
+                "source_ids": [
+                  "src_patent_arobot_kipris"
+                ]
+              },
+              {
+                "number": "10-2456789",
+                "office": "KR",
+                "title": "로봇 핸드용 촉각 센서 내장형 핑거팁 구조",
+                "status": "등록(유효)",
+                "current_holders": [
+                  "주식회사 에이로봇"
+                ],
+                "priority_number": "10-2022-0078910",
+                "priority_date": "2022-06-20",
+                "q_basis": "요약서 (로봇 핸드 손가락 끝 촉각 및 접촉 센싱 모듈)",
+                "source_ids": [
+                  "src_patent_arobot_kipris"
+                ]
+              },
+              {
+                "number": "10-2567890",
+                "office": "KR",
+                "title": "휴머노이드 상지 정밀 조작 관절 구동 시스템",
+                "status": "등록(유효)",
+                "current_holders": [
+                  "주식회사 에이로봇"
+                ],
+                "priority_number": "10-2023-0112233",
+                "priority_date": "2023-08-30",
+                "q_basis": "청구항 1 (정밀조작 액추에이터 및 관절 기구)",
+                "source_ids": [
+                  "src_patent_arobot_kipris"
+                ]
+              }
+            ],
+            "excluded": [
+              {
+                "number": "10-2024-0098765",
+                "title": "로봇 시각 언어 기반 행동 제어 장치",
+                "reason": "공개(출원) 상태로 미등록 특허이므로 배제"
+              },
+              {
+                "number": "10-2019-0011222",
+                "title": "모바일 플랫폼 주행 바퀴 구조",
+                "reason": "Q(정밀조작) 키워드 무관 기술이므로 배제"
+              }
+            ]
+          },
+          "unit": "특허 패밀리",
+          "period": null,
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_patent_arobot_kipris"
+          ],
+          "collected_by": "competitor",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "S1",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {
+            "provisional_tasks": [],
+            "fixed_task_groups": {
+              "TASK1": "비정형 물체 집기",
+              "TASK2": "밸브·레버 조작",
+              "TASK3": "배터리 셀·모듈 핸들링",
+              "TASK4": "케이블·커넥터·부품 체결",
+              "TASK5": "시료·용기·위험물 취급"
+            }
+          },
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "synergy",
+          "query_status": "NO_DATA",
+          "missing_reason": "독립 수행 근거 또는 모기업 원문 페이지 미확인"
+        },
+        {
+          "id": "S2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {
+            "provisional_tasks": [],
+            "fixed_task_groups": {
+              "TASK1": "비정형 물체 집기",
+              "TASK2": "밸브·레버 조작",
+              "TASK3": "배터리 셀·모듈 핸들링",
+              "TASK4": "케이블·커넥터·부품 체결",
+              "TASK5": "시료·용기·위험물 취급"
+            }
+          },
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "synergy",
+          "query_status": "NO_DATA",
+          "missing_reason": "독립 수행 근거 또는 모기업 원문 페이지 미확인"
+        },
+        {
+          "id": "F4",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "synergy",
+          "query_status": "NO_DATA",
+          "missing_reason": "공정 방폭 구역·장비·인증 조회 미확인"
+        }
+      ],
+      "indicator_scores": {
+        "K1": 1,
+        "K2": 1,
+        "K3": 1,
+        "M1": 3,
+        "P1": 4,
+        "R1": 3,
+        "R2": 1,
+        "R3": 4,
+        "S1": 1,
+        "S2": 1,
+        "T1": 3,
+        "T2": 1
+      },
+      "category_scores": {
+        "team": "2.00",
+        "tech": "1.00",
+        "synergy": "1.00",
+        "market": "4.00",
+        "traction": "2.67",
+        "moat": "3.00"
+      },
+      "gates": {
+        "G1": {
+          "passed": true,
+          "reasons": [
+            "G1 적격성 4개 요건을 모두 충족했습니다"
+          ],
+          "source_ids": [
+            "src_arobot_registry",
+            "src_arobot_funding"
+          ],
+          "unknown_items": []
+        },
+        "G2": {
+          "passed": false,
+          "reasons": [
+            "모기업 수요와 연결된 인정 작업이 없습니다"
+          ],
+          "source_ids": [],
+          "unknown_items": [
+            "S2 모기업 수요 연결"
+          ]
+        },
+        "G3": {
+          "passed": true,
+          "reasons": [
+            "확인된 결격 리스크가 없습니다"
+          ],
+          "source_ids": [
+            "src_arobot_financials",
+            "src_arobot_risk"
+          ],
+          "unknown_items": [
+            "F4"
+          ]
+        }
+      },
+      "total_score": "42.0",
+      "benchmark_score": null,
+      "decision": {
+        "status": "HOLD",
+        "reasons": [
+          "미통과 게이트: G2",
+          "총점이 70점 미만입니다: 42.0",
+          "Supervisor가 근거 충분성을 확인하지 못하여 판정을 보류합니다."
+        ]
+      },
+      "evidence_coverage": "0.42",
+      "unknown_items": [
+        "S2 모기업 수요 연결",
+        "F4"
+      ],
+      "due_diligence_items": [
+        "S2 모기업 수요 연결",
+        "F4",
+        "자료 없음 지표가 7개이므로 정보 부족 검토가 필요합니다",
+        "K1 원값과 근거를 추가 확인해야 합니다",
+        "K2 원값과 근거를 추가 확인해야 합니다",
+        "K3 원값과 근거를 추가 확인해야 합니다",
+        "R2 원값과 근거를 추가 확인해야 합니다",
+        "S1 원값과 근거를 추가 확인해야 합니다",
+        "S2 원값과 근거를 추가 확인해야 합니다",
+        "T2 원값과 근거를 추가 확인해야 합니다"
+      ],
+      "metadata": {
+        "missing_indicator_count": 7,
+        "missing_indicator_ids": [
+          "K1",
+          "K2",
+          "K3",
+          "R2",
+          "S1",
+          "S2",
+          "T2"
+        ],
+        "scoring_values": {
+          "K1": null,
+          "K2": null,
+          "K3": null,
+          "M1": "3",
+          "P1": "11.72",
+          "R1": "135",
+          "R2": null,
+          "R3": "55.55555555555555555555555556",
+          "S1": null,
+          "S2": null,
+          "T1": "2",
+          "T2": null
+        },
+        "analysis_mode": "investment_screening",
+        "evidence_sufficient": false,
+        "termination_reason": "evidence_exhausted",
+        "technical_findings": [
+          {
+            "description": "공식 ALICE 4 사양은 키 1.6m, 무게 45kg, 전체 41자유도이며 팔 7자유도·손 6자유도를 제시합니다. 이는 제조사 공개 사양입니다.",
+            "source_ids": [
+              "src_arobot_alice4_specs"
+            ]
+          }
+        ],
+        "early_stage_comparison": {
+          "profile": "early-stage-v2",
+          "score": "44.7",
+          "indicator_scores": {
+            "K1": 2,
+            "K2": 1,
+            "K3": 2,
+            "M1": 3,
+            "P1": 4,
+            "R1": 3,
+            "R2": 1,
+            "R3": 4,
+            "S1": 1,
+            "S2": 1,
+            "T1": 3,
+            "T2": 1
+          },
+          "changes": {
+            "K1": [
+              "제품의 정량 사양을 초기 설계 근거로 인정합니다. 논문 수로 환산하지 않습니다."
+            ],
+            "K3": [
+              "공개된 실물 시연 기록을 초기 실증 근거로 인정합니다. 제조 현장 배치로 간주하지 않습니다."
+            ]
+          },
+          "used_for_investment_decision": false
+        }
+      }
+    },
+    {
+      "candidate_id": "aidin_robotics",
+      "country": "KR",
+      "primary_segment": "force_tactile_sensor",
+      "rule_version": "1.0.0",
+      "indicators": [
+        {
+          "id": "G1",
+          "raw_value": {
+            "unlisted": {
+              "value": true,
+              "checked_markets": [
+                "KRX KIND"
+              ],
+              "cross_checks": [
+                "KIND 상장공시시스템 미등재",
+                "비상장 주식회사 확인"
+              ],
+              "source_id": "src_aidin_registry"
+            },
+            "latest_round": {
+              "value": "Series B",
+              "announced_at": "2026-09-10",
+              "source_id": "src_aidin_funding"
+            },
+            "exit_completed": {
+              "value": false,
+              "source_id": "src_aidin_registry"
+            },
+            "operating_status": {
+              "value": "정상",
+              "as_of": "2026-09-30",
+              "source_id": "src_aidin_registry"
+            }
+          },
+          "unit": "4개 요건 사실",
+          "period": "2026-09-30",
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_aidin_registry",
+            "src_aidin_funding"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "T1",
+          "raw_value": {
+            "qualified_count": 2,
+            "members": [
+              {
+                "name": "최혁렬",
+                "role": "CTO / 공동창업자",
+                "org": "성균관대학교 기계공학부 로보틱스 연구실",
+                "org_type": "공인 로봇 연구기관",
+                "start": "2000-03",
+                "end": "2026-09",
+                "evidence_status": "COMPANY_CLAIM",
+                "source_ids": [
+                  "src_aidin_founder"
+                ]
+              },
+              {
+                "name": "이윤행",
+                "role": "대표이사 / 공동창업자",
+                "org": "성균관대학교 로보틱스 연구실 / 에이딘로보틱스",
+                "org_type": "공인 로봇 연구기관",
+                "start": "2015-03",
+                "end": "2026-09",
+                "evidence_status": "COMPANY_CLAIM",
+                "source_ids": [
+                  "src_aidin_founder"
+                ]
+              }
+            ],
+            "excluded": []
+          },
+          "unit": "명",
+          "period": "설립 전후 통산",
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "COMPANY_CLAIM",
+          "source_ids": [
+            "src_aidin_founder"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "R1",
+          "raw_value": {
+            "rounds": [
+              {
+                "round_name": "Seed",
+                "announced_at": "2020-08-01",
+                "amount_original": 1000000000,
+                "currency": "KRW",
+                "is_cumulative_announcement": false,
+                "source_ids": [
+                  "src_aidin_funding"
+                ]
+              },
+              {
+                "round_name": "Series A",
+                "announced_at": "2022-03-15",
+                "amount_original": 4500000000,
+                "currency": "KRW",
+                "is_cumulative_announcement": false,
+                "source_ids": [
+                  "src_aidin_funding"
+                ]
+              },
+              {
+                "round_name": "Series B",
+                "announced_at": "2026-09-10",
+                "amount_original": 16000000000,
+                "currency": "KRW",
+                "is_cumulative_announcement": false,
+                "source_ids": [
+                  "src_aidin_funding"
+                ]
+              }
+            ],
+            "excluded_items": []
+          },
+          "unit": "원",
+          "period": "2020-08-01~2026-09-10",
+          "as_of": "2026-09-10",
+          "condition": {},
+          "evidence_status": "COMPANY_CLAIM",
+          "source_ids": [
+            "src_aidin_funding"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "R3",
+          "raw_value": {
+            "latest": {
+              "count": 38,
+              "as_of": "2026-08-31",
+              "scope": "동일 법인 상시근로자",
+              "report_type": "국민연금 납부 사업장 기준 공인 데이터",
+              "source_ids": [
+                "src_aidin_employment"
+              ]
+            },
+            "prior": {
+              "count": 24,
+              "as_of": "2025-08-31",
+              "scope": "동일 법인 상시근로자",
+              "report_type": "국민연금 납부 사업장 기준 공인 데이터",
+              "source_ids": [
+                "src_aidin_employment"
+              ]
+            },
+            "reference_only": []
+          },
+          "unit": "명",
+          "period": "2025-08-31~2026-08-31",
+          "as_of": "2026-08-31",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_aidin_employment"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "F1",
+          "raw_value": {
+            "fiscal_period": "2025-01-01~2025-12-31",
+            "currency": "KRW",
+            "unit": "원",
+            "accounting_standard": "일반기업회계기준",
+            "cash_and_equivalents": 12000000000,
+            "short_term_financial_instruments": 3000000000,
+            "operating_cash_flow": -4200000000,
+            "post_closing_funding": []
+          },
+          "unit": "원",
+          "period": "2025-01-01~2025-12-31",
+          "as_of": "2026-03-31",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_aidin_financials"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "F2",
+          "raw_value": {
+            "fiscal_period": "2025-01-01~2025-12-31",
+            "currency": "KRW",
+            "unit": "원",
+            "accounting_standard": "일반기업회계기준",
+            "capital_stock": 350000000,
+            "total_equity": 11500000000,
+            "total_liabilities": 3100000000,
+            "audit_opinion": "적정",
+            "going_concern_uncertainty": false,
+            "rcps": {
+              "classified_as_liability": false,
+              "amount": 0
+            },
+            "unconfirmed_items": []
+          },
+          "unit": "원",
+          "period": "2025-01-01~2025-12-31",
+          "as_of": "2026-03-31",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_aidin_financials"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "F3",
+          "raw_value": {
+            "lookback": "2021-10-01~2026-09-30",
+            "jurisdictions_checked": [
+              {
+                "agency": "공정거래위원회",
+                "case_types": [
+                  "시정명령",
+                  "과징금",
+                  "고발"
+                ],
+                "searched_at": "2026-09-30",
+                "source_ids": [
+                  "src_aidin_risk"
+                ]
+              },
+              {
+                "agency": "고용노동부",
+                "case_types": [
+                  "중대재해 공표"
+                ],
+                "searched_at": "2026-09-30",
+                "source_ids": [
+                  "src_aidin_risk"
+                ]
+              }
+            ],
+            "cases": [],
+            "case_count": 0
+          },
+          "unit": "건",
+          "period": "2021-10-01~2026-09-30",
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_aidin_risk"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "T2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "K1",
+          "raw_value": 1,
+          "unit": "논문 DOI",
+          "period": "2021-10-13/2026-10-13",
+          "as_of": "2026-10-13",
+          "condition": {
+            "papers": [
+              {
+                "kind": "paper",
+                "doi": "10.3390/s25030940",
+                "published_at": "2025-02-04",
+                "author_ids": [
+                  "Seung Yeon Lee",
+                  "Jae Yoon Sim",
+                  "Yong Bum Kim",
+                  "Dongyeop Seok",
+                  "Jaeyoon Shim",
+                  "Hyouk Ryeol Choi"
+                ],
+                "affiliations": [
+                  "Sungkyunkwan University",
+                  "Aidin Robotics Inc."
+                ],
+                "topic_relevant": true,
+                "identity_verified": true,
+                "company_affiliation_verified": true,
+                "independent_verified": true,
+                "source_ids": [
+                  "src_aidin_paper_2025_p1"
+                ]
+              }
+            ],
+            "early_stage_evidence": [
+              {
+                "kind": "specification",
+                "model": "AIDIN HAND",
+                "metrics": {
+                  "hand_dof": 15,
+                  "fingertip_force_n": 20,
+                  "payload_kg": 15
+                },
+                "independent_verified": false,
+                "source_ids": [
+                  "src_aidin_hand_specs"
+                ]
+              }
+            ]
+          },
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_aidin_hand_specs",
+            "src_aidin_paper_2025_p1"
+          ],
+          "collected_by": "tech",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "K2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {
+            "early_stage_evidence": [
+              {
+                "kind": "validation",
+                "model": "miniature capacitive six-axis F/T sensor prototype",
+                "physical": true,
+                "setup": "force loading lever and ATI Nano-17 reference sensor",
+                "metrics": {
+                  "force_range_n": 15,
+                  "torque_range_nmm": 75,
+                  "relative_force_error_percent_fso": [
+                    0.16,
+                    0.18,
+                    0.24
+                  ],
+                  "relative_torque_error_percent_fso": [
+                    0.88,
+                    0.9,
+                    0.67
+                  ]
+                },
+                "independent_verified": false,
+                "source_ids": [
+                  "src_aidin_paper_2025_p14",
+                  "src_aidin_paper_2025_p15"
+                ]
+              }
+            ]
+          },
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [
+            "src_aidin_paper_2025_p14",
+            "src_aidin_paper_2025_p15"
+          ],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "K3",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "R2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "P1",
+          "raw_value": {
+            "product_segment": "force_tactile_sensor",
+            "stat_segment": "로봇 부품 및 부분품",
+            "stat_table": {
+              "title": "2025 로봇산업실태조사보고서",
+              "publisher": "한국로봇산업진흥원",
+              "table_id": "표 3-12 제조업용 로봇 부품별 매출액",
+              "page": 45
+            },
+            "start_year": 2022,
+            "end_year": 2025,
+            "start_revenue": 1420000000000,
+            "end_revenue": 1980000000000,
+            "unit_original": "원",
+            "cagr_percent": 11.72,
+            "mapping_note": null
+          },
+          "unit": "원",
+          "period": "2022-2025",
+          "as_of": "2026-03-31",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_market_robot_parts_2025"
+          ],
+          "collected_by": "market",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "M1",
+          "raw_value": {
+            "valid_registered_patents": 5,
+            "unique_priority_families": 4,
+            "family_ids": [
+              "10-2020-0012345",
+              "10-2021-0067890",
+              "10-2022-0034567",
+              "10-2023-0089012"
+            ],
+            "patents": [
+              {
+                "number": "10-2233445",
+                "office": "KR",
+                "title": "초소형 6축 힘/토크 센서의 변형체 기구 구조",
+                "status": "등록(유효)",
+                "current_holders": [
+                  "주식회사 에이딘로보틱스"
+                ],
+                "priority_number": "10-2020-0012345",
+                "priority_date": "2020-02-10",
+                "q_basis": "청구항 1 (다축 힘센서 구조체)",
+                "source_ids": [
+                  "src_patent_aidin_kipris"
+                ]
+              },
+              {
+                "number": "US11,234,567",
+                "office": "US",
+                "title": "Miniaturized 6-Axis Force/Torque Sensor",
+                "status": "등록(유효)",
+                "current_holders": [
+                  "주식회사 에이딘로보틱스"
+                ],
+                "priority_number": "10-2020-0012345",
+                "priority_date": "2020-02-10",
+                "q_basis": "Claims 1 (동일 기초출원 US 등록)",
+                "source_ids": [
+                  "src_patent_aidin_kipris"
+                ]
+              },
+              {
+                "number": "10-2344556",
+                "office": "KR",
+                "title": "로봇 그리퍼용 정전용량식 유연 촉각 센서 모듈",
+                "status": "등록(유효)",
+                "current_holders": [
+                  "주식회사 에이딘로보틱스"
+                ],
+                "priority_number": "10-2021-0067890",
+                "priority_date": "2021-05-18",
+                "q_basis": "요약서 (그리퍼 파지면 접촉 촉각 센서)",
+                "source_ids": [
+                  "src_patent_aidin_kipris"
+                ]
+              },
+              {
+                "number": "10-2455667",
+                "office": "KR",
+                "title": "외란 보상 기능을 갖는 로봇 관절용 중공형 토크 센서",
+                "status": "등록(유효)",
+                "current_holders": [
+                  "주식회사 에이딘로보틱스"
+                ],
+                "priority_number": "10-2022-0034567",
+                "priority_date": "2022-03-25",
+                "q_basis": "청구항 1 (로봇 조작 관절 토크 감지 센서)",
+                "source_ids": [
+                  "src_patent_aidin_kipris"
+                ]
+              },
+              {
+                "number": "10-2566778",
+                "office": "KR",
+                "title": "비접촉 근접 및 접촉력 복합 감지 스마트 그리퍼 센서",
+                "status": "등록(유효)",
+                "current_holders": [
+                  "주식회사 에이딘로보틱스"
+                ],
+                "priority_number": "10-2023-0089012",
+                "priority_date": "2023-07-12",
+                "q_basis": "청구항 1 (정밀조작 파지 피드백 센서)",
+                "source_ids": [
+                  "src_patent_aidin_kipris"
+                ]
+              }
+            ],
+            "excluded": [
+              {
+                "number": "10-2024-0012345",
+                "title": "무선 데이터 전송 인터페이스 회로",
+                "reason": "Q(정밀조작/센서) 직접 관련성이 낮아 배제"
+              }
+            ]
+          },
+          "unit": "특허 패밀리",
+          "period": null,
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_patent_aidin_kipris"
+          ],
+          "collected_by": "competitor",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "S1",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {
+            "provisional_tasks": [],
+            "fixed_task_groups": {
+              "TASK1": "비정형 물체 집기",
+              "TASK2": "밸브·레버 조작",
+              "TASK3": "배터리 셀·모듈 핸들링",
+              "TASK4": "케이블·커넥터·부품 체결",
+              "TASK5": "시료·용기·위험물 취급"
+            }
+          },
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "synergy",
+          "query_status": "NO_DATA",
+          "missing_reason": "독립 수행 근거 또는 모기업 원문 페이지 미확인"
+        },
+        {
+          "id": "S2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {
+            "provisional_tasks": [],
+            "fixed_task_groups": {
+              "TASK1": "비정형 물체 집기",
+              "TASK2": "밸브·레버 조작",
+              "TASK3": "배터리 셀·모듈 핸들링",
+              "TASK4": "케이블·커넥터·부품 체결",
+              "TASK5": "시료·용기·위험물 취급"
+            }
+          },
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "synergy",
+          "query_status": "NO_DATA",
+          "missing_reason": "독립 수행 근거 또는 모기업 원문 페이지 미확인"
+        },
+        {
+          "id": "F4",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "synergy",
+          "query_status": "NO_DATA",
+          "missing_reason": "공정 방폭 구역·장비·인증 조회 미확인"
+        }
+      ],
+      "indicator_scores": {
+        "K1": 2,
+        "K2": 1,
+        "K3": 1,
+        "M1": 4,
+        "P1": 4,
+        "R1": 3,
+        "R2": 1,
+        "R3": 4,
+        "S1": 1,
+        "S2": 1,
+        "T1": 3,
+        "T2": 1
+      },
+      "category_scores": {
+        "team": "2.00",
+        "tech": "1.33",
+        "synergy": "1.00",
+        "market": "4.00",
+        "traction": "2.67",
+        "moat": "4.00"
+      },
+      "gates": {
+        "G1": {
+          "passed": true,
+          "reasons": [
+            "G1 적격성 4개 요건을 모두 충족했습니다"
+          ],
+          "source_ids": [
+            "src_aidin_registry",
+            "src_aidin_funding"
+          ],
+          "unknown_items": []
+        },
+        "G2": {
+          "passed": false,
+          "reasons": [
+            "모기업 수요와 연결된 인정 작업이 없습니다"
+          ],
+          "source_ids": [],
+          "unknown_items": [
+            "S2 모기업 수요 연결"
+          ]
+        },
+        "G3": {
+          "passed": true,
+          "reasons": [
+            "확인된 결격 리스크가 없습니다"
+          ],
+          "source_ids": [
+            "src_aidin_financials",
+            "src_aidin_risk"
+          ],
+          "unknown_items": [
+            "F4"
+          ]
+        }
+      },
+      "total_score": "45.3",
+      "benchmark_score": null,
+      "decision": {
+        "status": "HOLD",
+        "reasons": [
+          "미통과 게이트: G2",
+          "총점이 70점 미만입니다: 45.3",
+          "Supervisor가 근거 충분성을 확인하지 못하여 판정을 보류합니다."
+        ]
+      },
+      "evidence_coverage": "0.50",
+      "unknown_items": [
+        "S2 모기업 수요 연결",
+        "F4"
+      ],
+      "due_diligence_items": [
+        "S2 모기업 수요 연결",
+        "F4",
+        "자료 없음 지표가 6개이므로 정보 부족 검토가 필요합니다",
+        "K2 원값과 근거를 추가 확인해야 합니다",
+        "K3 원값과 근거를 추가 확인해야 합니다",
+        "R2 원값과 근거를 추가 확인해야 합니다",
+        "S1 원값과 근거를 추가 확인해야 합니다",
+        "S2 원값과 근거를 추가 확인해야 합니다",
+        "T2 원값과 근거를 추가 확인해야 합니다"
+      ],
+      "metadata": {
+        "missing_indicator_count": 6,
+        "missing_indicator_ids": [
+          "K2",
+          "K3",
+          "R2",
+          "S1",
+          "S2",
+          "T2"
+        ],
+        "scoring_values": {
+          "K1": "1",
+          "K2": null,
+          "K3": null,
+          "M1": "4",
+          "P1": "11.72",
+          "R1": "215",
+          "R2": null,
+          "R3": "58.33333333333333333333333333",
+          "S1": null,
+          "S2": null,
+          "T1": "2",
+          "T2": null
+        },
+        "analysis_mode": "investment_screening",
+        "evidence_sufficient": false,
+        "termination_reason": "evidence_exhausted",
+        "technical_findings": [
+          {
+            "description": "2025년 Sensors 논문은 에이딘 소속 저자와 DOI를 확인할 수 있습니다. 실물 센서를 기준 센서와 비교하여 힘·토크 측정 범위와 오차를 보고했습니다. 조작 성공률 시험과는 구분합니다.",
+            "source_ids": [
+              "src_aidin_paper_2025_p1",
+              "src_aidin_paper_2025_p14"
+            ]
+          },
+          {
+            "description": "논문은 힘 측정 범위 15N, 토크 측정 범위 75N·mm를 사용합니다. 평균 상대 오차는 힘축 0.16·0.18·0.24%FSO, 토크축 0.88·0.90·0.67%FSO입니다. 자체 연구진의 기준 센서 비교 결과이며 독립 재현은 확인하지 않았습니다.",
+            "source_ids": [
+              "src_aidin_paper_2025_p14",
+              "src_aidin_paper_2025_p15"
+            ]
+          }
+        ],
+        "early_stage_comparison": {
+          "profile": "early-stage-v2",
+          "score": "46.7",
+          "indicator_scores": {
+            "K1": 2,
+            "K2": 2,
+            "K3": 1,
+            "M1": 4,
+            "P1": 4,
+            "R1": 3,
+            "R2": 1,
+            "R3": 4,
+            "S1": 1,
+            "S2": 1,
+            "T1": 3,
+            "T2": 1
+          },
+          "changes": {
+            "K2": [
+              "실물 센서의 시험 조건과 측정 수치를 초기 성능 근거로 인정합니다. 조작 성공률로 환산하지 않습니다."
+            ]
+          },
+          "used_for_investment_decision": false
+        }
+      }
+    },
+    {
+      "candidate_id": "figure_ai",
+      "country": "US",
+      "primary_segment": "vla",
+      "rule_version": "1.0.0",
+      "indicators": [
+        {
+          "id": "G1",
+          "raw_value": {
+            "unlisted": {
+              "value": true,
+              "checked_markets": [
+                "SEC EDGAR",
+                "Delaware Division of Corporations"
+              ],
+              "cross_checks": [
+                "SEC EDGAR 상장공시 미등재",
+                "델라웨어 비상장 법인 확인"
+              ],
+              "source_id": "src_figure_registry"
+            },
+            "latest_round": {
+              "value": "Series C",
+              "announced_at": "2025-02-20",
+              "source_id": "src_figure_series_c"
+            },
+            "exit_completed": {
+              "value": false,
+              "source_id": "src_figure_registry"
+            },
+            "operating_status": {
+              "value": "정상",
+              "as_of": "2026-09-30",
+              "source_id": "src_figure_registry"
+            }
+          },
+          "unit": "4개 요건 사실",
+          "period": "2026-09-30",
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "COMPANY_CLAIM",
+          "source_ids": [
+            "src_figure_registry",
+            "src_figure_series_c"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "T1",
+          "raw_value": {
+            "qualified_count": 2,
+            "members": [
+              {
+                "name": "Brett Adcock",
+                "role": "CEO / 창업자",
+                "org": "Archer Aviation / Vettery 창업",
+                "degree": "B.S. in Business",
+                "career_years": 15,
+                "physical_ai_relevance": "Figure 01/02 및 Helix 상용 휴머노이드 전략 총괄",
+                "source_ids": [
+                  "src_figure_series_c"
+                ]
+              },
+              {
+                "name": "Jerry Pratt",
+                "role": "CTO / 최고기술책임자",
+                "org": "IHMC (Florida Institute for Human and Machine Cognition)",
+                "degree": "Ph.D. in Mechanical Engineering, MIT",
+                "career_years": 22,
+                "physical_ai_relevance": "MIT Leg Lab 출신 휴머노이드 보행 및 정밀 상지 조작 로보틱스 선임 연구원 20년 이상 경력",
+                "source_ids": [
+                  "src_figure_helix"
+                ]
+              }
+            ],
+            "excluded_members": []
+          },
+          "unit": "명",
+          "period": "2026-09-30",
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "COMPANY_CLAIM",
+          "source_ids": [
+            "src_figure_series_c",
+            "src_figure_helix"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "R1",
+          "raw_value": {
+            "cumulative_amount": 1440000000000,
+            "currency": "KRW",
+            "latest_round": "Series C",
+            "rounds": [
+              {
+                "round": "Seed",
+                "amount": 13500000000,
+                "announced_at": "2022-08-01",
+                "investors": [
+                  "Brett Adcock (자체 출자)"
+                ],
+                "source_ids": [
+                  "src_figure_series_c"
+                ]
+              },
+              {
+                "round": "Series A",
+                "amount": 94500000000,
+                "announced_at": "2023-05-24",
+                "investors": [
+                  "Parkway Venture Capital",
+                  "Aliya Capital"
+                ],
+                "source_ids": [
+                  "src_figure_series_c"
+                ]
+              },
+              {
+                "round": "Series B",
+                "amount": 911000000000,
+                "announced_at": "2024-02-29",
+                "investors": [
+                  "OpenAI",
+                  "NVIDIA",
+                  "Microsoft",
+                  "Amazon Industrial Innovation Fund",
+                  "Jeff Bezos"
+                ],
+                "source_ids": [
+                  "src_figure_series_c"
+                ]
+              },
+              {
+                "round": "Series C",
+                "amount": 421000000000,
+                "announced_at": "2025-02-20",
+                "investors": [
+                  "Align Ventures",
+                  "Parkway Venture Capital",
+                  "Intel Capital"
+                ],
+                "source_ids": [
+                  "src_figure_series_c"
+                ]
+              }
+            ],
+            "excluded_items": []
+          },
+          "unit": "원",
+          "period": "2022-08-01~2025-02-20",
+          "as_of": "2025-02-20",
+          "condition": {},
+          "evidence_status": "COMPANY_CLAIM",
+          "source_ids": [
+            "src_figure_series_c"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "R3",
+          "raw_value": {
+            "latest": {
+              "count": 140,
+              "as_of": "2026-08-31",
+              "scope": "글로벌 상시 근로자 및 연구인력",
+              "report_type": "공식 채용 및 LinkedIn 기업 페이지 공표 기준",
+              "source_ids": [
+                "src_figure_helix_02"
+              ]
+            },
+            "prior": {
+              "count": 80,
+              "as_of": "2025-08-31",
+              "scope": "글로벌 상시 근로자 및 연구인력",
+              "report_type": "공식 보도자료 기준",
+              "source_ids": [
+                "src_figure_series_c"
+              ]
+            },
+            "reference_only": []
+          },
+          "unit": "명",
+          "period": "2025-08-31~2026-08-31",
+          "as_of": "2026-08-31",
+          "condition": {},
+          "evidence_status": "COMPANY_CLAIM",
+          "source_ids": [
+            "src_figure_series_c",
+            "src_figure_helix_02"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "F1",
+          "raw_value": {
+            "fiscal_period": "2025-01-01~2025-12-31",
+            "currency": "KRW",
+            "unit": "원",
+            "accounting_standard": "US-GAAP (비상장 자체 추정 공표)",
+            "cash_and_equivalents": 900000000000,
+            "short_term_financial_instruments": 0,
+            "operating_cash_flow": -250000000000,
+            "post_closing_funding": []
+          },
+          "unit": "원",
+          "period": "2025-01-01~2025-12-31",
+          "as_of": "2026-03-31",
+          "condition": {},
+          "evidence_status": "COMPANY_CLAIM",
+          "source_ids": [
+            "src_figure_series_c"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "F2",
+          "raw_value": {
+            "fiscal_period": "2025-01-01~2025-12-31",
+            "currency": "KRW",
+            "unit": "원",
+            "accounting_standard": "US-GAAP (비상장 자체 추정 공표)",
+            "capital_stock": 100000000,
+            "total_equity": 850000000000,
+            "total_liabilities": 120000000000,
+            "audit_opinion": "미감사(비상장)",
+            "going_concern_uncertainty": false,
+            "rcps": {
+              "classified_as_liability": false,
+              "amount": 0
+            },
+            "unconfirmed_items": []
+          },
+          "unit": "원",
+          "period": "2025-01-01~2025-12-31",
+          "as_of": "2026-03-31",
+          "condition": {},
+          "evidence_status": "COMPANY_CLAIM",
+          "source_ids": [
+            "src_figure_series_c"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "F3",
+          "raw_value": {
+            "lookback": "2021-10-01~2026-09-30",
+            "jurisdictions_checked": [
+              {
+                "agency": "US Federal Trade Commission (FTC)",
+                "case_types": [
+                  "독점 및 불공정거래 조사"
+                ],
+                "searched_at": "2026-09-30",
+                "source_ids": [
+                  "src_figure_risk"
+                ]
+              },
+              {
+                "agency": "US Occupational Safety and Health Administration (OSHA)",
+                "case_types": [
+                  "산업재해 및 안전위반 처분"
+                ],
+                "searched_at": "2026-09-30",
+                "source_ids": [
+                  "src_figure_risk"
+                ]
+              }
+            ],
+            "cases": [],
+            "case_count": 0
+          },
+          "unit": "건",
+          "period": "2021-10-01~2026-09-30",
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_figure_risk"
+          ],
+          "collected_by": "discover",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "T2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "K1",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "K2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "K3",
+          "raw_value": 1,
+          "unit": "제조 현장",
+          "period": "2023-10-13/2026-10-13",
+          "as_of": "2026-10-13",
+          "condition": {
+            "site_ids": [
+              "BMW-Spartanburg-body-shop"
+            ],
+            "pilots": [
+              {
+                "kind": "pilot",
+                "site_id": "BMW-Spartanburg-body-shop",
+                "completed_at": "2025-11-19",
+                "completed": true,
+                "manufacturing": true,
+                "physical": true,
+                "confirmed_by": "customer",
+                "independent_verified": true,
+                "source_ids": [
+                  "src_bmw_figure_customer_p4",
+                  "src_figure_pilot_completion"
+                ]
+              }
+            ],
+            "limitation": "실증 수는 유상 계약 또는 양산 매출이 아님"
+          },
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_bmw_figure_customer_p4",
+            "src_figure_pilot_completion"
+          ],
+          "collected_by": "tech",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "R2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "tech",
+          "query_status": "NO_DATA",
+          "missing_reason": "원값·대상·기간·출처가 충족된 자료 없음"
+        },
+        {
+          "id": "P1",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "market",
+          "query_status": "NO_DATA",
+          "missing_reason": "VLA 조작 지능 소프트웨어에 직접 대응하는 한국 공식 통계 분류가 확인되지 않아 임의 배정하지 않음 (설계서 5-8 준수)"
+        },
+        {
+          "id": "M1",
+          "raw_value": {
+            "valid_registered_patents": 2,
+            "unique_priority_families": 2,
+            "family_ids": [
+              "US-63/456,789",
+              "US-63/567,890"
+            ],
+            "patents": [
+              {
+                "number": "US11,987,654",
+                "office": "US",
+                "title": "Dexterous Robotic Hand with Integrated Palm Camera and Tactile Array",
+                "status": "등록(유효)",
+                "current_holders": [
+                  "Figure AI, Inc."
+                ],
+                "priority_number": "US-63/456,789",
+                "priority_date": "2023-03-15",
+                "q_basis": "Claims 1 (촉각 센서 tactile 및 손바닥 비전 기반 정밀조작 그리퍼 robot hand 메커니즘)",
+                "source_ids": [
+                  "src_patent_figure_uspto"
+                ]
+              },
+              {
+                "number": "US12,012,345",
+                "office": "US",
+                "title": "Upper-Body Manipulation and Bimanual Coordination for Humanoid Robots",
+                "status": "등록(유효)",
+                "current_holders": [
+                  "Figure AI, Inc."
+                ],
+                "priority_number": "US-63/567,890",
+                "priority_date": "2023-08-20",
+                "q_basis": "Claims 1 (휴머노이드 상체 양손 협업 제어 및 VLA 행동 연계 정밀조작 manipulation)",
+                "source_ids": [
+                  "src_patent_figure_uspto"
+                ]
+              }
+            ],
+            "excluded": [
+              {
+                "number": "US20240123456",
+                "title": "Helix Vision-Language-Action Architecture",
+                "reason": "공개(출원) 상태로 미등록 특허이므로 배제"
+              }
+            ]
+          },
+          "unit": "특허 패밀리",
+          "period": null,
+          "as_of": "2026-09-30",
+          "condition": {},
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_patent_figure_uspto"
+          ],
+          "collected_by": "competitor",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "S1",
+          "raw_value": {
+            "performed_task_count": 1,
+            "task_count": 1,
+            "task_ids": [
+              "TASK1"
+            ]
+          },
+          "unit": "작업군",
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {
+            "provisional_tasks": [],
+            "fixed_task_groups": {
+              "TASK1": "비정형 물체 집기",
+              "TASK2": "밸브·레버 조작",
+              "TASK3": "배터리 셀·모듈 핸들링",
+              "TASK4": "케이블·커넥터·부품 체결",
+              "TASK5": "시료·용기·위험물 취급"
+            }
+          },
+          "evidence_status": "THIRD_PARTY_VERIFIED",
+          "source_ids": [
+            "src_bmw_figure_customer_p4",
+            "src_figure_pilot_completion"
+          ],
+          "collected_by": "synergy",
+          "query_status": "SUCCESS",
+          "missing_reason": null
+        },
+        {
+          "id": "S2",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {
+            "provisional_tasks": [],
+            "fixed_task_groups": {
+              "TASK1": "비정형 물체 집기",
+              "TASK2": "밸브·레버 조작",
+              "TASK3": "배터리 셀·모듈 핸들링",
+              "TASK4": "케이블·커넥터·부품 체결",
+              "TASK5": "시료·용기·위험물 취급"
+            }
+          },
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "synergy",
+          "query_status": "NO_DATA",
+          "missing_reason": "독립 수행 근거 또는 모기업 원문 페이지 미확인"
+        },
+        {
+          "id": "F4",
+          "raw_value": null,
+          "unit": null,
+          "period": null,
+          "as_of": "2026-10-13",
+          "condition": {},
+          "evidence_status": "NO_EVIDENCE",
+          "source_ids": [],
+          "collected_by": "synergy",
+          "query_status": "NO_DATA",
+          "missing_reason": "공정 방폭 구역·장비·인증 조회 미확인"
+        }
+      ],
+      "indicator_scores": {
+        "K1": 1,
+        "K2": 1,
+        "K3": 2,
+        "M1": 3,
+        "P1": 1,
+        "R1": 1,
+        "R2": 1,
+        "R3": 3,
+        "S1": 2,
+        "S2": 1,
+        "T1": 3,
+        "T2": 1
+      },
+      "category_scores": {
+        "team": "2.00",
+        "tech": "1.33",
+        "synergy": "1.50",
+        "market": "1.00",
+        "traction": "1.67",
+        "moat": "3.00"
+      },
+      "gates": {
+        "G1": {
+          "passed": false,
+          "reasons": [
+            "적격 투자 단계가 아닙니다: Series C"
+          ],
+          "source_ids": [
+            "src_figure_registry",
+            "src_figure_series_c"
+          ],
+          "unknown_items": []
+        },
+        "G2": {
+          "passed": false,
+          "reasons": [
+            "모기업 수요와 연결된 인정 작업이 없습니다"
+          ],
+          "source_ids": [],
+          "unknown_items": [
+            "S2 모기업 수요 연결"
+          ]
+        },
+        "G3": {
+          "passed": true,
+          "reasons": [
+            "확인된 결격 리스크가 없습니다"
+          ],
+          "source_ids": [
+            "src_figure_series_c",
+            "src_figure_risk"
+          ],
+          "unknown_items": [
+            "F4"
+          ]
+        }
+      },
+      "total_score": null,
+      "benchmark_score": "33.3",
+      "decision": {
+        "status": "HOLD",
+        "reasons": [
+          "미통과 게이트: G1, G2",
+          "총점이 70점 미만입니다: 33.3",
+          "Supervisor가 근거 충분성을 확인하지 못하여 판정을 보류합니다."
+        ]
+      },
+      "evidence_coverage": "0.50",
+      "unknown_items": [
+        "S2 모기업 수요 연결",
+        "F4"
+      ],
+      "due_diligence_items": [
+        "S2 모기업 수요 연결",
+        "F4",
+        "자료 없음 지표가 6개이므로 정보 부족 검토가 필요합니다",
+        "K1 원값과 근거를 추가 확인해야 합니다",
+        "K2 원값과 근거를 추가 확인해야 합니다",
+        "P1 원값과 근거를 추가 확인해야 합니다",
+        "R2 원값과 근거를 추가 확인해야 합니다",
+        "S2 원값과 근거를 추가 확인해야 합니다",
+        "T2 원값과 근거를 추가 확인해야 합니다"
+      ],
+      "metadata": {
+        "missing_indicator_count": 6,
+        "missing_indicator_ids": [
+          "K1",
+          "K2",
+          "P1",
+          "R2",
+          "S2",
+          "T2"
+        ],
+        "scoring_values": {
+          "K1": null,
+          "K2": null,
+          "K3": "1",
+          "M1": "2",
+          "P1": null,
+          "R1": null,
+          "R2": null,
+          "R3": "75.00",
+          "S1": "1",
+          "S2": null,
+          "T1": "2",
+          "T2": null
+        },
+        "analysis_mode": "stage_benchmark",
+        "evidence_sufficient": false,
+        "termination_reason": "evidence_exhausted",
+        "technical_findings": [
+          {
+            "description": "BMW는 Figure 02가 10개월간 3만 대 이상의 X3 생산을 지원하고, 부품 9만 개 이상을 이동하며 약 1,250시간 운영되었다고 확인했습니다. 운영량은 시험 성공률의 분모로 사용하지 않습니다.",
+            "source_ids": [
+              "src_bmw_figure_customer_p4"
+            ]
+          }
+        ],
+        "early_stage_comparison": {
+          "profile": "early-stage-v2",
+          "score": "33.3",
+          "indicator_scores": {
+            "K1": 1,
+            "K2": 1,
+            "K3": 2,
+            "M1": 3,
+            "P1": 1,
+            "R1": 1,
+            "R2": 1,
+            "R3": 3,
+            "S1": 2,
+            "S2": 1,
+            "T1": 3,
+            "T2": 1
+          },
+          "changes": {},
+          "used_for_investment_decision": false
+        }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "src_arobot_funding",
+      "kind": "WEB",
+      "publisher": "THE VC / 로봇신문",
+      "title": "에이로봇 투자 유치 내역",
+      "url": "https://thevc.kr/a-robot",
+      "published_at": "2025-07-16",
+      "collected_at": "2026-09-30T09:20:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "시드 35억원(2024.05), 시리즈 A 100억원(2025.07) 유치 발표"
+    },
+    {
+      "source_id": "src_arobot_founder",
+      "kind": "WEB",
+      "publisher": "에이로봇 공식 웹사이트",
+      "title": "에이로봇 창업팀 및 연구진 소개",
+      "url": "https://www.arobot4all.com/",
+      "published_at": "2026-01-10",
+      "collected_at": "2026-09-30T09:25:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "CTO 한재권 교수 로보티즈 수석연구원 및 한양대 ERICA 로봇공학과 재직, 대표 엄윤설"
+    },
+    {
+      "source_id": "src_arobot_employment",
+      "kind": "API",
+      "publisher": "국민연금공단",
+      "title": "에이로봇 국민연금 가입자 추이 공공데이터",
+      "url": null,
+      "published_at": null,
+      "collected_at": "2026-09-30T09:30:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": "nps_emp_arobot_202608",
+      "evidence_excerpt": "2025년 8월 18명, 2026년 8월 28명 동일 법인 가입자 확인"
+    },
+    {
+      "source_id": "src_arobot_financials",
+      "kind": "WEB",
+      "publisher": "중소벤처기업부 기업정보 / 혁신의숲",
+      "title": "에이로봇 2025년도 재무제표 요약",
+      "url": "https://innoforest.co.kr/company/CP00015482",
+      "published_at": "2026-03-31",
+      "collected_at": "2026-09-30T09:35:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "현금및현금성자산 85억, 단기금융 15억, 영업현금흐름 -36억, 자본금 2.5억, 자본총계 68억"
+    },
+    {
+      "source_id": "src_arobot_risk",
+      "kind": "MANUAL",
+      "publisher": "공정거래위원회 / 고용노동부",
+      "title": "에이로봇 행정처분 및 산재 공표 이력 조회",
+      "url": null,
+      "published_at": null,
+      "collected_at": "2026-09-30T09:40:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "최근 5년간 공정위 시정명령/과징금/고발 0건, 노동부 중대재해 공표 0건 확인 (조회일: 2026-09-30, 확인자: 박세진)"
+    },
+    {
+      "source_id": "src_arobot_alice4_specs",
+      "kind": "PDF",
+      "publisher": "AeiROBOT",
+      "title": "AeiROBOT Company and Product Brochure",
+      "url": "https://www.ces2026-humanoidmaxalliance.com/_files/ugd/e1822d_b26c5b12645649b0942f3f4a6023655e.pdf",
+      "published_at": null,
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/arobot/arobot_brochure_en.pdf",
+      "sha256": "c2acce4a617d81e226d44fc7a37426b39b81573ac0bd3d3cdacab8f2f927f61f",
+      "doc_id": "arobot_brochure_2025",
+      "page": 5,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "41DOF; 1.6 m / 45 kg"
+    },
+    {
+      "source_id": "src_arobot_official_video",
+      "kind": "WEB",
+      "publisher": "AeiROBOT",
+      "title": "Official videos: ALICE v4 in MWC 2025",
+      "url": "https://eng.arobot4all.com/video",
+      "published_at": null,
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "Humanoid robot 'ALICE v4' in MWC 2025"
+    },
+    {
+      "source_id": "src_patent_arobot_kipris",
+      "kind": "MANUAL",
+      "publisher": "특허청 KIPRIS 특허정보넷",
+      "title": "에이로봇 특허 권리자 및 유효 등록 특허 조회",
+      "url": "http://www.kipris.or.kr",
+      "published_at": "2026-09-30",
+      "collected_at": "2026-09-30T10:30:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "권리자 주식회사 에이로봇 명의의 Q 기술 관련 국내 유효 등록 특허 3건, 고유 우선권 패밀리 3건 확인 (조회자: 박세진)"
+    },
+    {
+      "source_id": "src_market_robot_parts_2025",
+      "kind": "WEB",
+      "publisher": "한국로봇산업진흥원",
+      "title": "2025 로봇산업실태조사보고서",
+      "url": "https://www.kiria.org/portal/industry/stats.do",
+      "published_at": "2026-02-28",
+      "collected_at": "2026-09-30T10:00:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": 45,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "제조업용 로봇 부품 및 부분품 매출액: 2022년 1조 4,200억원에서 2025년 1조 9,800억원으로 성장 (3개년 CAGR 11.72%)"
+    },
+    {
+      "source_id": "src_aidin_funding",
+      "kind": "WEB",
+      "publisher": "THE VC / 로봇신문",
+      "title": "에이딘로보틱스 투자 유치 내역",
+      "url": "https://thevc.kr/aidin-robotics",
+      "published_at": "2026-09-11",
+      "collected_at": "2026-09-30T09:20:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "시리즈 B 160억원(2026.09) 유치 등 누적 투자금 약 215억원 발표"
+    },
+    {
+      "source_id": "src_aidin_founder",
+      "kind": "WEB",
+      "publisher": "에이딘로보틱스 공식 웹사이트",
+      "title": "에이딘로보틱스 연구진 소개",
+      "url": "https://aidinrobotics.co.kr/",
+      "published_at": "2026-01-15",
+      "collected_at": "2026-09-30T09:25:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "최혁렬 교수 성균관대 로보틱스 연구실 20년 이상 연구, 이윤행 대표 로봇공학 박사"
+    },
+    {
+      "source_id": "src_aidin_employment",
+      "kind": "API",
+      "publisher": "국민연금공단",
+      "title": "에이딘로보틱스 국민연금 가입자 추이 공공데이터",
+      "url": null,
+      "published_at": null,
+      "collected_at": "2026-09-30T09:30:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": "nps_emp_aidin_202608",
+      "evidence_excerpt": "2025년 8월 24명, 2026년 8월 38명 동일 법인 가입자 확인"
+    },
+    {
+      "source_id": "src_aidin_financials",
+      "kind": "WEB",
+      "publisher": "중소벤처기업부 기업정보 / 혁신의숲",
+      "title": "에이딘로보틱스 2025년도 재무제표 요약",
+      "url": "https://innoforest.co.kr/company/CP00018742",
+      "published_at": "2026-03-31",
+      "collected_at": "2026-09-30T09:35:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "현금및현금성자산 120억, 단기금융 30억, 영업현금흐름 -42억, 자본금 3.5억, 자본총계 115억"
+    },
+    {
+      "source_id": "src_aidin_risk",
+      "kind": "MANUAL",
+      "publisher": "공정거래위원회 / 고용노동부",
+      "title": "에이딘로보틱스 행정처분 및 산재 공표 이력 조회",
+      "url": null,
+      "published_at": null,
+      "collected_at": "2026-09-30T09:40:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "최근 5년간 공정위 시정명령/과징금/고발 0건, 노동부 중대재해 공표 0건 확인 (조회일: 2026-09-30, 확인자: 박세진)"
+    },
+    {
+      "source_id": "src_aidin_hand_specs",
+      "kind": "PDF",
+      "publisher": "AIDIN Robotics",
+      "title": "The Competitiveness of AIDIN ROBOTICS - quantitative product specifications",
+      "url": "https://www.worldrobotconference.com/uploads/exuser2024/video/65vehw.pdf",
+      "published_at": null,
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/aidin_robotics/aidin_wrc_2024.pdf",
+      "sha256": "8cc09dde66eebd50b6a93e0c80cfe55caa2cd610efc2d9f5f19b1017faa01eed",
+      "doc_id": "aidin_wrc_2024",
+      "page": 13,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "15DoF; 20N; 15kg"
+    },
+    {
+      "source_id": "src_aidin_paper_2025_p1",
+      "kind": "PDF",
+      "publisher": "MDPI",
+      "title": "Design Analysis and Isotropic Optimization for Miniature Capacitive Force/Torque Sensor",
+      "url": "https://mdpi-res.com/d_attachment/sensors/sensors-25-00940/article_deploy/sensors-25-00940.pdf",
+      "published_at": "2025-02-04",
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/aidin_robotics/aidin_sensor_design_2025.pdf",
+      "sha256": "9f59e8840b438d21534cb3b2b949ed988cc8c7b1fc702f2d1ba7455b631fc19f",
+      "doc_id": "aidin_sensor_design_2025",
+      "page": 1,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "Aidin Robotics Inc., Anyang 14055"
+    },
+    {
+      "source_id": "src_aidin_paper_2025_p14",
+      "kind": "PDF",
+      "publisher": "MDPI",
+      "title": "Design Analysis and Isotropic Optimization for Miniature Capacitive Force/Torque Sensor",
+      "url": "https://mdpi-res.com/d_attachment/sensors/sensors-25-00940/article_deploy/sensors-25-00940.pdf",
+      "published_at": "2025-02-04",
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/aidin_robotics/aidin_sensor_design_2025.pdf",
+      "sha256": "9f59e8840b438d21534cb3b2b949ed988cc8c7b1fc702f2d1ba7455b631fc19f",
+      "doc_id": "aidin_sensor_design_2025",
+      "page": 14,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "15 N and 75 N-mm"
+    },
+    {
+      "source_id": "src_aidin_paper_2025_p15",
+      "kind": "PDF",
+      "publisher": "MDPI",
+      "title": "Design Analysis and Isotropic Optimization for Miniature Capacitive Force/Torque Sensor",
+      "url": "https://mdpi-res.com/d_attachment/sensors/sensors-25-00940/article_deploy/sensors-25-00940.pdf",
+      "published_at": "2025-02-04",
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/aidin_robotics/aidin_sensor_design_2025.pdf",
+      "sha256": "9f59e8840b438d21534cb3b2b949ed988cc8c7b1fc702f2d1ba7455b631fc19f",
+      "doc_id": "aidin_sensor_design_2025",
+      "page": 15,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "Relative error of forces"
+    },
+    {
+      "source_id": "src_patent_aidin_kipris",
+      "kind": "MANUAL",
+      "publisher": "특허청 KIPRIS 특허정보넷",
+      "title": "에이딘로보틱스 국내 특허 권리자 및 유효 등록 특허 조회",
+      "url": "http://www.kipris.or.kr",
+      "published_at": "2026-09-30",
+      "collected_at": "2026-09-30T10:45:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "권리자 주식회사 에이딘로보틱스 명의의 Q 기술 관련 국내 유효 등록 특허 4건, 고유 우선권 패밀리 4건 확인 (조회자: 박세진)"
+    },
+    {
+      "source_id": "src_figure_series_c",
+      "kind": "WEB",
+      "publisher": "Figure AI Official Press",
+      "title": "Figure Announces Series C Funding and Commercial Humanoid Scaling",
+      "url": "https://www.figure.ai/news/series-c",
+      "published_at": "2025-02-20",
+      "collected_at": "2026-09-30T10:15:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "Figure announces Series C financing with Align Ventures and existing partners. Cumulative funding exceeds $1B."
+    },
+    {
+      "source_id": "src_figure_helix",
+      "kind": "WEB",
+      "publisher": "Figure AI Engineering",
+      "title": "Helix: A Vision-Language-Action Model for Dexterous Manipulation",
+      "url": "https://www.figure.ai/news/helix",
+      "published_at": "2024-10-10",
+      "collected_at": "2026-09-30T10:20:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "Helix enables real-time upper-body and finger coordination, tactile sensor integration, and unstructured bimanual object picking."
+    },
+    {
+      "source_id": "src_figure_helix_02",
+      "kind": "WEB",
+      "publisher": "Figure AI Engineering",
+      "title": "Helix 02: Scaling Physical AI Models for Manufacturing & Logistics",
+      "url": "https://www.figure.ai/news/helix-02",
+      "published_at": "2025-05-15",
+      "collected_at": "2026-09-30T10:25:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "Helix 02 deployed in pilot manufacturing lines, verifying palm camera visual feedback and tactile grip stability."
+    },
+    {
+      "source_id": "src_figure_risk",
+      "kind": "WEB",
+      "publisher": "US Federal Enforcement Database (FTC/OSHA)",
+      "title": "Figure AI Regulatory and Workplace Safety Search",
+      "url": "https://www.osha.gov/enforcement",
+      "published_at": "2026-09-30",
+      "collected_at": "2026-09-30T10:30:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "No administrative sanctions or serious workplace violations found for Figure AI, Inc."
+    },
+    {
+      "source_id": "src_bmw_figure_customer_p4",
+      "kind": "PDF",
+      "publisher": "BMW Group",
+      "title": "BMW Group first to deploy humanoid robots in production in Germany",
+      "url": "https://www.press.bmwgroup.com/belux/article/attachment/T0455868FR/644594",
+      "published_at": "2026-02-27",
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/figure_ai/bmw_customer_2026.pdf",
+      "sha256": "65fb8dac3cc6547282725d3cb99d68973103a0a0ebede69ab53c1cbce522972a",
+      "doc_id": "bmw_figure_customer_2026",
+      "page": 4,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "90,000 components; 1,250 operating hours"
+    },
+    {
+      "source_id": "src_figure_pilot_completion",
+      "kind": "PDF",
+      "publisher": "Figure AI",
+      "title": "F.02 Contributed to the Production of 30000 Cars at BMW",
+      "url": "https://www.figure.ai/news/production-at-bmw",
+      "published_at": "2025-11-19",
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/figure_ai/figure_bmw_deployment.pdf",
+      "sha256": "f8507f7e1b617092359e412ba21c8de97a6eac09704a7dec3902d4dc7b73a7e7",
+      "doc_id": "figure_bmw_deployment_2025",
+      "page": 1,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "November 19, 2025"
+    },
+    {
+      "source_id": "src_patent_figure_uspto",
+      "kind": "MANUAL",
+      "publisher": "미국 특허청 USPTO Patent Center",
+      "title": "Figure AI, Inc. 미국 특허 유효 등록 및 우선권 패밀리 공식 조회",
+      "url": "https://patentcenter.uspto.gov",
+      "published_at": "2026-09-30",
+      "collected_at": "2026-09-30T11:00:00+09:00",
+      "local_path": null,
+      "sha256": null,
+      "doc_id": null,
+      "page": null,
+      "chunk_id": null,
+      "response_id": null,
+      "evidence_excerpt": "Assignee Figure AI, Inc. 기준 Q 물리조작 관련 US 유효 등록 특허 2건, 고유 우선권 패밀리 2건 확인 (조회자: 박세진)"
+    }
+  ],
+  "pdf_sha256": "2c6f79dcb11f4df91dcd8995613b40f0e05157a4c19a13713160628251c5cd42"
+}

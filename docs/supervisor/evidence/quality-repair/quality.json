@@ -1,7 +1,7 @@
 {
   "run_id": "controlled-quality-repair",
   "status": "passed",
-  "report": "artifacts/scenarios/quality-repair/report.r1.pdf",
+  "report": "artifacts/rubric-audit-20261013/quality-repair/report.r1.pdf",
   "evaluation_mode": "rules",
   "semantic_entailment_verified": false,
   "history": [

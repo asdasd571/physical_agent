@@ -1,7 +1,7 @@
 {
   "run_id": "controlled-worker-retry",
   "status": "passed",
-  "report": "artifacts/scenarios/worker-retry/report.r0.pdf",
+  "report": "artifacts/rubric-audit-20261013/worker-retry/report.r0.pdf",
   "evaluation_mode": "rules",
   "semantic_entailment_verified": false,
   "history": [

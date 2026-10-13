@@ -2,9 +2,9 @@
   "scenario": "worker-retry",
   "controlled_fault": true,
   "run_id": "controlled-worker-retry",
-  "trace_id": "27cdae0c-409b-45d2-afc1-7f790e08549c",
+  "trace_id": "033d5cf0-c705-49fb-8404-419eea1cacdc",
   "status": "passed",
-  "report": "artifacts/scenarios/worker-retry/report.r0.pdf",
+  "report": "artifacts/rubric-audit-20261013/worker-retry/report.r0.pdf",
   "routing": {
     "arobot": {
       "next_node": "judge",
@@ -217,7 +217,7 @@
           "route": "synergy",
           "reason": "S1 조회가 완료되지 않았습니다; S1 근거 자료가 없습니다; S2 조회가 완료되지 않았습니다; S2 근거 자료가 없습니다; F4 조회가 완료되지 않았습니다; F4 근거 자료가 없습니다; F4 계산 또는 적용 조건이 없습니다",
           "deficits": {
-            "tech": 5,
+            "tech": 4,
             "synergy": 3
           },
           "evidence_sufficient": false
@@ -228,7 +228,7 @@
           "route": "judge",
           "reason": "추가 조사 한도에 도달했습니다. 미확인 근거를 명시하고 보수적으로 판정합니다.",
           "deficits": {
-            "tech": 5,
+            "tech": 4,
             "synergy": 3
           },
           "evidence_sufficient": false

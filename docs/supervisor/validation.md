@@ -37,13 +37,13 @@
 
 `python -m scripts.verify_supervisor_scenarios quality-repair`를 실행했습니다. 테스트용으로 기술 추천 표현을 해설에 넣었습니다. 첫 평가에서 중립성 미달을 판정한 뒤 원값 중심으로 재작성했고, 두 번째 평가에서 통과했습니다. 실제 운영 LLM이 이 문장을 생성했다는 뜻은 아닙니다.
 
-[LangSmith 실행](https://smith.langchain.com/o/e4414c93-2ee4-4f39-9fa6-0a03aaddc4c3/projects/p/ef520cd3-1898-45ff-bc9f-19afd6b901ff/r/b88bc73d-b7e0-4ea7-ac7c-0849d4f8b2c4), [평가 이력](evidence/quality-repair/quality.json), [실행 기록](evidence/quality-repair/run.json)에 근거를 남겼습니다.
+[LangSmith 실행](https://smith.langchain.com/o/e4414c93-2ee4-4f39-9fa6-0a03aaddc4c3/projects/p/ef520cd3-1898-45ff-bc9f-19afd6b901ff/r/70274d27-8262-4962-b8e2-1559ad8bc89f), [평가 이력](evidence/quality-repair/quality.json), [실행 기록](evidence/quality-repair/run.json)에 근거를 남겼습니다.
 
 ### 담당자 작업 실패 후 재시도
 
 `python -m scripts.verify_supervisor_scenarios worker-retry`를 실행했습니다. 후보별 첫 Tech 호출에 TimeoutError를 주입했습니다. Supervisor가 다시 Tech를 호출했고 후속 호출은 정상 종료했습니다. 기술 근거가 충분해졌다는 뜻은 아니며, 최종 판정에서는 남은 근거 부족을 그대로 반영했습니다.
 
-[LangSmith 실행](https://smith.langchain.com/o/e4414c93-2ee4-4f39-9fa6-0a03aaddc4c3/projects/p/ef520cd3-1898-45ff-bc9f-19afd6b901ff/r/27cdae0c-409b-45d2-afc1-7f790e08549c), [실행 기록](evidence/worker-retry/run.json)에 근거를 남겼습니다.
+[LangSmith 실행](https://smith.langchain.com/o/e4414c93-2ee4-4f39-9fa6-0a03aaddc4c3/projects/p/ef520cd3-1898-45ff-bc9f-19afd6b901ff/r/033d5cf0-c705-49fb-8404-419eea1cacdc), [실행 기록](evidence/worker-retry/run.json)에 근거를 남겼습니다.
 
 ## 제출 자료와 남은 확인
 
@@ -70,3 +70,7 @@
 Figure는 G1 미통과 상태를 유지하며 benchmark_score에 33.3점을 기록했습니다. BMW 고객 확인을 기반으로 완료 제조 현장 1개와 수행 작업군 1개를 확인했습니다. 지표·출처·조회 완결성을 별도로 검증하여 LLM의 부분 검색을 전체 조회로 간주하지 않았고, 고객 확인 기록을 조회 완결성 설명 때문에 자체 주장으로 낮추지 않도록 수정했습니다.
 
 원문별 추가 정보와 인정 범위는 [문서 확장 기록](corpus_expansion.md), 세 가지 검색 점검은 [조회 결과](evidence/expanded-retrieval-check.json)에 있습니다.
+
+## 평가표 기준 재점검
+
+최신 코드 기준으로 품질 재작성과 작업 실패 복구 시나리오를 다시 실행했습니다. 별도 체크아웃에서 원문 다운로드·테스트·API 없이 보고서 생성도 재현했습니다. 일곱 평가 항목의 근거와 제출 보완 사항은 [평가표 점검](rubric_audit.md)에 정리했습니다.
