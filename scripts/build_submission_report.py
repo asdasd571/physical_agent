@@ -103,6 +103,11 @@ def main():
     args = parser.parse_args()
     directory = Path(args.run_directory)
     run = json.loads((directory / "run.json").read_text(encoding="utf-8"))
+    # Git에서 제외되는 artifacts가 없는 새 checkout에서는 함께 저장한 원본을 사용한다.
+    if not Path(run["report"]).is_file():
+        saved_report = directory / Path(run["report"]).name
+        if saved_report.is_file():
+            run = {**run, "report": str(saved_report)}
     quality = json.loads((directory / "quality.json").read_text(encoding="utf-8"))
     suites = ET.parse(args.tests).getroot()
     count = sum(int(suite.attrib["tests"]) for suite in suites.iter("testsuite"))

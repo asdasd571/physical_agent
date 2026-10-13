@@ -2,7 +2,34 @@
 
 에너지·화학·배터리 제조기업의 CVC 관점에서 Physical AI 스타트업의 공개 근거를 검토하는 시스템입니다. 기존 RAG 실습의 검색기와 담당 에이전트를 재사용하고, LangGraph Supervisor가 현재 근거의 부족한 항목을 확인하여 다음 조사와 재작업을 결정하도록 변경했습니다.
 
-이 브랜치는 `Multi-Agent Orchestration` 과제의 Supervisor 패턴을 구현합니다. 기존 순차·병렬 그래프는 `--workflow legacy`로 실행할 수 있습니다. 이전 실습의 구성과 측정값은 [이전 README](docs/supervisor/previous_rag.md)에 보관했습니다.
+현재 `main`은 `Multi-Agent Orchestration` 과제의 Supervisor 패턴을 구현합니다. 기존 순차·병렬 그래프는 `--workflow legacy`로 실행할 수 있습니다. 이전 실습의 구성과 측정값은 [이전 README](docs/supervisor/previous_rag.md)에 보관했습니다.
+
+## 최종 보고서와 트레이싱
+
+울산캠퍼스 팀은 조승현·김도현·김진형·박세진·김낙근입니다. 최신 제출 자료는 [submission 폴더](docs/supervisor/submission/)에서 받을 수 있습니다.
+
+| 자료 | 파일과 구성 |
+|---|---|
+| PDF 보고서 | [Agent_울산캠퍼스_조승현,김도현,김진형,박세진,김낙근.pdf](docs/supervisor/submission/Agent_울산캠퍼스_조승현,김도현,김진형,박세진,김낙근.pdf) — Pretendard Regular/Bold를 포함한 9페이지 문서입니다. |
+| 편집 가능한 Word 보고서 | [같은 내용의 DOCX](docs/supervisor/submission/Agent_울산캠퍼스_조승현,김도현,김진형,박세진,김낙근.docx) — 텍스트와 표를 편집할 수 있으며 Pretendard 글꼴을 포함합니다. |
+| 실제 LangSmith 웹 캡처 | [원본 PNG 4장](docs/supervisor/evidence/ui-captures/) — 운영 트레이스, Tech 재조사, 품질 실패, 재작성 후 통과 화면입니다. |
+| 제출 ZIP | [Agent_울산캠퍼스_조승현,김도현,김진형,박세진,김낙근.zip](docs/supervisor/submission/Agent_울산캠퍼스_조승현,김도현,김진형,박세진,김낙근.zip) — PDF 1개와 `tracing/`의 PNG 4개입니다. |
+
+사진은 보고서 PDF·DOCX와 별도 파일로 제출합니다. PDF 안에는 트레이싱 부록이나 사진 첨부파일이 없으며, 제출 ZIP에는 안내 TXT와 GitHub 링크 TXT를 넣지 않았습니다. DOCX는 편집용으로 별도 제공하며 제출 ZIP에는 포함하지 않습니다.
+
+웹 캡처는 새 워크스페이스의 운영 재실행과 통제된 품질 재작성 검증입니다. 본문의 기존 운영 기록과 구분합니다. 첫 품질 평가의 `passed=false / revision=0`, 보고서 수정 루프, 두 번째 평가의 `passed=true / revision=1`을 확인할 수 있습니다. 기존 `evidence/live/` 등의 `tracing-*.png`는 API 기록 렌더링 자료이며, 실제 웹 캡처는 `evidence/ui-captures/`에 있습니다. 실행 링크와 화면별 설명은 [LangSmith 캡처 안내](docs/supervisor/langsmith_capture.md)에 정리했습니다.
+
+2026-10-13 검증 기록은 전체 테스트 223개 통과, 담당자 호출 22회·재작업 7회입니다. 기존 투자 기준 결과는 에이로봇 HOLD 42.0점, 에이딘로보틱스 HOLD 45.3점, Figure AI HOLD 비교 33.3점입니다. 초기 단계 비교 점수 44.7·46.7·33.3은 투자 판정에 사용하지 않습니다. 자세한 실행 근거는 [검증 기록](docs/supervisor/validation.md)에서 확인할 수 있습니다.
+
+저장된 평가 결과로 사진 없는 Pretendard PDF를 다시 만들려면 다음 명령을 실행합니다. RAG·LLM을 다시 호출하지 않고 기존 평가 값과 출처를 사용합니다.
+
+```bash
+python -m scripts.build_submission_report docs/supervisor/evidence/live \
+  --tests docs/supervisor/evidence/pytest.xml \
+  --font-directory reporting/fonts
+```
+
+생성 경로는 `docs/supervisor/evidence/evaluation_report.pdf`입니다. 최종 제출 파일명으로 저장한 자료는 `docs/supervisor/submission/`에서 관리합니다.
 
 ## 실행 구조
 
@@ -120,6 +147,8 @@ python app.py --resume --run-id supervisor-live
 | `graph/checkpoints.py` | SQLite 저장과 허용된 타입의 복원을 담당합니다. |
 | `nodes/report_quality.py` | 보고서 생성 이후 품질 평가와 재작성 분기를 담당합니다. |
 | `reporting/supervisor_report.py` | 네 관점의 PDF·JSON을 생성합니다. |
+| `scripts/build_submission_report.py`, `reporting/fonts/` | 저장된 평가 결과를 제출 보고서로 구성하고 Pretendard 글꼴을 적용합니다. |
+| `docs/supervisor/submission/`, `docs/supervisor/evidence/ui-captures/` | 최종 PDF·DOCX·ZIP과 별도 웹 트레이싱 사진을 보관합니다. |
 | `agents/`, `rag/`, `nodes/judge.py` | 기존 담당 에이전트, 검색기와 투자 규칙을 재사용합니다. |
 
 담당자의 원값은 Judge에서 명시적으로 정규화하며, 실제 채점에 사용한 값은 JSON의 `scoring_values`에 저장합니다. 기술 설명은 정량 지표와 별도로 출처와 함께 보고서에 표시합니다.
@@ -156,6 +185,6 @@ LANGSMITH_TRACING=false python -m pytest -q
 3. 김도현이 통합하고 동적 라우팅·재조사·보고서 재작성 경로를 검증합니다.
 4. 김도현이 실행 트레이스와 README를 준비하고 김진형이 최종 PDF를 준비합니다.
 
-각자 기능 브랜치에서 커밋·push하고 김도현이 로컬 병합·검증 후 main에 반영합니다. 현재 `feat/supervisor-orchestration`은 통합 검토용 브랜치이며, 담당자별 브랜치의 개별 작업 이력을 대신하지 않습니다.
+각자 기능 브랜치에서 커밋·push하고 통합 검증 후 `main`에 반영합니다. Supervisor 통합 코드와 최신 보고서·트레이싱·제출 자료는 `main`에서 함께 관리합니다. `feat/supervisor-orchestration`에는 통합 작업 이력을 보존하며, 담당자별 브랜치의 개별 작업 이력을 대신하지 않습니다.
 
-상세 역할과 기존 실습 기록은 [개발 역할분담](docs/개발_역할분담.md)에 정리했습니다. 실제 웹 화면 캡처는 [LangSmith 캡처 안내](docs/supervisor/langsmith_capture.md)에 따라 준비합니다.
+상세 역할과 기존 실습 기록은 [개발 역할분담](docs/개발_역할분담.md)에 정리했습니다. 확보한 실제 웹 화면과 재촬영 방법은 [LangSmith 캡처 안내](docs/supervisor/langsmith_capture.md)에 정리했습니다.
