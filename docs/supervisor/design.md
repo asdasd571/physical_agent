@@ -58,3 +58,33 @@ Supervisor는 LLM이 다음 노드를 추측하게 하지 않고, 필수 지표�
 기본 실행 모드는 stage-benchmark입니다. 기본 요건이 비상장·Exit 미완료·정상 영업으로 확인되고 투자 단계만 Series C 이상인 후보는 분석을 진행합니다. G1은 미통과 상태로 유지하며 total_score는 None입니다. 같은 지표의 계산값은 benchmark_score에 별도 저장하고 HOLD로 표시합니다. 상장·휴폐업·Exit 완료·적격성 미확인 후보는 이 예외에 포함하지 않습니다. strict 모드는 기존처럼 단계 제외 후보의 심층 분석을 생략합니다.
 
 초기 단계 비교 기준은 early-stage-v2로 표시합니다. 정량 사양·실물 센서 시험·공개 시연의 증거와 출처가 연결된 경우에만 해당 기술 항목을 2/5점까지 인정합니다. 기존 기준 점수는 유지하고 초기 단계 비교 점수와 변경 사유를 함께 저장합니다. INVEST/HOLD는 기존 투자 기준과 근거 충분성으로 판단합니다.
+
+## Architecture 상세 그래프
+
+```mermaid
+flowchart TD
+    START --> Init --> Select[후보 선택]
+    Select --> S{Supervisor}
+    S -->|적격성 확인| Discover
+    S -->|기술 근거 부족| Tech
+    S -->|시장 근거 부족| Market
+    S -->|경쟁 근거 부족| Competitor
+    S -->|적용 근거 부족| Synergy
+    Discover --> S
+    Tech --> S
+    Market --> S
+    Competitor --> S
+    Synergy --> S
+    S -->|근거 검토 완료 또는 조사 한도 도달| Judge[투자 규칙 평가]
+    S -->|상장·Exit·폐업 또는 확인 불가| Skip[심층 평가 보류]
+    Judge --> Narrative[근거 해설]
+    Narrative --> Archive[후보 결과 저장]
+    Skip --> Archive
+    Archive -->|다음 후보| Select
+    Archive -->|모든 후보 완료| Report[보고서 생성]
+    Report --> Quality{보고서 품질 평가}
+    Quality -->|미달·수정 여유 있음| Revise[원값과 출처로 재작성]
+    Revise --> Report
+    Quality -->|통과 또는 수정 한도 도달| Finalize[평가 결과 저장]
+    Finalize --> END
+```
