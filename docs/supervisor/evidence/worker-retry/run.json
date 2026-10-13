@@ -1,0 +1,307 @@
+{
+  "scenario": "worker-retry",
+  "controlled_fault": true,
+  "run_id": "controlled-worker-retry",
+  "trace_id": "27cdae0c-409b-45d2-afc1-7f790e08549c",
+  "status": "passed",
+  "report": "artifacts/scenarios/worker-retry/report.r0.pdf",
+  "routing": {
+    "arobot": {
+      "next_node": "judge",
+      "attempts": {
+        "discover": 1,
+        "tech": 2,
+        "synergy": 2,
+        "competitor": 1,
+        "market": 1
+      },
+      "dispatch_count": 7,
+      "assignment": null,
+      "evidence_sufficient": false,
+      "termination_reason": "evidence_exhausted",
+      "decisions": [
+        {
+          "sequence": 1,
+          "candidate_id": "arobot",
+          "route": "discover",
+          "reason": "기업 적격성 근거가 없거나 불충분하여 확인을 요청합니다.",
+          "deficits": {
+            "discover": 7,
+            "tech": 5,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 2,
+          "candidate_id": "arobot",
+          "route": "tech",
+          "reason": "tech_analysis 분석 결과가 없습니다",
+          "deficits": {
+            "tech": 5,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 3,
+          "candidate_id": "arobot",
+          "route": "synergy",
+          "reason": "synergy_analysis 분석 결과가 없습니다",
+          "deficits": {
+            "tech": 5,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 4,
+          "candidate_id": "arobot",
+          "route": "competitor",
+          "reason": "competitor_analysis 분석 결과가 없습니다",
+          "deficits": {
+            "tech": 5,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 5,
+          "candidate_id": "arobot",
+          "route": "market",
+          "reason": "market_analysis 분석 결과가 없습니다",
+          "deficits": {
+            "tech": 5,
+            "market": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 6,
+          "candidate_id": "arobot",
+          "route": "tech",
+          "reason": "K1 조회가 완료되지 않았습니다; K1 근거 자료가 없습니다; K1 관측 기간이 없습니다; K2 조회가 완료되지 않았습니다; K2 근거 자료가 없습니다; K2 계산 또는 적용 조건이 없습니다; K3 조회가 완료되지 않았습니다; K3 근거 자료가 없습니다; K3 관측 기간이 없습니다; R2 조회가 완료되지 않았습니다; R2 근거 자료가 없습니다; R2 관측 기간이 없습니다; T2 조회가 완료되지 않았습니다; T2 근거 자료가 없습니다; T2 관측 기간이 없습니다",
+          "deficits": {
+            "tech": 5,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 7,
+          "candidate_id": "arobot",
+          "route": "synergy",
+          "reason": "S1 조회가 완료되지 않았습니다; S1 근거 자료가 없습니다; S2 조회가 완료되지 않았습니다; S2 근거 자료가 없습니다; F4 조회가 완료되지 않았습니다; F4 근거 자료가 없습니다; F4 계산 또는 적용 조건이 없습니다",
+          "deficits": {
+            "tech": 5,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 8,
+          "candidate_id": "arobot",
+          "route": "judge",
+          "reason": "추가 조사 한도에 도달했습니다. 미확인 근거를 명시하고 보수적으로 판정합니다.",
+          "deficits": {
+            "tech": 5,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        }
+      ],
+      "failures": {}
+    },
+    "aidin_robotics": {
+      "next_node": "judge",
+      "attempts": {
+        "discover": 1,
+        "tech": 2,
+        "synergy": 2,
+        "competitor": 1,
+        "market": 1
+      },
+      "dispatch_count": 7,
+      "assignment": null,
+      "evidence_sufficient": false,
+      "termination_reason": "evidence_exhausted",
+      "decisions": [
+        {
+          "sequence": 1,
+          "candidate_id": "aidin_robotics",
+          "route": "discover",
+          "reason": "기업 적격성 근거가 없거나 불충분하여 확인을 요청합니다.",
+          "deficits": {
+            "discover": 7,
+            "tech": 5,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 2,
+          "candidate_id": "aidin_robotics",
+          "route": "tech",
+          "reason": "tech_analysis 분석 결과가 없습니다",
+          "deficits": {
+            "tech": 5,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 3,
+          "candidate_id": "aidin_robotics",
+          "route": "synergy",
+          "reason": "synergy_analysis 분석 결과가 없습니다",
+          "deficits": {
+            "tech": 5,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 4,
+          "candidate_id": "aidin_robotics",
+          "route": "competitor",
+          "reason": "competitor_analysis 분석 결과가 없습니다",
+          "deficits": {
+            "tech": 5,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 5,
+          "candidate_id": "aidin_robotics",
+          "route": "market",
+          "reason": "market_analysis 분석 결과가 없습니다",
+          "deficits": {
+            "tech": 5,
+            "market": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 6,
+          "candidate_id": "aidin_robotics",
+          "route": "tech",
+          "reason": "K1 조회가 완료되지 않았습니다; K1 근거 자료가 없습니다; K1 관측 기간이 없습니다; K2 조회가 완료되지 않았습니다; K2 근거 자료가 없습니다; K2 계산 또는 적용 조건이 없습니다; K3 조회가 완료되지 않았습니다; K3 근거 자료가 없습니다; K3 관측 기간이 없습니다; R2 조회가 완료되지 않았습니다; R2 근거 자료가 없습니다; R2 관측 기간이 없습니다; T2 조회가 완료되지 않았습니다; T2 근거 자료가 없습니다; T2 관측 기간이 없습니다",
+          "deficits": {
+            "tech": 5,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 7,
+          "candidate_id": "aidin_robotics",
+          "route": "synergy",
+          "reason": "S1 조회가 완료되지 않았습니다; S1 근거 자료가 없습니다; S2 조회가 완료되지 않았습니다; S2 근거 자료가 없습니다; F4 조회가 완료되지 않았습니다; F4 근거 자료가 없습니다; F4 계산 또는 적용 조건이 없습니다",
+          "deficits": {
+            "tech": 5,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 8,
+          "candidate_id": "aidin_robotics",
+          "route": "judge",
+          "reason": "추가 조사 한도에 도달했습니다. 미확인 근거를 명시하고 보수적으로 판정합니다.",
+          "deficits": {
+            "tech": 5,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        }
+      ],
+      "failures": {}
+    },
+    "figure_ai": {
+      "next_node": "skip",
+      "attempts": {
+        "discover": 1
+      },
+      "dispatch_count": 1,
+      "assignment": null,
+      "evidence_sufficient": false,
+      "termination_reason": "ineligible",
+      "decisions": [
+        {
+          "sequence": 1,
+          "candidate_id": "figure_ai",
+          "route": "discover",
+          "reason": "기업 적격성 근거가 없거나 불충분하여 확인을 요청합니다.",
+          "deficits": {
+            "discover": 7,
+            "tech": 5,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 2,
+          "candidate_id": "figure_ai",
+          "route": "skip",
+          "reason": "적격성 기준에 해당하지 않아 심층 평가를 생략합니다.",
+          "deficits": {
+            "tech": 5,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        }
+      ],
+      "failures": {}
+    }
+  },
+  "quality_history": [
+    {
+      "revision": 0,
+      "passed": true,
+      "mode": "rules",
+      "groundedness": {
+        "passed": true,
+        "issues": []
+      },
+      "neutrality": {
+        "passed": true,
+        "issues": []
+      },
+      "bias_control": {
+        "passed": true,
+        "issues": []
+      },
+      "perspective_coverage": {
+        "passed": true,
+        "issues": []
+      },
+      "artifact": {
+        "passed": true,
+        "issues": []
+      }
+    }
+  ]
+}

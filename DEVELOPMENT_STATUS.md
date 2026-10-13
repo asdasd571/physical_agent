@@ -1,3 +1,5 @@
+> 2026-10-13 추가: Supervisor 실습의 구현과 검증 결과는 [현재 README](README.md) 및 [검증 기록](docs/supervisor/validation.md)에 정리했습니다. 아래 내용은 기존 RAG 실습의 진행 기록입니다.
+
 # Discover / Market / Competitor 개발 현황
 
 ## 통합 Agentic RAG 업데이트 (2026-09-30)

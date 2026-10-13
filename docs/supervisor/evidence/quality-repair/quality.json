@@ -1,0 +1,62 @@
+{
+  "run_id": "controlled-quality-repair",
+  "status": "passed",
+  "report": "artifacts/scenarios/quality-repair/report.r1.pdf",
+  "evaluation_mode": "rules",
+  "semantic_entailment_verified": false,
+  "history": [
+    {
+      "revision": 0,
+      "passed": false,
+      "mode": "rules",
+      "groundedness": {
+        "passed": true,
+        "issues": []
+      },
+      "neutrality": {
+        "passed": false,
+        "issues": [
+          "arobot/technology: 기술 우열 또는 추천 표현이 있습니다.",
+          "aidin_robotics/technology: 기술 우열 또는 추천 표현이 있습니다."
+        ]
+      },
+      "bias_control": {
+        "passed": true,
+        "issues": []
+      },
+      "perspective_coverage": {
+        "passed": true,
+        "issues": []
+      },
+      "artifact": {
+        "passed": true,
+        "issues": []
+      }
+    },
+    {
+      "revision": 1,
+      "passed": true,
+      "mode": "rules",
+      "groundedness": {
+        "passed": true,
+        "issues": []
+      },
+      "neutrality": {
+        "passed": true,
+        "issues": []
+      },
+      "bias_control": {
+        "passed": true,
+        "issues": []
+      },
+      "perspective_coverage": {
+        "passed": true,
+        "issues": []
+      },
+      "artifact": {
+        "passed": true,
+        "issues": []
+      }
+    }
+  ]
+}

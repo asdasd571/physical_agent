@@ -7,3 +7,7 @@ kiwipiepy>=0.21,<1.0
 langgraph>=1.2,<2.0
 openai>=2.0,<3.0
 python-dotenv>=1.0,<2.0
+langgraph-checkpoint-sqlite>=3.1,<4.0
+langsmith>=0.4,<1.0
+Jinja2>=3.1.6,<4.0
+PyMuPDF>=1.26,<2.0

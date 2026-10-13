@@ -1,0 +1,671 @@
+{
+  "origin": "LangSmith API",
+  "root_run_id": "27cdae0c-409b-45d2-afc1-7f790e08549c",
+  "url": "https://smith.langchain.com/o/e4414c93-2ee4-4f39-9fa6-0a03aaddc4c3/projects/p/ef520cd3-1898-45ff-bc9f-19afd6b901ff/r/27cdae0c-409b-45d2-afc1-7f790e08549c?trace_id=27cdae0c-409b-45d2-afc1-7f790e08549c&start_time=2026-10-13T05:00:57.453999",
+  "status": "success",
+  "run_name": "controlled-worker-retry",
+  "controlled_fault": true,
+  "nodes": [
+    {
+      "id": "01a133a2-9cfc-76c3-83e2-522f26e8b60f",
+      "name": "init",
+      "start_time": "2026-10-13T05:00:57.468977+00:00",
+      "seconds": 0.000276,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9cfd-7b73-a315-752f00010282",
+      "name": "select_candidate",
+      "start_time": "2026-10-13T05:00:57.469494+00:00",
+      "seconds": 0.000114,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9cfd-7b73-a315-753956a6c6b0",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.469771+00:00",
+      "seconds": 0.000356,
+      "status": "success",
+      "decision": {
+        "candidate_id": "arobot",
+        "deficits": {
+          "competitor": 1,
+          "discover": 7,
+          "market": 1,
+          "synergy": 3,
+          "tech": 5
+        },
+        "evidence_sufficient": false,
+        "reason": "기업 적격성 근거가 없거나 불충분하여 확인을 요청합니다.",
+        "route": "discover",
+        "sequence": 1
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9cfe-78a3-a448-9e72f565bc59",
+      "name": "discover",
+      "start_time": "2026-10-13T05:00:57.470321+00:00",
+      "seconds": 0.000439,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9cfe-78a3-a448-9e891c6bf09c",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.470962+00:00",
+      "seconds": 0.000374,
+      "status": "success",
+      "decision": {
+        "candidate_id": "arobot",
+        "deficits": {
+          "competitor": 1,
+          "market": 1,
+          "synergy": 3,
+          "tech": 5
+        },
+        "evidence_sufficient": false,
+        "reason": "tech_analysis 분석 결과가 없습니다",
+        "route": "tech",
+        "sequence": 2
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9cff-7a01-aa85-53191eccce2a",
+      "name": "tech",
+      "start_time": "2026-10-13T05:00:57.471508+00:00",
+      "seconds": 0.00023,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9cff-7a01-aa85-532621547cee",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.471910+00:00",
+      "seconds": 0.000348,
+      "status": "success",
+      "decision": {
+        "sequence": 3,
+        "candidate_id": "arobot",
+        "route": "synergy",
+        "reason": "synergy_analysis 분석 결과가 없습니다",
+        "deficits": {
+          "tech": 5,
+          "market": 1,
+          "competitor": 1,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d00-7133-8738-dfe04ddbae36",
+      "name": "synergy",
+      "start_time": "2026-10-13T05:00:57.472430+00:00",
+      "seconds": 0.000455,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d01-7213-beb5-49fe57e72ef8",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.473069+00:00",
+      "seconds": 0.00035,
+      "status": "success",
+      "decision": {
+        "sequence": 4,
+        "candidate_id": "arobot",
+        "route": "competitor",
+        "reason": "competitor_analysis 분석 결과가 없습니다",
+        "deficits": {
+          "tech": 5,
+          "market": 1,
+          "competitor": 1,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d01-7213-beb5-4a1f1c73d426",
+      "name": "competitor",
+      "start_time": "2026-10-13T05:00:57.473587+00:00",
+      "seconds": 0.000296,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d02-7e92-a816-28b16b0ddc5e",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.474046+00:00",
+      "seconds": 0.000417,
+      "status": "success",
+      "decision": {
+        "sequence": 5,
+        "candidate_id": "arobot",
+        "route": "market",
+        "reason": "market_analysis 분석 결과가 없습니다",
+        "deficits": {
+          "tech": 5,
+          "market": 1,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d02-7e92-a816-28dc3482305f",
+      "name": "market",
+      "start_time": "2026-10-13T05:00:57.474652+00:00",
+      "seconds": 0.000319,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d03-7333-8bf6-868e00dee531",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.475150+00:00",
+      "seconds": 0.000383,
+      "status": "success",
+      "decision": {
+        "sequence": 6,
+        "candidate_id": "arobot",
+        "route": "tech",
+        "reason": "K1 조회가 완료되지 않았습니다; K1 근거 자료가 없습니다; K1 관측 기간이 없습니다; K2 조회가 완료되지 않았습니다; K2 근거 자료가 없습니다; K2 계산 또는 적용 조건이 없습니다; K3 조회가 완료되지 않았습니다; K3 근거 자료가 없습니다; K3 관측 기간이 없습니다; R2 조회가 완료되지 않았습니다; R2 근거 자료가 없습니다; R2 관측 기간이 없습니다; T2 조회가 완료되지 않았습니다; T2 근거 자료가 없습니다; T2 관측 기간이 없습니다",
+        "deficits": {
+          "tech": 5,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d03-7333-8bf6-86a88dba868b",
+      "name": "tech",
+      "start_time": "2026-10-13T05:00:57.475705+00:00",
+      "seconds": 0.000355,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d04-7ca0-b93c-5b2da352227b",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.476231+00:00",
+      "seconds": 0.000406,
+      "status": "success",
+      "decision": {
+        "sequence": 7,
+        "candidate_id": "arobot",
+        "route": "synergy",
+        "reason": "S1 조회가 완료되지 않았습니다; S1 근거 자료가 없습니다; S2 조회가 완료되지 않았습니다; S2 근거 자료가 없습니다; F4 조회가 완료되지 않았습니다; F4 근거 자료가 없습니다; F4 계산 또는 적용 조건이 없습니다",
+        "deficits": {
+          "tech": 5,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d04-7ca0-b93c-5b4686b00129",
+      "name": "synergy",
+      "start_time": "2026-10-13T05:00:57.476808+00:00",
+      "seconds": 0.000434,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d05-7c73-9b17-ee991e5ae50a",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.477445+00:00",
+      "seconds": 0.000492,
+      "status": "success",
+      "decision": {
+        "sequence": 8,
+        "candidate_id": "arobot",
+        "route": "judge",
+        "reason": "추가 조사 한도에 도달했습니다. 미확인 근거를 명시하고 보수적으로 판정합니다.",
+        "deficits": {
+          "tech": 5,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d06-72e2-9a45-3ff43b8e726a",
+      "name": "judge",
+      "start_time": "2026-10-13T05:00:57.478161+00:00",
+      "seconds": 0.000298,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d06-72e2-9a45-400125c600e4",
+      "name": "narrative",
+      "start_time": "2026-10-13T05:00:57.478694+00:00",
+      "seconds": 0.000271,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d07-79c2-a4d7-58b8d9c0584c",
+      "name": "archive",
+      "start_time": "2026-10-13T05:00:57.479196+00:00",
+      "seconds": 0.00053,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d07-79c2-a4d7-58d12bd313e9",
+      "name": "select_candidate",
+      "start_time": "2026-10-13T05:00:57.479948+00:00",
+      "seconds": 0.000189,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d08-7922-a826-945351261952",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.480368+00:00",
+      "seconds": 0.000343,
+      "status": "success",
+      "decision": {
+        "candidate_id": "aidin_robotics",
+        "deficits": {
+          "competitor": 1,
+          "discover": 7,
+          "market": 1,
+          "synergy": 3,
+          "tech": 5
+        },
+        "evidence_sufficient": false,
+        "reason": "기업 적격성 근거가 없거나 불충분하여 확인을 요청합니다.",
+        "route": "discover",
+        "sequence": 1
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d08-7922-a826-947324b28037",
+      "name": "discover",
+      "start_time": "2026-10-13T05:00:57.480872+00:00",
+      "seconds": 0.000441,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d09-7de2-ae24-5745c424696b",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.481525+00:00",
+      "seconds": 0.000442,
+      "status": "success",
+      "decision": {
+        "candidate_id": "aidin_robotics",
+        "deficits": {
+          "competitor": 1,
+          "market": 1,
+          "synergy": 3,
+          "tech": 5
+        },
+        "evidence_sufficient": false,
+        "reason": "tech_analysis 분석 결과가 없습니다",
+        "route": "tech",
+        "sequence": 2
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d0a-78c0-877f-d1d102f51d4a",
+      "name": "tech",
+      "start_time": "2026-10-13T05:00:57.482144+00:00",
+      "seconds": 0.000297,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d0a-78c0-877f-d1ec8fe55f32",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.482635+00:00",
+      "seconds": 0.000504,
+      "status": "success",
+      "decision": {
+        "sequence": 3,
+        "candidate_id": "aidin_robotics",
+        "route": "synergy",
+        "reason": "synergy_analysis 분석 결과가 없습니다",
+        "deficits": {
+          "tech": 5,
+          "market": 1,
+          "competitor": 1,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d0b-78b0-b606-23204ae8654b",
+      "name": "synergy",
+      "start_time": "2026-10-13T05:00:57.483332+00:00",
+      "seconds": 0.00055,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d0c-7910-9396-3fc51f7dabbc",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.484105+00:00",
+      "seconds": 0.000524,
+      "status": "success",
+      "decision": {
+        "sequence": 4,
+        "candidate_id": "aidin_robotics",
+        "route": "competitor",
+        "reason": "competitor_analysis 분석 결과가 없습니다",
+        "deficits": {
+          "tech": 5,
+          "market": 1,
+          "competitor": 1,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d0c-7910-9396-3fe5b41b727b",
+      "name": "competitor",
+      "start_time": "2026-10-13T05:00:57.484844+00:00",
+      "seconds": 0.00043,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d0d-7fe1-9de3-e97c16300082",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.485527+00:00",
+      "seconds": 0.000578,
+      "status": "success",
+      "decision": {
+        "sequence": 5,
+        "candidate_id": "aidin_robotics",
+        "route": "market",
+        "reason": "market_analysis 분석 결과가 없습니다",
+        "deficits": {
+          "tech": 5,
+          "market": 1,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d0e-7272-9c2b-c887d665fd76",
+      "name": "market",
+      "start_time": "2026-10-13T05:00:57.486332+00:00",
+      "seconds": 0.000437,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d0e-7272-9c2b-c898a4cd3672",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.486996+00:00",
+      "seconds": 0.00054,
+      "status": "success",
+      "decision": {
+        "sequence": 6,
+        "candidate_id": "aidin_robotics",
+        "route": "tech",
+        "reason": "K1 조회가 완료되지 않았습니다; K1 근거 자료가 없습니다; K1 관측 기간이 없습니다; K2 조회가 완료되지 않았습니다; K2 근거 자료가 없습니다; K2 계산 또는 적용 조건이 없습니다; K3 조회가 완료되지 않았습니다; K3 근거 자료가 없습니다; K3 관측 기간이 없습니다; R2 조회가 완료되지 않았습니다; R2 근거 자료가 없습니다; R2 관측 기간이 없습니다; T2 조회가 완료되지 않았습니다; T2 근거 자료가 없습니다; T2 관측 기간이 없습니다",
+        "deficits": {
+          "tech": 5,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d0f-7e42-800c-42ab5fa09317",
+      "name": "tech",
+      "start_time": "2026-10-13T05:00:57.487744+00:00",
+      "seconds": 0.000483,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d10-7401-af4f-b1aec7b272a1",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.488453+00:00",
+      "seconds": 0.000556,
+      "status": "success",
+      "decision": {
+        "sequence": 7,
+        "candidate_id": "aidin_robotics",
+        "route": "synergy",
+        "reason": "S1 조회가 완료되지 않았습니다; S1 근거 자료가 없습니다; S2 조회가 완료되지 않았습니다; S2 근거 자료가 없습니다; F4 조회가 완료되지 않았습니다; F4 근거 자료가 없습니다; F4 계산 또는 적용 조건이 없습니다",
+        "deficits": {
+          "tech": 5,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d11-7e10-8660-4a1b264004ee",
+      "name": "synergy",
+      "start_time": "2026-10-13T05:00:57.489235+00:00",
+      "seconds": 0.000521,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d12-7b91-97cc-3cfb72f75992",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.490014+00:00",
+      "seconds": 0.000547,
+      "status": "success",
+      "decision": {
+        "sequence": 8,
+        "candidate_id": "aidin_robotics",
+        "route": "judge",
+        "reason": "추가 조사 한도에 도달했습니다. 미확인 근거를 명시하고 보수적으로 판정합니다.",
+        "deficits": {
+          "tech": 5,
+          "synergy": 3
+        },
+        "evidence_sufficient": false
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d12-7b91-97cc-3d1c2a53aacf",
+      "name": "judge",
+      "start_time": "2026-10-13T05:00:57.490785+00:00",
+      "seconds": 0.000264,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d13-70c1-9d02-a08e6234a6d9",
+      "name": "narrative",
+      "start_time": "2026-10-13T05:00:57.491291+00:00",
+      "seconds": 0.00026,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d13-70c1-9d02-a091876d1d35",
+      "name": "archive",
+      "start_time": "2026-10-13T05:00:57.491837+00:00",
+      "seconds": 0.000658,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d14-7160-91f1-27f17c281adf",
+      "name": "select_candidate",
+      "start_time": "2026-10-13T05:00:57.492779+00:00",
+      "seconds": 0.000245,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d15-7420-b38e-0ff098235364",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.493313+00:00",
+      "seconds": 0.000561,
+      "status": "success",
+      "decision": {
+        "candidate_id": "figure_ai",
+        "deficits": {
+          "competitor": 1,
+          "discover": 7,
+          "market": 1,
+          "synergy": 3,
+          "tech": 5
+        },
+        "evidence_sufficient": false,
+        "reason": "기업 적격성 근거가 없거나 불충분하여 확인을 요청합니다.",
+        "route": "discover",
+        "sequence": 1
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d16-7f72-bf60-a64a2aeb1107",
+      "name": "discover",
+      "start_time": "2026-10-13T05:00:57.494074+00:00",
+      "seconds": 0.000465,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d16-7f72-bf60-a657219108e7",
+      "name": "supervisor",
+      "start_time": "2026-10-13T05:00:57.494781+00:00",
+      "seconds": 0.000567,
+      "status": "success",
+      "decision": {
+        "candidate_id": "figure_ai",
+        "deficits": {
+          "competitor": 1,
+          "market": 1,
+          "synergy": 3,
+          "tech": 5
+        },
+        "evidence_sufficient": false,
+        "reason": "적격성 기준에 해당하지 않아 심층 평가를 생략합니다.",
+        "route": "skip",
+        "sequence": 2
+      },
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d17-7df1-9957-4f8c3f17dc93",
+      "name": "skip",
+      "start_time": "2026-10-13T05:00:57.495592+00:00",
+      "seconds": 0.000194,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d17-7df1-9957-4f9f90ad75d5",
+      "name": "archive",
+      "start_time": "2026-10-13T05:00:57.496001+00:00",
+      "seconds": 0.00055,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d18-7bb1-a244-3cd9426ebba5",
+      "name": "report",
+      "start_time": "2026-10-13T05:00:57.496805+00:00",
+      "seconds": 0.025265,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    },
+    {
+      "id": "01a133a2-9d32-7fa1-b855-4c71a9d3d4c4",
+      "name": "quality",
+      "start_time": "2026-10-13T05:00:57.522432+00:00",
+      "seconds": 0.015786,
+      "status": "success",
+      "decision": null,
+      "quality": {
+        "artifact": {
+          "issues": [],
+          "passed": true
+        },
+        "bias_control": {
+          "issues": [],
+          "passed": true
+        },
+        "groundedness": {
+          "issues": [],
+          "passed": true
+        },
+        "mode": "rules",
+        "neutrality": {
+          "issues": [],
+          "passed": true
+        },
+        "passed": true,
+        "perspective_coverage": {
+          "issues": [],
+          "passed": true
+        },
+        "revision": 0
+      }
+    },
+    {
+      "id": "01a133a2-9d42-7483-b403-8f872d8b51bd",
+      "name": "finalize",
+      "start_time": "2026-10-13T05:00:57.538486+00:00",
+      "seconds": 0.000349,
+      "status": "success",
+      "decision": null,
+      "quality": null
+    }
+  ]
+}

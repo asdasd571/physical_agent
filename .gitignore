@@ -11,3 +11,9 @@ data/rag/index/**
 !data/rag/index/.gitkeep
 data/rag/manifest.*.local.csv
 .env
+.env.*
+!.env.example
+artifacts/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
