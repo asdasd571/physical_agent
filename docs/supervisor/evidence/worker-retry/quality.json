@@ -1,0 +1,34 @@
+{
+  "run_id": "controlled-worker-retry",
+  "status": "passed",
+  "report": "artifacts/rubric-audit-20261013/worker-retry/report.r0.pdf",
+  "evaluation_mode": "rules",
+  "semantic_entailment_verified": false,
+  "history": [
+    {
+      "revision": 0,
+      "passed": true,
+      "mode": "rules",
+      "groundedness": {
+        "passed": true,
+        "issues": []
+      },
+      "neutrality": {
+        "passed": true,
+        "issues": []
+      },
+      "bias_control": {
+        "passed": true,
+        "issues": []
+      },
+      "perspective_coverage": {
+        "passed": true,
+        "issues": []
+      },
+      "artifact": {
+        "passed": true,
+        "issues": []
+      }
+    }
+  ]
+}

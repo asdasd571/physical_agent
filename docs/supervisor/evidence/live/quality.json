@@ -1,0 +1,34 @@
+{
+  "run_id": "supervisor-corpus200-verified-20261013",
+  "status": "passed",
+  "report": "artifacts/supervisor-corpus200-verified-20261013/report.r0.pdf",
+  "evaluation_mode": "rules",
+  "semantic_entailment_verified": false,
+  "history": [
+    {
+      "revision": 0,
+      "passed": true,
+      "mode": "rules",
+      "groundedness": {
+        "passed": true,
+        "issues": []
+      },
+      "neutrality": {
+        "passed": true,
+        "issues": []
+      },
+      "bias_control": {
+        "passed": true,
+        "issues": []
+      },
+      "perspective_coverage": {
+        "passed": true,
+        "issues": []
+      },
+      "artifact": {
+        "passed": true,
+        "issues": []
+      }
+    }
+  ]
+}

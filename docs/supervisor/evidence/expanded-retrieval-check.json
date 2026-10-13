@@ -1,0 +1,104 @@
+{
+  "checks": [
+    {
+      "candidate_id": "aidin_robotics",
+      "query": "Aidin Robotics Design Analysis and Isotropic Optimization for Miniature Capacitive Force/Torque Sensor DOI",
+      "expected_doc_id": "aidin_sensor_design_2025",
+      "hit_at_5": true,
+      "results": [
+        {
+          "doc_id": "aidin_sensor_design_2025",
+          "page": 1,
+          "score": 0.03278688524590164
+        },
+        {
+          "doc_id": "aidin_sensor_design_2025",
+          "page": 18,
+          "score": 0.031754032258064516
+        },
+        {
+          "doc_id": "aidin_sensor_design_2025",
+          "page": 1,
+          "score": 0.031754032258064516
+        },
+        {
+          "doc_id": "aidin_sensor_design_2025",
+          "page": 16,
+          "score": 0.031024531024531024
+        },
+        {
+          "doc_id": "aidin_sensor_design_2025",
+          "page": 18,
+          "score": 0.029411764705882353
+        }
+      ]
+    },
+    {
+      "candidate_id": "aidin_robotics",
+      "query": "miniature F/T sensor 15 N 75 N-mm relative error forces 0.16 0.18 0.24 calibration",
+      "expected_doc_id": "aidin_sensor_design_2025",
+      "hit_at_5": true,
+      "results": [
+        {
+          "doc_id": "aidin_sensor_design_2025",
+          "page": 15,
+          "score": 0.03252247488101534
+        },
+        {
+          "doc_id": "aidin_sensor_design_2025",
+          "page": 14,
+          "score": 0.032266458495966696
+        },
+        {
+          "doc_id": "aidin_sensor_design_2025",
+          "page": 14,
+          "score": 0.03200204813108039
+        },
+        {
+          "doc_id": "aidin_sensor_design_2025",
+          "page": 16,
+          "score": 0.030776515151515152
+        },
+        {
+          "doc_id": "aidin_wrc_2024",
+          "page": 8,
+          "score": 0.03076923076923077
+        }
+      ]
+    },
+    {
+      "candidate_id": "figure_ai",
+      "query": "BMW Figure 02 90000 components 1250 operating hours 30000 X3 pilot",
+      "expected_doc_id": "bmw_figure_customer_2026",
+      "hit_at_5": true,
+      "results": [
+        {
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 1,
+          "score": 0.03252247488101534
+        },
+        {
+          "doc_id": "bmw_figure_customer_2026",
+          "page": 4,
+          "score": 0.032266458495966696
+        },
+        {
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 2,
+          "score": 0.0315136476426799
+        },
+        {
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 4,
+          "score": 0.03055037313432836
+        },
+        {
+          "doc_id": "figure_bmw_deployment_2025",
+          "page": 5,
+          "score": 0.030303030303030304
+        }
+      ]
+    }
+  ],
+  "scope": "three targeted evidence-location checks; not a general retrieval benchmark"
+}

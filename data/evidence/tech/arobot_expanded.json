@@ -1,0 +1,72 @@
+{
+  "candidate_id": "arobot",
+  "sources": [
+    {
+      "source_id": "src_arobot_alice4_specs",
+      "kind": "PDF",
+      "publisher": "AeiROBOT",
+      "title": "AeiROBOT Company and Product Brochure",
+      "url": "https://www.ces2026-humanoidmaxalliance.com/_files/ugd/e1822d_b26c5b12645649b0942f3f4a6023655e.pdf",
+      "published_at": null,
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/arobot/arobot_brochure_en.pdf",
+      "sha256": "c2acce4a617d81e226d44fc7a37426b39b81573ac0bd3d3cdacab8f2f927f61f",
+      "doc_id": "arobot_brochure_2025",
+      "page": 5,
+      "evidence_excerpt": "41DOF; 1.6 m / 45 kg"
+    },
+    {
+      "source_id": "src_arobot_official_video",
+      "kind": "WEB",
+      "publisher": "AeiROBOT",
+      "title": "Official videos: ALICE v4 in MWC 2025",
+      "url": "https://eng.arobot4all.com/video",
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "evidence_excerpt": "Humanoid robot 'ALICE v4' in MWC 2025"
+    }
+  ],
+  "records": [
+    {
+      "kind": "specification",
+      "model": "ALICE 4",
+      "metrics": {
+        "height_m": 1.6,
+        "weight_kg": 45,
+        "degrees_of_freedom": 41,
+        "arm_dof": 7,
+        "hand_dof": 6
+      },
+      "source_ids": [
+        "src_arobot_alice4_specs"
+      ],
+      "independent_verified": false
+    },
+    {
+      "kind": "demonstration",
+      "model": "ALICE v4",
+      "event": "MWC 2025",
+      "performed_year": 2025,
+      "completed": true,
+      "physical": true,
+      "confirmation": "company_video_listing",
+      "manufacturing": false,
+      "source_ids": [
+        "src_arobot_official_video"
+      ],
+      "independent_verified": false
+    },
+    {
+      "kind": "technology",
+      "description": "공식 ALICE 4 사양은 키 1.6m, 무게 45kg, 전체 41자유도이며 팔 7자유도·손 6자유도를 제시합니다. 이는 제조사 공개 사양입니다.",
+      "source_ids": [
+        "src_arobot_alice4_specs"
+      ],
+      "source_page_checked": true
+    }
+  ],
+  "coverage": [],
+  "curation": {
+    "method": "source-page verification",
+    "scope": "public source and numeric field verification; independent replication not established"
+  }
+}

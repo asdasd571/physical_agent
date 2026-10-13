@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 from decimal import Decimal, ROUND_HALF_UP
+from datetime import date
 from typing import Any
+from nodes.eligibility import can_analyze_as_benchmark
 
 from schemas import (
     Decision,
@@ -138,7 +140,8 @@ def judge_node(state: GraphState) -> dict[str, Any]:
         indicator_scores=indicator_scores,
         category_scores=category_scores,
         gates=gates,
-        total_score=total_score,
+        total_score=None if can_analyze_as_benchmark(state) else total_score,
+        benchmark_score=total_score if can_analyze_as_benchmark(state) else None,
         decision=decision,
         evidence_coverage=evidence_coverage,
         unknown_items=unknown_items,
@@ -146,6 +149,9 @@ def judge_node(state: GraphState) -> dict[str, Any]:
         metadata={
             "missing_indicator_count": len(missing_indicators),
             "missing_indicator_ids": missing_indicators,
+            "scoring_values": {key: numeric_value(indicator_map[key].raw_value, key)
+                               if not is_missing(indicator_map[key]) else None for key in sorted(SCORE_INDICATOR_IDS)},
+            "analysis_mode": "stage_benchmark" if can_analyze_as_benchmark(state) else "investment_screening",
         },
     )
 
@@ -233,6 +239,8 @@ def score_indicator(indicator: IndicatorEvidence) -> int:
             indicator.condition,
             ("previous_employee_count", "previous_count"),
         )
+        if previous_count is None and isinstance(indicator.raw_value, dict):
+            previous_count = numeric_from_mapping(indicator.raw_value.get("prior", {}), ("count",))
         if previous_count is not None and 1 <= previous_count <= 9:
             score = min(score, 3)
     elif indicator.id == "M1":
@@ -342,6 +350,10 @@ def score_risk_indicator(indicator: IndicatorEvidence) -> int | None:
             "positive_operating_cash_flow"
         ) is True:
             return 5
+        if isinstance(indicator.raw_value, dict):
+            cash_flow = numeric_from_mapping(indicator.raw_value, ("operating_cash_flow",))
+            if cash_flow is not None and cash_flow > 0:
+                return 5
         value = numeric_value(indicator.raw_value, "F1")
         if value is None:
             return None
@@ -354,6 +366,12 @@ def score_risk_indicator(indicator: IndicatorEvidence) -> int | None:
         equity = numeric_from_mapping(indicator.raw_value, ("total_equity",))
         impairment = numeric_from_mapping(indicator.raw_value, ("impairment_rate",))
         debt_ratio = numeric_from_mapping(indicator.raw_value, ("debt_ratio",))
+        capital = numeric_from_mapping(indicator.raw_value, ("capital_stock",))
+        liabilities = numeric_from_mapping(indicator.raw_value, ("total_liabilities",))
+        if impairment is None and equity is not None and capital is not None and capital > 0:
+            impairment = max(Decimal(0), (capital - equity) / capital * 100)
+        if debt_ratio is None and equity is not None and equity > 0 and liabilities is not None:
+            debt_ratio = liabilities / equity * 100
         going_concern = indicator.raw_value.get("going_concern_uncertainty")
         if equity is not None and equity < 0:
             return 1
@@ -425,22 +443,57 @@ def numeric_value(raw_value: Any, indicator_id: str) -> Decimal | None:
         return Decimal(len(raw_value))
     if isinstance(raw_value, dict):
         keys = {
-            "T1": ("count", "experienced_people"),
+            "T1": ("qualified_count", "count", "experienced_people"),
             "T2": ("papers_per_founder", "value"),
             "K1": ("count", "paper_count"),
             "K2": ("success_rate_percent", "success_rate", "value"),
             "K3": ("count", "site_count"),
             "S1": ("count", "task_count"),
             "S2": ("matched_task_count", "count", "connected_task_count"),
-            "P1": ("cagr", "value"),
+            "P1": ("cagr_percent", "cagr", "value"),
             "R1": ("amount_krw_100m", "value"),
             "R2": ("amount_krw_100m", "value"),
             "R3": ("growth_rate", "value"),
-            "M1": ("count", "family_count"),
+            "M1": ("unique_priority_families", "count", "family_count"),
             "F1": ("runway_months", "value"),
-            "F3": ("event_count", "count", "value"),
+            "F3": ("case_count", "event_count", "count", "value"),
         }.get(indicator_id, ("value", "count"))
-        return numeric_from_mapping(raw_value, keys)
+        value = numeric_from_mapping(raw_value, keys)
+        if value is not None:
+            return value
+        if indicator_id == "R1" and isinstance(raw_value.get("rounds"), list):
+            rounds = {}
+            for row in raw_value["rounds"]:
+                if row.get("is_cumulative_announcement") is not False or row.get("currency") != "KRW":
+                    continue
+                amount = numeric_from_mapping(row, ("amount_original",))
+                if amount is None or amount < 0 or not row.get("round_name") or not row.get("announced_at"):
+                    continue
+                identity = (row["round_name"], row["announced_at"])
+                if identity in rounds and rounds[identity] != amount:
+                    raise ValueError("같은 투자 라운드의 금액이 충돌합니다.")
+                rounds[identity] = amount
+            return sum(rounds.values(), Decimal(0)) / Decimal(100_000_000) if rounds else None
+        if indicator_id == "R3":
+            prior, latest = raw_value.get("prior", {}), raw_value.get("latest", {})
+            baseline, current = numeric_from_mapping(prior, ("count",)), numeric_from_mapping(latest, ("count",))
+            if (baseline is not None and baseline > 0 and current is not None and current >= 0
+                    and prior.get("scope") and prior.get("scope") == latest.get("scope")
+                    and prior.get("as_of") and latest.get("as_of") and prior["as_of"] < latest["as_of"]):
+                return (current - baseline) / baseline * 100
+        if indicator_id == "F1" and raw_value.get("currency") == "KRW":
+            cash = numeric_from_mapping(raw_value, ("cash_and_equivalents",))
+            short_term = numeric_from_mapping(raw_value, ("short_term_financial_instruments",))
+            flow = numeric_from_mapping(raw_value, ("operating_cash_flow",))
+            period = raw_value.get("fiscal_period", "")
+            if cash is not None and cash >= 0 and short_term is not None and short_term >= 0 and flow is not None and flow < 0:
+                try:
+                    start, end = (date.fromisoformat(p) for p in period.split("~"))
+                except (ValueError, TypeError):
+                    return None
+                if 364 <= (end - start).days <= 365:
+                    return (cash + short_term) / (-flow / 12)
+        return None
     return None
 
 
@@ -449,9 +502,13 @@ def numeric_from_mapping(
     keys: tuple[str, ...],
 ) -> Decimal | None:
     value = first_value(values, keys)
-    if isinstance(value, bool) or not isinstance(value, (int, float, Decimal)):
+    if isinstance(value, bool) or not isinstance(value, (int, float, Decimal, str)):
         return None
-    return Decimal(str(value))
+    try:
+        number = Decimal(str(value))
+    except Exception:
+        return None
+    return number if number.is_finite() else None
 
 
 def first_value(values: dict[str, Any], keys: tuple[str, ...]) -> Any:

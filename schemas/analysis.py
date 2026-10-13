@@ -24,12 +24,18 @@ class Candidate(SchemaModel):
     evidence_urls: list[str] = Field(default_factory=list)
 
 
+class TechnicalFinding(SchemaModel):
+    description: str = Field(min_length=1, max_length=500)
+    source_ids: list[str] = Field(min_length=1)
+
+
 class AnalysisResult(SchemaModel):
     candidate_id: str = Field(min_length=1)
     summary: str = Field(min_length=1)
     indicators: list[IndicatorEvidence] = Field(default_factory=list)
     source_ids: list[str] = Field(default_factory=list)
     query_attempts: list[QueryAttempt] = Field(default_factory=list)
+    findings: list[TechnicalFinding] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def validate_source_ids(self) -> "AnalysisResult":
@@ -38,7 +44,8 @@ class AnalysisResult(SchemaModel):
             for indicator in self.indicators
             for source_id in indicator.source_ids
         }
-        missing = indicator_sources - set(self.source_ids)
+        finding_sources = {source_id for finding in self.findings for source_id in finding.source_ids}
+        missing = (indicator_sources | finding_sources) - set(self.source_ids)
         if missing:
             raise ValueError(
                 "indicator source_ids must be included in AnalysisResult.source_ids: "

@@ -8,6 +8,13 @@ data/rag/documents/**/*.pdf
 !data/rag/documents/parent/sk_incheon_clx_safety_regulation.pdf
 reporting/output/
 data/rag/index/**
+data/rag/index-expanded/
 !data/rag/index/.gitkeep
 data/rag/manifest.*.local.csv
 .env
+.env.*
+!.env.example
+artifacts/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal

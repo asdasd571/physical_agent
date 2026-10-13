@@ -1,0 +1,75 @@
+{
+  "audited_code_revision": "b966e7e892e0c1a85455e27077f9a2208b429122",
+  "tests_passed": 223,
+  "clean_checkout_tests_passed": 223,
+  "clean_checkout": {
+    "env_file_present": false,
+    "preexisting_index": false,
+    "dependencies": "reused the verified Python 3.11 environment; no fresh dependency installation claim",
+    "rag_rebuilt": true,
+    "llm_enabled": false,
+    "score_comparison_matches": true,
+    "scores": {
+      "arobot": [
+        "42.0",
+        null,
+        "44.7"
+      ],
+      "aidin_robotics": [
+        "45.3",
+        null,
+        "46.7"
+      ],
+      "figure_ai": [
+        null,
+        "33.3",
+        "33.3"
+      ]
+    },
+    "langsmith_tracing": false
+  },
+  "routing_counts": {
+    "arobot": {
+      "routing_decisions": 8,
+      "worker_calls": 7,
+      "reworks": 2,
+      "termination_reason": "evidence_exhausted"
+    },
+    "aidin_robotics": {
+      "routing_decisions": 8,
+      "worker_calls": 7,
+      "reworks": 2,
+      "termination_reason": "evidence_exhausted"
+    },
+    "figure_ai": {
+      "routing_decisions": 9,
+      "worker_calls": 8,
+      "reworks": 3,
+      "termination_reason": "evidence_exhausted"
+    }
+  },
+  "submission_report": {
+    "pages": 9,
+    "SUMMARY": true,
+    "REFERENCE": true,
+    "sha256": "55f75dd3629affe95e65c10c44cf1886fda201b3bd026542e6904f20384a29f1"
+  },
+  "quality_loop": {
+    "trace_id": "70274d27-8262-4962-b8e2-1559ad8bc89f",
+    "evaluations": [
+      false,
+      true
+    ],
+    "revisions": 1
+  },
+  "worker_retry": {
+    "trace_id": "033d5cf0-c705-49fb-8404-419eea1cacdc",
+    "controlled_fault": true,
+    "recovery_verified": true
+  },
+  "remaining_submission_items": [
+    "LangSmith web UI screenshots"
+  ],
+  "grade_awarded": null,
+  "role_assignment_confirmed": true
+}

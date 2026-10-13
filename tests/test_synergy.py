@@ -39,6 +39,14 @@ def test_unmatched_or_unknown_task_not_counted(tmp_path):
     assert result["S1"].raw_value is None
 
 
+def test_lookup_coverage_does_not_downgrade_customer_confirmed_task(tmp_path):
+    coverage = [{"indicator_id": "S1", "complete": True, "query_status": "SUCCESS",
+                 "source_ids": ["test"], "independent_verified": False}]
+    result = index(run(tmp_path, [task()], coverage), "synergy_analysis")["S1"]
+    assert result.raw_value["performed_task_count"] == 1
+    assert result.evidence_status == "THIRD_PARTY_VERIFIED"
+
+
 @pytest.mark.parametrize("change,expected", [
     ({"explosive_zone": None}, "UNKNOWN"),
     ({"explosive_zone": False}, "NOT_APPLICABLE"),

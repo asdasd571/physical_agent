@@ -1,0 +1,12 @@
+{
+  "document_count": 17,
+  "page_count": 200,
+  "chunk_count": 255,
+  "embedding_model": "BAAI/bge-m3",
+  "chunk_size": 450,
+  "chunk_overlap": 60,
+  "model_load_seconds": 4.6845634170022095,
+  "dense_indexing_seconds": 47.828327125000214,
+  "bm25_indexing_seconds": 0.9471967080025934,
+  "total_indexing_seconds": 48.819429208000656
+}

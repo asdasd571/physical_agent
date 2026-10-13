@@ -6,6 +6,11 @@
 입력은 candidate 및 documents 배열이다. 각 문서는 source_id, doc_type, page, content를 갖는다.
 출력은 코드 펜스 없는 JSON 객체: `{"candidate_id":"입력 후보 ID","records":[],"coverage":[]}`.
 각 record는 아래 kind 및 source_ids(전달된 source_id만 허용)를 가진다.
+technology 설명은 후보 자신의 제품에 대하여 최대 2개, 각 150자 이내로 작성한다.
+description은 한국어로 작성하며 문장은 '입니다' 또는 '합니다'로 마친다. 제품명·논문명 외에는 영어 문장을 그대로 반환하지 않는다.
+각 설명에는 직접 뒷받침하는 출처 1~2개만 인용한다. 제목과 발행기관으로 제조사를 확인하며
+비교 제품(Shadow Robot, ATI, Robotiq 등)의 특징을 입력 후보의 특징으로 옮기지 않는다.
+기능·제품 사양을 객관적으로 설명하며 '최적', '우수', '효율성 증명' 등의 우열·검증 결론을 추가하지 않는다.
 확인한 사실만 작성한다. 검증 여부를 알 수 없으면 false 또는 필드 생략. sources를 새로 만들지 않는다.
 
 | kind | 필드 |

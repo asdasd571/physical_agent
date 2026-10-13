@@ -20,6 +20,7 @@ from schemas import (
     AgentNodeUpdate, AnalysisResult, EvidenceStatus, GraphState, IndicatorEvidence,
     QueryAttempt, QueryStatus, SourceKind, SourceRecord,
 )
+from schemas.analysis import TechnicalFinding
 
 ROOT = Path(__file__).resolve().parents[1]
 TECH_QUERIES = {
@@ -204,7 +205,9 @@ def _sanitize_extracted_payload(payload, allowed_sources, candidate_id):
         "coverage": [],
     }
     allowed = set(allowed_sources)
-    for key in ("records", "coverage"):
+    # Top-k 검색 문서만 전달받은 LLM은 전체 조회의 완결성을 증명할 수 없다.
+    # 완전 조회 근거는 검토된 로컬 bundle에서만 수용한다.
+    for key in ("records",):
         rows = payload.get(key, [])
         if not isinstance(rows, list):
             continue
@@ -306,6 +309,7 @@ def _collect(state, owner, queries, doc_types, evidence_dirs, search, extractor)
                     sources[source.source_id] = source
                     documents[source.source_id] = {
                         "source_id": source.source_id, "doc_type": chunk.doc_type.value,
+                        "publisher": source.publisher, "title": source.title,
                         "page": source.page, "content": chunk.content,
                     }
                     valid += 1
@@ -353,13 +357,21 @@ def _finish(state, owner, indicators, sources, attempts, narratives=None):
         old = {i.id: i for i in previous.indicators}
         indicators = [i if i.id in targets else old.get(i.id, i) for i in indicators]
     narratives = narratives or []
-    used = sorted({s for item in indicators for s in item.source_ids} | set(_ids(narratives)))
+    reviewed = [r for r in narratives if r.get("source_page_checked") is True]
+    if reviewed:
+        narratives = reviewed
+    findings = [TechnicalFinding(description=r["description"], source_ids=r["source_ids"])
+                for r in narratives[:2] if len(r["description"]) <= 500]
+    if not findings and previous is not None and _is_repair(state, owner):
+        findings = previous.findings
+    used = sorted({s for item in indicators for s in item.source_ids}
+                  | {s for finding in findings for s in finding.source_ids})
     existing = _source_map(state.get("sources", []))
     analysis = AnalysisResult(
         candidate_id=state["current_candidate"].candidate_id,
         summary="; ".join([*(f"{r['description']} [{', '.join(r['source_ids'])}]" for r in narratives),
                            *(f"{i.id}: {i.query_status.value}" for i in indicators)]),
-        indicators=indicators, source_ids=used, query_attempts=attempts,
+        indicators=indicators, source_ids=used, query_attempts=attempts, findings=findings,
     )
     return {f"{owner}_analysis": analysis,
             "sources": [sources[s] for s in used if s not in existing]}
@@ -497,6 +509,14 @@ def make_tech_node(*, search=None, extractor=None, evidence_dir=None):
                                   status=QueryStatus.ACCESS_FAILED if failed else QueryStatus.NO_DATA)
             indicators.append(result)
         narratives = [r for r in kinds("technology") if isinstance(r.get("description"), str) and r["description"].strip()]
+        early_kinds = {"K1": "specification", "K2": "validation", "K3": "demonstration"}
+        for position, indicator in enumerate(indicators):
+            rows = [r for r in records if r.get("kind") == early_kinds.get(indicator.id)]
+            if rows:
+                indicators[position] = indicator.model_copy(update={
+                    "condition": {**indicator.condition, "early_stage_evidence": rows},
+                    "source_ids": sorted(set(indicator.source_ids) | set(_ids(rows))),
+                })
         return _finish(state, "tech", indicators, sources, attempts, narratives)
     return node
 

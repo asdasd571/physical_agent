@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import date
+from datetime import date, datetime
 from importlib import import_module
 from pathlib import Path
 from typing import Any
 from uuid import uuid4
+from zoneinfo import ZoneInfo
 
 from dotenv import load_dotenv
 
@@ -22,18 +23,30 @@ from rag import (
     load_hybrid_retriever,
 )
 from schemas import Candidate, RunConfig
+from schemas.supervisor import SupervisorPolicy
+from graph.supervisor import build_supervisor_graph
+from graph.checkpoints import sqlite_checkpointer
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--candidates", default="data/candidates.json")
-    parser.add_argument("--index", default="data/rag/index")
+    parser.add_argument("--index", default="data/rag/index-expanded")
     parser.add_argument("--rule-version", default="1.0.0")
-    parser.add_argument("--document-version", default="1.0.0")
+    parser.add_argument("--document-version", default="2.0.0")
     parser.add_argument("--skip-rag", action="store_true")
     parser.add_argument("--skip-llm", action="store_true")
     parser.add_argument("--llm-model", default=None)
     parser.add_argument("--report-output", default=None)
+    parser.add_argument("--workflow", choices=["supervisor", "legacy"], default="supervisor")
+    parser.add_argument("--evaluation-date", type=date.fromisoformat,
+                        default=datetime.now(ZoneInfo("Asia/Seoul")).date())
+    parser.add_argument("--run-id", default=None)
+    parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--artifacts", default="artifacts")
+    parser.add_argument("--max-attempts", type=int, default=2)
+    parser.add_argument("--max-report-revisions", type=int, default=2)
+    parser.add_argument("--eligibility-mode", choices=["strict", "stage-benchmark"], default="stage-benchmark")
     return parser.parse_args()
 
 
@@ -91,32 +104,88 @@ def configure_rag(index_directory: str) -> None:
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
-    load_dotenv()
+    load_dotenv(override=True)
     candidates = load_candidates(args.candidates)
 
     if not args.skip_rag:
         configure_rag(args.index)
 
     model = None if args.skip_llm else OpenAIResponsesModel(model=args.llm_model)
-    graph = build_graph(load_bindings(model))
-    run_id = str(uuid4())
+    run_id = args.run_id or str(uuid4())
+    # 실행 ID는 로컬 경로에도 사용한다.
+    if not run_id or any(c not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_" for c in run_id):
+        raise ValueError("run-id에는 영문, 숫자, 하이픈, 밑줄만 사용할 수 있습니다.")
     settings = {"report_output_path": args.report_output} if args.report_output else {}
+    settings.update(skip_rag=args.skip_rag, skip_llm=args.skip_llm)
+    settings["eligibility_mode"] = args.eligibility_mode
     initial_state = {
         "run": RunConfig(
             run_id=run_id,
-            evaluation_date=date.today(),
+            evaluation_date=args.evaluation_date,
             rule_version=args.rule_version,
             document_version=args.document_version,
             settings=settings,
         ),
         "candidates": candidates,
     }
-    return graph.invoke(initial_state)
+    if args.workflow == "legacy":
+        return build_graph(load_bindings(model)).invoke(initial_state, {"recursion_limit": 200})
+    if args.resume and not args.run_id:
+        raise ValueError("재개할 때는 --run-id가 필요합니다.")
+    directory = Path(args.artifacts) / run_id
+    if not args.resume and directory.exists():
+        raise FileExistsError("같은 run-id의 실행이 있습니다. --resume 또는 새 run-id를 사용하십시오.")
+    directory.mkdir(parents=True, exist_ok=True)
+    if not args.report_output:
+        settings["report_output_path"] = str(directory / "report.pdf")
+    initial_state["run"] = initial_state["run"].model_copy(update={"settings": settings})
+    initial_state["policy"] = SupervisorPolicy(max_attempts_per_agent=args.max_attempts,
+                                               max_report_revisions=args.max_report_revisions,
+                                               allow_stage_benchmarks=args.eligibility_mode == "stage-benchmark")
+    trace_id = uuid4()
+    config = {"configurable": {"thread_id": run_id}, "run_id": trace_id,
+              "run_name": "physical-agent-supervisor", "recursion_limit": 400,
+              "metadata": {"run_id": run_id, "workflow": "supervisor", "offline": args.skip_llm,
+                           "rag_enabled": not args.skip_rag}, "tags": ["supervisor", "course-assignment"]}
+    with sqlite_checkpointer(directory / "checkpoints.sqlite") as saver:
+        graph = build_supervisor_graph(load_bindings(model), checkpointer=saver)
+        previous = graph.get_state(config) if args.resume else None
+        if args.resume and not previous.values:
+            raise ValueError("저장된 실행을 찾을 수 없습니다.")
+        if previous and previous.values:
+            old_run = previous.values["run"]
+            for key in ("skip_rag", "skip_llm", "eligibility_mode"):
+                if old_run.settings.get(key) != settings[key]:
+                    raise ValueError("재개 시 RAG/LLM/적격성 모드를 기존 실행과 동일하게 지정해야 합니다.")
+            if not previous.next:
+                return previous.values
+        with (directory / "events.jsonl").open("a", encoding="utf-8") as log:
+            for event in graph.stream(None if args.resume else initial_state, config, stream_mode="updates"):
+                for name, update in event.items():
+                    record = {"run_id": run_id, "trace_id": str(trace_id), "node": name}
+                    if name == "supervisor":
+                        record["decision"] = update["supervisor"].decisions[-1].model_dump(mode="json")
+                    elif name == "quality":
+                        record["quality"] = update["quality"].model_dump(mode="json")
+                    log.write(json.dumps(record, ensure_ascii=False) + "\n")
+                    log.flush()
+                    print(f"[{run_id}] {name}", flush=True)
+        result = graph.get_state(config).values
+    manifest = {"run_id": run_id, "trace_id": str(trace_id), "status": result["completion_status"],
+                "report": result["report"].output_path,
+                "routing": {k: v.model_dump(mode="json") for k, v in result["routing_history"].items()},
+                "quality": result["quality"].model_dump(mode="json")}
+    (directory / "run.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    from langchain_core.tracers.langchain import wait_for_all_tracers
+    wait_for_all_tracers()
+    return result
 
 
 def print_result(result: dict[str, Any]) -> None:
     for index, evaluation in enumerate(result["evaluations"], start=1):
         score = evaluation.total_score if evaluation.total_score is not None else "미평가"
+        if evaluation.benchmark_score is not None:
+            score = f"비교 분석 {evaluation.benchmark_score}"
         print(
             f"[{index}/{len(result['evaluations'])}] "
             f"{evaluation.candidate_id}: {evaluation.decision.status.value} ({score})"
@@ -125,11 +194,15 @@ def print_result(result: dict[str, Any]) -> None:
     report = result.get("report")
     if report is not None:
         print(f"보고서: {report.output_path}")
+    if "completion_status" in result:
+        print(f"보고서 품질: {result['completion_status']}")
 
 
 def main() -> None:
     result = run(parse_args())
     print_result(result)
+    if result.get("completion_status") == "quality_failed":
+        raise SystemExit(2)
 
 
 if __name__ == "__main__":
