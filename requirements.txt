@@ -11,3 +11,4 @@ langgraph-checkpoint-sqlite>=3.1,<4.0
 langsmith>=0.4,<1.0
 Jinja2>=3.1.6,<4.0
 PyMuPDF>=1.26,<2.0
+fonttools>=4.40,<5.0

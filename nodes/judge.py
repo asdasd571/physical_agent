@@ -3,6 +3,7 @@ from __future__ import annotations
 from decimal import Decimal, ROUND_HALF_UP
 from datetime import date
 from typing import Any
+from nodes.eligibility import can_analyze_as_benchmark
 
 from schemas import (
     Decision,
@@ -139,7 +140,8 @@ def judge_node(state: GraphState) -> dict[str, Any]:
         indicator_scores=indicator_scores,
         category_scores=category_scores,
         gates=gates,
-        total_score=total_score,
+        total_score=None if can_analyze_as_benchmark(state) else total_score,
+        benchmark_score=total_score if can_analyze_as_benchmark(state) else None,
         decision=decision,
         evidence_coverage=evidence_coverage,
         unknown_items=unknown_items,
@@ -149,6 +151,7 @@ def judge_node(state: GraphState) -> dict[str, Any]:
             "missing_indicator_ids": missing_indicators,
             "scoring_values": {key: numeric_value(indicator_map[key].raw_value, key)
                                if not is_missing(indicator_map[key]) else None for key in sorted(SCORE_INDICATOR_IDS)},
+            "analysis_mode": "stage_benchmark" if can_analyze_as_benchmark(state) else "investment_screening",
         },
     )
 

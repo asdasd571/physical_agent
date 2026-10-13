@@ -230,3 +230,31 @@ def test_qualitative_technology_reaches_report_without_inventing_scores(tmp_path
     assert "힘센서의 공개 제품 사양" in section.text
     assert fixture.SOURCE.source_id in section.source_ids
     assert result["quality"].passed
+
+
+def test_stage_excluded_candidate_is_analyzed_without_becoming_investment_target(tmp_path):
+    def discover(state):
+        update = fixture.discover_node(state)
+        profile = update["company_profile"]
+        items = list(profile.indicators)
+        raw = fixture.g1_raw(True)
+        raw["latest_round"] = {"value": "Series C", "source_id": fixture.SOURCE.source_id}
+        items[0] = items[0].model_copy(update={"raw_value": raw})
+        update["company_profile"] = profile.model_copy(update={"indicators": items})
+        return update
+    result = build_supervisor_graph(replace(bindings(), discover=discover)).invoke(
+        initial(tmp_path, allow_stage_benchmarks=True), {"recursion_limit": 200})
+    for evaluation in result["evaluations"]:
+        assert evaluation.total_score is None
+        assert evaluation.benchmark_score is not None
+        assert not evaluation.gates["G1"].passed
+        assert evaluation.decision.status.value == "HOLD"
+    assert result["routing_history"]["candidate-2"].attempts["tech"] == 2
+    assert result["completion_status"] == "passed"
+
+
+def test_hard_eligibility_failure_is_not_opened_by_benchmark_mode(tmp_path):
+    state = initial(tmp_path, allow_stage_benchmarks=True)
+    result = build_supervisor_graph(bindings()).invoke(state, {"recursion_limit": 200})
+    assert result["routing_history"]["candidate-2"].attempts == {"discover": 1}
+    assert result["evaluations"][1].benchmark_score is None

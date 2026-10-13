@@ -21,6 +21,24 @@ REQUIRED_FACTS = {
 MISSING = object()
 
 
+def can_analyze_as_benchmark(state) -> bool:
+    """투자 단계만 제외 사유인 정상 비상장사를 비교 분석한다."""
+    policy = state.get("policy")
+    if policy is None or not policy.allow_stage_benchmarks:
+        return False
+    profile = state.get("company_profile")
+    if profile is None:
+        return False
+    indicator = next((i for i in profile.indicators if i.id == "G1"), None)
+    if indicator is None or indicator.query_status != QueryStatus.SUCCESS or not isinstance(indicator.raw_value, dict):
+        return False
+    facts = indicator.raw_value
+    return (extract_value(facts, "unlisted") is True
+            and extract_value(facts, "exit_completed") is False
+            and extract_value(facts, "operating_status") == "정상"
+            and extract_value(facts, "latest_round") in {"Series C", "Series D", "Series E", "Series F", "Growth"})
+
+
 def eligibility_node(state: GraphState) -> dict[str, Any]:
     candidate = state["current_candidate"]
     profile = state["company_profile"]

@@ -21,7 +21,7 @@ def main():
     available, missing = [], []
     for row in rows:
         path = manifest.parent / row["local_path"]
-        if not path.exists() and ".pdf" in row["source_url"].lower():
+        if not path.exists() and path.suffix.lower() == ".pdf":
             path.parent.mkdir(parents=True, exist_ok=True)
             with tempfile.NamedTemporaryFile(dir=path.parent, suffix=".download") as tmp:
                 result = subprocess.run(["curl", "--fail", "--location", "--silent", "--show-error",

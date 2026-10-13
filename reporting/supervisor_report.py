@@ -25,7 +25,7 @@ NEUTRALITY_TERMS = ("투자를 추천", "매수를 추천", "기술이 우월", 
 def make_draft(state):
     sections = []
     for evaluation in state["evaluations"]:
-        skipped = evaluation.total_score is None
+        skipped = evaluation.total_score is None and evaluation.benchmark_score is None
         for perspective, (title, ids) in PERSPECTIVES.items():
             indicators = [i for i in evaluation.indicators if i.id in ids]
             units = {"T1": "명", "T2": "편/명", "K1": "편", "K2": "%", "K3": "현장", "S1": "작업군",
@@ -33,7 +33,8 @@ def make_draft(state):
             values = evaluation.metadata.get("scoring_values", {})
             lines = []
             for item in indicators:
-                line = f"{item.id}: {indicator_text(item)}"
+                text = indicator_text(item) if item.raw_value is not None else f"채점 요건 근거 미확보 — {item.missing_reason or '추가 확인이 필요합니다.'}"
+                line = f"{item.id}: {text}"
                 if values.get(item.id) is not None:
                     line += f" (채점값 {format_number(values[item.id], 2)} {units[item.id]}, {evaluation.indicator_scores[item.id]}/5점)"
                 lines.append(line)
@@ -50,6 +51,11 @@ def make_draft(state):
             narrative_section = {"technology": "technology", "market": "market", "stakeholders": "risk", "application": "business"}[perspective]
             refs = {s for i in indicators for s in i.source_ids}
             if perspective == "technology":
+                comparison = evaluation.metadata.get("early_stage_comparison", {})
+                for key, reasons in comparison.get("changes", {}).items():
+                    lines.append(f"초기 단계 {key}: " + " ".join(reasons))
+                if comparison.get("changes"):
+                    limitations.append("초기 단계 기준은 해당 항목을 최대 2/5점으로 인정하며, 투자 판정에는 사용하지 않습니다.")
                 findings = evaluation.metadata.get("technical_findings", [])
                 for finding in findings:
                     description = re.sub(r"\s*\(source_ids:\s*\[[^\]]*\]\)", "", finding["description"])
@@ -88,12 +94,17 @@ def report_pages(state, draft):
     rows = []
     for evaluation in state["evaluations"]:
         history = state["routing_history"][evaluation.candidate_id]
+        score = evaluation.total_score if evaluation.total_score is not None else (
+            f"비교 {evaluation.benchmark_score}" if evaluation.benchmark_score is not None else "미산정")
+        early = evaluation.metadata.get("early_stage_comparison", {}).get("score", "미산정")
         rows.append(f"<tr><td>{esc(names[evaluation.candidate_id])}</td><td>{esc(evaluation.decision.status.value)}</td>"
-                    f"<td>{esc(evaluation.total_score if evaluation.total_score is not None else '미산정')}</td>"
+                    f"<td>{esc(score)}</td><td>{esc(early)}</td>"
                     f"<td>{esc(reasons.get(history.termination_reason, history.termination_reason))}</td></tr>")
     pages = ["<h1>Physical AI 검토 보고서</h1><h2>SUMMARY</h2>"
              f"<p>{esc(draft.summary)}</p><p>평가일: {state['run'].evaluation_date} / 개정: {draft.revision}</p>"
-             f"<p>Run ID: {esc(draft.run_id)}</p><table><tr><th>후보</th><th>규칙 판정</th><th>점수</th><th>조사 종료 사유</th></tr>{''.join(rows)}</table>"
+             f"<p>Run ID: {esc(draft.run_id)}</p><table><tr><th>후보</th><th>규칙 판정</th><th>기존 기준</th><th>초기 단계 기준</th><th>조사 종료 사유</th></tr>{''.join(rows)}</table>"
+             "<p>초기 단계 기준은 공개 사양·실물 센서 시험·공개 시연에 제한적으로 점수를 인정한 비교 결과입니다. "
+             "투자 판정은 기존 기준으로 유지합니다. 투자 단계가 범위 밖인 후보의 점수는 투자 점수가 아닌 비교 분석 값입니다.</p>"
              "<p>HOLD/INVEST는 기존 투자 규칙을 적용한 계산 결과입니다. 기술 추천 또는 실제 투자 권고를 의미하지 않습니다.</p>"
              "<h2>검토 범위와 판단 기준</h2><p>로봇 핸드, 힘·촉각 센서, VLA 기반 조작 지능을 대상으로 합니다. "
              "적격성·문제 적합성·결격 위험의 세 Gate와 창업팀·기술력·전략 시너지·시장성·트랙션·경쟁 우위의 여섯 항목을 적용합니다.</p>"

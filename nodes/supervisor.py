@@ -2,7 +2,7 @@
 
 from typing import Any
 
-from nodes.eligibility import eligibility_node
+from nodes.eligibility import eligibility_node, can_analyze_as_benchmark
 from nodes.review import ANALYSIS_REQUIREMENTS, review_node
 from schemas import EligibilityStatus
 from schemas.supervisor import Assignment, RoutingDecision, SupervisorControl
@@ -54,7 +54,7 @@ def supervisor_node(state) -> dict[str, Any]:
         if available("discover"):
             return decide("discover", "기업 적격성 근거가 없거나 불충분하여 확인을 요청합니다.")
         return decide("skip", "적격성 확인 한도에 도달하여 심층 평가를 보류합니다.", termination="eligibility_unresolved")
-    if eligibility.status == EligibilityStatus.FAIL:
+    if eligibility.status == EligibilityStatus.FAIL and not can_analyze_as_benchmark(state):
         return decide("skip", "적격성 기준에 해당하지 않아 심층 평가를 생략합니다.", termination="ineligible")
 
     if not targets:

@@ -15,6 +15,7 @@ Perspective = Literal["technology", "market", "stakeholders", "application"]
 
 
 class SupervisorPolicy(SchemaModel):
+    allow_stage_benchmarks: bool = False
     max_attempts_per_agent: int = Field(default=2, ge=1, le=3)
     max_dispatches_per_candidate: int = Field(default=15, ge=5, le=30)
     max_report_revisions: int = Field(default=2, ge=1, le=3)

@@ -54,7 +54,7 @@ def report_quality_node(state):
     if any(term in draft.summary for term in NEUTRALITY_TERMS):
         neutral.append("SUMMARY에 기술 추천 또는 우열 표현이 있습니다.")
     for candidate, evaluation in expected.items():
-        if evaluation.total_score is None:
+        if evaluation.total_score is None and evaluation.benchmark_score is None:
             continue
         candidate_refs = {s for section in draft.sections if section.candidate_id == candidate for s in section.source_ids}
         publishers = {registry[s].publisher.casefold().strip() for s in candidate_refs if s in registry}

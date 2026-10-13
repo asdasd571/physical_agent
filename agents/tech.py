@@ -205,7 +205,9 @@ def _sanitize_extracted_payload(payload, allowed_sources, candidate_id):
         "coverage": [],
     }
     allowed = set(allowed_sources)
-    for key in ("records", "coverage"):
+    # Top-k 검색 문서만 전달받은 LLM은 전체 조회의 완결성을 증명할 수 없다.
+    # 완전 조회 근거는 검토된 로컬 bundle에서만 수용한다.
+    for key in ("records",):
         rows = payload.get(key, [])
         if not isinstance(rows, list):
             continue
@@ -355,6 +357,9 @@ def _finish(state, owner, indicators, sources, attempts, narratives=None):
         old = {i.id: i for i in previous.indicators}
         indicators = [i if i.id in targets else old.get(i.id, i) for i in indicators]
     narratives = narratives or []
+    reviewed = [r for r in narratives if r.get("source_page_checked") is True]
+    if reviewed:
+        narratives = reviewed
     findings = [TechnicalFinding(description=r["description"], source_ids=r["source_ids"])
                 for r in narratives[:2] if len(r["description"]) <= 500]
     if not findings and previous is not None and _is_repair(state, owner):
@@ -504,6 +509,14 @@ def make_tech_node(*, search=None, extractor=None, evidence_dir=None):
                                   status=QueryStatus.ACCESS_FAILED if failed else QueryStatus.NO_DATA)
             indicators.append(result)
         narratives = [r for r in kinds("technology") if isinstance(r.get("description"), str) and r["description"].strip()]
+        early_kinds = {"K1": "specification", "K2": "validation", "K3": "demonstration"}
+        for position, indicator in enumerate(indicators):
+            rows = [r for r in records if r.get("kind") == early_kinds.get(indicator.id)]
+            if rows:
+                indicators[position] = indicator.model_copy(update={
+                    "condition": {**indicator.condition, "early_stage_evidence": rows},
+                    "source_ids": sorted(set(indicator.source_ids) | set(_ids(rows))),
+                })
         return _finish(state, "tech", indicators, sources, attempts, narratives)
     return node
 

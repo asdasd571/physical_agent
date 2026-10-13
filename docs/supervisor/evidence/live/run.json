@@ -1,8 +1,8 @@
 {
-  "run_id": "supervisor-reviewed-20261013",
-  "trace_id": "a764d0b7-5d74-49e9-b606-f80a06d9efb0",
+  "run_id": "supervisor-corpus200-verified-20261013",
+  "trace_id": "de10b31f-89c7-46a1-84c4-7632ee41515a",
   "status": "passed",
-  "report": "artifacts/supervisor-reviewed-20261013/report.r0.pdf",
+  "report": "artifacts/supervisor-corpus200-verified-20261013/report.r0.pdf",
   "routing": {
     "arobot": {
       "next_node": "judge",
@@ -67,7 +67,7 @@
             "tech": 5,
             "market": 1,
             "competitor": 1,
-            "synergy": 2
+            "synergy": 3
           },
           "evidence_sufficient": false
         },
@@ -79,7 +79,7 @@
           "deficits": {
             "tech": 5,
             "market": 1,
-            "synergy": 2
+            "synergy": 3
           },
           "evidence_sufficient": false
         },
@@ -90,7 +90,7 @@
           "reason": "T2 조회가 완료되지 않았습니다; T2 근거 자료가 없습니다; T2 관측 기간이 없습니다; K1 조회가 완료되지 않았습니다; K1 근거 자료가 없습니다; K1 관측 기간이 없습니다; K2 조회가 완료되지 않았습니다; K2 근거 자료가 없습니다; K2 계산 또는 적용 조건이 없습니다; K3 조회가 완료되지 않았습니다; K3 근거 자료가 없습니다; K3 관측 기간이 없습니다; R2 조회가 완료되지 않았습니다; R2 근거 자료가 없습니다; R2 관측 기간이 없습니다",
           "deficits": {
             "tech": 5,
-            "synergy": 2
+            "synergy": 3
           },
           "evidence_sufficient": false
         },
@@ -98,10 +98,10 @@
           "sequence": 7,
           "candidate_id": "arobot",
           "route": "synergy",
-          "reason": "S2 조회가 완료되지 않았습니다; S2 근거 자료가 없습니다; F4 조회가 완료되지 않았습니다; F4 근거 자료가 없습니다; F4 계산 또는 적용 조건이 없습니다",
+          "reason": "S1 조회가 완료되지 않았습니다; S1 근거 자료가 없습니다; S2 조회가 완료되지 않았습니다; S2 근거 자료가 없습니다; F4 조회가 완료되지 않았습니다; F4 근거 자료가 없습니다; F4 계산 또는 적용 조건이 없습니다",
           "deficits": {
             "tech": 5,
-            "synergy": 2
+            "synergy": 3
           },
           "evidence_sufficient": false
         },
@@ -112,7 +112,7 @@
           "reason": "추가 조사 한도에 도달했습니다. 미확인 근거를 명시하고 보수적으로 판정합니다.",
           "deficits": {
             "tech": 5,
-            "synergy": 2
+            "synergy": 3
           },
           "evidence_sufficient": false
         }
@@ -166,7 +166,7 @@
           "route": "synergy",
           "reason": "synergy_analysis 분석 결과가 없습니다",
           "deficits": {
-            "tech": 5,
+            "tech": 4,
             "market": 1,
             "competitor": 1,
             "synergy": 3
@@ -179,10 +179,10 @@
           "route": "competitor",
           "reason": "competitor_analysis 분석 결과가 없습니다",
           "deficits": {
-            "tech": 5,
+            "tech": 4,
             "market": 1,
             "competitor": 1,
-            "synergy": 2
+            "synergy": 3
           },
           "evidence_sufficient": false
         },
@@ -192,9 +192,9 @@
           "route": "market",
           "reason": "market_analysis 분석 결과가 없습니다",
           "deficits": {
-            "tech": 5,
+            "tech": 4,
             "market": 1,
-            "synergy": 2
+            "synergy": 3
           },
           "evidence_sufficient": false
         },
@@ -202,10 +202,10 @@
           "sequence": 6,
           "candidate_id": "aidin_robotics",
           "route": "tech",
-          "reason": "T2 조회가 완료되지 않았습니다; T2 근거 자료가 없습니다; T2 관측 기간이 없습니다; K1 조회가 완료되지 않았습니다; K1 근거 자료가 없습니다; K1 관측 기간이 없습니다; K2 조회가 완료되지 않았습니다; K2 근거 자료가 없습니다; K2 계산 또는 적용 조건이 없습니다; K3 조회가 완료되지 않았습니다; K3 근거 자료가 없습니다; K3 관측 기간이 없습니다; R2 조회가 완료되지 않았습니다; R2 근거 자료가 없습니다; R2 관측 기간이 없습니다",
+          "reason": "T2 조회가 완료되지 않았습니다; T2 근거 자료가 없습니다; T2 관측 기간이 없습니다; K2 조회가 완료되지 않았습니다; K2 근거 자료가 없습니다; K3 조회가 완료되지 않았습니다; K3 근거 자료가 없습니다; K3 관측 기간이 없습니다; R2 조회가 완료되지 않았습니다; R2 근거 자료가 없습니다; R2 관측 기간이 없습니다",
           "deficits": {
-            "tech": 5,
-            "synergy": 2
+            "tech": 4,
+            "synergy": 3
           },
           "evidence_sufficient": false
         },
@@ -213,10 +213,10 @@
           "sequence": 7,
           "candidate_id": "aidin_robotics",
           "route": "synergy",
-          "reason": "S2 조회가 완료되지 않았습니다; S2 근거 자료가 없습니다; F4 조회가 완료되지 않았습니다; F4 근거 자료가 없습니다; F4 계산 또는 적용 조건이 없습니다",
+          "reason": "S1 조회가 완료되지 않았습니다; S1 근거 자료가 없습니다; S2 조회가 완료되지 않았습니다; S2 근거 자료가 없습니다; F4 조회가 완료되지 않았습니다; F4 근거 자료가 없습니다; F4 계산 또는 적용 조건이 없습니다",
           "deficits": {
-            "tech": 5,
-            "synergy": 2
+            "tech": 4,
+            "synergy": 3
           },
           "evidence_sufficient": false
         },
@@ -226,8 +226,8 @@
           "route": "judge",
           "reason": "추가 조사 한도에 도달했습니다. 미확인 근거를 명시하고 보수적으로 판정합니다.",
           "deficits": {
-            "tech": 5,
-            "synergy": 2
+            "tech": 4,
+            "synergy": 3
           },
           "evidence_sufficient": false
         }
@@ -235,14 +235,18 @@
       "failures": {}
     },
     "figure_ai": {
-      "next_node": "skip",
+      "next_node": "judge",
       "attempts": {
-        "discover": 1
+        "discover": 1,
+        "tech": 2,
+        "synergy": 2,
+        "competitor": 1,
+        "market": 2
       },
-      "dispatch_count": 1,
+      "dispatch_count": 8,
       "assignment": null,
       "evidence_sufficient": false,
-      "termination_reason": "ineligible",
+      "termination_reason": "evidence_exhausted",
       "decisions": [
         {
           "sequence": 1,
@@ -261,13 +265,99 @@
         {
           "sequence": 2,
           "candidate_id": "figure_ai",
-          "route": "skip",
-          "reason": "적격성 기준에 해당하지 않아 심층 평가를 생략합니다.",
+          "route": "tech",
+          "reason": "tech_analysis 분석 결과가 없습니다",
           "deficits": {
             "tech": 5,
             "market": 1,
             "competitor": 1,
             "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 3,
+          "candidate_id": "figure_ai",
+          "route": "synergy",
+          "reason": "synergy_analysis 분석 결과가 없습니다",
+          "deficits": {
+            "tech": 4,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 3
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 4,
+          "candidate_id": "figure_ai",
+          "route": "competitor",
+          "reason": "competitor_analysis 분석 결과가 없습니다",
+          "deficits": {
+            "tech": 4,
+            "market": 1,
+            "competitor": 1,
+            "synergy": 2
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 5,
+          "candidate_id": "figure_ai",
+          "route": "market",
+          "reason": "market_analysis 분석 결과가 없습니다",
+          "deficits": {
+            "tech": 4,
+            "market": 1,
+            "synergy": 2
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 6,
+          "candidate_id": "figure_ai",
+          "route": "tech",
+          "reason": "T2 조회가 완료되지 않았습니다; T2 근거 자료가 없습니다; T2 관측 기간이 없습니다; K1 조회가 완료되지 않았습니다; K1 근거 자료가 없습니다; K1 관측 기간이 없습니다; K2 조회가 완료되지 않았습니다; K2 근거 자료가 없습니다; K2 계산 또는 적용 조건이 없습니다; R2 조회가 완료되지 않았습니다; R2 근거 자료가 없습니다; R2 관측 기간이 없습니다",
+          "deficits": {
+            "tech": 4,
+            "market": 1,
+            "synergy": 2
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 7,
+          "candidate_id": "figure_ai",
+          "route": "synergy",
+          "reason": "S2 조회가 완료되지 않았습니다; S2 근거 자료가 없습니다; F4 조회가 완료되지 않았습니다; F4 근거 자료가 없습니다; F4 계산 또는 적용 조건이 없습니다",
+          "deficits": {
+            "tech": 4,
+            "market": 1,
+            "synergy": 2
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 8,
+          "candidate_id": "figure_ai",
+          "route": "market",
+          "reason": "P1 조회가 완료되지 않았습니다; P1 근거 자료가 없습니다; P1 관측 기간이 없습니다",
+          "deficits": {
+            "tech": 4,
+            "market": 1,
+            "synergy": 2
+          },
+          "evidence_sufficient": false
+        },
+        {
+          "sequence": 9,
+          "candidate_id": "figure_ai",
+          "route": "judge",
+          "reason": "추가 조사 한도에 도달했습니다. 미확인 근거를 명시하고 보수적으로 판정합니다.",
+          "deficits": {
+            "tech": 4,
+            "market": 1,
+            "synergy": 2
           },
           "evidence_sufficient": false
         }

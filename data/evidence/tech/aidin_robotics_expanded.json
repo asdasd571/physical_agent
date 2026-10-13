@@ -1,0 +1,148 @@
+{
+  "candidate_id": "aidin_robotics",
+  "sources": [
+    {
+      "source_id": "src_aidin_paper_2025_p1",
+      "kind": "PDF",
+      "publisher": "MDPI",
+      "title": "Design Analysis and Isotropic Optimization for Miniature Capacitive Force/Torque Sensor",
+      "url": "https://mdpi-res.com/d_attachment/sensors/sensors-25-00940/article_deploy/sensors-25-00940.pdf",
+      "published_at": "2025-02-04",
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/aidin_robotics/aidin_sensor_design_2025.pdf",
+      "sha256": "9f59e8840b438d21534cb3b2b949ed988cc8c7b1fc702f2d1ba7455b631fc19f",
+      "doc_id": "aidin_sensor_design_2025",
+      "page": 1,
+      "evidence_excerpt": "Aidin Robotics Inc., Anyang 14055"
+    },
+    {
+      "source_id": "src_aidin_paper_2025_p14",
+      "kind": "PDF",
+      "publisher": "MDPI",
+      "title": "Design Analysis and Isotropic Optimization for Miniature Capacitive Force/Torque Sensor",
+      "url": "https://mdpi-res.com/d_attachment/sensors/sensors-25-00940/article_deploy/sensors-25-00940.pdf",
+      "published_at": "2025-02-04",
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/aidin_robotics/aidin_sensor_design_2025.pdf",
+      "sha256": "9f59e8840b438d21534cb3b2b949ed988cc8c7b1fc702f2d1ba7455b631fc19f",
+      "doc_id": "aidin_sensor_design_2025",
+      "page": 14,
+      "evidence_excerpt": "15 N and 75 N-mm"
+    },
+    {
+      "source_id": "src_aidin_paper_2025_p15",
+      "kind": "PDF",
+      "publisher": "MDPI",
+      "title": "Design Analysis and Isotropic Optimization for Miniature Capacitive Force/Torque Sensor",
+      "url": "https://mdpi-res.com/d_attachment/sensors/sensors-25-00940/article_deploy/sensors-25-00940.pdf",
+      "published_at": "2025-02-04",
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/aidin_robotics/aidin_sensor_design_2025.pdf",
+      "sha256": "9f59e8840b438d21534cb3b2b949ed988cc8c7b1fc702f2d1ba7455b631fc19f",
+      "doc_id": "aidin_sensor_design_2025",
+      "page": 15,
+      "evidence_excerpt": "Relative error of forces"
+    },
+    {
+      "source_id": "src_aidin_hand_specs",
+      "kind": "PDF",
+      "publisher": "AIDIN Robotics",
+      "title": "The Competitiveness of AIDIN ROBOTICS - quantitative product specifications",
+      "url": "https://www.worldrobotconference.com/uploads/exuser2024/video/65vehw.pdf",
+      "published_at": null,
+      "collected_at": "2026-10-13T14:27:19.159624+09:00",
+      "local_path": "data/rag/documents/tech/aidin_robotics/aidin_wrc_2024.pdf",
+      "sha256": "8cc09dde66eebd50b6a93e0c80cfe55caa2cd610efc2d9f5f19b1017faa01eed",
+      "doc_id": "aidin_wrc_2024",
+      "page": 13,
+      "evidence_excerpt": "15DoF; 20N; 15kg"
+    }
+  ],
+  "records": [
+    {
+      "kind": "paper",
+      "doi": "10.3390/s25030940",
+      "published_at": "2025-02-04",
+      "author_ids": [
+        "Seung Yeon Lee",
+        "Jae Yoon Sim",
+        "Yong Bum Kim",
+        "Dongyeop Seok",
+        "Jaeyoon Shim",
+        "Hyouk Ryeol Choi"
+      ],
+      "affiliations": [
+        "Sungkyunkwan University",
+        "Aidin Robotics Inc."
+      ],
+      "topic_relevant": true,
+      "identity_verified": true,
+      "company_affiliation_verified": true,
+      "independent_verified": true,
+      "source_ids": [
+        "src_aidin_paper_2025_p1"
+      ]
+    },
+    {
+      "kind": "validation",
+      "model": "miniature capacitive six-axis F/T sensor prototype",
+      "physical": true,
+      "setup": "force loading lever and ATI Nano-17 reference sensor",
+      "metrics": {
+        "force_range_n": 15,
+        "torque_range_nmm": 75,
+        "relative_force_error_percent_fso": [
+          0.16,
+          0.18,
+          0.24
+        ],
+        "relative_torque_error_percent_fso": [
+          0.88,
+          0.9,
+          0.67
+        ]
+      },
+      "independent_verified": false,
+      "source_ids": [
+        "src_aidin_paper_2025_p14",
+        "src_aidin_paper_2025_p15"
+      ]
+    },
+    {
+      "kind": "specification",
+      "model": "AIDIN HAND",
+      "metrics": {
+        "hand_dof": 15,
+        "fingertip_force_n": 20,
+        "payload_kg": 15
+      },
+      "independent_verified": false,
+      "source_ids": [
+        "src_aidin_hand_specs"
+      ]
+    },
+    {
+      "kind": "technology",
+      "description": "2025년 Sensors 논문은 에이딘 소속 저자와 DOI를 확인할 수 있습니다. 실물 센서를 기준 센서와 비교하여 힘·토크 측정 범위와 오차를 보고했습니다. 조작 성공률 시험과는 구분합니다.",
+      "source_ids": [
+        "src_aidin_paper_2025_p1",
+        "src_aidin_paper_2025_p14"
+      ],
+      "source_page_checked": true
+    },
+    {
+      "kind": "technology",
+      "description": "논문은 힘 측정 범위 15N, 토크 측정 범위 75N·mm를 사용합니다. 평균 상대 오차는 힘축 0.16·0.18·0.24%FSO, 토크축 0.88·0.90·0.67%FSO입니다. 자체 연구진의 기준 센서 비교 결과이며 독립 재현은 확인하지 않았습니다.",
+      "source_ids": [
+        "src_aidin_paper_2025_p14",
+        "src_aidin_paper_2025_p15"
+      ],
+      "source_page_checked": true
+    }
+  ],
+  "coverage": [],
+  "curation": {
+    "method": "source-page verification",
+    "scope": "public source and numeric field verification; independent replication not established"
+  }
+}

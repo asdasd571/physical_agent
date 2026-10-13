@@ -106,6 +106,16 @@ def test_zero_requires_complete_lookup_and_missing_is_none(tmp_path):
     assert result["K3"].raw_value is None
 
 
+def test_llm_cannot_establish_exhaustive_lookup_from_top_k_documents():
+    from agents.tech import _sanitize_extracted_payload
+    result = _sanitize_extracted_payload({"candidate_id": "sample", "coverage": [
+        {"indicator_id": "K1", "complete": True, "query_status": "SUCCESS", "source_ids": ["known"]}],
+        "records": [{"kind": "technology", "description": "제품 설명입니다.", "source_ids": ["known"]}]},
+        {"known": {}}, "sample")
+    assert not result["coverage"]
+    assert len(result["records"]) == 1
+
+
 def test_funding_company_share_years_duplicates(tmp_path):
     base = dict(project_id="P1", year=2025, government=True, topic_relevant=True,
                 beneficiary_id="가상후보1", company_amount_krw="120000000", independent_verified=True)

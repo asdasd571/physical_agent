@@ -72,6 +72,7 @@ class EvaluationRecord(SchemaModel):
     category_scores: dict[str, Decimal] = Field(default_factory=dict)
     gates: dict[str, GateResult] = Field(default_factory=dict)
     total_score: Decimal | None = Field(default=None, ge=0, le=100)
+    benchmark_score: Decimal | None = Field(default=None, ge=0, le=100)
     decision: Decision
     evidence_coverage: Decimal | None = Field(default=None, ge=0, le=1)
     unknown_items: list[str] = Field(default_factory=list)
@@ -83,4 +84,7 @@ class EvaluationRecord(SchemaModel):
         eligibility = self.gates.get("G1")
         if eligibility is not None and not eligibility.passed and self.total_score is not None:
             raise ValueError("G1-failed or unknown evaluation must have total_score=None")
+        if self.benchmark_score is not None:
+            if self.total_score is not None or eligibility is None or eligibility.passed or self.decision.status != DecisionStatus.HOLD:
+                raise ValueError("benchmark requires excluded eligibility, HOLD and no investment score")
         return self

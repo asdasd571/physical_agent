@@ -31,9 +31,9 @@ from graph.checkpoints import sqlite_checkpointer
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--candidates", default="data/candidates.json")
-    parser.add_argument("--index", default="data/rag/index")
+    parser.add_argument("--index", default="data/rag/index-expanded")
     parser.add_argument("--rule-version", default="1.0.0")
-    parser.add_argument("--document-version", default="1.0.0")
+    parser.add_argument("--document-version", default="2.0.0")
     parser.add_argument("--skip-rag", action="store_true")
     parser.add_argument("--skip-llm", action="store_true")
     parser.add_argument("--llm-model", default=None)
@@ -46,6 +46,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--artifacts", default="artifacts")
     parser.add_argument("--max-attempts", type=int, default=2)
     parser.add_argument("--max-report-revisions", type=int, default=2)
+    parser.add_argument("--eligibility-mode", choices=["strict", "stage-benchmark"], default="stage-benchmark")
     return parser.parse_args()
 
 
@@ -116,6 +117,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("run-id에는 영문, 숫자, 하이픈, 밑줄만 사용할 수 있습니다.")
     settings = {"report_output_path": args.report_output} if args.report_output else {}
     settings.update(skip_rag=args.skip_rag, skip_llm=args.skip_llm)
+    settings["eligibility_mode"] = args.eligibility_mode
     initial_state = {
         "run": RunConfig(
             run_id=run_id,
@@ -138,7 +140,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         settings["report_output_path"] = str(directory / "report.pdf")
     initial_state["run"] = initial_state["run"].model_copy(update={"settings": settings})
     initial_state["policy"] = SupervisorPolicy(max_attempts_per_agent=args.max_attempts,
-                                               max_report_revisions=args.max_report_revisions)
+                                               max_report_revisions=args.max_report_revisions,
+                                               allow_stage_benchmarks=args.eligibility_mode == "stage-benchmark")
     trace_id = uuid4()
     config = {"configurable": {"thread_id": run_id}, "run_id": trace_id,
               "run_name": "physical-agent-supervisor", "recursion_limit": 400,
@@ -151,9 +154,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             raise ValueError("저장된 실행을 찾을 수 없습니다.")
         if previous and previous.values:
             old_run = previous.values["run"]
-            for key in ("skip_rag", "skip_llm"):
+            for key in ("skip_rag", "skip_llm", "eligibility_mode"):
                 if old_run.settings.get(key) != settings[key]:
-                    raise ValueError("재개 시 RAG/LLM 실행 모드를 기존 실행과 동일하게 지정해야 합니다.")
+                    raise ValueError("재개 시 RAG/LLM/적격성 모드를 기존 실행과 동일하게 지정해야 합니다.")
             if not previous.next:
                 return previous.values
         with (directory / "events.jsonl").open("a", encoding="utf-8") as log:
@@ -181,6 +184,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 def print_result(result: dict[str, Any]) -> None:
     for index, evaluation in enumerate(result["evaluations"], start=1):
         score = evaluation.total_score if evaluation.total_score is not None else "미평가"
+        if evaluation.benchmark_score is not None:
+            score = f"비교 분석 {evaluation.benchmark_score}"
         print(
             f"[{index}/{len(result['evaluations'])}] "
             f"{evaluation.candidate_id}: {evaluation.decision.status.value} ({score})"

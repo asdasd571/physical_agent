@@ -6,6 +6,7 @@ from agents.supervised import make_supervised_worker, missing_analysis
 from nodes.init import init_node
 from nodes.select_candidate import select_candidate_node
 from nodes.judge import judge_node
+from nodes.early_stage import compare_early_stage
 from nodes.skip import skip_node
 from nodes.review import ANALYSIS_REQUIREMENTS, validate_indicator
 from nodes.supervisor import supervisor_node, route_supervisor
@@ -57,6 +58,8 @@ def conservative_judge(state):
         **evaluation.metadata, "evidence_sufficient": state["supervisor"].evidence_sufficient,
         "termination_reason": state["supervisor"].termination_reason,
         "technical_findings": [f.model_dump(mode="json") for f in checked["tech_analysis"].findings],
+        "early_stage_comparison": compare_early_stage(evaluation.indicators, evaluation.indicator_scores,
+                                                      state["run"].evaluation_date),
     }})
     return result
 

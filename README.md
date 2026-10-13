@@ -21,7 +21,7 @@ flowchart TD
     Competitor --> S
     Synergy --> S
     S -->|근거 검토 완료 또는 조사 한도 도달| Judge[투자 규칙 평가]
-    S -->|적격성 미충족 또는 확인 불가| Skip[심층 평가 보류]
+    S -->|상장·Exit·폐업 또는 확인 불가| Skip[심층 평가 보류]
     Judge --> Narrative[근거 해설]
     Narrative --> Archive[후보 결과 저장]
     Skip --> Archive
@@ -34,7 +34,7 @@ flowchart TD
     Finalize --> END
 ```
 
-Supervisor는 규칙 기반으로 동작합니다. 적격성 확인 뒤 미수행 관점을 우선 확보하고, 같은 조건에서는 미확인 필수 지표가 많은 담당자를 선택합니다. 에이전트의 실행 순서를 나열한 목록으로 제어하지 않습니다. 모든 담당 에이전트는 Supervisor로 복귀하며, 다른 담당자의 결과는 Supervisor가 명시적으로 전달한 경우에만 읽습니다.
+Supervisor는 규칙 기반으로 동작합니다. 기본 모드에서는 투자 단계만 범위 밖인 정상 비상장사도 비교 분석합니다. 상장·Exit 완료·휴폐업과 확인 불가 상태는 이 예외로 통과시키지 않습니다. 비교 분석 값은 `benchmark_score`에 저장하고 투자 점수 `total_score`와 구분합니다. 적격성 확인 뒤 미수행 관점을 우선 확보하고, 같은 조건에서는 미확인 필수 지표가 많은 담당자를 선택합니다. 에이전트의 실행 순서를 나열한 목록으로 제어하지 않습니다. 모든 담당 에이전트는 Supervisor로 복귀하며, 다른 담당자의 결과는 Supervisor가 명시적으로 전달한 경우에만 읽습니다.
 
 근거가 부족하면 해당 담당자에게 부족한 지표와 사유를 전달합니다. 기본 호출 한도는 담당자당 최초 조사 1회와 보완 1회입니다. 한도에 도달해도 근거가 부족하면 `evidence_exhausted`로 기록하고 HOLD로 처리합니다. 이를 근거 충분성 통과로 간주하지 않습니다.
 
@@ -62,8 +62,8 @@ python app.py --skip-rag --skip-llm --run-id offline-check --evaluation-date 202
 ### RAG와 LLM을 포함한 실행
 
 ```bash
-python -m scripts.prepare_corpus
-python -m rag.cli index --manifest data/rag/manifest.csv --index-dir data/rag/index
+python -m scripts.prepare_corpus --manifest data/rag/manifest.expanded.csv
+python -m rag.cli index --manifest data/rag/manifest.expanded.csv --index-dir data/rag/index-expanded
 python app.py --run-id supervisor-live --evaluation-date 2026-10-13
 ```
 
@@ -75,7 +75,9 @@ python app.py --run-id supervisor-live --evaluation-date 2026-10-13
 python app.py --resume --run-id supervisor-live
 ```
 
-재개 시 RAG와 LLM 사용 여부는 원래 실행과 같아야 합니다. 저장된 State와 다음 노드를 SQLite에서 복원합니다. 완료한 실행을 재개하면 기존 결과를 반환합니다.
+적격성 탈락 후보의 분석을 기존처럼 생략하려면 `--eligibility-mode strict`를 지정합니다. 기본값은 `stage-benchmark`입니다.
+
+재개 시 RAG·LLM 사용 여부와 적격성 모드는 원래 실행과 같아야 합니다. 저장된 State와 다음 노드를 SQLite에서 복원합니다. 완료한 실행을 재개하면 기존 결과를 반환합니다.
 
 ## 생성 파일
 
@@ -90,6 +92,14 @@ python app.py --resume --run-id supervisor-live
 | `checkpoints.sqlite` | 중단 후 재개하기 위한 State입니다. |
 
 품질 평가 통과 시 종료 코드는 0입니다. 수정 한도 이후에도 미달이면 `quality_failed`와 종료 코드 2를 반환합니다. 이 경우 생성된 PDF는 검토용 결과이며 통과한 보고서로 제출하지 않습니다.
+
+## 200페이지 문서와 초기 단계 비교
+
+확장 manifest는 17개 문서, 사용 페이지 200페이지입니다. 기존 161페이지에 에이딘 소속 저자의 센서 논문 18페이지, BMW 고객 확인 자료 7페이지, 에이딘의 정량 사양 자료 14페이지를 추가했습니다. 원문 파일과 SHA256을 함께 관리합니다.
+
+보고서에는 기존 투자 기준 점수와 `early-stage-v2` 비교 점수를 함께 표시합니다. 초기 단계 기준은 K1의 공개 정량 사양, K2의 조건이 명시된 실물 센서 시험, K3의 최근 공개 시연 기록을 각 항목 최대 2/5점으로 인정합니다. 제품 사양을 논문 수로, 센서 오차를 조작 성공률로, 전시 시연을 제조 현장 실증으로 바꾸지 않습니다. 이 비교 점수는 투자 판정에 사용하지 않습니다.
+
+출처별 추가 근거와 수집 한계는 [문서 확장 기록](docs/supervisor/corpus_expansion.md)에 정리했습니다.
 
 ## 보고서 품질 기준
 
@@ -119,6 +129,7 @@ python app.py --resume --run-id supervisor-live
 ## 테스트
 
 ```bash
+python -m scripts.prepare_corpus --manifest data/rag/manifest.expanded.csv
 LANGSMITH_TRACING=false python -m pytest -q
 ```
 

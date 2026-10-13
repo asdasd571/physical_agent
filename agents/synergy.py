@@ -60,7 +60,9 @@ def make_synergy_node(*, search=None, extractor=None, evidence_dir=None, parent_
                         "task_count": len({r["task_id"] for r in confirmed}),
                         "task_ids": sorted({r["task_id"] for r in confirmed})} if indicator_id == "S1" else
                        {"matched_task_count": len(matches), "matches": matches})
-                result = _value(**common, value=raw, records=selected + complete,
+                # 양의 수행 수는 고객 확인 기록에서 산출한다. 완전 조회 여부에 대한
+                # 별도 LLM 설명이 해당 확인 기록의 출처 등급을 낮추지 않도록 한다.
+                result = _value(**common, value=raw, records=selected or complete,
                                 unit="작업군", condition=condition)
                 # Parent publications confirm demand, never candidate performance.
             else:
