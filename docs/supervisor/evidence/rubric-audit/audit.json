@@ -68,8 +68,8 @@
     "recovery_verified": true
   },
   "remaining_submission_items": [
-    "LangSmith web UI screenshots",
-    "actual individual roles for this exercise"
+    "LangSmith web UI screenshots"
   ],
-  "grade_awarded": null
+  "grade_awarded": null,
+  "role_assignment_confirmed": true
 }
